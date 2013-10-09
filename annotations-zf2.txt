@@ -1,0 +1,40 @@
+Módulos
+=======
+Definição: Módulos são agrupamentos de códigos que podem ser facilmente incluídos em qualquer projeto, sendo totalmente desacoplados. Podemos criar aqui um módulo Admin totalmente genérico e usá-lo em qualquer projeto que criarmos no futuro, como um CMS ou um fórum.
+
+
+module.config.php
+-----------------
+Nesse arquivo nós definimos várias configurações do módulo. Ele retorna um array(). 
+Configurado separadamente do module.php, segundo WW, para que esse não fique muito grande.
+Algumas configurações são as de:
+- Rotas;
+- Controller;
+- Views;
+- Doctrine;
+- DataFixtures;
+- Banco de dados;
+
+Doctrine
+--------
+Usado para substituir a configuração global do Doctrine.
+
+
+
+
+Sempre que houver um novo 'Controller', o mesmo deverá ser explicitamente declarado no module.config.php.
+
+
+Serviços
+========
+Definição: Uma porção de código que pode ser facilmente usado por um controller, outro serviço ou, mais tarde, uma API.
+
+Views
+=====
+A pasta de views (view) deve ficar no mesmo nível da pasta src. Se o módulo usa CamelCase como nome, a pasta view deve usar a sintaxe camel-case, colocando-se um hífen antes da letra maiúscula e as letras maiúsculas devem ser trocadas por minúsculas.
+Cada Controller que usa uma ViewModel deve ter uma view a ser chamada, seguindo as definições acima. Ainda deve haver uma pasta para cada Controller e um arquivo para cada action.
+Exemplo:
+view
+	tenil-user 				// nome do módulo: TenilUser
+		index  				// nome do controller: IndexController.php
+			register.phtml 	// nome da action: registerAction()
