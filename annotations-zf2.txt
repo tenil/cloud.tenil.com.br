@@ -11,17 +11,88 @@ Algumas configurações são as de:
 - Rotas;
 - Controller;
 - Views;
-- Doctrine;
+- Doctrine: Usado para substituir a configuração do Doctrine no módulo.
 - DataFixtures;
 - Banco de dados;
 
+Entity
+======
+
 Doctrine
 --------
-Usado para substituir a configuração global do Doctrine.
+Alguns passos para a configuração do doctrine.
+
+1. O doctrine é configurado adicionando os módulos do doctrine ao projeto no application.config.php.
+- 'DoctrineModule',
+- 'DoctrineORMModule',
+- 'DoctrineDataFixtureModule',
+
+2. Configuração local no autoload:
+config\autoload\doctrine.local.php
+
+3. Configuração do módulo:
+modulo.config.php
+
+4. WW executa o passo a seguir para configurar cache do doctrine.
+Criação de pastas de arquivos temporários (cache):
+- data\cache\DoctrineORMModule\Proxy
+A pasta Proxy deve ter permissão de gravação.
+Não vi essa configuração em outros tutoriais, apenas a pasta 'data' deve possuir permissão de gravação, mais nada.
+
+Banco de dados
+--------------
+
+WW usa uma sintaxe específica para a criação das tabelas no banco, modulo_tabela. A justificativa é que se utilizarmos outros módulos, desenvolvidos por terceiros, não teremos o risco de ter uma tabela com o mesmo nome.
+Ele também usa a tabela em plural, verificar se essa é um prática adotada pela comunidade.
+
+Geração automática de código com o Doctrine
+-------------------------------------------
+Criação das entitys por linha de comando.
+Exibe todas as opções:
+php vendor/doctrine/doctrine-module/bin/doctrine-module
+
+Exemplo:
+php vendor/doctrine/doctrine-module/bin/doctrine-module orm:convert-mapping --filter="TeniluserUser" --from-database annotation module/TenilUser/src/TenilUser/Entity/
+
+O nome da tabela do banco foi ajustado para o padrão CamelCase. teniluser_user => TeniluserUser
+O exemplo acima foi testado e funciona corretamente. Foi gerado um arquivo na pasta indicada com o nome TeniluserUser.php.
+
+Após a criação do arquivo, alguns passos foram seguidos:
+
+1. TeniluserUser foi renomeado para User. 
+2. Acionado o namespace (TenilUser\Entity).
+3. O nome da classe foi renomeado para User.
+4. Foi criado o método construtor para setar os valores createdAt e updatedAt, contudo, na versão atual do doctrine, esses valores são passados usando 'CURRENT_TIMESTAMP'. Acho que o construtor para fazer isso é desnecessário. Talvez essa diferença seja por que no meu banco de dados eu setei os valores default dessas colunas.
+5. Geração dos códigos getters e setters.
+6. Criptografia. Hash. Salt.
+7. return $this; // Para interface fluida.
+8. Hydrate();
+9. O construtor receberá um array $options. Para fazer o hydrate.
+10. Utilizar o @ORM\HasLifecycleCalbacks para atualiar o updatadAt. Executa callback no momento em que algum evento for executado.
+11. Prepersiste, antes de gravar alguma coisa no banco ele executa o prepersiste.
+OBSERVAÇÃO: Não configurei setUpdatedAt e setCreatedAt conforme a aula ZF2I-3.4.
+
+Data-fixture
+------------
+Criação de uma classe na pasta fixture para fazer os testes com a entidade no banco de dados.
+- LoadUser.php
+Linha de comando:
+php vendor/doctrine/doctrine-module/bin/doctrine-module data-fixture:import
+Opcionalmente podemos usar
+php vendor/doctrine/doctrine-module/bin/doctrine-module data-fixture:import --purge-with-truncate
+Nesse caso ele zera a tabela, inclusive os auto-increments.
 
 
+Criptografia
+------------
+use Zend\Math\Rand;
+// Atribuindo o valor para o salt.
+// Rand::getBytes(8, TRUE) Gera uma string de 8 caracteres.
+// base64_encode converte para a base 64.
+$this->salt = base64_encode(Rand::getBytes(8, TRUE));
 
-
+Controller
+==========
 Sempre que houver um novo 'Controller', o mesmo deverá ser explicitamente declarado no module.config.php.
 
 
