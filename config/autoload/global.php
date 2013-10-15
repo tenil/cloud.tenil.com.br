@@ -12,5 +12,16 @@
  */
 
 return array(
-    // ...
+    'mail' => array(
+        'name' => 'email-smtp.us-east-1.amazonaws.com',
+        'host' => 'email-smtp.us-east-1.amazonaws.com',
+        'connection_class' => 'login',
+        'connection_config' => array(
+            'username'  => 'AKIAIMQAL354XXTUFRVQ',
+            'password'  => 'ApwN9pFWzUkmpsa0LTqODsjz9cSwU+pRE0KIc55uvni3',
+            'ssl'       => 'tls',
+            'port'      => 465,
+            'from'      => 'contato@tenil.com.br',
+        )
+    )
 );

@@ -15,7 +15,18 @@ return array(
                         'action' => 'register'
                     )
                 )
-            )
+            ),
+            'tenil-user-activate' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/register/activate[/:key]',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TenilUser\Controller',
+                        'controller' => 'Index',
+                        'action' => 'activate'
+                    )
+                )
+            )            
         )
     ),
     'controllers' => array(

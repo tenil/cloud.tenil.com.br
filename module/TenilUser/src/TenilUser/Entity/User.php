@@ -17,6 +17,7 @@ use Zend\Stdlib\Hydrator;
  * @ORM\Table(name="teniluser_user", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="TenilUser\Entity\UserRepository")
  */
 class User {
 

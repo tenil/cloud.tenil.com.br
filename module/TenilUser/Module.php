@@ -10,6 +10,9 @@
 
 namespace TenilUser;
 
+use Zend\Mail\Transport\Smtp as SmtpTransport;
+use Zend\Mail\Transport\SmtpOptions;
+
 class Module {
 
     public function getConfig() {
@@ -22,6 +25,32 @@ class Module {
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
+            ),
+        );
+    }
+
+    public function getServiceConfig() {
+
+        return array(
+            'factories' => array(
+                'TenilUser\Mail\Transport' => function($sm) {
+                    $config = $sm->get('Config');
+                    $transport = new SmtpTransport;
+                    $options = new SmtpOptions($config['mail']);
+                    $transport->setOptions($options);
+                    return $transport;
+                },
+                'TenilUser\Service\User' => function($sm) {
+                    return new Service\User($sm->get('Doctrine\ORM\EntityManager'), $sm->get('TenilUser\Mail\Transport'), $sm->get('view'));
+                }
+            )
+        );
+    }
+
+    public function getViewHelperConfig() {
+        return array(
+            'invokables' => array(
+                'FormElementErrors' => 'TenilUser\Form\View\Helper\FormElementErrors'
             ),
         );
     }

@@ -1,1 +1,55 @@
-<h1><?php echo $this->translate('Register') ?></h1>
+<h1><?php echo $this->translate('Cadastre-se') ?></h1>
+
+<?php foreach ($this->messages as $value): ?>
+    <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Erro!</strong> <?php echo $value; ?>
+    </div>
+<?php endforeach; ?>
+
+<?php
+$form = $this->form;
+$form->prepare();
+
+$form->setAttribute(
+        'action', $this->url('tenil-user-register'), array(
+    'controller' => 'index',
+    'action' => 'register'
+        )
+);
+
+echo $this->form()->openTag($form);
+
+$id = $form->get('id');
+echo $this->formHidden($id);
+
+$security = $form->get('security');
+echo $this->formElement($security);
+
+echo '<div class="form-group">';
+$email = $form->get('email');
+echo $this->formLabel($email);
+echo '<div class="col-lg-10">';
+echo $this->formInput($email);
+echo $this->formElementErrors($email);
+echo '</div>';
+echo '</div>';
+
+echo '<div class="form-group">';
+$password = $form->get('password');
+echo $this->formLabel($password);
+echo '<div class="col-lg-10">';
+echo $this->formInput($password);
+echo $this->formElementErrors($password);
+echo '</div>';
+echo '</div>';
+
+echo '<div class="form-group">';
+$name = $form->get('submit');
+echo '<div class="col-lg-offset-2 col-lg-10">';
+echo $this->formSubmit($name);
+echo '</div>';
+echo '</div>';
+
+echo $this->form()->closeTag();
+?>
