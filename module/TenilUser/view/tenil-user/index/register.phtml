@@ -27,6 +27,16 @@ $security = $form->get('security');
 echo $this->formElement($security);
 
 echo '<div class="form-group">';
+$nome = $form->get('nome');
+echo $this->formLabel($nome);
+echo '<div class="col-lg-10">';
+echo $this->formInput($nome);
+echo $this->formElementErrors($nome);
+echo '</div>';
+echo '</div>';
+
+
+echo '<div class="form-group">';
 $email = $form->get('email');
 echo $this->formLabel($email);
 echo '<div class="col-lg-10">';

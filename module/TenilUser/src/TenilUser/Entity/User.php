@@ -33,14 +33,14 @@ class User {
     /**
      * @var string
      *
-     * @ORM\Column(name="nome", type="string", length=255, nullable=false)
+     * @ORM\Column(name="nome", type="string", length=255, nullable=true)
      */
     private $nome;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=254, nullable=false)
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
@@ -193,6 +193,7 @@ class User {
     /*
      * @ORM\prePersist
      */
+
     public function setUpdatedAt(\DateTime $updatedAt) {
         $this->updatedAt = $updatedAt;
         return $this;

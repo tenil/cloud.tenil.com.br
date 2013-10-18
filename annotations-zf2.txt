@@ -91,6 +91,17 @@ use Zend\Math\Rand;
 // base64_encode converte para a base 64.
 $this->salt = base64_encode(Rand::getBytes(8, TRUE));
 
+
+EntityManager
+-------------
+
+
+
+
+
+
+
+
 Controller
 ==========
 Sempre que houver um novo 'Controller', o mesmo deverá ser explicitamente declarado no module.config.php.
@@ -99,6 +110,23 @@ Sempre que houver um novo 'Controller', o mesmo deverá ser explicitamente decla
 Serviços
 ========
 Definição: Uma porção de código que pode ser facilmente usado por um controller, outro serviço ou, mais tarde, uma API.
+Depois de criar um serviço, ele deve ser devidamente configurado no Module.php do múdulo (getServiceConfig()).
+
+
+
+AbstractService
+---------------
+Nesse caso será utilizado para fazer um CRUD básico usando EntityManager do Doctrine.
+
+User
+----
+Criando uma classe para os serviços do Usuário.
+
+
+
+FlashMessenger
+==============
+É uma classe que ajuda a adicionar mensagens entre um request e outro.
 
 Views
 =====
@@ -109,3 +137,15 @@ view
 	tenil-user 				// nome do módulo: TenilUser
 		index  				// nome do controller: IndexController.php
 			register.phtml 	// nome da action: registerAction()
+
+			
+			
+Mail
+====
+
+Criada uma classe Mail em TenilBase para envio básico de e-mail, pode e deve ser aprimorada com exceptions.
+
+
+Repositório
+===========
+É uma classe que agente normalmente usa para fazer consultas.

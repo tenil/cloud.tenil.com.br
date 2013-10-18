@@ -18,16 +18,12 @@ class UserFilter extends InputFilter {
             'required' => TRUE,
             'filters' => array(
                 array('name' => 'StripTags'),
-                array('name' => 'StringTrim')
+                array('name' => 'StringTrim'),
+                array('name' => 'StringToLower')
             ),
             'validators' => array(
                 array(
-                    'name' => 'NotEmpty',
-                    'options' => array(
-                        'messages' => array(
-                            'isEmpty' => 'Precisa ser preenchido'
-                        ),
-                    ),
+                    'name' => 'NotEmpty'
                 ),
             ),
         ));
@@ -35,7 +31,7 @@ class UserFilter extends InputFilter {
         $emailValidator = new Validator\EmailAddress();
         $this->add(array(
             'name' => 'email',
-            #'required' => FALSE,
+            'required' => TRUE,
             'validators' => array($emailValidator)
         ));
 
@@ -60,7 +56,7 @@ class UserFilter extends InputFilter {
 
         $this->add(array(
             'name' => 'confirmation',
-            'required' => TRUE,
+            'required' => FALSE,
             'filters' => array(
                 array('name' => 'StripTags'),
                 array('name' => 'StringTrim')

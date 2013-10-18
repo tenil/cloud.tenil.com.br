@@ -23,7 +23,7 @@ class User extends Form {
 
         $nome = new Element\Text('nome');
         $nome->setLabel('Nome')
-                ->setAttribute('placeholder', 'Informe o nome')
+                ->setAttribute('placeholder', 'Informe seu nome')
                 ->setAttribute('class', 'form-control')
                 ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
         $this->add($nome);

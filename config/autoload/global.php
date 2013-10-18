@@ -20,7 +20,7 @@ return array(
             'username'  => 'AKIAIMQAL354XXTUFRVQ',
             'password'  => 'ApwN9pFWzUkmpsa0LTqODsjz9cSwU+pRE0KIc55uvni3',
             'ssl'       => 'tls',
-            'port'      => 465,
+            'port'      => 587,
             'from'      => 'contato@tenil.com.br',
         )
     )
