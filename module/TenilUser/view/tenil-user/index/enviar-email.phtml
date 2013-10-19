@@ -1,6 +1,18 @@
 <h1>Enviando e-mail...</h1>
+
 <?php
-foreach ($this->messages as $value) {
-    echo '<p>Exception: ' . $value . '</p>' . PHP_EOL;
-}
+$message = $this->messages;
+/*
+  foreach ($message->getCc() as $address) {
+  printf("%s: %s\n", $address->getEmail(), $address->getName());
+  }
+ */
 ?>
+
+<?php foreach ($message->getCc() as $address): ?> 
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span class=".glyphicon .glyphicon-thumbs-up"></span>
+        <strong>E-mail enviado para:</strong> <?php echo $address->getEmail(); ?>.
+    </div> 
+<?php endforeach; ?>

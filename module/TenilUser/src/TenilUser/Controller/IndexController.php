@@ -9,10 +9,12 @@ namespace TenilUser\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use TenilUser\Form\User as FormUser;
-use Zend\Mail;
+
 use Zend\Mail\Message;
 use Zend\Mail\Transport\Smtp as SmtpTransport;
 use Zend\Mail\Transport\SmtpOptions;
+
+use Zend\Math\Rand;
 
 class IndexController extends AbstractActionController {
 
@@ -55,33 +57,37 @@ class IndexController extends AbstractActionController {
 
     public function enviarEmailAction() {
 
+    $bytes = Rand::getInteger(100000, 999999);
+        
         $message = new Message();
         $message->addTo('roberto.tenil@gmail.com')
-                ->addFrom('roberto.tenil@gmail.com')
-                ->setSubject('Greetings and Salutations!')
-                ->setBody("Sorry, I'm going to be late today!");
+                //->addTo('bernardo.dias@gmail.com')
+                ->addCc('ivan@tenil.com.br')
+                ->addCc('hugo.o.agape@gmail.com')
+                ->addCc('eloisa@tenil.com.br')
+                ->addCc('ivannescau@gmail.com')
+                ->addCc('miriam@tenil.com.br')
+                ->addFrom("contato@tenil.com.br", "Tenil Techno")
+                ->setSubject('Teste: ' . $bytes)
+                ->setBody("Funciona desovo!");
 
         // Setup SMTP transport using LOGIN authentication
         $transport = new SmtpTransport();
         $options = new SmtpOptions(array(
             'name' => 'tenil.com.br',
             'host' => 'email-smtp.us-east-1.amazonaws.com',
-            'connection_class' => 'login',
+            'port' => 587, // Notice port change for TLS is 587
+            'connection_class' => 'plain',
             'connection_config' => array(
                 'username' => 'AKIAIMQAL354XXTUFRVQ',
                 'password' => 'ApwN9pFWzUkmpsa0LTqODsjz9cSwU+pRE0KIc55uvni3',
                 'ssl' => 'tls',
-                'port' => 587,
-                'from' => 'contato@tenil.com.br',
-            )
-                )
-        );
+            ),
+        ));
         $transport->setOptions($options);
         $transport->send($message);
-        
-        $messages = $transport->getOptions()->toArray();
 
-        return new ViewModel(array('messages' => $messages));
+        return new ViewModel(array('messages' => $message));
     }
 
 }
