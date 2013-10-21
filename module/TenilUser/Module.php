@@ -35,7 +35,7 @@ class Module {
             'factories' => array(
                 'TenilUser\Mail\Transport' => function($sm) {
                     $config = $sm->get('Config');
-                    $transport = new SmtpTransport;
+                    $transport = new SmtpTransport();
                     $options = new SmtpOptions($config['mail']);
                     $transport->setOptions($options);
                     return $transport;

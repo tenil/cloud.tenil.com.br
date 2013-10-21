@@ -9,11 +9,11 @@ namespace TenilUser\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use TenilUser\Form\User as FormUser;
-
 use Zend\Mail\Message;
+use Zend\Mime\Message as MimeMessage;
+use Zend\Mime\Part as MimePart;
 use Zend\Mail\Transport\Smtp as SmtpTransport;
 use Zend\Mail\Transport\SmtpOptions;
-
 use Zend\Math\Rand;
 
 class IndexController extends AbstractActionController {
@@ -57,22 +57,34 @@ class IndexController extends AbstractActionController {
 
     public function enviarEmailAction() {
 
-    $bytes = Rand::getInteger(100000, 999999);
-        
+        $bytes = Rand::getInteger(100000, 999999);
+        $texto = '<p>Texto aleatório: <br>' . PHP_EOL . base64_encode(Rand::getBytes(100)) . '</p>';
+
+        $mimepart = new MimePart($texto);
+        $mimepart->type = "text/html";
+
+        $mimemessage = new MimeMessage();
+        $mimemessage->addPart($mimepart);
+
         $message = new Message();
         $message->addTo('roberto.tenil@gmail.com')
-                //->addTo('bernardo.dias@gmail.com')
-                ->addCc('ivan@tenil.com.br')
-                ->addCc('hugo.o.agape@gmail.com')
-                ->addCc('eloisa@tenil.com.br')
-                ->addCc('ivannescau@gmail.com')
-                ->addCc('miriam@tenil.com.br')
+                ->addCc('tenil@outlook.com')
+                ->addBcc('ivan@tenil.com.br')
+                /*
+                  ->addBcc('hugo.o.agape@gmail.com')
+                  ->addBcc('eloisa@tenil.com.br')
+                  ->addBcc('ivannescau@gmail.com')
+                  ->addBcc('miriam@tenil.com.br')
+                 * 
+                 */
                 ->addFrom("contato@tenil.com.br", "Tenil Techno")
+                ->setSender("contato@tenil.com.br", "Tenil Techno")
                 ->setSubject('Teste: ' . $bytes)
-                ->setBody("Funciona desovo!");
+                ->setBody($mimemessage)
+        //->setEncoding("UTF-8")
+        ;
 
         // Setup SMTP transport using LOGIN authentication
-        $transport = new SmtpTransport();
         $options = new SmtpOptions(array(
             'name' => 'tenil.com.br',
             'host' => 'email-smtp.us-east-1.amazonaws.com',
@@ -82,12 +94,14 @@ class IndexController extends AbstractActionController {
                 'username' => 'AKIAIMQAL354XXTUFRVQ',
                 'password' => 'ApwN9pFWzUkmpsa0LTqODsjz9cSwU+pRE0KIc55uvni3',
                 'ssl' => 'tls',
+                'from' => 'contato@tenil.com.br',
             ),
         ));
+        $transport = new SmtpTransport();
         $transport->setOptions($options);
         $transport->send($message);
 
-        return new ViewModel(array('messages' => $message));
+        return new ViewModel(array('message' => $message));
     }
 
 }

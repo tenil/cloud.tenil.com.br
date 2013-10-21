@@ -1,7 +1,7 @@
 <h1>Enviando e-mail...</h1>
 
 <?php
-$message = $this->messages;
+$message = $this->message;
 /*
   foreach ($message->getCc() as $address) {
   printf("%s: %s\n", $address->getEmail(), $address->getName());
@@ -9,10 +9,45 @@ $message = $this->messages;
  */
 ?>
 
-<?php foreach ($message->getCc() as $address): ?> 
+<?php
+/*
+foreach ($message->getCc() as $address): ?> 
     <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <span class=".glyphicon .glyphicon-thumbs-up"></span>
-        <strong>E-mail enviado para:</strong> <?php echo $address->getEmail(); ?>.
+        <strong>E-mail enviado para:</strong> <?php echo $address->getBcc(); ?>.
     </div> 
 <?php endforeach; ?>
+ * 
+ */
+?>
+
+<?php
+// Headers
+// Note: this will also grab all headers for which accessors/mutators exist in
+// the Message object itself.
+foreach ($message->getHeaders() as $header) {
+    echo 'Header: ' . $header->toString() . '<br>';
+    // or grab values: $header->getFieldName(), $header->getFieldValue()
+}
+
+// The logic below also works for the methods cc(), bcc(), to(), and replyTo()
+foreach ($message->getFrom() as $address) {
+    printf("%s: %s\n", $address->getEmail(), $address->getName());
+}
+
+// Sender
+/*
+$address = $message->getSender();
+printf("%s: %s\n", $address->getEmail(), $address->getName());
+*/
+// Subject
+echo "Subject: ", $message->getSubject(), "\n";
+
+// Encoding
+echo "Encoding: ", $message->getEncoding(), "\n";
+
+// Message body:
+//echo $message->getBody();     // raw body, or MIME object
+echo $message->getBodyText(); // body as it will be sent
+?>

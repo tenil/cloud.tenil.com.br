@@ -7,7 +7,6 @@
 namespace TenilUser\Service;
 
 use Doctrine\ORM\EntityManager;
-use Zend\Stdlib\Hydrator;
 use Zend\Mail\Transport\Smtp as SmtpTransport;
 use TenilBase\Mail\Mail;
 
