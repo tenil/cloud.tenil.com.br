@@ -12,9 +12,6 @@ use Zend\Mime\Message as MimeMessage;
 use Zend\Mime\Part as MimePart;
 use Zend\View\Model\ViewModel;
 
-use Zend\Mail\Transport\SmtpOptions;
-
-
 class Mail {
 
     protected $transport;
@@ -28,30 +25,7 @@ class Mail {
 
     public function __construct(SmtpTransport $transport, $view, $page) {
 
-//        $this->transport = $transport;
-        
-        
-        $options = new SmtpOptions(array(
-            'name' => 'tenil.com.br',
-            'host' => 'email-smtp.us-east-1.amazonaws.com',
-            'port' => 587, // Notice port change for TLS is 587
-            'connection_class' => 'plain',
-            'connection_config' => array(
-                'username' => 'AKIAIMQAL354XXTUFRVQ',
-                'password' => 'ApwN9pFWzUkmpsa0LTqODsjz9cSwU+pRE0KIc55uvni3',
-                'ssl' => 'tls',
-                'from' => 'contato@tenil.com.br',
-            ),
-        ));
-        $tranp = new SmtpTransport();
-        $tranp->setOptions($options);        
-        
-        $this->transport = $tranp;
-        
-        
-        
-        
-        
+        $this->transport = $transport;
         $this->view = $view;
         $this->page = $page;
     }
@@ -83,25 +57,27 @@ class Mail {
 
     public function prepare() {
 
-        $mimePart = new MimePart($this->renderView($this->page, $this->data));
+        $texto = $this->renderView($this->page, $this->data);
+
+        $mimePart = new MimePart($texto);
         $mimePart->type = "text/html";
+        $mimePart->charset = "UTF-8";
 
         $mimeMessage = new MimeMessage();
         $mimeMessage->addPart($mimePart);
 
         $this->body = $mimeMessage;
 
-        // Aqui ele busca as informação lá do global.php
+        // Aqui ele recupera as informações lá do global.php
         $config = $this->transport->getOptions()->toArray();
 
-        $this->message = new Message;
+        $this->message = new Message();
         $this->message
+                ->addTo($this->to)
                 ->addFrom($config['connection_config']['from'])
                 ->setSender($config['connection_config']['from'])
-                ->addTo($this->to)
                 ->setSubject($this->subject)
                 ->setBody($this->body);
-        //->setEncoding("UTF-8");
 
         return $this;
     }
@@ -109,7 +85,6 @@ class Mail {
     public function send() {
 
         $this->transport->send($this->message);
-
         return $this->message;
     }
 

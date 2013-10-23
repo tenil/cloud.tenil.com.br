@@ -29,10 +29,12 @@ class IndexController extends AbstractActionController {
         if ($request->isPost()) {
             // Preenchendo os dados recuperado novamente no formulário
             $form->setData($request->getPost());
-            // Verificando se os dados do formulário são válidos (filters e validators).
+            // Verificando se os dados do formulário 
+            // são válidos (filters e validators).
             if ($form->isValid()) {
                 // Criando uma instância da classe de serviço do Module.php
-                $service = $this->getServiceLocator()->get('TenilUser\Service\User');
+                $service = $this->getServiceLocator()
+                        ->get('TenilUser\Service\User');
                 // Se a inserção for verdadeira, entra no if.
                 if ($service->insert($request->getPost()->toArray())) {
                     // Aprimorar para mensagens de status.
@@ -57,20 +59,23 @@ class IndexController extends AbstractActionController {
 
     public function enviarEmailAction() {
 
+        
         $bytes = Rand::getInteger(100000, 999999);
-        $texto = '<p>Texto aleatório: <br>' . PHP_EOL . base64_encode(Rand::getBytes(100)) . '</p>';
+        $texto = '<p>Texto aleatório: <br>' . PHP_EOL
+                . base64_encode(Rand::getBytes(100)) . '</p>';
 
-        $mimepart = new MimePart($texto);
-        $mimepart->type = "text/html";
+        $mimePart = new MimePart($texto);
+        $mimePart->type = "text/html";
+        $mimePart->charset = "UTF-8";
 
-        $mimemessage = new MimeMessage();
-        $mimemessage->addPart($mimepart);
+        $mimeMessage = new MimeMessage();
+        $mimeMessage->addPart($mimePart);
 
         $message = new Message();
         $message->addTo('roberto.tenil@gmail.com')
-                ->addCc('tenil@outlook.com')
-                ->addBcc('ivan@tenil.com.br')
+         //       ->addCc('tenil@outlook.com')
                 /*
+                  ->addBcc('ivan@tenil.com.br')
                   ->addBcc('hugo.o.agape@gmail.com')
                   ->addBcc('eloisa@tenil.com.br')
                   ->addBcc('ivannescau@gmail.com')
@@ -80,8 +85,7 @@ class IndexController extends AbstractActionController {
                 ->addFrom("contato@tenil.com.br", "Tenil Techno")
                 ->setSender("contato@tenil.com.br", "Tenil Techno")
                 ->setSubject('Teste: ' . $bytes)
-                ->setBody($mimemessage)
-        //->setEncoding("UTF-8")
+                ->setBody($mimeMessage)
         ;
 
         // Setup SMTP transport using LOGIN authentication
@@ -97,9 +101,13 @@ class IndexController extends AbstractActionController {
                 'from' => 'contato@tenil.com.br',
             ),
         ));
-        $transport = new SmtpTransport();
+
+        // smtpTransport
+        $transport = $this->getServiceLocator()->get('TenilUser\Mail\Transport'); 
+//        $transport = new SmtpTransport();
+        
         $transport->setOptions($options);
-        $transport->send($message);
+//        $transport->send($message);
 
         return new ViewModel(array('message' => $message));
     }

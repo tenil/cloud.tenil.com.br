@@ -33,12 +33,14 @@ class User extends AbstractService {
             'activationKey' => $entity->getActivationKey()
         );
         if ($entity) {
+            // Parâmetros: Transport, View e Page
             $mail = new Mail($this->transport, $this->view, 'add-user');
             $mail->setSubjet('Confirmação de cadastro')
                     ->setTo($data['email'])
                     ->setData($dataEmail)
                     ->prepare()
-                    ->send();
+                    ->send()
+                    ;
             return $entity;
         }
     }

@@ -34,14 +34,22 @@ class Module {
         return array(
             'factories' => array(
                 'TenilUser\Mail\Transport' => function($sm) {
+                    // Recupera as informações do global.php
                     $config = $sm->get('Config');
-                    $transport = new SmtpTransport();
+                    // Recupera as informações de mail do global.php
                     $options = new SmtpOptions($config['mail']);
+
+                    $transport = new SmtpTransport();
                     $transport->setOptions($options);
+
                     return $transport;
                 },
                 'TenilUser\Service\User' => function($sm) {
-                    return new Service\User($sm->get('Doctrine\ORM\EntityManager'), $sm->get('TenilUser\Mail\Transport'), $sm->get('view'));
+                    $em         = $sm->get('Doctrine\ORM\EntityManager');
+                    $transport  = $sm->get('TenilUser\Mail\Transport');
+                    $view       = $sm->get('view');
+
+                    return new Service\User($em, $transport, $view);
                 }
             )
         );
