@@ -22,6 +22,7 @@ return array(
             'password' => 'ApwN9pFWzUkmpsa0LTqODsjz9cSwU+pRE0KIc55uvni3',
             'ssl' => 'tls',
             'from' => 'contato@tenil.com.br',
+            'sender' => 'Tenil Tecnologia'
         )
     )
 );

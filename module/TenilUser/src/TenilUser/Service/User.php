@@ -40,7 +40,7 @@ class User extends AbstractService {
                     ->setData($dataEmail)
                     ->prepare()
                     ->send()
-                    ;
+            ;
             return $entity;
         }
     }

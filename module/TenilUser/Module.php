@@ -45,9 +45,9 @@ class Module {
                     return $transport;
                 },
                 'TenilUser\Service\User' => function($sm) {
-                    $em         = $sm->get('Doctrine\ORM\EntityManager');
-                    $transport  = $sm->get('TenilUser\Mail\Transport');
-                    $view       = $sm->get('view');
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $transport = $sm->get('TenilUser\Mail\Transport');
+                    $view = $sm->get('view');
 
                     return new Service\User($em, $transport, $view);
                 }

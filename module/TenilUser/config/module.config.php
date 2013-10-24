@@ -27,17 +27,6 @@ return array(
                     )
                 )
             ),
-            'tenil-user-enviar' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/register/enviar',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'TenilUser\Controller',
-                        'controller' => 'Index',
-                        'action' => 'enviarEmail'
-                    )
-                )
-            ),
         )
     ),
     'controllers' => array(

@@ -9,12 +9,6 @@ namespace TenilUser\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use TenilUser\Form\User as FormUser;
-use Zend\Mail\Message;
-use Zend\Mime\Message as MimeMessage;
-use Zend\Mime\Part as MimePart;
-use Zend\Mail\Transport\Smtp as SmtpTransport;
-use Zend\Mail\Transport\SmtpOptions;
-use Zend\Math\Rand;
 
 class IndexController extends AbstractActionController {
 
@@ -55,61 +49,6 @@ class IndexController extends AbstractActionController {
             'form' => $form,
             'messages' => $messages
         ));
-    }
-
-    public function enviarEmailAction() {
-
-        
-        $bytes = Rand::getInteger(100000, 999999);
-        $texto = '<p>Texto aleatório: <br>' . PHP_EOL
-                . base64_encode(Rand::getBytes(100)) . '</p>';
-
-        $mimePart = new MimePart($texto);
-        $mimePart->type = "text/html";
-        $mimePart->charset = "UTF-8";
-
-        $mimeMessage = new MimeMessage();
-        $mimeMessage->addPart($mimePart);
-
-        $message = new Message();
-        $message->addTo('roberto.tenil@gmail.com')
-         //       ->addCc('tenil@outlook.com')
-                /*
-                  ->addBcc('ivan@tenil.com.br')
-                  ->addBcc('hugo.o.agape@gmail.com')
-                  ->addBcc('eloisa@tenil.com.br')
-                  ->addBcc('ivannescau@gmail.com')
-                  ->addBcc('miriam@tenil.com.br')
-                 * 
-                 */
-                ->addFrom("contato@tenil.com.br", "Tenil Techno")
-                ->setSender("contato@tenil.com.br", "Tenil Techno")
-                ->setSubject('Teste: ' . $bytes)
-                ->setBody($mimeMessage)
-        ;
-
-        // Setup SMTP transport using LOGIN authentication
-        $options = new SmtpOptions(array(
-            'name' => 'tenil.com.br',
-            'host' => 'email-smtp.us-east-1.amazonaws.com',
-            'port' => 587, // Notice port change for TLS is 587
-            'connection_class' => 'plain',
-            'connection_config' => array(
-                'username' => 'AKIAIMQAL354XXTUFRVQ',
-                'password' => 'ApwN9pFWzUkmpsa0LTqODsjz9cSwU+pRE0KIc55uvni3',
-                'ssl' => 'tls',
-                'from' => 'contato@tenil.com.br',
-            ),
-        ));
-
-        // smtpTransport
-        $transport = $this->getServiceLocator()->get('TenilUser\Mail\Transport'); 
-//        $transport = new SmtpTransport();
-        
-        $transport->setOptions($options);
-//        $transport->send($message);
-
-        return new ViewModel(array('message' => $message));
     }
 
 }

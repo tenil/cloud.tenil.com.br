@@ -65,19 +65,25 @@ class Mail {
 
         $mimeMessage = new MimeMessage();
         $mimeMessage->addPart($mimePart);
-
         $this->body = $mimeMessage;
 
-        // Aqui ele recupera as informações lá do global.php
         $config = $this->transport->getOptions()->toArray();
 
-        $this->message = new Message();
-        $this->message
-                ->addTo($this->to)
-                ->addFrom($config['connection_config']['from'])
-                ->setSender($config['connection_config']['from'])
+        $message = new Message();
+        $message->addTo($this->to)
+                ->addFrom($config['connection_config']['from'], $config['connection_config']['sender'])
+                ->setSender($config['connection_config']['from'], $config['connection_config']['sender'])
                 ->setSubject($this->subject)
-                ->setBody($this->body);
+                ->setBody($this->body)
+        ;
+        
+        // Corrige o problema de criptografia do DKIM usando acentuação no
+        // subject da mensagem. Aguardando correção no framework.
+        foreach (array('Subject', 'From', 'To') as $_h) {
+            $message->getHeaders()->get($_h)->setEncoding('UTF-8');
+        }
+
+        $this->message = $message;
 
         return $this;
     }
