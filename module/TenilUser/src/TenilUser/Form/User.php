@@ -52,7 +52,7 @@ class User extends Form {
         $this->add($security);
         
         $submit = new Element\Submit('submit');
-        $submit->setValue('Cadastre-se')->setAttribute('class', 'btn btn-default');
+        $submit->setValue('Cadastre-se')->setAttribute('class', 'btn btn-primary btn-lg btn-block');
         $this->add($submit);
     }
 
