@@ -24,21 +24,21 @@ class User extends Form {
         $nome = new Element\Text('nome');
         $nome->setLabel('Nome')
                 ->setAttribute('placeholder', 'Informe seu nome')
-                ->setAttribute('class', 'form-control')
+                ->setAttribute('class', 'form-control input-lg')
                 ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
         $this->add($nome);
         
         $email = new Element\Email('email');
         $email->setLabel('E-mail')
                 ->setAttribute('placeholder', 'Informe o e-mail')
-                ->setAttribute('class', 'form-control')
+                ->setAttribute('class', 'form-control input-lg')
                 ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
         $this->add($email);
         
         $password = new Element\Password('password');
         $password->setLabel('Senha')
                 ->setAttribute('placeholder', 'Digite a senha')
-                ->setAttribute('class', 'form-control')
+                ->setAttribute('class', 'form-control input-lg')
                 ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
         $this->add($password);
         
@@ -52,7 +52,7 @@ class User extends Form {
         $this->add($security);
         
         $submit = new Element\Submit('submit');
-        $submit->setValue('Cadastre-se')->setAttribute('class', 'btn btn-primary btn-lg btn-block');
+        $submit->setValue('Criar uma conta')->setAttribute('class', 'btn btn-primary btn-lg btn-block');
         $this->add($submit);
     }
 

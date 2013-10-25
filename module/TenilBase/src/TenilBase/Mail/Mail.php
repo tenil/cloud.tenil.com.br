@@ -75,6 +75,7 @@ class Mail {
                 ->setSender($config['connection_config']['from'], $config['connection_config']['sender'])
                 ->setSubject($this->subject)
                 ->setBody($this->body)
+                ->getHeaders()->addHeaderLine('X-Mailer', 'TenilMail [version 1.00]')
         ;
         
         // Corrige o problema de criptografia do DKIM usando acentuação no

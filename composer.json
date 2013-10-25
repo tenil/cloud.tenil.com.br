@@ -13,6 +13,6 @@
 		"doctrine/doctrine-module": "0.8.*@dev",
 		"doctrine/doctrine-orm-module": "0.8.*@dev",
 		"hounddog/doctrine-data-fixture-module": "dev-master",
-		"aws/aws-sdk-php-zf2": "dev-master"
+		"aws/aws-sdk-php-zf2": "1.0.*"
     }
 }
