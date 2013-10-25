@@ -52,7 +52,7 @@ class User extends Form {
         $this->add($security);
         
         $submit = new Element\Submit('submit');
-        $submit->setValue('Criar uma conta')->setAttribute('class', 'btn btn-primary btn-lg');
+        $submit->setValue('Criar uma conta')->setAttribute('class', 'btn btn-primary btn-lg btn-block');
         $this->add($submit);
     }
 
