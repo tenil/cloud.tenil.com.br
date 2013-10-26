@@ -1,23 +1,28 @@
-<div class="row">
-    <div class="col-md-12">
-        <h1><?php echo $this->translate('Cadastre-se') ?></h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <?php foreach ($this->messages as $value): ?>
+<?php foreach ($this->messages as $value): ?>
+    <div class="row">
+        <div class="col-md-12">
             <div class="alert alert-error">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Mensagem:</strong> <?php echo $value; ?>
             </div>
-        <?php endforeach; ?>
+        </div>
     </div>
-</div>
+<?php endforeach; ?>
 <div class="row">
-    <div class="col-md-6">asdfadsf</div>
     <div class="col-md-6">
+        <h1><?php echo $this->translate('Bem-vindo') ?></h1>
+        <blockquote class="pull-right">
+            <p class="lead">No <strong>Sistema Político</strong> você pode gerenciar seu cadastro de eleitores e amigos para potencializar usa campanha e o atendimento no gabinete.</p>
+        </blockquote>
+        <div class="clearfix"></div>
+        <blockquote>
+            <p class="lead">Esse é o sistema ideal para canditados e políticos já eleitos.</p>
+        </blockquote>
+    </div>
+    <div class="col-md-6">
+        <div class="clearfix"></div>
         <h1><?php echo $this->translate('Crie uma conta') ?></h1>
-        <h3><?php echo $this->translate('Comece a usar agora.' ) ?></h3>
+        <h3><?php echo $this->translate('Comece a usar agora.') ?></h3>
         <?php
         $form = $this->form;
         $form->prepare();
