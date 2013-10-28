@@ -34,7 +34,7 @@ class User extends AbstractService {
         );
         if ($entity) {
             // Parâmetros: Transport, View e Page
-            $mail = new Mail($this->transport, $this->view, 'add-user');
+            $mail = new Mail($this->transport, $this->view, 'user-add');
             $mail->setSubjet('Confirmação de cadastro')
                     ->setTo($data['email'])
                     ->setData($dataEmail)
@@ -42,6 +42,39 @@ class User extends AbstractService {
                     ->send()
             ;
             return $entity;
+        }
+    }
+
+    public function activate($key) {
+
+        // Pegando o repository usando o EntityManager;
+        $repo = $this->em->getRepository("TenilUser\Entity\User");
+        // Utilizando um método mágico;
+        $user = $repo->findOneByActivationKey($key);
+
+        if ($user && !$user->getActive()) {
+
+            // Ativando o usuário na conta
+            $user->setActive(TRUE);
+            $this->em->persist($user);
+            $this->em->flush();
+
+            $dataEmail = array(
+                'nome' => $user->getNome(),
+            );
+
+            // Enviando e-mail de confirmação
+            // Parâmetros: Transport, View e Page
+            $mail = new Mail($this->transport, $this->view, 'user-activate');
+            $mail->setSubjet('Confirmação de ativação')
+                    ->setTo($user->getEmail())
+                    ->setData($dataEmail)
+                    ->prepare()
+                    ->send()
+            ;
+
+
+            return $user;
         }
     }
 

@@ -51,4 +51,20 @@ class IndexController extends AbstractActionController {
         ));
     }
 
+    public function activateAction() {
+
+        $activationKey = $this->params()->fromRoute('key');
+        $userService = $this->getServiceLocator()->get('TenilUser\Service\User');
+
+        $result = $userService->activate($activationKey);
+
+        if ($result) {
+            return new ViewModel(array(
+                'user' => $result
+            ));
+        } else {
+            return new ViewModel();
+        }
+    }
+
 }

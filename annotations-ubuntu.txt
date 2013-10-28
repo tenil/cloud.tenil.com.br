@@ -1,0 +1,34 @@
+sudo - Super User Do
+
+sudo apt-get update
+- Atualizar a lista de software
+
+sudo apt-get upgrade
+- Atualizar os software instalados
+
+sudo apt-get install <software>
+- Instalar software
+
+sudo apt-cache search <software>
+- Procurar por um software
+
+MySQL
+sudo apt-get install mysql-server mysql-client
+
+Apache
+sudo apt-get install apache2
+
+PHP
+sudo apt-get install php5 libapache2-mod-php5 php5-mysql
+
+Restart Apache
+/etc/init.d/apache2 restart
+
+phpMyAdmin
+sudo apt-get install phpmyadmin
+
+Xdebug
+sudo apt-get install php5-xdebug
+
+Configurar /etc/apache2/sites-avalable default para apontar para /vagrant/www
+

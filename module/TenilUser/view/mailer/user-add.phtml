@@ -1,0 +1,8 @@
+<?php
+$link = $this->serverUrl($this->url('tenil-user-activate', array('key' => $this->activationKey)));
+$nome = $this->nome;
+?>
+
+<p>Olá <?php echo $nome; ?>,</p>
+<p>Esse e-mail tem o objetivo de confirmar seu cadastro em nosso sistema.</p>
+<p>Para ativar sua conta acesse: <a href="<?php echo $link; ?>"><?php echo $link; ?></a></p>

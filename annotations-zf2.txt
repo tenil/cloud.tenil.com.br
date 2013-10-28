@@ -149,3 +149,7 @@ Criada uma classe Mail em TenilBase para envio básico de e-mail, pode e deve se
 Repositório
 ===========
 É uma classe que agente normalmente usa para fazer consultas.
+Fazer uma alteração na entidade (User).
+@ORM\Entity(repositoryClass="TenilUser\Entity\UserRepository")
+Criar a userRepository estendendo a Doctrine\ORM\EntityRepository, essa classe possui vários métodos por padrão.
+No service, pode-se utilizar os métodos do repository para fazer buscas no banco, inclusive utilizando "métodos mágicos" - findOneByNomeDoCampo().
