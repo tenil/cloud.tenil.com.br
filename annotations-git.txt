@@ -6,7 +6,6 @@ $ git config --list
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 $ git config --global color.ui auto 
- 
 
 git help <comando>
     Obter ajuda.
@@ -193,7 +192,7 @@ git init --bare
 	A opção --bare cria o que estaria dentro do diretório .git no diretório atual.
 	Então dentro de 'repos/eleitor.git' usa-se 'git init --bare' para criar a estrutura de um diretório .git.
 	
-O que devo fazer para 2 ou mais usuário possam entrar nesse sistema.
+O que devo fazer para 2 ou mais usuários possam entrar nesse sistema.
 	Devo ter um diretório .ssh. Uma convenção do ssh é que existe um arquivo chamado authorized_keys que contem a chave publica do usuário.
 	Ver 2h03m para colocar a chave pública dentro do arquivo authorized_keys.
 	Ex. echo "ssh-rsa alsdkfjalfk"

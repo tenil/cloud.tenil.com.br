@@ -6,11 +6,11 @@ return array(
             'orm_default' => array(
                 'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                 'params' => array(
-                    'host' => '192.168.25.3',
+                    'host' => 'localhost',
                     'port' => '3306',
                     'user' => 'root',
-                    'password' => 'root',
-                    'dbname' => 'eleitorpro',
+                    'password' => 'Brain13245',
+                    'dbname' => 'sp.tenil.com.br_001',
                     'driverOptions' => array(
                         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"
                     )

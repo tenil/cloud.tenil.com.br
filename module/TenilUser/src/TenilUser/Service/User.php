@@ -45,6 +45,15 @@ class User extends AbstractService {
         }
     }
 
+    public function update(array $data) {
+
+        if (empty($data['password'])) {
+            unset($data['password']);
+        }
+
+        parent::update($data);
+    }
+
     public function activate($key) {
 
         // Pegando o repository usando o EntityManager;
