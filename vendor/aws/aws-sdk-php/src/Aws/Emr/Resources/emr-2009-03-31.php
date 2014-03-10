@@ -66,6 +66,11 @@ return array (
             'https' => true,
             'hostname' => 'elasticmapreduce.sa-east-1.amazonaws.com',
         ),
+        'cn-north-1' => array(
+            'http' => true,
+            'https' => true,
+            'hostname' => 'elasticmapreduce.cn-north-1.amazonaws.com.cn',
+        ),
         'us-gov-west-1' => array(
             'http' => true,
             'https' => true,
@@ -2013,35 +2018,33 @@ return array (
         ),
     ),
     'iterators' => array(
-        'operations' => array(
-            'DescribeJobFlows' => array(
-                'result_key' => 'JobFlows',
-            ),
-            'ListBootstrapActions' => array(
-                'token_param' => 'Marker',
-                'token_key' => 'Marker',
-                'result_key' => 'BootstrapActions',
-            ),
-            'ListClusters' => array(
-                'token_param' => 'Marker',
-                'token_key' => 'Marker',
-                'result_key' => 'Clusters',
-            ),
-            'ListInstanceGroups' => array(
-                'token_param' => 'Marker',
-                'token_key' => 'Marker',
-                'result_key' => 'InstanceGroups',
-            ),
-            'ListInstances' => array(
-                'token_param' => 'Marker',
-                'token_key' => 'Marker',
-                'result_key' => 'Instances',
-            ),
-            'ListSteps' => array(
-                'token_param' => 'Marker',
-                'token_key' => 'Marker',
-                'result_key' => 'Steps',
-            ),
+        'DescribeJobFlows' => array(
+            'result_key' => 'JobFlows',
+        ),
+        'ListBootstrapActions' => array(
+            'input_token' => 'Marker',
+            'output_token' => 'Marker',
+            'result_key' => 'BootstrapActions',
+        ),
+        'ListClusters' => array(
+            'input_token' => 'Marker',
+            'output_token' => 'Marker',
+            'result_key' => 'Clusters',
+        ),
+        'ListInstanceGroups' => array(
+            'input_token' => 'Marker',
+            'output_token' => 'Marker',
+            'result_key' => 'InstanceGroups',
+        ),
+        'ListInstances' => array(
+            'input_token' => 'Marker',
+            'output_token' => 'Marker',
+            'result_key' => 'Instances',
+        ),
+        'ListSteps' => array(
+            'input_token' => 'Marker',
+            'output_token' => 'Marker',
+            'result_key' => 'Steps',
         ),
     ),
 );

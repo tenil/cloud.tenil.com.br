@@ -63,6 +63,11 @@ return array (
             'https' => true,
             'hostname' => 'elasticloadbalancing.sa-east-1.amazonaws.com',
         ),
+        'cn-north-1' => array(
+            'http' => true,
+            'https' => true,
+            'hostname' => 'elasticloadbalancing.cn-north-1.amazonaws.com.cn',
+        ),
         'us-gov-west-1' => array(
             'http' => true,
             'https' => true,
@@ -1858,21 +1863,19 @@ return array (
         ),
     ),
     'iterators' => array(
-        'operations' => array(
-            'DescribeInstanceHealth' => array(
-                'result_key' => 'InstanceStates',
-            ),
-            'DescribeLoadBalancerPolicies' => array(
-                'result_key' => 'PolicyDescriptions',
-            ),
-            'DescribeLoadBalancerPolicyTypes' => array(
-                'result_key' => 'PolicyTypeDescriptions',
-            ),
-            'DescribeLoadBalancers' => array(
-                'token_param' => 'Marker',
-                'token_key' => 'NextMarker',
-                'result_key' => 'LoadBalancerDescriptions',
-            ),
+        'DescribeInstanceHealth' => array(
+            'result_key' => 'InstanceStates',
+        ),
+        'DescribeLoadBalancerPolicies' => array(
+            'result_key' => 'PolicyDescriptions',
+        ),
+        'DescribeLoadBalancerPolicyTypes' => array(
+            'result_key' => 'PolicyTypeDescriptions',
+        ),
+        'DescribeLoadBalancers' => array(
+            'input_token' => 'Marker',
+            'output_token' => 'NextMarker',
+            'result_key' => 'LoadBalancerDescriptions',
         ),
     ),
 );

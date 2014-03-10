@@ -20,6 +20,7 @@ use Aws\Common\Client\ClientBuilder;
 use Aws\Common\Enum\ClientOptions as Options;
 use Aws\Common\Exception\Parser\JsonQueryExceptionParser;
 use Aws\Common\Credentials\Credentials;
+use Aws\Common\Iterator\AwsResourceIterator;
 use Aws\DynamoDb\DynamoDbClient;
 use Guzzle\Common\Collection;
 use Guzzle\Plugin\Backoff\BackoffPlugin;
@@ -36,7 +37,7 @@ class ClientBuilderTest extends \Guzzle\Tests\GuzzleTestCase
 
     public function setUp()
     {
-        $this->dynamoDbDescription = __DIR__ . '/../../../../../src/Aws/DynamoDb/Resources/dynamodb-2011-12-05.php';
+        $this->dynamoDbDescription = __DIR__ . '/../../../../../src/Aws/DynamoDb/Resources/dynamodb-2012-08-10.php';
         $this->stsDescription = __DIR__ . '/../../../../../src/Aws/Sts/Resources/sts-2011-06-15.php';
     }
 
@@ -52,7 +53,7 @@ class ClientBuilderTest extends \Guzzle\Tests\GuzzleTestCase
             ))
             ->setConfigRequirements(array('scheme'))
             ->setExceptionParser(new JsonQueryExceptionParser())
-            ->setIteratorsConfig(array('token_param' => 'foo'))
+            ->setIteratorsConfig(array('input_token' => 'foo'))
             ->build();
 
         $this->assertInstanceOf('Aws\DynamoDb\DynamoDbClient', $client);
@@ -135,7 +136,7 @@ class ClientBuilderTest extends \Guzzle\Tests\GuzzleTestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage does not specify a valid signatureVersion
+     * @expectedExceptionMessage The provided signature is not a signature version string or an instance of Aws\Common\Signature\SignatureInterface
      */
     public function testEnsuresSignatureIsProvided()
     {
@@ -149,6 +150,41 @@ class ClientBuilderTest extends \Guzzle\Tests\GuzzleTestCase
                 )
             ))
             ->build();
+    }
+
+    public function signatureVersionProvider()
+    {
+        return array(
+            array('v4', 'Aws\\Common\\Signature\\SignatureV4'),
+            array('v2', 'Aws\\Common\\Signature\\SignatureV2'),
+            array('v3https', 'Aws\\Common\\Signature\\SignatureV3Https'),
+            array('foo', false)
+        );
+    }
+
+    /**
+     * @dataProvider signatureVersionProvider
+     */
+    public function testCanCreateSignaturesBasedOnSignatureStringIdentifier($str, $type)
+    {
+        try {
+            $client = ClientBuilder::factory()
+                ->setConfig(array(
+                    'service' => 'foo',
+                    'region' => 'us-east-1',
+                    'signature' => $str,
+                    'service.description' => array(
+                        'signatureVersion' => 'v2',
+                        'regions' => array('us-east-1' => array('https' => true, 'hostname' => 'baz'))
+                    )
+                ))
+                ->build();
+            $this->assertInstanceOf($type, $client->getSignature());
+        } catch (\InvalidArgumentException $e) {
+            if ($type !== false) {
+                throw $e;
+            }
+        }
     }
 
     /**

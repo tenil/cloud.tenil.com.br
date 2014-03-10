@@ -64,6 +64,11 @@ return array (
             'https' => true,
             'hostname' => 'monitoring.sa-east-1.amazonaws.com',
         ),
+        'cn-north-1' => array(
+            'http' => true,
+            'https' => true,
+            'hostname' => 'monitoring.cn-north-1.amazonaws.com.cn',
+        ),
         'us-gov-west-1' => array(
             'http' => false,
             'https' => true,
@@ -1222,27 +1227,25 @@ return array (
         ),
     ),
     'iterators' => array(
-        'operations' => array(
-            'DescribeAlarmHistory' => array(
-                'token_param' => 'NextToken',
-                'token_key' => 'NextToken',
-                'limit_key' => 'MaxRecords',
-                'result_key' => 'AlarmHistoryItems',
-            ),
-            'DescribeAlarms' => array(
-                'token_param' => 'NextToken',
-                'token_key' => 'NextToken',
-                'limit_key' => 'MaxRecords',
-                'result_key' => 'MetricAlarms',
-            ),
-            'DescribeAlarmsForMetric' => array(
-                'result_key' => 'MetricAlarms',
-            ),
-            'ListMetrics' => array(
-                'token_param' => 'NextToken',
-                'token_key' => 'NextToken',
-                'result_key' => 'Metrics',
-            ),
+        'DescribeAlarmHistory' => array(
+            'input_token' => 'NextToken',
+            'output_token' => 'NextToken',
+            'limit_key' => 'MaxRecords',
+            'result_key' => 'AlarmHistoryItems',
+        ),
+        'DescribeAlarms' => array(
+            'input_token' => 'NextToken',
+            'output_token' => 'NextToken',
+            'limit_key' => 'MaxRecords',
+            'result_key' => 'MetricAlarms',
+        ),
+        'DescribeAlarmsForMetric' => array(
+            'result_key' => 'MetricAlarms',
+        ),
+        'ListMetrics' => array(
+            'input_token' => 'NextToken',
+            'output_token' => 'NextToken',
+            'result_key' => 'Metrics',
         ),
     ),
 );
