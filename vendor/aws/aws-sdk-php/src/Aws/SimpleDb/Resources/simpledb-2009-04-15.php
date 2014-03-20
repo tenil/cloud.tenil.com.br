@@ -116,7 +116,6 @@ return array (
                                             'type' => 'string',
                                         ),
                                         'Value' => array(
-                                            'required' => true,
                                             'type' => 'string',
                                         ),
                                         'AlternateValueEncoding' => array(
@@ -313,7 +312,6 @@ return array (
                                 'type' => 'string',
                             ),
                             'Value' => array(
-                                'required' => true,
                                 'type' => 'string',
                             ),
                             'AlternateValueEncoding' => array(
@@ -838,6 +836,19 @@ return array (
                     'location' => 'xml',
                 ),
             ),
+        ),
+    ),
+    'iterators' => array(
+        'ListDomains' => array(
+            'input_token' => 'NextToken',
+            'output_token' => 'NextToken',
+            'limit_key' => 'MaxNumberOfDomains',
+            'result_key' => 'DomainNames',
+        ),
+        'Select' => array(
+            'input_token' => 'NextToken',
+            'output_token' => 'NextToken',
+            'result_key' => 'Items',
         ),
     ),
 );

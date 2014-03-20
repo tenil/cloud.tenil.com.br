@@ -65,6 +65,11 @@ return array (
             'https' => true,
             'hostname' => 'dynamodb.sa-east-1.amazonaws.com',
         ),
+        'cn-north-1' => array(
+            'http' => true,
+            'https' => true,
+            'hostname' => 'dynamodb.cn-north-1.amazonaws.com.cn',
+        ),
         'us-gov-west-1' => array(
             'http' => false,
             'https' => true,
@@ -3929,6 +3934,31 @@ return array (
                     ),
                 ),
             ),
+        ),
+    ),
+    'iterators' => array(
+        'BatchGetItem' => array(
+            'input_token' => 'RequestItems',
+            'output_token' => 'UnprocessedKeys',
+            'result_key' => 'Responses/*',
+        ),
+        'ListTables' => array(
+            'input_token' => 'ExclusiveStartTableName',
+            'output_token' => 'LastEvaluatedTableName',
+            'limit_key' => 'Limit',
+            'result_key' => 'TableNames',
+        ),
+        'Query' => array(
+            'input_token' => 'ExclusiveStartKey',
+            'output_token' => 'LastEvaluatedKey',
+            'limit_key' => 'Limit',
+            'result_key' => 'Items',
+        ),
+        'Scan' => array(
+            'input_token' => 'ExclusiveStartKey',
+            'output_token' => 'LastEvaluatedKey',
+            'limit_key' => 'Limit',
+            'result_key' => 'Items',
         ),
     ),
     'waiters' => array(

@@ -3,6 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/aws/aws-sdk-php/version.png)](https://packagist.org/packages/aws/aws-sdk-php)
 [![Total Downloads](https://poser.pugx.org/aws/aws-sdk-php/d/total.png)](https://packagist.org/packages/aws/aws-sdk-php)
 [![Build Status](https://travis-ci.org/aws/aws-sdk-php.png)](https://travis-ci.org/aws/aws-sdk-php)
+[![Code Coverage](https://scrutinizer-ci.com/g/aws/aws-sdk-php/badges/coverage.png?s=a5e380fe64b957af62cc52a999e77c0641c6bc91)](https://scrutinizer-ci.com/g/aws/aws-sdk-php/)
 
 The **AWS SDK for PHP** enables PHP developers to use [Amazon Web Services][aws] in their PHP code, and build robust
 applications and software using services like Amazon S3, Amazon DynamoDB, Amazon Glacier, etc. You can get started in
@@ -53,8 +54,8 @@ minutes by [installing the SDK through Composer][docs-installation] or by downlo
    [Installation section of the User Guide][docs-installation] for more detailed information about installing the SDK
    through Composer and other means (e.g., [Phar][install-phar], [Zip][install-zip], [PEAR][install-pear]).
 1. **Using the SDK** – The best way to become familiar with how to use the SDK is to read the [User Guide][docs-guide].
-   The [Quick Start Guide][docs-quickstart] will help you become familiar with the basic concepts, and there are also
-   specific guides for each of the [supported services][docs-services].
+   The [Getting Started Guide][docs-quickstart] will help you become familiar with the basic concepts, and there are
+   also specific guides for each of the [supported services][docs-services].
 
 ## Quick Example
 

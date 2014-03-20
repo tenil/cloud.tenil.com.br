@@ -1,3 +1,9 @@
+Application
+===========
+No application.config.php ficam definidos os módulos que serão usados na aplicação.
+Como o Zend Framework 2 é modularizado, módulos de terceiros podem ser facilmente acoplados ao projeto.
+
+
 Módulos
 =======
 Definição: Módulos são agrupamentos de códigos que podem ser facilmente incluídos em qualquer projeto, sendo totalmente desacoplados. Podemos criar aqui um módulo Admin totalmente genérico e usá-lo em qualquer projeto que criarmos no futuro, como um CMS ou um fórum.
