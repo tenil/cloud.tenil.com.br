@@ -190,6 +190,8 @@ class User {
         return $this->updatedAt;
     }
 
+    // prePersist: Antes de gravar as informações no bando, ele executa o métudo.
+    
     /*
      * @ORM\prePersist
      */

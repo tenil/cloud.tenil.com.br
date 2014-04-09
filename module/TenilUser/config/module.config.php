@@ -27,11 +27,56 @@ return array(
                     )
                 )
             ),
+            'tenil-user-admin' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/admin',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TenilUser\Controller',
+                        'controller' => 'Users',
+                        'action' => 'Index'
+                    )
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller[:action[:id]]]',
+                            'constraints' => array(
+                                'contronller' => '[a-zA-Z][a-zA-z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
+                                'id' => '\d+',
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'TenilUser\Controller',
+                                'controller' => 'Users',
+                            )
+                        )
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:controller[/page/:page]]',
+                            'constraints' => array(
+                                'contronller' => '[a-zA-Z][a-zA-z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
+                                'page' => '\d+',
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'TenilUser\Controller',
+                                'controller' => 'Users',
+                            )
+                        )
+                    )
+                )
+            ),
         )
     ),
     'controllers' => array(
         'invokables' => array(
             'TenilUser\Controller\Index' => 'TenilUser\Controller\IndexController',
+            'TenilUser\Controller\Users' => 'TenilUser\Controller\UsersController'
         )
     ),
     'view_manager' => array(

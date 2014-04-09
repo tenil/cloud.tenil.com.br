@@ -116,7 +116,7 @@ Sempre que houver um novo 'Controller', o mesmo deverá ser explicitamente decla
 Serviços
 ========
 Definição: Uma porção de código que pode ser facilmente usado por um controller, outro serviço ou, mais tarde, uma API.
-Depois de criar um serviço, ele deve ser devidamente configurado no Module.php do múdulo (getServiceConfig()).
+Depois de criar um serviço, ele deve ser devidamente configurado no Module.php do módulo (getServiceConfig()).
 
 
 
@@ -159,3 +159,11 @@ Fazer uma alteração na entidade (User).
 @ORM\Entity(repositoryClass="TenilUser\Entity\UserRepository")
 Criar a userRepository estendendo a Doctrine\ORM\EntityRepository, essa classe possui vários métodos por padrão.
 No service, pode-se utilizar os métodos do repository para fazer buscas no banco, inclusive utilizando "métodos mágicos" - findOneByNomeDoCampo().
+
+
+Rotas
+=====
+Literal
+Regex
+Segment
+Wildcard

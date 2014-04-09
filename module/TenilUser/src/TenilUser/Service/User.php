@@ -39,8 +39,7 @@ class User extends AbstractService {
                     ->setTo($data['email'])
                     ->setData($dataEmail)
                     ->prepare()
-                    ->send()
-            ;
+                    ->send();
             return $entity;
         }
     }
@@ -58,7 +57,7 @@ class User extends AbstractService {
 
         // Pegando o repository usando o EntityManager;
         $repo = $this->em->getRepository("TenilUser\Entity\User");
-        // Utilizando um método mágico;
+        // Utilizando um método "mágico";
         $user = $repo->findOneByActivationKey($key);
 
         if ($user && !$user->getActive()) {
