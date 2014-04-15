@@ -42,7 +42,7 @@ return array(
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[:action[:id]]]',
+                            'route' => '/[:controller[/:action[/:id]]]',
                             'constraints' => array(
                                 'contronller' => '[a-zA-Z][a-zA-z0-9_-]*',
                                 'action' => '[a-zA-Z][a-zA-z0-9_-]*',
@@ -71,6 +71,37 @@ return array(
                     )
                 )
             ),
+//            'tenil-user' => array(
+//                'type' => 'Segment',
+//                'options' => array(
+//                    'route' => '/user[/][:action][/:id]',
+//                    'constraints' => array(
+//                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+//                        'id' => '[a-zA-Z][a-zA-Z0-9_-]*',
+//                    ),
+//                    'defaults' => array(
+//                        '__NAMESPACE__' => 'TenilUser\Controller',
+//                        'controller' => 'Users',
+//                        'action' => 'Index'
+//                    )
+//                ),
+//                'may_terminate' => TRUE,
+//                'child_routes' => array(
+//                    'paginator' => array(
+//                        'type' => 'Segment',
+//                        'options' => array(
+//                            'route' => '[/page/:page]',
+//                            'constraints' => array(
+//                                'page' => '\d+'
+//                            ),
+//                            'defaults' => array(
+//                                '__NAMESPACE__' => 'TenilUser\Controller',
+//                                'controller' => 'Users'
+//                            )
+//                        )
+//                    )
+//                )
+//            ),
         )
     ),
     'controllers' => array(
