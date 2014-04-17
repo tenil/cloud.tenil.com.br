@@ -1,6 +1,7 @@
 Upgrading Guide
 ===============
 
+<<<<<<< HEAD
 Upgrade from 2.5 to 2.6
 -----------------------
 
@@ -34,6 +35,8 @@ $client = CloudSearchClient::factory(array(
 ));
 ```
 
+=======
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
 Upgrade from 2.4 to 2.5
 -----------------------
 

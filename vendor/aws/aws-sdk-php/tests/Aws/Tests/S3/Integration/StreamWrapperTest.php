@@ -222,6 +222,7 @@ class StreamWrapperTest extends \Aws\Tests\IntegrationTestCase
         chdir($dir);
     }
 
+<<<<<<< HEAD
     public function testCanListWithEmptyDirs()
     {
         $file = 's3://' . $this->bucket . '/empty/';
@@ -230,6 +231,8 @@ class StreamWrapperTest extends \Aws\Tests\IntegrationTestCase
         $this->assertEquals(array('bar'), scandir($file));
     }
 
+=======
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
     private function getS3Files($prefix)
     {
         $path = 's3://' . $this->bucket;

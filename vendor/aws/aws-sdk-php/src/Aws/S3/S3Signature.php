@@ -17,6 +17,10 @@
 namespace Aws\S3;
 
 use Aws\Common\Credentials\CredentialsInterface;
+<<<<<<< HEAD
+=======
+use Aws\S3\S3Client;
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
 use Guzzle\Http\Message\RequestInterface;
 use Guzzle\Http\QueryString;
 use Guzzle\Http\Url;
@@ -119,6 +123,7 @@ class S3Signature implements S3SignatureInterface
                 $credentials
             ));
 
+<<<<<<< HEAD
         // Move X-Amz-* headers to the query string
         foreach ($request->getHeaders() as $name => $header) {
             $name = strtolower($name);
@@ -128,6 +133,8 @@ class S3Signature implements S3SignatureInterface
             }
         }
 
+=======
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
         return $request->getUrl();
     }
 

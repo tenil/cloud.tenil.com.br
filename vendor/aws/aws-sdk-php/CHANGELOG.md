@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 2.6.0 (2014-03-25)
 ------------------
 
@@ -31,6 +32,8 @@ CHANGELOG
   resolved. Removing the dot segments consistently helps to ensure that files are uploaded to their intended.
   destinations and that file key comparisons are accurately performed when determining which files to upload.
 
+=======
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
 2.5.3 (2014-02-27)
 ------------------
 

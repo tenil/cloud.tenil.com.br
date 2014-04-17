@@ -64,7 +64,11 @@ use Guzzle\Service\Resource\ResourceIteratorInterface;
  */
 class CloudFrontClient extends AbstractClient
 {
+<<<<<<< HEAD
     const LATEST_API_VERSION = '2014-01-31';
+=======
+    const LATEST_API_VERSION = '2013-11-22';
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
 
     /**
      * Factory method to create a new Amazon CloudFront client using an array of configuration options.

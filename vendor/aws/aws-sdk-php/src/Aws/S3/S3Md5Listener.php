@@ -16,6 +16,10 @@
 
 namespace Aws\S3;
 
+<<<<<<< HEAD
+=======
+use Aws\Common\Exception\RuntimeException;
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
 use Aws\Common\Signature\SignatureV4;
 use Guzzle\Common\Event;
 use Guzzle\Service\Command\CommandInterface;
@@ -62,8 +66,12 @@ class S3Md5Listener implements EventSubscriberInterface
     private function addMd5(CommandInterface $command)
     {
         $request = $command->getRequest();
+<<<<<<< HEAD
         $body = $request->getBody();
         if ($body && $body->getSize() > 0) {
+=======
+        if ($body = $request->getBody()) {
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
             if (false !== ($md5 = $body->getContentMd5(true, true))) {
                 $request->setHeader('Content-MD5', $md5);
             }

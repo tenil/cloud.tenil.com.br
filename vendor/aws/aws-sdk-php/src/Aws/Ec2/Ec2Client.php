@@ -27,7 +27,10 @@ use Guzzle\Service\Resource\ResourceIteratorInterface;
 /**
  * Client to interact with Amazon Elastic Compute Cloud
  *
+<<<<<<< HEAD
  * @method Model acceptVpcPeeringConnection(array $args = array()) {@command Ec2 AcceptVpcPeeringConnection}
+=======
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
  * @method Model allocateAddress(array $args = array()) {@command Ec2 AllocateAddress}
  * @method Model assignPrivateIpAddresses(array $args = array()) {@command Ec2 AssignPrivateIpAddresses}
  * @method Model associateAddress(array $args = array()) {@command Ec2 AssociateAddress}

@@ -18,6 +18,10 @@ namespace Aws\Tests\S3\Sync;
 
 use Aws\S3\Sync\KeyConverter;
 use Aws\S3\Sync\UploadSync;
+<<<<<<< HEAD
+=======
+use Aws\S3\Sync\UploadSyncBuilder;
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
 use Symfony\Component\EventDispatcher\Event;
 
 /**

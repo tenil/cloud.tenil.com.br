@@ -23,7 +23,10 @@ use Aws\S3\Iterator\ListObjectsIterator;
 use Guzzle\Http\EntityBody;
 use Guzzle\Http\CachingEntityBody;
 use Guzzle\Http\Mimetypes;
+<<<<<<< HEAD
 use Guzzle\Iterator\FilterIterator;
+=======
+>>>>>>> 3b927b9da66328ecf980da13e49774ce47136606
 use Guzzle\Stream\PhpStreamRequestFactory;
 use Guzzle\Service\Command\CommandInterface;
 

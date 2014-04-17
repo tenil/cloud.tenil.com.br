@@ -10,6 +10,8 @@ use Doctrine\ORM\EntityRepository;
 
 class userRepository extends EntityRepository {
     
-    
+    public function findByEmailAndPassword(){
+        
+    }
     
 }
