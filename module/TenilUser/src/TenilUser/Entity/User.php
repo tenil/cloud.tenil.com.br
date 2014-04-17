@@ -209,5 +209,13 @@ class User {
         $this->createdAt = $createdAt;
         return $this;
     }
+    
+    public function toArray(){
+        
+        $hydrator = new Hydrator\ClassMethods();
+        return $hydrator->extract($this);
+        
+        // return (new Hydrator\ClassMethods())->extract($this);
+    }
 
 }

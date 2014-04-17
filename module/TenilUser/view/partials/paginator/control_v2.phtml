@@ -17,7 +17,7 @@
             <?php endif; ?>
 
             <?php foreach ($this->pagesInRange as $pagina) { ?>
-                <?php echo ($this->current === $pagina) ? "<li class=\"disabled\">" : "<li>"; ?><a href="<?php echo $this->url(null, array('page'=>$pagina)); ?>"><?php echo $pagina; ?></a></li> 
+                <?php echo ($this->current === $pagina) ? "<li class=\"disabled\">" : "<li>"; ?><a href="<?php echo $this->url($this->route, array('page'=>$pagina)); ?>"><?php echo $pagina; ?></a></li> 
             <?php }; ?>
 
 

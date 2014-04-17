@@ -32,16 +32,20 @@ class User extends AbstractService {
             'nome' => $data['nome'],
             'activationKey' => $entity->getActivationKey()
         );
-        if ($entity) {
-            // Parâmetros: Transport, View e Page
-            $mail = new Mail($this->transport, $this->view, 'user-add');
-            $mail->setSubjet('Confirmação de cadastro')
-                    ->setTo($data['email'])
-                    ->setData($dataEmail)
-                    ->prepare()
-                    ->send();
-            return $entity;
-        }
+        
+        // Enviar e-mail
+//        if ($entity) {
+//            // Parâmetros: Transport, View e Page
+//            $mail = new Mail($this->transport, $this->view, 'user-add');
+//            $mail->setSubjet('Confirmação de cadastro')
+//                    ->setTo($data['email'])
+//                    ->setData($dataEmail)
+//                    ->prepare()
+//                    ->send();
+//        }
+        
+        return $entity;
+        
     }
 
     public function update(array $data) {

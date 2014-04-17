@@ -32,23 +32,14 @@ class IndexController extends AbstractActionController {
                 // Se a inserção for verdadeira, entra no if.
                 if ($service->insert($request->getPost()->toArray())) {
                     // Aprimorar para mensagens de status.
-                    $this->flashMessenger()
-                            ->setNamespace('TenilUser')
-                            ->addMessage('Usuário cadastrado com sucesso!');
+                    $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Usuário cadastrado com sucesso!');
                 }
 
                 return $this->redirect()->toRoute('tenil-user-register');
             }
         }
 
-        $messages = $this->flashMessenger()
-                ->setNamespace('TenilUser')
-                ->getMessages();
-
-        return new ViewModel(array(
-            'form' => $form,
-            'messages' => $messages
-        ));
+        return new ViewModel(array('form' => $form));
     }
 
     public function activateAction() {

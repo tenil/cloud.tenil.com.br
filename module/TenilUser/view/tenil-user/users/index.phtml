@@ -1,16 +1,6 @@
 <div class="page-header">
     <h1><?php echo $this->translate('Usuários') ?> <small><?php echo $this->translate('Administração de usuários') ?></small></h1>
 </div>
-<?php foreach ($this->messages as $value): ?>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-dismissable alert-info">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Mensagem:</strong> <?php echo $value; ?>
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>
 <div class="row">
     <div class="col-md-12">
         <p>
@@ -23,19 +13,21 @@
                 <th>Id</th>
                 <th>Nome</th>
                 <th>E-mail</th>
-                <th>Ação</th>
+                <th>Editar</th>
+                <th>Excluir</th>
             </tr>
             <?php foreach ($this->data as $value): ?>
                 <tr>
                     <td><?php echo $this->escapeHtml($value->getId()); ?></td>
                     <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
                     <td><?php echo $this->escapeHtml($value->getEmail()); ?></td>
-                    <td>N/A</td>
+                    <td><a href="<?php echo $this->url('tenil-user-admin/default', array('controller' => 'users', 'action' => 'edit', 'id' => $value->getId())) ?>">Editar</a></td>
+                    <td><a href="<?php echo $this->url('tenil-user-admin/default', array('controller' => 'users', 'action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a></td>
                 </tr>
             <?php endforeach; ?>
         </table>
         <?php
-        echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v3', array('route' => 'tenil-user-admin/paginator'));
+        echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v2', array('route' => 'tenil-user-admin/paginator'));
         ?>
     </div>
 </div>

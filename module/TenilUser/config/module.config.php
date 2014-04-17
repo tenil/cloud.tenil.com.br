@@ -65,43 +65,12 @@ return array(
                             ),
                             'defaults' => array(
                                 '__NAMESPACE__' => 'TenilUser\Controller',
-                                'controller' => 'Users',
+                                'controller' => 'users',
                             )
                         )
                     )
                 )
             ),
-//            'tenil-user' => array(
-//                'type' => 'Segment',
-//                'options' => array(
-//                    'route' => '/user[/][:action][/:id]',
-//                    'constraints' => array(
-//                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-//                        'id' => '[a-zA-Z][a-zA-Z0-9_-]*',
-//                    ),
-//                    'defaults' => array(
-//                        '__NAMESPACE__' => 'TenilUser\Controller',
-//                        'controller' => 'Users',
-//                        'action' => 'Index'
-//                    )
-//                ),
-//                'may_terminate' => TRUE,
-//                'child_routes' => array(
-//                    'paginator' => array(
-//                        'type' => 'Segment',
-//                        'options' => array(
-//                            'route' => '[/page/:page]',
-//                            'constraints' => array(
-//                                'page' => '\d+'
-//                            ),
-//                            'defaults' => array(
-//                                '__NAMESPACE__' => 'TenilUser\Controller',
-//                                'controller' => 'Users'
-//                            )
-//                        )
-//                    )
-//                )
-//            ),
         )
     ),
     'controllers' => array(
@@ -145,5 +114,12 @@ return array(
     ),
     'data-fixture' => array(
         'TenilUser_fixture' => __DIR__ . '/../src/' . __NAMESPACE__ . '/Fixture'
+    ),
+    'view_helper_config' => array(
+        'flashmessenger' => array(
+            'message_open_format' => '<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><ul><li>',
+            'message_close_string' => '</li></ul></div>',
+            'message_separator_string' => '</li><li>'
+        )
     )
 );

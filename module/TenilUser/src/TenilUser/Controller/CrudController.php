@@ -40,10 +40,10 @@ abstract class CrudController extends AbstractActionController {
                 ->findAll();
 
         $pageNumber = $this->params()->fromRoute('page');
-        $count = 5;
+        $count = 10;
 
         $paginator = new Paginator(new ArrayAdapter($list));
-        $paginator->setCurrentPageNumber($pageNumber)->setDefaultItemCountPerPage($count)->set;
+        $paginator->setCurrentPageNumber($pageNumber)->setDefaultItemCountPerPage($count);
 
         return new ViewModel(array('data' => $paginator, 'page' => $pageNumber));
     }
@@ -62,11 +62,56 @@ abstract class CrudController extends AbstractActionController {
                 $service = $this->getServiceLocator()->get($this->service);
                 $service->insert($request->getPost()->toArray());
 
-              //  return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
+                $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Usuário cadastrado com sucesso!');
+
+                return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
             }
         }
+
+        return new ViewModel(array('form' => $form));
+    }
+
+    public function editAction() {
+
+        $form = new $this->form();
+        $request = $this->getRequest();
+
+        $repository = $this->getEm()->getRepository($this->entity);
+        $entity = $repository->find($this->params()->fromRoute('id',0));
         
-        return new ViewModel(array('form'=>$form));
+        //Teste muito sem vergonha
+        if($this->params()->fromRoute('id',0)){
+            $data = $entity->toArray();
+            unset($data['password']);
+            $form->setData($data);
+        }
+        
+        if ($request->isPost()) {
+
+            $form->setData($request->getPost());
+
+            if ($form->isValid()) {
+
+                $service = $this->getServiceLocator()->get($this->service);
+                $service->update($request->getPost()->toArray());
+
+                $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Usuário atualizado com sucesso!');
+
+                return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
+            }
+        }
+
+        return new ViewModel(array('form' => $form));
+
+    }
+    
+    public function deleteAction(){
+        
+        $service = $this->getServiceLocator()->get($this->service);
+        if($service->delete($this->params()->fromRoute('id',0))){
+            $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Usuário excluído com sucesso!');
+            return $this->redirect()->toRoute($this->route,array('controller'=>  $this->controller));
+        }
         
     }
 

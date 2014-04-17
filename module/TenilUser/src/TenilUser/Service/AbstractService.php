@@ -31,18 +31,20 @@ abstract class AbstractService {
     }
 
     public function update(array $data) {
-        $entity = $this->em->getReference($this->em, $data['id']);
-
+        $entity = $this->em->getReference($this->entity, $data['id']);
+                
         // Aqui aplicamos os setters da entitade.
-        (new Hydrator\ClassMethods())->hydrate($data, $entity);
-
+        // (new Hydrator\ClassMethods())->hydrate($data, $entity);
+        $hydrator = new Hydrator\ClassMethods();
+        $hydrator->hydrate($data, $entity);     
+        
         $this->em->persist($entity);
         $this->em->flush();
         return $entity;
     }
 
     public function delete($id) {
-        $entity = $this->em->getReference($this->em, $id);
+        $entity = $this->em->getReference($this->entity, $id);
 
         if ($entity) {
             $this->em->remove($entity);
