@@ -12,6 +12,7 @@ namespace TenilUser;
 
 use Zend\Mail\Transport\Smtp as SmtpTransport;
 use Zend\Mail\Transport\SmtpOptions;
+use TenilUser\Auth\Adapter as AuthAdapter;
 
 class Module {
 
@@ -34,23 +35,27 @@ class Module {
         return array(
             'factories' => array(
                 'TenilUser\Mail\Transport' => function($sm) {
-                    // Recupera as informações do global.php
-                    $config = $sm->get('Config');
-                    // Recupera as informações de mail do global.php
-                    $options = new SmtpOptions($config['mail']);
+            // Recupera as informações do global.php
+            $config = $sm->get('Config');
+            // Recupera as informações de mail do global.php
+            $options = new SmtpOptions($config['mail']);
 
-                    $transport = new SmtpTransport();
-                    $transport->setOptions($options);
+            $transport = new SmtpTransport();
+            $transport->setOptions($options);
 
-                    return $transport;
-                },
+            return $transport;
+        },
                 'TenilUser\Service\User' => function($sm) {
-                    $em = $sm->get('Doctrine\ORM\EntityManager');
-                    $transport = $sm->get('TenilUser\Mail\Transport');
-                    $view = $sm->get('view');
+            $em = $sm->get('Doctrine\ORM\EntityManager');
+            $transport = $sm->get('TenilUser\Mail\Transport');
+            $view = $sm->get('view');
 
-                    return new Service\User($em, $transport, $view);
-                }
+            return new Service\User($em, $transport, $view);
+        },
+                'TenilUser\Auth\Adapter' => function($sm) {
+
+            return new AuthAdapter($sm->get('Doctrine\ORM\EntityManager'));
+        }
             )
         );
     }
@@ -58,7 +63,8 @@ class Module {
     public function getViewHelperConfig() {
         return array(
             'invokables' => array(
-                'FormElementErrors' => 'TenilUser\Form\View\Helper\FormElementErrors'
+                'FormElementErrors' => 'TenilUser\Form\View\Helper\FormElementErrors',
+                'UserIdentity' => new View\Helper\UserIdentity(),
             ),
         );
     }

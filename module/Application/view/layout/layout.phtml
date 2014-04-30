@@ -45,6 +45,11 @@
                     <ul class="nav navbar-nav">
                         <li><a href="<?php echo $this->url('tenil-user-register') ?>"><?php echo $this->translate('Registrar') ?></a></li>
                         <li><a href="<?php echo $this->url('tenil-user-admin/default', array('controller'=>'users')) ?>"><?php echo $this->translate('User Admin') ?></a></li>
+                        <?php if($this->userIdentity("TenilUser")): ?>
+                        <li><a href="<?php echo $this->url('tenil-user-logout') ?>"><?php echo $this->translate('Logout') ?></a></li>
+                        <?php else :  ?>
+                        <li><a href="<?php echo $this->url('tenil-user-auth') ?>"><?php echo $this->translate('Entrar') ?></a></li>
+                        <?php endif; ?>
                     </ul>
                     <form class="navbar-form navbar-right">
                         <div class="form-group">

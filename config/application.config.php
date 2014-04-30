@@ -2,12 +2,13 @@
 return array(
     // This should be an array of module namespaces used in the application.
     'modules' => array(
-        'Application', // Usar como se fosse o SONBase, para uso de todas os módulos
+        'Application', // Usar como se fosse o SONBase, para uso de todos os módulos
         'DoctrineModule',
         'DoctrineORMModule',
         'DoctrineDataFixtureModule',
         'TenilBase',
-        'TenilUser'
+        'TenilUser',
+        'TenilAcl',
     ),
 
     // These are various options for the listeners attached to the ModuleManager

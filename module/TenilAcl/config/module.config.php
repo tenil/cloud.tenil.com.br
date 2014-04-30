@@ -1,61 +1,17 @@
 <?php
 
-namespace TenilUser;
+namespace TenilAcl;
 
 return array(
     'router' => array(
         'routes' => array(
-            'tenil-user-register' => array(
+            'tenil-acl-admin' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/register',
+                    'route' => '/admin/acl',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'TenilUser\Controller',
-                        'controller' => 'Index',
-                        'action' => 'register'
-                    )
-                )
-            ),
-            'tenil-user-activate' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route' => '/register/activate[/:key]',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'TenilUser\Controller',
-                        'controller' => 'Index',
-                        'action' => 'activate'
-                    )
-                )
-            ),
-            'tenil-user-auth' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/signin',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'TenilUser\Controller',
-                        'controller' => 'Auth',
-                        'action' => 'index'
-                    )
-                )
-            ),
-            'tenil-user-logout' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/logout',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'TenilUser\Controller',
-                        'controller' => 'Auth',
-                        'action' => 'logout'
-                    )
-                )
-            ),
-            'tenil-user-admin' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/admin',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'TenilUser\Controller',
-                        'controller' => 'Users',
+                        '__NAMESPACE__' => 'TenilAcl\Controller',
+                        'controller' => 'roles',
                         'action' => 'Index'
                     )
                 ),
@@ -71,8 +27,8 @@ return array(
                                 'id' => '\d+',
                             ),
                             'defaults' => array(
-                                '__NAMESPACE__' => 'TenilUser\Controller',
-                                'controller' => 'Users',
+                                '__NAMESPACE__' => 'TenilAcl\Controller',
+                                'controller' => 'roles',
                             )
                         )
                     ),
@@ -86,8 +42,8 @@ return array(
                                 'page' => '\d+',
                             ),
                             'defaults' => array(
-                                '__NAMESPACE__' => 'TenilUser\Controller',
-                                'controller' => 'users',
+                                '__NAMESPACE__' => 'TenilAcl\Controller',
+                                'controller' => 'roles',
                             )
                         )
                     )
@@ -97,9 +53,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'TenilUser\Controller\Index' => 'TenilUser\Controller\IndexController',
-            'TenilUser\Controller\Users' => 'TenilUser\Controller\UsersController',
-            'TenilUser\Controller\Auth' => 'TenilUser\Controller\AuthController',
+            'TenilAcl\Controller\Roles' => 'TenilAcl\Controller\RolesController',
         )
     ),
     'view_manager' => array(
@@ -136,7 +90,7 @@ return array(
         )
     ),
     'data-fixture' => array(
-        'TenilUser_fixture' => __DIR__ . '/../src/' . __NAMESPACE__ . '/Fixture'
+        'TenilAcl_fixture' => __DIR__ . '/../src/' . __NAMESPACE__ . '/Fixture'
     ),
     'view_helper_config' => array(
         'flashmessenger' => array(

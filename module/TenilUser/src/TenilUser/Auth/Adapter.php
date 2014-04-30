@@ -44,9 +44,15 @@ class Adapter implements AdapterInterface {
     }
 
     public function authenticate() {
-        
-        
-        
+
+        $repository = $this->em->getRepository("TenilUser\Entity\User");
+        $user = $repository->findByEmailAndPassword($this->getUsername(), $this->getPassword());
+
+        if ($user) {
+            return new Result(Result::SUCCESS, array('user' => $user), array('SUCCESS'));
+        } else {
+            return new Result(Result::FAILURE_CREDENTIAL_INVALID, NULL, array('ERROR'));
+        }
     }
 
 }

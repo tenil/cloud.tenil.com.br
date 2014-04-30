@@ -8,7 +8,7 @@ use Zend\Form\Element;
 class User extends Form {
 
     public function __construct($name = null, $options = array()) {
-        parent::__construct('user', $options);
+        parent::__construct('User', $options);
 
         $this->setAttributes(array(
             'method' => 'post',

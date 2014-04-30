@@ -27,8 +27,7 @@ class IndexController extends AbstractActionController {
             // são válidos (filters e validators).
             if ($form->isValid()) {
                 // Criando uma instância da classe de serviço do Module.php
-                $service = $this->getServiceLocator()
-                        ->get('TenilUser\Service\User');
+                $service = $this->getServiceLocator()->get('TenilUser\Service\User');
                 // Se a inserção for verdadeira, entra no if.
                 if ($service->insert($request->getPost()->toArray())) {
                     // Aprimorar para mensagens de status.
