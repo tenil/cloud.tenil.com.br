@@ -41,7 +41,7 @@ class Resource {
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      */
-    protected $updatedAd;
+    protected $updatedAt;
 
     public function __construct($options = array()) {
 
@@ -57,7 +57,7 @@ class Resource {
     }
 
     public function toArray() {
-        (new Hydrator\ClassMethods)->extract($this);
+        return (new Hydrator\ClassMethods)->extract($this);
     }
     
     public function toString (){
@@ -76,8 +76,8 @@ class Resource {
         return $this->createdAt;
     }
 
-    public function getUpdatedAd() {
-        return $this->updatedAd;
+    public function getUpdatedAt() {
+        return $this->updatedAt;
     }
 
     public function setId($id) {
@@ -95,11 +95,11 @@ class Resource {
         return $this;
     }
 
-    /**
+    /*
      * @ORM\PrePersist
      */
-    public function setUpdatedAd(\DateTime $updatedAd) {
-        $this->updatedAd = $updatedAd;
+    public function setUpdatedAt(\DateTime $updatedAt) {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 

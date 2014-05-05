@@ -8,10 +8,10 @@ use Zend\Stdlib\Hydrator;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="tenilacl_privileges")
+ * @ORM\Table(name="tenilacl_roles")
  * @ORM\Entity(repositoryClass="TenilAcl\Entity\RoleRepository")
  */
-class Privilege {
+class Role {
 
     /**
      * @var integer
@@ -47,19 +47,18 @@ class Privilege {
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      */
-    protected $createdAt;
+    private $updatedAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    protected $updatedAd;
+    private $createdAt;
 
     public function __construct($options = array()) {
-
 
         $this->createdAt = new \DateTime("now");
         $this->updatedAt = new \DateTime("now");
@@ -91,6 +90,10 @@ class Privilege {
         return $this->nome;
     }
 
+    public function __toString() {
+        return $this->nome;
+    }
+
     public function getId() {
         return $this->id;
     }
@@ -111,8 +114,8 @@ class Privilege {
         return $this->createdAt;
     }
 
-    public function getUpdatedAd() {
-        return $this->updatedAd;
+    public function getUpdatedAt() {
+        return $this->updatedAt;
     }
 
     public function setId($id) {
@@ -140,12 +143,12 @@ class Privilege {
         return $this;
     }
 
-    /**
-     * @ORM\PrePersist
+    /*
+     * @ORM\prePersist
      */
-    public function setUpdatedAd(\DateTime $updatedAd) {
-        $this->updatedAd = $updatedAd;
+    public function setUpdatedAt(\DateTime $updatedAt) {
+        $this->updatedAt = $updatedAt;
         return $this;
-    }
-
+    }    
+    
 }

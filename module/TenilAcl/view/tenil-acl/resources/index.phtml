@@ -1,0 +1,31 @@
+<div class="page-header">
+    <h1><?php echo $this->translate('Recursos') ?> <small><?php echo $this->translate('Administração de Resources (Recursos)') ?></small></h1>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <a class="btn btn-lg btn-default" href="<?php echo $this->url('tenil-acl-admin/default', array('controller'=>'resources'  ,'action' => 'add')) ?>" target="_self">Novo</a>
+        </p>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+            <?php foreach ($this->data as $value): ?>
+                <tr>
+                    <td><?php echo $this->escapeHtml($value->getId()); ?></td>
+                    <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
+                    <td><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'edit', 'id' => $value->getId())) ?>">Editar</a></td>
+                    <td><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php
+        echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v2', array('route' => 'tenil-acl-admin/paginator'));
+        ?>
+    </div>
+</div>

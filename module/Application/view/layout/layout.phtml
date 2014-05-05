@@ -44,7 +44,10 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="<?php echo $this->url('tenil-user-register') ?>"><?php echo $this->translate('Registrar') ?></a></li>
-                        <li><a href="<?php echo $this->url('tenil-user-admin/default', array('controller'=>'users')) ?>"><?php echo $this->translate('User Admin') ?></a></li>
+                        <li><a href="<?php echo $this->url('tenil-user-admin/default', array('controller'=>'users')) ?>"><?php echo $this->translate('Usuários') ?></a></li>
+                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller'=>'roles')) ?>"><?php echo $this->translate('Roles') ?></a></li>
+                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller'=>'resources')) ?>"><?php echo $this->translate('Resources') ?></a></li>
+                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller'=>'privileges')) ?>"><?php echo $this->translate('Privileges') ?></a></li>
                         <?php if($this->userIdentity("TenilUser")): ?>
                         <li><a href="<?php echo $this->url('tenil-user-logout') ?>"><?php echo $this->translate('Logout') ?></a></li>
                         <?php else :  ?>

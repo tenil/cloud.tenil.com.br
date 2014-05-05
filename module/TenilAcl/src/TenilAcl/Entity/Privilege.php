@@ -57,7 +57,8 @@ class Privilege {
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      */
-    protected $updatedAd;
+    protected $updatedAt;
+
 
     public function __construct($options = array()) {
 
@@ -129,7 +130,7 @@ class Privilege {
         $this->createdAt = $createdAt;
         return $this;
     }
-
+    
     public function setUpdatedAt(\DateTime $updatedAt) {
         $this->updatedAt = $updatedAt;
         return $this;

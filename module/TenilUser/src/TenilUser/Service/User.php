@@ -9,6 +9,7 @@ namespace TenilUser\Service;
 use Doctrine\ORM\EntityManager;
 use Zend\Mail\Transport\Smtp as SmtpTransport;
 use TenilBase\Mail\Mail;
+use TenilBase\Service\AbstractService;
 
 class User extends AbstractService {
 

@@ -190,12 +190,11 @@ class User {
         return $this->updatedAt;
     }
 
-    // prePersist: Antes de gravar as informações no bando, ele executa o métudo.
+    // prePersist: Antes de gravar as informações no banco, ele executa o método.
     
     /*
      * @ORM\prePersist
      */
-
     public function setUpdatedAt(\DateTime $updatedAt) {
         $this->updatedAt = $updatedAt;
         return $this;

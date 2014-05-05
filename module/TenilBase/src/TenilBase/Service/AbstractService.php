@@ -4,7 +4,7 @@
  * @author Roberto
  */
 
-namespace TenilUser\Service;
+namespace TenilBase\Service;
 
 use Doctrine\ORM\EntityManager;
 use Zend\Stdlib\Hydrator;

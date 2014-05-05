@@ -54,6 +54,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'TenilAcl\Controller\Roles' => 'TenilAcl\Controller\RolesController',
+            'TenilAcl\Controller\Resources' => 'TenilAcl\Controller\ResourcesController',
+            'TenilAcl\Controller\Privileges' => 'TenilAcl\Controller\PrivilegesController',
         )
     ),
     'view_manager' => array(
