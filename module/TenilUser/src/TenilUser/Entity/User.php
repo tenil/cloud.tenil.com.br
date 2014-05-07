@@ -192,11 +192,15 @@ class User {
 
     // prePersist: Antes de gravar as informações no banco, ele executa o método.
     
-    /*
-     * @ORM\prePersist
+
+    /**
+     * 
+     * @param \DateTime $updatedAt
+     * @return \TenilUser\Entity\User
+     * @ORM\PreUpdate
      */
-    public function setUpdatedAt(\DateTime $updatedAt) {
-        $this->updatedAt = $updatedAt;
+    public function setUpdatedAt() {
+        $this->updatedAt = new \DateTime("now");
         return $this;
     }
 

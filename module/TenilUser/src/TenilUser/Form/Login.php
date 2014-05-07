@@ -13,7 +13,8 @@ class Login extends Form {
         $this->setAttributes(array(
             'method' => 'post',
             'role' => 'form',
-            'class' => 'form-horizontal'
+            'class' => 'form-signin',
+            'label' => 'Bem-vindo!'
         ));
         
         // $this->setInputFilter(new LoginFilter());
@@ -21,14 +22,17 @@ class Login extends Form {
         $email = new Element\Email('email');
         $email->setLabel('E-mail')
                 ->setAttribute('placeholder', 'E-mail')
-                ->setAttribute('class', 'form-control input-lg')
+                ->setAttribute('class', 'form-control')
+                ->setAttribute('required', 'required')
+                ->setAttribute('autofocus', 'autofocus')
                 ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
         $this->add($email);
         
         $password = new Element\Password('password');
         $password->setLabel('Senha')
                 ->setAttribute('placeholder', 'Senha')
-                ->setAttribute('class', 'form-control input-lg')
+                ->setAttribute('class', 'form-control')
+                ->setAttribute('required', 'required')
                 ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
         $this->add($password);
         

@@ -62,11 +62,7 @@ class Role {
 
         $this->createdAt = new \DateTime("now");
         $this->updatedAt = new \DateTime("now");
-        /*
-         * $hydrator = new Hydrator\ClassMethods;
-         * $hydrator->hydrate($options, $this);        
-         */
-        // Somente php >= 5.4
+        
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
 
@@ -143,12 +139,16 @@ class Role {
         return $this;
     }
 
-    /*
-     * @ORM\prePersist
+    /**
+     * 
+     * @param \DateTime $updatedAt
+     * @return \TenilAcl\Entity\Role
+     * @ORM\PreUpdate
      */
-    public function setUpdatedAt(\DateTime $updatedAt) {
-        $this->updatedAt = $updatedAt;
+    
+    public function setUpdatedAt() {
+        $this->updatedAt =  new \DateTime("now");;
         return $this;
-    }    
+    }
     
 }

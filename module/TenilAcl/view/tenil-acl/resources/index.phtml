@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-12">
         <p>
-            <a class="btn btn-lg btn-default" href="<?php echo $this->url('tenil-acl-admin/default', array('controller'=>'resources'  ,'action' => 'add')) ?>" target="_self">Novo</a>
+            <a class="btn btn-lg btn-default" href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'add')) ?>" target="_self">Novo</a>
         </p>
     </div>
     <div class="col-md-12">
@@ -14,6 +14,7 @@
                 <th>Nome</th>
                 <th>Editar</th>
                 <th>Excluir</th>
+                <th>Data</th>
             </tr>
             <?php foreach ($this->data as $value): ?>
                 <tr>
@@ -21,6 +22,19 @@
                     <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
                     <td><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'edit', 'id' => $value->getId())) ?>">Editar</a></td>
                     <td><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a></td>
+                    <td><kbd><?php
+                            echo $this->dateFormat(
+                                    $value->getCreatedAt(), IntlDateFormatter::MEDIUM, // date
+                                    IntlDateFormatter::MEDIUM, // time
+                                    "pt_BR"
+                            );
+                            ?></kbd><br /><kbd><?php
+                            echo $this->dateFormat(
+                                    $value->getUpdatedAt(), IntlDateFormatter::MEDIUM, // date
+                                    IntlDateFormatter::MEDIUM, // time
+                                    "pt_BR"
+                            );
+                            ?></kbd></td>
                 </tr>
             <?php endforeach; ?>
         </table>

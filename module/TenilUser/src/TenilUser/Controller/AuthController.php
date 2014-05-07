@@ -49,23 +49,25 @@ class AuthController extends AbstractActionController {
 
                     $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Usuário logado com sucesso!');
 
-                    
-                    return $this->redirect()->toRoute('tenil-user-auth');
+
+                    return $this->redirect()->toRoute('home');
                 } else {
                     $this->flashMessenger()->setNamespace('TenilUser')->addErrorMessage('Não foi possível efetuar o login!');
                 }
             }
         }
 
-        return new ViewModel(array('form' => $form));
+        $view = new ViewModel(array('form' => $form));
+        $this->layout('layout/login');
+        return $view;
     }
-    
-    public function logoutAction(){
+
+    public function logoutAction() {
         $auth = new AuthenticationService;
         $auth->setStorage(new SessionStorage("TenilUser"));
         $auth->clearIdentity();
         $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Logout efetuado com sucesso.');
         return $this->redirect()->toRoute('tenil-user-auth');
-    }   
+    }
 
 }

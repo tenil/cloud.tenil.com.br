@@ -1,3 +1,4 @@
+<img alt="Cloud-logo" class="logo" height="70" src="/img/cloud-logo.svg">
 <?php
 $form = $this->form;
 $form->prepare();
@@ -6,33 +7,23 @@ $form->setAttribute('action', $this->url('tenil-user-auth'));
 
 echo $this->form()->openTag($form);
 
-echo '<div class="form-group">';
 $email = $form->get('email');
-echo $this->formLabel($email);
-echo '<div class="col-lg-10">';
 echo $this->formInput($email);
-//                echo $this->formElementErrors($email);
-echo '</div>';
-echo '</div>';
 
-echo '<div class="form-group">';
 $password = $form->get('password');
-echo $this->formLabel($password);
-echo '<div class="col-lg-10">';
 echo $this->formInput($password);
-//                echo $this->formElementErrors($password);
-echo '</div>';
-echo '</div>';
 
-echo '<div class="form-group">';
 $name = $form->get('submit');
-echo '<div class="col-lg-offset-2 col-lg-10">';
 echo $this->formSubmit($name);
-echo '</div>';
-echo '</div>';
 
+?>
+<div class="footer">
+<p><a href="/forgot_password/new">Esqueceu a senha?</a></p>
+<p>Não tem uma conta? <a href="<?php echo $this->url('tenil-user-register') ?>">Cadastre-se</a></p>
+</div>
+
+<?php
 echo $this->form()->closeTag();
-
 
 foreach ($form as $element) {
     echo $this->formElementErrors($element);

@@ -1,5 +1,5 @@
 body {
-  padding-top: 40px;
+  padding-top: 90px;
   padding-bottom: 40px;
   background-color: #eee;
 }
@@ -37,4 +37,19 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.form-signin .footer {
+    text-align: center;
+    margin-bottom: 200px;
+}
+
+.form-signin .footer p {
+    color: #999;
+    margin: 10px 0;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 30px;
 }

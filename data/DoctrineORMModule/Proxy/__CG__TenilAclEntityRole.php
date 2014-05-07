@@ -334,12 +334,12 @@ class Role extends \TenilAcl\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function setUpdatedAt()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUpdatedAt', array($updatedAt));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUpdatedAt', array());
 
-        return parent::setUpdatedAt($updatedAt);
+        return parent::setUpdatedAt();
     }
 
 }

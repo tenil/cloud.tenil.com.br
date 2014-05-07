@@ -131,8 +131,15 @@ class Privilege {
         return $this;
     }
     
-    public function setUpdatedAt(\DateTime $updatedAt) {
-        $this->updatedAt = $updatedAt;
+    /**
+     * 
+     * @param \DateTime $updatedAt
+     * @return \TenilAcl\Entity\Privilege
+     * @ORM\PreUpdate
+     */
+    
+    public function setUpdatedAt() {
+        $this->updatedAt = new \DateTime("now");
         return $this;
     }
 

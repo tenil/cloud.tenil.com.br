@@ -1,19 +1,19 @@
 <div class="page-header">
-    <h1><?php echo $this->translate('Papéis') ?> <small><?php echo $this->translate('Edição') ?></small></h1>
+    <h1><?php echo $this->translate('Privilégios') ?> <small><?php echo $this->translate('Edição') ?></small></h1>
 </div>
 <div class="row">
     <div class="col-md-6">
         <div class="clearfix"></div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2 class="panel-title"><?php echo $this->translate('Atualizar Papel') ?></h2>
+                <h2 class="panel-title"><?php echo $this->translate('Atualizar Privilégio') ?></h2>
             </div>
             <div class="panel-body">
                 <?php
                 $form = $this->form;
                 $form->prepare();
 
-                $form->setAttribute('action', $this->url('tenil-acl-admin/default', array('controller' => 'roles', 'action' => 'edit')));
+                $form->setAttribute('action', $this->url('tenil-acl-admin/default', array('controller' => 'privileges', 'action' => 'edit')));
 
                 echo $this->form()->openTag($form);
 
@@ -34,22 +34,23 @@
 
 
                 echo '<div class="form-group">';
-                $parent = $form->get('parent');
-                echo $this->formLabel($parent);
+                $role = $form->get('role');
+                echo $this->formLabel($role);
                 echo '<div class="col-lg-10">';
-                echo $this->formSelect($parent);
+                echo $this->formSelect($role);
 //                echo $this->formElementErrors($email);
                 echo '</div>';
                 echo '</div>';
 
                 echo '<div class="form-group">';
-                $admin = $form->get('isAdmin');
-                echo $this->formLabel($admin);
+                $resource = $form->get('resource');
+                echo $this->formLabel($resource);
                 echo '<div class="col-lg-10">';
-                echo $this->formCheckBox($admin);
+                echo $this->formSelect($resource);
 //                echo $this->formElementErrors($email);
                 echo '</div>';
                 echo '</div>';
+
 
                 echo '<div class="form-group">';
                 $name = $form->get('submit');

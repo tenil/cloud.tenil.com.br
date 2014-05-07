@@ -95,11 +95,14 @@ class Resource {
         return $this;
     }
 
-    /*
-     * @ORM\PrePersist
+    /**
+     * 
+     * @param \DateTime $updatedAt
+     * @return \TenilAcl\Entity\Resource
+     * @ORM\PreUpdate
      */
-    public function setUpdatedAt(\DateTime $updatedAt) {
-        $this->updatedAt = $updatedAt;
+    public function setUpdatedAt() {
+        $this->updatedAt = new \DateTime("now");
         return $this;
     }
 
