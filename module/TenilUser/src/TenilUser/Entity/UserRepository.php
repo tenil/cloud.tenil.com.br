@@ -16,7 +16,7 @@ class UserRepository extends EntityRepository {
 
         if ($user) {
             $hashSenha = $user->encryptPassword($password);
-            
+
             if ($hashSenha == $user->getPassword()) {
                 return $user;
             } else {
@@ -25,6 +25,20 @@ class UserRepository extends EntityRepository {
         } else {
             return FALSE;
         }
+    }
+
+    public function findArray() {
+
+        $result = $this->findAll();
+
+        $a = array();
+        foreach ($result as $user) {
+            $a[$user->getId()]['id'] = $user->getId();
+            $a[$user->getId()]['nome'] = $user->getNome();
+            $a[$user->getId()]['email'] = $user->getEmail();
+        }
+
+        return $a;
     }
 
 }

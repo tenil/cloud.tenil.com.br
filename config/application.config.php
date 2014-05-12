@@ -8,6 +8,7 @@ return array(
         'DoctrineDataFixtureModule',
         'TenilBase',
         'TenilUser',
+        'TenilUserRest',
         'TenilAcl',
     ),
 

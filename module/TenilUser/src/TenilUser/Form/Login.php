@@ -23,8 +23,8 @@ class Login extends Form {
         $email->setLabel('E-mail')
                 ->setAttribute('placeholder', 'E-mail')
                 ->setAttribute('class', 'form-control')
-                ->setAttribute('required', 'required')
-                ->setAttribute('autofocus', 'autofocus')
+//                ->setAttribute('required', 'required')
+//                ->setAttribute('autofocus', 'autofocus')
                 ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
         $this->add($email);
         
@@ -32,7 +32,7 @@ class Login extends Form {
         $password->setLabel('Senha')
                 ->setAttribute('placeholder', 'Senha')
                 ->setAttribute('class', 'form-control')
-                ->setAttribute('required', 'required')
+//                ->setAttribute('required', 'required')
                 ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
         $this->add($password);
         

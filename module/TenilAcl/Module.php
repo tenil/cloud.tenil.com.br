@@ -57,6 +57,20 @@ class Module {
 
             return new Form\Privilege('privilege', NULL, $role, $resource);
         },
+                'TenilAcl\Permissions\Acl' => function($sm) {
+            $em = $sm->get('Doctrine\ORM\EntityManager');
+
+            $roleRepository = $em->getRepository('TenilAcl\Entity\Role');
+            $roles = $roleRepository->findAll();
+            
+            $resourceRepository = $em->getRepository('TenilAcl\Entity\Resource');
+            $resources = $resourceRepository->findAll();
+
+            $privilegeRepository = $em->getRepository('TenilAcl\Entity\Privilege');
+            $privileges = $privilegeRepository->findAll();
+
+            return new Permissions\Acl($roles, $resources, $privileges);
+        }
             )
         );
     }

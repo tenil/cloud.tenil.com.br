@@ -81,6 +81,10 @@ class Privilege {
             'resource' => $this->resource->getId()
         );
     }
+    
+    public function toString(){
+        return $this->nome;
+    }
 
     public function getId() {
         return $this->id;

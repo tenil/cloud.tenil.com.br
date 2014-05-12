@@ -2,4 +2,5 @@
 
 namespace TenilBase;
 
-return array();
+return array(
+);
