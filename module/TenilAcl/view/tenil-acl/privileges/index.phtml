@@ -11,8 +11,8 @@
         <table class="table table-striped table-bordered">
             <tr>
                 <th>Id</th>
-                <th>Nome</th>
                 <th>Papel</th>
+                <th>Privilégio</th>
                 <th>Recurso</th>
                 <th>Editar</th>
                 <th>Excluir</th>
@@ -21,8 +21,8 @@
             <?php foreach ($this->data as $value): ?>
                 <tr>
                     <td><?php echo $this->escapeHtml($value->getId()); ?></td>
-                    <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
                     <td><?php echo $this->escapeHtml($value->getRole()->getNome()); ?></td>
+                    <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
                     <td><?php echo $this->escapeHtml($value->getResource()->getNome()); ?></td>
                     <td><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'privileges', 'action' => 'edit', 'id' => $value->getId())) ?>">Editar</a></td>
                     <td><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'privileges', 'action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a></td>

@@ -55,7 +55,8 @@ class User extends AbstractService {
             unset($data['password']);
         }
 
-        parent::update($data);
+        return parent::update($data);
+        
     }
 
     public function activate($key) {

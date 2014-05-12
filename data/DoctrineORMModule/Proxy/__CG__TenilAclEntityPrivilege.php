@@ -187,6 +187,17 @@ class Privilege extends \TenilAcl\Entity\Privilege implements \Doctrine\ORM\Prox
     /**
      * {@inheritDoc}
      */
+    public function toString()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'toString', array());
+
+        return parent::toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
