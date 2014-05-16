@@ -30,7 +30,7 @@ return array(
             'tenil-user-auth' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/signin',
+                    'route' => '/login',
                     'defaults' => array(
                         '__NAMESPACE__' => 'TenilUser\Controller',
                         'controller' => 'Auth',
