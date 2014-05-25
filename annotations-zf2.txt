@@ -163,7 +163,58 @@ No service, pode-se utilizar os métodos do repository para fazer buscas no banc
 
 Rotas
 =====
+	As rotas sempre apontarão para um controller e uma action dentro de um namespace, independete se ela vai passar algum tipo de parâmetro ou não.
+
+
 Literal
-Regex
+-------
+	O que o nome já diz, é literal. Se uma rota é criada assim '/teste/', assim ela deve ser acessada pela url. Se tentar acessar '/teste', não vai funcionar, por que faltou a '/'.
+
 Segment
+-------
+	Esse é o mais simple e mais utilizado tipo de rota do ZF2.
+	Exemplo: 	'route' => '/rota/artigo/[/:id]'
+				'constraints' => array('id' => '\d+')
+
+Regex
+-----
+	Expressões regulares.
+	Exemplo: 	'regex' => '/rota/artigo/(?P<id>\d+)'
+				'spec'  => '/rota/artigo/%id%'
+	Explicação: 'regex' Sempre usar (). ?P significa parâmero. <id> é o parâmetro passado na rota. \d+, só aceita um ou mais dígitos. 'spec', o que estiver dentro da % é o que ele recupera.
+	No caso do uso do Regex, na declaração deve ser utilizado o nome 'regex' no lugar de 'route'.
+	Acesso: /rota/artigo/15
+
 Wildcard
+--------
+	É uma rota que é do tipo /chave/valor/chave/valor/chave/valor/chave/valor...
+	Exemplo: 	'route'=> '/rota/artigo/'
+				'key_value-delimiter' => '/'
+				'param_delimiter' => '/'
+	Acesso: /rota/artigo/id/15
+	
+Treeroute
+---------
+	E uma rota filha de qualquer rota.
+	
+	
+Hostname
+--------
+	Subnomínios dinâmicos.
+	
+Scheme
+------
+	'scheme' => 'https'
+	
+Method
+------
+	'type' => 'method'
+	'options' => 'verb'=> array(post, put)
+	
+
+
+	
+	
+
+
+
