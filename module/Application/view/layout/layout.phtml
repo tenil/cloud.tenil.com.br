@@ -44,14 +44,14 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="<?php echo $this->url('tenil-user-register') ?>"><?php echo $this->translate('Registrar') ?></a></li>
-                        <li><a href="<?php echo $this->url('tenil-user-admin/default', array('controller'=>'users')) ?>"><?php echo $this->translate('Usuários') ?></a></li>
-                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller'=>'roles')) ?>"><?php echo $this->translate('Roles') ?></a></li>
-                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller'=>'resources')) ?>"><?php echo $this->translate('Resources') ?></a></li>
-                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller'=>'privileges')) ?>"><?php echo $this->translate('Privileges') ?></a></li>
-                        <?php if($this->userIdentity("TenilUser")): ?>
-                        <li><a href="<?php echo $this->url('tenil-user-logout') ?>"><?php echo $this->translate('Logout') ?></a></li>
-                        <?php else :  ?>
-                        <li><a href="<?php echo $this->url('tenil-user-auth') ?>"><?php echo $this->translate('Entrar') ?></a></li>
+                        <li><a href="<?php echo $this->url('tenil-user-admin/default', array('controller' => 'users')) ?>"><?php echo $this->translate('Usuários') ?></a></li>
+                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'roles')) ?>"><?php echo $this->translate('Roles') ?></a></li>
+                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources')) ?>"><?php echo $this->translate('Resources') ?></a></li>
+                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'privileges')) ?>"><?php echo $this->translate('Privileges') ?></a></li>
+                        <?php if ($this->userIdentity("TenilUser")): ?>
+                            <li><a href="<?php echo $this->url('tenil-user-logout') ?>"><?php echo $this->translate('Logout') ?></a></li>
+                        <?php else : ?>
+                            <li><a href="<?php echo $this->url('tenil-user-auth') ?>"><?php echo $this->translate('Entrar') ?></a></li>
                         <?php endif; ?>
                     </ul>
                     <form class="navbar-form navbar-right">
@@ -66,26 +66,7 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
-
-        <?php ?>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <?php
-                    $flash = $this->flashMessenger();
-                    $flash->setNamespace('TenilUser');
-
-                    echo $flash->render('error', array('alert', 'alert-dismissable', 'alert-danger'));
-                    echo $flash->render('info', array('alert', 'alert-dismissable', 'alert-info'));
-                    echo $flash->render('warning', array('alert', 'alert-dismissable', 'alert-warning'));
-                    echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
-                    echo $flash->render('default', array('alert', 'alert-dismissable', 'alert-info'));
-                    ?>            
-                </div>
-            </div>
-        </div> <!-- /container -->
-        <?php ?>
-
+        <?php echo $this->partial('partials/mensagens.phtml', array('chave' => 'valor')); ?>
         <div class="container">
             <?php echo $this->content; ?>
             <hr>

@@ -1,5 +1,3 @@
-<a href="<?php echo $this->url('home') ?>"><img alt="Cloud-logo" class="logo" height="70" src="/img/pixel-logo.svg"></a>
-
 <?php
 $form = $this->form;
 $form->prepare();
@@ -7,10 +5,6 @@ $form->prepare();
 $form->setAttribute('action', $this->url('tenil-user-auth'));
 
 echo $this->form()->openTag($form);
-
-foreach ($form as $element) {
-    echo $this->formElementErrors($element);
-}
 
 $email = $form->get('email');
 echo $this->formInput($email);
@@ -26,6 +20,4 @@ echo $this->formSubmit($name);
     <p>Não tem uma conta? <a href="<?php echo $this->url('tenil-user-register') ?>">Cadastre-se</a></p>
 </div>
 
-<?php
-echo $this->form()->closeTag();
-?>
+<?php echo $this->form()->closeTag(); ?>

@@ -1,0 +1,11 @@
+<?php
+  if ($this->flashMessages) {
+    foreach ($this->flashMessages as $context => $messages) {
+      echo '<div class="message-container ' . $context . '"><ul>';
+      foreach ($messages as $message) {
+        echo '<li>' . $message . '</li>';
+      }
+      echo '</ul></div>';
+    }
+  }
+?>

@@ -11,6 +11,7 @@ namespace TenilUser\Auth;
 use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\Result;
 use Doctrine\ORM\EntityManager;
+use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
 /**
  * Description of Adapter
@@ -48,9 +49,14 @@ class Adapter implements AdapterInterface {
         $repository = $this->em->getRepository("TenilUser\Entity\User");
         $user = $repository->findByEmailAndPassword($this->getUsername(), $this->getPassword());
 
+        $messages = new FlashMessenger();
+        $messages->setNamespace('Tenil');
+        
         if ($user) {
+            $messages->addSuccessMessage('Login efetuado com sucesso.');
             return new Result(Result::SUCCESS, array('user' => $user), array('SUCCESS'));
         } else {
+            $messages->addErrorMessage('E-mail ou senha incorretos.');
             return new Result(Result::FAILURE_CREDENTIAL_INVALID, NULL, array('ERROR'));
         }
     }

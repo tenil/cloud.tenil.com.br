@@ -30,23 +30,8 @@
 
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <?php
-                    $flash = $this->flashMessenger();
-                    $flash->setNamespace('TenilUser');
-
-                    echo $flash->render('error', array('alert', 'alert-dismissable', 'alert-danger'));
-                    echo $flash->render('info', array('alert', 'alert-dismissable', 'alert-info'));
-                    echo $flash->render('warning', array('alert', 'alert-dismissable', 'alert-warning'));
-                    echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
-                    echo $flash->render('default', array('alert', 'alert-dismissable', 'alert-info'));
-                    ?>            
-                </div>
-            </div>
-        </div> <!-- /container -->        
-
+        <a href="<?php echo $this->url('home') ?>"><img alt="Cloud-logo" class="logo" height="70" src="/img/pixel-logo.svg"></a>
+        <?php echo $this->partial('partials/mensagens.phtml', array('chave' => 'valor')); ?>
         <div class="container">
             <?php echo $this->content; ?>
         </div> <!-- /container -->

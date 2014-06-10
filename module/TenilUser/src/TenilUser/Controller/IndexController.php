@@ -29,16 +29,24 @@ class IndexController extends AbstractActionController {
                 // Criando uma instância da classe de serviço do Module.php
                 $service = $this->getServiceLocator()->get('TenilUser\Service\User');
                 // Se a inserção for verdadeira, entra no if.
-                if ($service->insert($request->getPost()->toArray())) {
+                //if ($service->insert($request->getPost()->toArray())) {
+                if ($service->insert($form->getData())) {
                     // Aprimorar para mensagens de status.
-                    $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Usuário cadastrado com sucesso!');
+                    $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Usuário cadastrado com sucesso!');
                 }
 
                 return $this->redirect()->toRoute('tenil-user-register');
+            } else {
+                foreach ($form->getMessages() as $message) {
+                    $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
+                }
             }
         }
 
-        return new ViewModel(array('form' => $form));
+        $view = new ViewModel();
+        $view->setVariables(array('form' => $form));
+
+        return $view;
     }
 
     public function activateAction() {
