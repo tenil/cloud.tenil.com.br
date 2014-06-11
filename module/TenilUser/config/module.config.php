@@ -56,7 +56,7 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'TenilUser\Controller',
                         'controller' => 'Users',
-                        'action' => 'Index'
+                        'action' => 'index'
                     )
                 ),
                 'may_terminate' => true,

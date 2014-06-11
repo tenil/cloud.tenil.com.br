@@ -38,7 +38,7 @@ Proposta do sistema
 
 ### Restrições do sistema proposto
 
-### Recursos necessários para a execução 
+### Arquitetura computacional 
 #### Descrição do _hardware_ ideal
 #### Descrição do _hardware_ mínimo
 #### Descrição do _software_ utilizado
@@ -51,10 +51,6 @@ Proposta do sistema
 ### Vantagens do sistema
 
 ### Comercialização do sistema
-
- 
-
-
 
 Arquitetura do sistema
 ----------------------
@@ -77,4 +73,51 @@ Zend Framework
 ### Módulos
 O sistema será composto de diversos módulos. Cada qual será projetado de tal forma que poderá ser facilmente reutilizado em outros projeto da empresa.
 
+#### Application
+Esse é o módulo do básico. Os layouts principais, partials e configurações iniciais de rotas ficam nele. As configurações de tradução também ficam nele.
 
+##### Rotas
+* home
+> /
+> Application\Controller\Index\index
+
+* application
+> /application
+> Application\Controller\Index
+> > application/default
+> > /[:controller[/:action]]
+
+#### User
+Esse módulo controla o cadastro de usuários no sistema.
+
+##### Rotas
+* tenil-user-register
+> /register
+> TenilUser\Controller\Index\register
+
+* tenil-user-activate
+> /register/activate[/:key]
+> TenilUser\Controller\Index\activate
+
+* tenil-user-auth
+> /login
+> TenilUser\Controller\Auth\index
+
+* tenil-user-logout
+> /logout
+> TenilUser\Controller\Auth\logout
+
+* tenil-user-admin
+> /admin
+> TenilUser\Controller\Users\index
+> > admin/default
+> > /[:controller[/:action[/:id]]]
+> >
+> > admin/paginator
+> > /[:controller[/page/:page]]
+
+#### Admin
+##### Rotas
+
+#### Auth
+##### Rotas

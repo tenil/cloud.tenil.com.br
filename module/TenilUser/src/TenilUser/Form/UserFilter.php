@@ -42,11 +42,11 @@ class UserFilter extends InputFilter {
             'validators' => array(
                 array(
                     'name' => 'NotEmpty',
-                    'options' => array(
-                        'messages' => array(
-                            'isEmpty' => 'Precisa ser preenchido'
-                        ),
-                    ),
+//                    'options' => array(
+//                        'messages' => array(
+//                            'isEmpty' => 'Precisa ser preenchido'
+//                        ),
+//                    ),
                 ),
             ),
         ));
@@ -61,11 +61,6 @@ class UserFilter extends InputFilter {
             'validators' => array(
                 array(
                     'name' => 'NotEmpty',
-                    'options' => array(
-                        'messages' => array(
-                            'isEmpty' => 'Precisa ser preenchido'
-                        ),
-                    ),
                     'name' => 'Identical',
                     'options' => array(
                         'token' => 'password'
