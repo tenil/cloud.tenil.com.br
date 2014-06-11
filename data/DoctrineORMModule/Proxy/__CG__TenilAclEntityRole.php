@@ -64,10 +64,10 @@ class Role extends \TenilAcl\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'parent', 'nome', 'isAdmin', 'updatedAt', 'createdAt');
+            return array('__isInitialized__', 'id', 'parent', 'nome', 'isAdmin', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'updatedAt', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'createdAt');
         }
 
-        return array('__isInitialized__', 'id', 'parent', 'nome', 'isAdmin', 'updatedAt', 'createdAt');
+        return array('__isInitialized__', 'id', 'parent', 'nome', 'isAdmin', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'updatedAt', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'createdAt');
     }
 
     /**
