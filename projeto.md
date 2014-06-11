@@ -78,43 +78,43 @@ Esse é o módulo do básico. Os layouts principais, partials e configurações 
 
 ##### Rotas
 * home
-> /
-> Application\Controller\Index\index
+	/
+	Application\Controller\Index\index
 
 * application
-> /application
-> Application\Controller\Index
-> > application/default
-> > /[:controller[/:action]]
+	/application
+	Application\Controller\Index
+	application/default
+	/[:controller[/:action]]
 
 #### User
 Esse módulo controla o cadastro de usuários no sistema.
 
 ##### Rotas
 * tenil-user-register
-> /register
-> TenilUser\Controller\Index\register
+	/register
+	TenilUser\Controller\Index\register
 
 * tenil-user-activate
-> /register/activate[/:key]
-> TenilUser\Controller\Index\activate
+	/register/activate[/:key]
+	TenilUser\Controller\Index\activate
 
 * tenil-user-auth
-> /login
-> TenilUser\Controller\Auth\index
+	/login
+	TenilUser\Controller\Auth\index
 
 * tenil-user-logout
-> /logout
-> TenilUser\Controller\Auth\logout
+	/logout
+	TenilUser\Controller\Auth\logout
 
 * tenil-user-admin
-> /admin
-> TenilUser\Controller\Users\index
-> > admin/default
-> > /[:controller[/:action[/:id]]]
-> >
-> > admin/paginator
-> > /[:controller[/page/:page]]
+	/admin
+	TenilUser\Controller\Users\index
+	> admin/default
+	> /[:controller[/:action[/:id]]]
+	>
+	> admin/paginator
+	> /[:controller[/page/:page]]
 
 #### Admin
 ##### Rotas
