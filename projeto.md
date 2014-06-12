@@ -77,44 +77,67 @@ O sistema será composto de diversos módulos. Cada qual será projetado de tal 
 Esse é o módulo do básico. Os layouts principais, partials e configurações iniciais de rotas ficam nele. As configurações de tradução também ficam nele.
 
 ##### Rotas
-* home
-	/
-	Application\Controller\Index\index
+1. home
+```
+nome: home
+rota: /
+cont: Application\Controller\Index\index
+```
 
-* application
-	/application
-	Application\Controller\Index
-	application/default
-	/[:controller[/:action]]
+2. application
+```
+nome: application
+rota: /application
+cont: Application\Controller\Index\index
+	1. default
+	nome: default
+	rota: /[:controller[/:action]]
+```
 
 #### User
 Esse módulo controla o cadastro de usuários no sistema.
 
 ##### Rotas
-* tenil-user-register
-	/register
-	TenilUser\Controller\Index\register
+1. tenil-user-register
+```
+nome: tenil-user-register
+rota: /register
+cont: TenilUser\Controller\Index\register
+```
 
-* tenil-user-activate
-	/register/activate[/:key]
-	TenilUser\Controller\Index\activate
+2. tenil-user-activate
+```
+nome: tenil-user-activate
+rota: /register/activate[/:key]
+cont: TenilUser\Controller\Index\activate
+```
 
-* tenil-user-auth
-	/login
-	TenilUser\Controller\Auth\index
+3. tenil-user-auth
+```
+nome: tenil-user-auth
+rota: /login
+cont: TenilUser\Controller\Auth\index
+```
 
-* tenil-user-logout
-	/logout
-	TenilUser\Controller\Auth\logout
+4. tenil-user-logout
+```
+nome: tenil-user-logout
+rota: /logout
+cont: TenilUser\Controller\Auth\logout
+```
 
-* tenil-user-admin
-	/admin
-	TenilUser\Controller\Users\index
-	> admin/default
-	> /[:controller[/:action[/:id]]]
-	>
-	> admin/paginator
-	> /[:controller[/page/:page]]
+5. tenil-user-admin
+```
+nome: tenil-user-admin
+rota: /admin
+cont: TenilUser\Controller\Users\index
+	1. default
+	nome: default
+	rota: /[:controller[/:action[/:id]]]
+	2. paginator
+	nome: paginator
+	rota: /[:controller[/page/:page]]
+```
 
 #### Admin
 ##### Rotas
