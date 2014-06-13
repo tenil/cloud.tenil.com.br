@@ -23,7 +23,7 @@
                 $form = $this->form;
                 $form->prepare();
 
-                $form->setAttribute('action', $this->url('tenil-user-register', array('controller' => 'index','action' => 'register')));
+                $form->setAttribute('action', $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'register')));
 
                 echo $this->form()->openTag($form);
 

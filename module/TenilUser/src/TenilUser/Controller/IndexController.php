@@ -12,6 +12,11 @@ use TenilUser\Form\User as FormUser;
 
 class IndexController extends AbstractActionController {
 
+    public function indexAction() {
+
+        return new ViewModel();
+    }
+
     public function registerAction() {
 
         // Primeira coisa a fazer é chamar o Form, ele vai aparecer sempre.
@@ -35,7 +40,7 @@ class IndexController extends AbstractActionController {
                     $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Usuário cadastrado com sucesso!');
                 }
 
-                return $this->redirect()->toRoute('tenil-user-register');
+                return $this->redirect()->toRoute('home');
             } else {
                 foreach ($form->getMessages() as $message) {
                     $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
@@ -61,8 +66,29 @@ class IndexController extends AbstractActionController {
                 'user' => $result
             ));
         } else {
-            return new ViewModel();
+            return new ViewModel(array('data' => $activationKey));
         }
+    }
+
+    public function forgotAction() {
+
+        $form = new FormUser;
+        $request = $this->getRequest();
+        $mensagens = array();
+
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $data = $form->getData();
+            }
+        } else {
+            foreach ($form->getMessages() as $message) {
+                $mensagens['error'] = $message;
+                $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
+            }
+        }
+
+        return new ViewModel();
     }
 
 }

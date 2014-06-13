@@ -2,7 +2,7 @@
 $form = $this->form;
 $form->prepare();
 
-$form->setAttribute('action', $this->url('tenil-user-auth'));
+$form->setAttribute('action', $this->url('tenil-user/default', array('controller'=> 'auth', 'action'=>'index')));
 
 echo $this->form()->openTag($form);
 
@@ -16,8 +16,8 @@ $name = $form->get('submit');
 echo $this->formSubmit($name);
 ?>
 <div class="footer">
-    <p><a href="/forgot_password/new">Esqueceu a senha?</a></p>
-    <p>Não tem uma conta? <a href="<?php echo $this->url('tenil-user-register') ?>">Cadastre-se</a></p>
+    <p><a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'forgot')) ?>">Esqueceu a senha?</a></p>
+    <p>Não tem uma conta? <a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'register')) ?>">Cadastre-se</a></p>
 </div>
 
 <?php echo $this->form()->closeTag(); ?>

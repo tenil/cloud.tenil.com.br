@@ -13,7 +13,7 @@
                 $form = $this->form;
                 $form->prepare();
 
-                $form->setAttribute('action', $this->url('tenil-user-admin/default', array('controller' => 'users', 'action' => 'add')));
+                $form->setAttribute('action', $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'add')));
 
                 echo $this->form()->openTag($form);
 

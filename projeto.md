@@ -77,14 +77,14 @@ O sistema será composto de diversos módulos. Cada qual será projetado de tal 
 Esse é o módulo do básico. Os layouts principais, partials e configurações iniciais de rotas ficam nele. As configurações de tradução também ficam nele.
 
 ##### Rotas
-1. home
+* home
 ```
 nome: home
 rota: /
 cont: Application\Controller\Index\index
 ```
 
-2. application
+* application
 ```
 nome: application
 rota: /application
@@ -98,35 +98,35 @@ cont: Application\Controller\Index\index
 Esse módulo controla o cadastro de usuários no sistema.
 
 ##### Rotas
-1. tenil-user-register
+* tenil-user-register
 ```
 nome: tenil-user-register
 rota: /register
 cont: TenilUser\Controller\Index\register
 ```
 
-2. tenil-user-activate
+* tenil-user-activate
 ```
 nome: tenil-user-activate
 rota: /register/activate[/:key]
 cont: TenilUser\Controller\Index\activate
 ```
 
-3. tenil-user-auth
+* tenil-user-auth
 ```
 nome: tenil-user-auth
 rota: /login
 cont: TenilUser\Controller\Auth\index
 ```
 
-4. tenil-user-logout
+* tenil-user-logout
 ```
 nome: tenil-user-logout
 rota: /logout
 cont: TenilUser\Controller\Auth\logout
 ```
 
-5. tenil-user-admin
+* tenil-user-admin
 ```
 nome: tenil-user-admin
 rota: /admin
