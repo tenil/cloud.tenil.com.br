@@ -64,10 +64,10 @@ class User extends \TenilUser\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'nome', 'email', 'password', 'salt', 'active', 'activationKey', 'updatedAt', 'createdAt');
+            return array('__isInitialized__', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'id', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'email', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'password', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'salt', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'active', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'activationKey', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'passwordResetKey', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'createdAt');
         }
 
-        return array('__isInitialized__', 'id', 'nome', 'email', 'password', 'salt', 'active', 'activationKey', 'updatedAt', 'createdAt');
+        return array('__isInitialized__', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'id', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'email', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'password', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'salt', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'active', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'activationKey', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'passwordResetKey', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'createdAt');
     }
 
     /**
@@ -340,6 +340,28 @@ class User extends \TenilUser\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setActivationKey', array($activationKey));
 
         return parent::setActivationKey($activationKey);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPasswordResetKey()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPasswordResetKey', array());
+
+        return parent::getPasswordResetKey();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPasswordResetKey($passwordResetKey = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPasswordResetKey', array($passwordResetKey));
+
+        return parent::setPasswordResetKey($passwordResetKey);
     }
 
     /**

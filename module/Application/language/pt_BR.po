@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZendSkeletonApplication\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-11 17:04-0300\n"
-"PO-Revision-Date: 2014-06-11 17:04-0300\n"
+"POT-Creation-Date: 2014-06-16 16:34-0300\n"
+"PO-Revision-Date: 2014-06-17 10:21-0300\n"
 "Last-Translator: Roberto Tenil <roberto.tenil@gmail.com>\n"
 "Language-Team: ZF Contibutors <zf-devteam@zend.com>\n"
 "Language: pt\n"
@@ -202,7 +202,7 @@ msgid "Logout"
 msgstr "Sair"
 
 #: ../view/layout/layout.phtml:54
-msgid "Entrar"
+msgid "Login"
 msgstr "Entrar"
 
 #: ../view/layout/layout.phtml:64
@@ -224,3 +224,72 @@ msgstr "Valor nulo ou inválido"
 #: ../view/layout/paraPoedit.phtml:4
 msgid "Value is required and can't be empty"
 msgstr "Valor obrigatório e não pode ser nulo"
+
+#: ../view/layout/paraPoedit.phtml:5
+msgid "\"Invalid type given. String expected\""
+msgstr ""
+
+#: ../view/layout/paraPoedit.phtml:6
+msgid "Invalid type given. String expected"
+msgstr ""
+
+#: ../view/layout/paraPoedit.phtml:7
+msgid ""
+"The input is not a valid email address. Use the basic format local-"
+"part@hostname"
+msgstr ""
+
+#: ../view/layout/paraPoedit.phtml:8
+msgid "'%hostname%' is not a valid hostname for the email address"
+msgstr "'%hostname%' não é um nome de host válido para o endereço de email"
+
+#: ../view/layout/paraPoedit.phtml:9
+#, fuzzy
+msgid ""
+"'%hostname%' does not appear to have any valid MX or A records for the email "
+"address"
+msgstr ""
+"'% hostname%' não parece ter qualquer MX válido ou registros A para o "
+"endereço de email"
+
+#: ../view/layout/paraPoedit.phtml:10
+msgid ""
+"'%hostname%' is not in a routable network segment. The email address should "
+"not be resolved from public network"
+msgstr ""
+
+#: ../view/layout/paraPoedit.phtml:11
+#, php-format
+msgid "'%localPart%' can not be matched against dot-atom format"
+msgstr ""
+
+#: ../view/layout/paraPoedit.phtml:12
+#, fuzzy, php-format
+msgid "'%localPart%' can not be matched against quoted-string format"
+msgstr "'%localPart%' não pode ser "
+
+#: ../view/layout/paraPoedit.phtml:13
+#, fuzzy
+msgid "'%localPart%' is not a valid local part for the email address"
+msgstr "'% localpart%' não é um local válido para o endereço de email"
+
+#: ../view/layout/paraPoedit.phtml:14
+#, fuzzy
+msgid "The input exceeds the allowed length"
+msgstr "A entrada excede o comprimento permitido"
+
+#: ../view/layout/paraPoedit.phtml:15
+msgid "The input does not match the expected structure for a DNS hostname"
+msgstr ""
+"A entrada não corresponde a estrutura esperada para um nome de host DNS"
+
+#: ../view/layout/paraPoedit.phtml:16
+msgid ""
+"The input appears to be a local network name but local network names are not "
+"allowed"
+msgstr ""
+"A entrada parece ser um nome de rede local, mas os nomes de rede local não "
+"são permitidos"
+
+#~ msgid "Entrar"
+#~ msgstr "Entrar"

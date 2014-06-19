@@ -19,12 +19,10 @@ class AuthController extends AbstractActionController {
 
         $form = new LoginForm;
         $request = $this->getRequest();
-        $mensagens = array();
 
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                // $data = $request->getPost()->toArray();
                 $data = $form->getData();
 
                 $auth = new AuthenticationService;
@@ -53,13 +51,12 @@ class AuthController extends AbstractActionController {
                 }
             } else {
                 foreach ($form->getMessages() as $message) {
-                    $mensagens['error'] = $message;
                     $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
                 }
             }
         }
 
-        $view = new ViewModel(array('form' => $form, 'mensagens' => $mensagens));
+        $view = new ViewModel(array('form' => $form));
         $this->layout('layout/login');
         return $view;
     }

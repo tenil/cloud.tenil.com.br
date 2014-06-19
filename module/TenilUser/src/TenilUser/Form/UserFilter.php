@@ -13,23 +13,26 @@ class UserFilter extends InputFilter {
 
     public function __construct() {
 
-        $nomeValidator = new Validator\NotEmpty();
-        $this->add(array(
-            'name' => 'nome',
-            'required' => TRUE,
-            'filters' => array(
-                array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
-                array('name' => 'StringToLower')
-            ),
-            'validators' => array($nomeValidator),
-        ));
+//        $nomeValidator = new Validator\NotEmpty();
+//        $this->add(array(
+//            'name' => 'nome',
+//            'required' => TRUE,
+//            'filters' => array(
+//                array('name' => 'StripTags'),
+//                array('name' => 'StringTrim'),
+//                array('name' => 'StringToLower')
+//            ),
+//            'validators' => array($nomeValidator),
+//        ));
 
         $emailValidator = new Validator\EmailAddress();
         $this->add(array(
             'name' => 'email',
             'required' => TRUE,
-            'validators' => array($emailValidator)
+            'validators' => array($emailValidator),
+            'filters' => array(
+                array('name' => 'StringToLower')
+            )
         ));
 
         $this->add(array(
@@ -41,33 +44,28 @@ class UserFilter extends InputFilter {
             ),
             'validators' => array(
                 array(
-                    'name' => 'NotEmpty',
-//                    'options' => array(
-//                        'messages' => array(
-//                            'isEmpty' => 'Precisa ser preenchido'
-//                        ),
-//                    ),
+                    'name' => 'NotEmpty'
                 ),
             ),
         ));
 
-        $this->add(array(
-            'name' => 'confirmation',
-            'required' => FALSE,
-            'filters' => array(
-                array('name' => 'StripTags'),
-                array('name' => 'StringTrim')
-            ),
-            'validators' => array(
-                array(
-                    'name' => 'NotEmpty',
-                    'name' => 'Identical',
-                    'options' => array(
-                        'token' => 'password'
-                    )
-                ),
-            ),
-        ));
+//        $this->add(array(
+//            'name' => 'confirmation',
+//            'required' => FALSE,
+//            'filters' => array(
+//                array('name' => 'StripTags'),
+//                array('name' => 'StringTrim')
+//            ),
+//            'validators' => array(
+//                array(
+//                    'name' => 'NotEmpty',
+//                    'name' => 'Identical',
+//                    'options' => array(
+//                        'token' => 'password'
+//                    )
+//                ),
+//            ),
+//        ));
     }
 
 }

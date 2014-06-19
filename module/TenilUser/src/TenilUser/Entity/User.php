@@ -73,6 +73,13 @@ class User {
     private $activationKey;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="password_reset_key", type="string", length=255, nullable=false)
+     */
+    private $passwordResetKey;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
@@ -117,7 +124,7 @@ class User {
         $hash = 'sha256';
         $salt = $this->salt;
         $iterations = 10000;
-        $length = strlen($password * 2);
+        $length = 32;
         $data = Pbkdf2::calc($hash, $password, $salt, $iterations, $length);
 
         return base64_encode($data);
@@ -146,7 +153,7 @@ class User {
     }
 
     public function setEmail($email) {
-        $this->email = $email;
+        $this->email = strtolower($email);
         return $this;
     }
 
@@ -186,13 +193,22 @@ class User {
         return $this;
     }
 
+    public function getPasswordResetKey() {
+        return $this->passwordResetKey;
+    }
+
+    public function setPasswordResetKey($passwordResetKey = NULL) {
+        // se for passado um valor TRUE, então será gerada a chave.
+        // caso contrario, a chave será nula
+        $this->passwordResetKey = $passwordResetKey ? Rand::getString(64, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', TRUE) : NULL;
+        return $this;
+    }
+
     public function getUpdatedAt() {
         return $this->updatedAt;
     }
 
     // prePersist: Antes de gravar as informações no banco, ele executa o método.
-    
-
     /**
      * 
      * @param \DateTime $updatedAt
@@ -212,12 +228,12 @@ class User {
         $this->createdAt = $createdAt;
         return $this;
     }
-    
-    public function toArray(){
-        
+
+    public function toArray() {
+
         $hydrator = new Hydrator\ClassMethods();
         return $hydrator->extract($this);
-        
+
         // return (new Hydrator\ClassMethods())->extract($this);
     }
 

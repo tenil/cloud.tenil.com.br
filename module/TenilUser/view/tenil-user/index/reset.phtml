@@ -2,7 +2,7 @@
 $form = $this->form;
 $form->prepare();
 
-$form->setAttribute('action', $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'forgot')));
+$form->setAttribute('action', $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'reset')));
 
 $formLabel = $this->plugin('formLabel');
 
@@ -10,10 +10,13 @@ echo $this->form()->openTag($form);
 echo $formLabel->openTag() . $form->getAttribute('label') . $formLabel->closeTag();
 
 $security = $form->get('security');
-echo $this->formInput($security);
+echo $this->formHidden($security);
 
-$email = $form->get('email');
-echo $this->formInput($email);
+$id = $form->get('id');
+echo $this->formHidden($id);
+
+$password = $form->get('password');
+echo $this->formInput($password);
 
 $submit = $form->get('submit');
 echo $this->formSubmit($submit);

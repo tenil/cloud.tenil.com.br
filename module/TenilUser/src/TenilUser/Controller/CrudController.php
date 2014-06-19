@@ -62,7 +62,7 @@ abstract class CrudController extends AbstractActionController {
                 $service = $this->getServiceLocator()->get($this->service);
                 $service->insert($request->getPost()->toArray());
 
-                $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Usuário cadastrado com sucesso!');
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Usuário cadastrado com sucesso!');
 
                 return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
             }
@@ -95,7 +95,7 @@ abstract class CrudController extends AbstractActionController {
                 $service = $this->getServiceLocator()->get($this->service);
                 $service->update($request->getPost()->toArray());
 
-                $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Usuário atualizado com sucesso!');
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Usuário atualizado com sucesso!');
 
                 return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
             }
@@ -109,7 +109,7 @@ abstract class CrudController extends AbstractActionController {
         
         $service = $this->getServiceLocator()->get($this->service);
         if($service->delete($this->params()->fromRoute('id',0))){
-            $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Usuário excluído com sucesso!');
+            $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Usuário excluído com sucesso!');
             return $this->redirect()->toRoute($this->route,array('controller'=>  $this->controller));
         }
         

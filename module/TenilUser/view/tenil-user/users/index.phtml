@@ -22,8 +22,8 @@
                     <td><?php echo $this->escapeHtml($value->getId()); ?></td>
                     <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
                     <td><?php echo $this->escapeHtml($value->getEmail()); ?></td>
-                    <td><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'edit'),array( 'id' => $value->getId())) ?>">Editar</a></td>
-                    <td><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a></td>
+                    <td><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'edit')) . '/id/' . $value->getId() ?>">Editar</a></td>
+                    <td><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'delete')) . '/id/' . $value->getId() ?>">Excluir</a></td>
                     <td><kbd><?php
                             echo $this->dateFormat(
                                     $value->getCreatedAt(), IntlDateFormatter::MEDIUM, // date

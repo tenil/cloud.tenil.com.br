@@ -17,7 +17,11 @@ class LoginFilter extends InputFilter {
         $this->add(array(
             'name' => 'email',
             'required' => TRUE,
-            'validators' => array($emailValidator)
+            'validators' => array($emailValidator),
+            'filters' => array(
+                array(
+                    'name' => 'StringToLower')
+            )
         ));
 
         $this->add(array(
@@ -29,16 +33,10 @@ class LoginFilter extends InputFilter {
             ),
             'validators' => array(
                 array(
-                    'name' => 'NotEmpty',
-                    'options' => array(
-                        'messages' => array(
-                            'isEmpty' => 'Precisa ser preenchido'
-                        ),
-                    ),
+                    'name' => 'NotEmpty'
                 ),
             ),
         ));
-
     }
 
 }

@@ -1,78 +1,30 @@
-<div class="page-header">
-    <h1><?php echo $this->translate('Cadastre-se') ?> <small>Comece a usar agora.</small></h1>
+<?php
+$form = $this->form;
+$form->prepare();
+
+$form->setAttribute('action', $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'register')));
+
+$formLabel = $this->plugin('formLabel');
+
+echo $this->form()->openTag($form);
+
+echo $formLabel->openTag() . $form->getAttribute('label') . $formLabel->closeTag();
+
+$security = $form->get('security');
+echo $this->formInput($security);
+
+$email = $form->get('email');
+echo $this->formInput($email);
+
+$password = $form->get('password');
+echo $this->formInput($password);
+
+$name = $form->get('submit');
+echo $this->formSubmit($name);
+?>
+<div class="footer">
+    <p>Ao inscrever-se, você concorda com os <a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'forgot')) ?>">Termos de Serviço</a></p>
+    <p>Já tem uma conta? <a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'auth', 'action'=>'index')) ?>">Entre</a></p>
 </div>
-<div class="row">
-    <div class="col-md-6">
-        <h2><?php echo $this->translate('Bem-vindo') ?></h2>
-        <blockquote class="pull-right">
-            <p class="lead">No <strong>Sistema Político</strong> você pode gerenciar seu cadastro de eleitores e amigos para potencializar usa campanha e o atendimento no gabinete.</p>
-        </blockquote>
-        <div class="clearfix"></div>
-        <blockquote>
-            <p class="lead">Esse é o sistema ideal para canditados e políticos já eleitos.</p>
-        </blockquote>
-    </div>
-    <div class="col-md-6">
-        <div class="clearfix"></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2 class="panel-title"><?php echo $this->translate('Crie uma conta') ?></h2>
-            </div>
-            <div class="panel-body">
-                <?php
-                $form = $this->form;
-                $form->prepare();
 
-                $form->setAttribute('action', $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'register')));
-
-                echo $this->form()->openTag($form);
-
-                $id = $form->get('id');
-                echo $this->formHidden($id);
-
-                $security = $form->get('security');
-                echo $this->formElement($security);
-
-                echo '<div class="form-group">';
-                $nome = $form->get('nome');
-                echo $this->formLabel($nome);
-                echo '<div class="col-lg-10">';
-                echo $this->formInput($nome);
-//                echo $this->formElementErrors($nome);
-                echo '</div>';
-                echo '</div>';
-
-
-                echo '<div class="form-group">';
-                $email = $form->get('email');
-                echo $this->formLabel($email);
-                echo '<div class="col-lg-10">';
-                echo $this->formInput($email);
-//                echo $this->formElementErrors($email);
-                echo '</div>';
-                echo '</div>';
-
-                echo '<div class="form-group">';
-                $password = $form->get('password');
-                echo $this->formLabel($password);
-                echo '<div class="col-lg-10">';
-                echo $this->formInput($password);
-//                echo $this->formElementErrors($password);
-                echo '</div>';
-                echo '</div>';
-
-                echo '<div class="form-group">';
-                $name = $form->get('submit');
-                echo '<div class="col-lg-offset-2 col-lg-10">';
-                echo $this->formSubmit($name);
-                echo '</div>';
-                echo '</div>';
-
-                echo $this->form()->closeTag();
-                ?>
-            </div>
-
-        </div>
-
-    </div>
-</div>
+<?php echo $this->form()->closeTag(); ?>

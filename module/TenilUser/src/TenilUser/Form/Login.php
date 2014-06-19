@@ -14,30 +14,28 @@ class Login extends Form {
             'method' => 'post',
             'role' => 'form',
             'class' => 'form-signin',
-            'label' => 'Bem-vindo!'
+            'label' => 'Bem-vindo de volta!'
         ));
-        
-        // $this->setInputFilter(new LoginFilter());
+
+        $this->setInputFilter(new LoginFilter());
 
         $email = new Element\Email('email');
         $email->setLabel('E-mail')
                 ->setAttribute('placeholder', 'E-mail')
                 ->setAttribute('class', 'form-control')
-//                ->setAttribute('required', 'required')
-//                ->setAttribute('autofocus', 'autofocus')
-                ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
+                ->setAttribute('required', 'required')
+                ->setAttribute('autofocus', 'autofocus');
         $this->add($email);
-        
+
         $password = new Element\Password('password');
         $password->setLabel('Senha')
                 ->setAttribute('placeholder', 'Senha')
                 ->setAttribute('class', 'form-control')
-//                ->setAttribute('required', 'required')
-                ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
+                ->setAttribute('required', 'required');
         $this->add($password);
-        
+
         $submit = new Element\Submit('submit');
-        $submit->setValue('Entrar')->setAttribute('class', 'btn btn-primary btn-lg btn-block');
+        $submit->setValue('Entrar')->setAttribute('class', 'btn btn-lg btn-primary btn-block');
         $this->add($submit);
     }
 

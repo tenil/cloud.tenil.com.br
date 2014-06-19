@@ -13,9 +13,10 @@ class User extends Form {
         $this->setAttributes(array(
             'method' => 'post',
             'role' => 'form',
-            'class' => 'form-horizontal'
+            'class' => 'form-signin',
+            'label' => 'Crie sua conta. Gratuita!'
         ));
-        
+
         $this->setInputFilter(new UserFilter());
 
         $id = new Element\Hidden('id');
@@ -24,35 +25,36 @@ class User extends Form {
         $nome = new Element\Text('nome');
         $nome->setLabel('Nome')
                 ->setAttribute('placeholder', 'Informe seu nome')
-                ->setAttribute('class', 'form-control input-lg')
-                ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
+                ->setAttribute('class', 'form-control')
+                ->setAttribute('required', 'required');
         $this->add($nome);
-        
+
         $email = new Element\Email('email');
         $email->setLabel('E-mail')
                 ->setAttribute('placeholder', 'Informe o e-mail')
-                ->setAttribute('class', 'form-control input-lg')
-                ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
+                ->setAttribute('class', 'form-control')
+                ->setAttribute('required', 'required')
+                ->setAttribute('autofocus', 'autofocus');
         $this->add($email);
-        
+
         $password = new Element\Password('password');
         $password->setLabel('Senha')
                 ->setAttribute('placeholder', 'Digite a senha')
-                ->setAttribute('class', 'form-control input-lg')
-                ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
+                ->setAttribute('class', 'form-control')
+                ->setAttribute('required', 'required');
         $this->add($password);
-        
+
         $confirmation = new Element\Password('confirmation');
         $confirmation->setLabel('Confirmação')
                 ->setAttribute('placeholder', 'Redigite a senha')
                 ->setAttribute('class', 'form-control');
         $this->add($confirmation);
-        
-        $security = new Element\Csrf('security'); 
+
+        $security = new Element\Csrf('security');
         $this->add($security);
-        
+
         $submit = new Element\Submit('submit');
-        $submit->setValue('Criar uma conta')->setAttribute('class', 'btn btn-primary btn-lg btn-block');
+        $submit->setValue('Criar uma conta')->setAttribute('class', 'btn btn-lg btn-primary btn-block');
         $this->add($submit);
     }
 

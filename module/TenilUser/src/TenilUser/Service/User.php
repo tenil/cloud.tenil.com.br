@@ -30,23 +30,21 @@ class User extends AbstractService {
         $entity = parent::insert($data);
 
         $dataEmail = array(
-            'nome' => $data['nome'],
             'activationKey' => $entity->getActivationKey()
         );
-        
-        // Enviar e-mail
-//        if ($entity) {
-//            // Parâmetros: Transport, View e Page
-//            $mail = new Mail($this->transport, $this->view, 'user-add');
-//            $mail->setSubjet('Confirmação de cadastro')
-//                    ->setTo($data['email'])
-//                    ->setData($dataEmail)
-//                    ->prepare()
-//                    ->send();
-//        }
-        
+
+        //Enviar e-mail
+        if ($entity) {
+            // Parâmetros: Transport, View e Page
+            $mail = new Mail($this->transport, $this->view, 'user-add');
+            $mail->setSubjet('Confirmação de cadastro')
+                    ->setTo($data['email'])
+                    ->setData($dataEmail)
+                    ->prepare()
+                    ->send();
+        }
+
         return $entity;
-        
     }
 
     public function update(array $data) {
@@ -56,7 +54,6 @@ class User extends AbstractService {
         }
 
         return parent::update($data);
-        
     }
 
     public function activate($key) {
@@ -90,6 +87,46 @@ class User extends AbstractService {
 
             return $user;
         }
+    }
+
+    public function passwordReset($email) {
+
+        // Pegando o repository usando o EntityManager;
+        $repo = $this->em->getRepository("TenilUser\Entity\User");
+        // Utilizando um método "mágico";
+        $user = $repo->findOneByEmail($email);
+
+        if ($user) {
+
+            // Criando a chave de recuperação de senha
+            $user->setPasswordResetKey(TRUE);
+            $this->em->persist($user);
+            $this->em->flush();
+
+            $dataEmail = array(
+                'nome' => $user->getNome(),
+                'resetKey' => $user->getPasswordResetKey()
+            );
+
+            // Enviando e-mail de confirmação
+            // Parâmetros: Transport, View e Page
+            $mail = new Mail($this->transport, $this->view, 'user-reset');
+            $mail->setSubjet('Redefinição de senha')
+                    ->setTo($user->getEmail())
+                    ->setData($dataEmail)
+                    ->prepare()
+                    ->send()
+            ;
+
+            return $user;
+        }
+    }
+
+    public function findByKey($key) {
+        // Pegando o repository usando o EntityManager;
+        $repo = $this->em->getRepository("TenilUser\Entity\User");
+        // Utilizando um método "mágico";
+        return $repo->findOneByPasswordResetKey($key);
     }
 
 }

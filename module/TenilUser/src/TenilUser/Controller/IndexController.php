@@ -9,6 +9,8 @@ namespace TenilUser\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use TenilUser\Form\User as FormUser;
+use TenilUser\Form\Forgot as FormForgot;
+use TenilUser\Form\Reset as FormReset;
 
 class IndexController extends AbstractActionController {
 
@@ -36,11 +38,12 @@ class IndexController extends AbstractActionController {
                 // Se a inserção for verdadeira, entra no if.
                 //if ($service->insert($request->getPost()->toArray())) {
                 if ($service->insert($form->getData())) {
-                    // Aprimorar para mensagens de status.
-                    $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Usuário cadastrado com sucesso!');
+                    /**
+                     * @todo Aprimorar mensagens de status.
+                     */
+                    $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Um link para ativação da sua conta foi enviado para seu e-mail.');
+                    return $this->redirect()->toRoute('tenil-user/default', array('controller' => 'auth', 'action' => 'index'));
                 }
-
-                return $this->redirect()->toRoute('home');
             } else {
                 foreach ($form->getMessages() as $message) {
                     $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
@@ -49,6 +52,7 @@ class IndexController extends AbstractActionController {
         }
 
         $view = new ViewModel();
+        $this->layout('layout/login');
         $view->setVariables(array('form' => $form));
 
         return $view;
@@ -62,33 +66,97 @@ class IndexController extends AbstractActionController {
         $result = $userService->activate($activationKey);
 
         if ($result) {
-            return new ViewModel(array(
-                'user' => $result
-            ));
+            $message = 'Conta ativada com sucesso';
+            $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage($message);
         } else {
-            return new ViewModel(array('data' => $activationKey));
+            $message = 'Chave de ativação de conta não encontrada';
+            $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
         }
+
+        return $this->redirect()->toRoute('tenil-user/default', array('controller' => 'auth', 'action' => 'index'));
     }
 
     public function forgotAction() {
 
-        $form = new FormUser;
+        $form = new FormForgot;
         $request = $this->getRequest();
-        $mensagens = array();
 
         if ($request->isPost()) {
+
             $form->setData($request->getPost());
+
             if ($form->isValid()) {
                 $data = $form->getData();
-            }
-        } else {
-            foreach ($form->getMessages() as $message) {
-                $mensagens['error'] = $message;
-                $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
+
+                // buscar no banco
+                // gerar chave
+                // enviar e-mail com chave
+                $userService = $this->getServiceLocator()->get('TenilUser\Service\User');
+                $userService->passwordReset($data['email']);
+
+                // escrever mensagem de envio
+                $message = 'Se o e-mail especificado existe no nosso sistema, nós enviamos um link de redefinição de senha para ele.';
+                $this->flashMessenger()->setNamespace('Tenil')->addInfoMessage($message);
+
+                // redirecionar para tela de login
+                return $this->redirect()->toRoute('tenil-user/default', array('controller' => 'auth', 'action' => 'index'));
+            } else {
+                foreach ($form->getMessages() as $message) {
+                    $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
+                }
             }
         }
 
-        return new ViewModel();
+        $view = new ViewModel(array('form' => $form));
+        $this->layout('layout/login');
+        return $view;
+    }
+
+    public function resetAction() {
+
+        $resetKey = $this->params()->fromRoute('key');
+        $request = $this->getRequest();
+
+        $form = new FormReset;
+
+        if (isset($resetKey)) {
+            $userService = $this->getServiceLocator()->get('TenilUser\Service\User');
+            $user = $userService->findByKey($resetKey);
+
+            if ($user) {
+                $form->get('id')->setValue($user->getId());
+            } else {
+                $message = 'Link para redefinir senha inválido';
+                $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
+                return $this->redirect()->toRoute('tenil-user/default', array('controller' => 'auth', 'action' => 'index'));
+            }
+        } else {
+
+            if ($request->isPost()) {
+                $form->setData($request->getPost());
+                if ($form->isValid()) {
+                    $data = $form->getData();
+                    $data['passwordResetKey'] = NULL;
+
+                    $service = $this->getServiceLocator()->get('TenilUser\Service\User');
+                    $service->update($data);
+
+                    $message = 'Senha atualizada com sucesso';
+                    $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage($message);
+                    return $this->redirect()->toRoute('tenil-user/default', array('controller' => 'auth', 'action' => 'index'));
+                } else {
+                    foreach ($form->getMessages() as $message) {
+                        $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
+                    }
+                }
+            } else {
+                return $this->redirect()->toRoute('tenil-user/default', array('controller' => 'index', 'action' => 'forgot'));
+            }
+        }
+
+        $view = new ViewModel(array('form' => $form));
+        $this->layout('layout/login');
+        return $view;
     }
 
 }
