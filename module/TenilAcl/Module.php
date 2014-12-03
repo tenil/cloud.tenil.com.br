@@ -10,6 +10,8 @@
 
 namespace TenilAcl;
 
+use Zend\Mvc\MvcEvent;
+
 class Module {
 
     public function getConfig() {
@@ -24,6 +26,31 @@ class Module {
                 ),
             ),
         );
+    }
+
+    public function onBootstrap(MvcEvent $e) {
+        /** @var \Zend\ModuleManager\ModuleManager $moduleManager */
+        $moduleManager = $e->getApplication()->getServiceManager()->get('modulemanager');
+        /** @var \Zend\EventManager\SharedEventManager $sharedEvents */
+        $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
+
+        //adiciona eventos ao módulo
+        $sharedEvents->attach('Zend\Mvc\Controller\AbstractActionController', MvcEvent::EVENT_DISPATCH, array($this, 'mvcPreDispatch'), 100);
+    }
+
+    /**
+     * Verifica a autorização do acesso
+     * @param MvcEvent $event Evento
+     * @return boolean 
+     */
+    public function mvcPreDispatch($event) {
+
+        $di = $event->getTarget()->getServiceLocator();
+        $routeMatch = $event->getRouteMatch();
+        $moduleName = $routeMatch->getParam('module');
+        $controllerName = $routeMatch->getParam('controller');
+        $actionName = $routeMatch->getParam('action');
+
     }
 
     public function getServiceConfig() {
@@ -62,7 +89,7 @@ class Module {
 
             $roleRepository = $em->getRepository('TenilAcl\Entity\Role');
             $roles = $roleRepository->findAll();
-            
+
             $resourceRepository = $em->getRepository('TenilAcl\Entity\Resource');
             $resources = $resourceRepository->findAll();
 

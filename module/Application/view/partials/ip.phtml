@@ -1,0 +1,26 @@
+<?php
+//use Zend\Http\ClientStatic;
+//use Zend\Json\Json;
+//
+//$response = ClientStatic::get('http://freegeoip.net/json', array('Accept' => 'application/json'));
+//
+//$jsonData = $response->getContent();
+//$phpNative = Json::decode($jsonData, Json::TYPE_ARRAY);
+//
+//foreach ($phpNative as $key => $value) {
+//    echo $key . ': ' . $value . '<br />' . PHP_EOL;
+//}
+// echo $phpNative['city'];
+?>
+<span id="ip"></span>
+<script type="text/javascript">
+    $(function() {
+
+        $.getJSON("http://freegeoip.net/json/", function(data) {
+            $("#ip").html(data.city);
+        });
+
+        //   alert("Load was performed.");
+
+    });
+</script>

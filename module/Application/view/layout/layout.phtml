@@ -72,6 +72,7 @@
             <hr>
             <footer>
                 <p>&copy; 2012 - <?php echo date('Y') ?> by Tenil Technologia LTDA <?php echo $this->translate('All rights reserved.') . ' v' . \Zend\Version\Version::VERSION ?></p>
+                <p><?php echo $this->partial('partials/ip.phtml', array('chave' => 'valor')); ?></p>
             </footer>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
