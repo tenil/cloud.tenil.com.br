@@ -12,37 +12,44 @@
         </p>
     </div>
     <div class="col-md-12">
-        <table class="table table-striped table-bordered">
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Editar</th>
-                <th>Excluir</th>
-                <th>Data</th>
-            </tr>
-            <?php foreach ($this->data as $value): ?>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
                 <tr>
-                    <td><?php echo $this->escapeHtml($value->getId()); ?></td>
-                    <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
-                    <td><?php echo $this->escapeHtml($value->getEmail()); ?></td>
-                    <td><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'edit')) . '/id/' . $value->getId() ?>">Editar</a></td>
-                    <td><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'delete')) . '/id/' . $value->getId() ?>">Excluir</a></td>
-                    <td><kbd><?php
-                            echo $this->dateFormat(
-                                    $value->getCreatedAt(), IntlDateFormatter::MEDIUM, // date
-                                    IntlDateFormatter::MEDIUM, // time
-                                    "pt_BR"
-                            );
-                            ?></kbd><br /><kbd><?php
-                            echo $this->dateFormat(
-                                    $value->getUpdatedAt(), IntlDateFormatter::MEDIUM, // date
-                                    IntlDateFormatter::MEDIUM, // time
-                                    "pt_BR"
-                            );
-                            ?></kbd></td>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Ativo</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                    <th>Data</th>
                 </tr>
-            <?php endforeach; ?>
+            </thead>
+            <tbody>
+                <?php foreach ($this->data as $value): ?>
+                
+                    <tr <?php echo $value->getActive() ? 'class="success"' : null; ?>>
+                        <td><?php echo $this->escapeHtml($value->getId()); ?></td>
+                        <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
+                        <td><?php echo $this->escapeHtml($value->getEmail()); ?></td>
+                        <td><?php echo $value->getActive() ? 'Sim' : 'Não'; ?></td>
+                        <td><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'edit')) . '/id/' . $value->getId() ?>">Editar</a></td>
+                        <td><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'delete')) . '/id/' . $value->getId() ?>">Excluir</a></td>
+                        <td><kbd><?php
+                                echo $this->dateFormat(
+                                        $value->getCreatedAt(), IntlDateFormatter::MEDIUM, // date
+                                        IntlDateFormatter::MEDIUM, // time
+                                        "pt_BR"
+                                );
+                                ?></kbd><br /><kbd><?php
+                                echo $this->dateFormat(
+                                        $value->getUpdatedAt(), IntlDateFormatter::MEDIUM, // date
+                                        IntlDateFormatter::MEDIUM, // time
+                                        "pt_BR"
+                                );
+                                ?></kbd></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
         <?php
         echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v2', array('route' => 'tenil-user/paginator'));

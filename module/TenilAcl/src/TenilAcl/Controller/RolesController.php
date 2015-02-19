@@ -69,7 +69,7 @@ class RolesController extends CrudController {
         return new ViewModel(array('form' => $form));
 
     }
-    
+
     public function testAction() {
         
         $acl = $this->getServiceLocator()->get('TenilAcl\Permissions\Acl');
@@ -77,8 +77,7 @@ class RolesController extends CrudController {
         echo $acl->isAllowed("Administrador de Usuários", "Área Administrativa de Usuários", "Editar") ? "Permitido" : "Negado" ; 
         
         die;
-        
+
     }
-    
-    
+
 }
