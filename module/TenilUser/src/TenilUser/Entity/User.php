@@ -22,6 +22,12 @@ use Zend\Stdlib\Hydrator;
 class User {
 
     /**
+     * @var Perfil 
+     * @ORM\OneToOne(targetEntity="Perfil", mappedBy="user")
+     */
+    private $perfil;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
@@ -130,6 +136,15 @@ class User {
         return base64_encode($data);
     }
 
+    function getPerfil() {
+        return $this->perfil;
+    }
+
+    function setPerfil(Perfil $perfil) {
+        $this->perfil = $perfil;
+        return $this;
+    }
+    
     public function getId() {
         return $this->id;
     }

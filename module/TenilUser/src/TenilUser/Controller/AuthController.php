@@ -57,7 +57,7 @@ class AuthController extends AbstractActionController {
         }
 
         $view = new ViewModel(array('form' => $form));
-        $this->layout('layout/login');
+        //$this->layout('layout/login');
         return $view;
     }
 
@@ -65,7 +65,7 @@ class AuthController extends AbstractActionController {
         $auth = new AuthenticationService;
         $auth->setStorage(new SessionStorage("Tenil"));
         $auth->clearIdentity();
-        $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Logout efetuado com sucesso.');
+        //$this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Logout efetuado com sucesso.');
         return $this->redirect()->toRoute('home');
     }
 

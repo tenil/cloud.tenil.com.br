@@ -53,7 +53,7 @@ class Adapter implements AdapterInterface {
         $messages->setNamespace('Tenil');
         
         if ($user) {
-            $messages->addSuccessMessage('Login efetuado com sucesso.');
+            //$messages->addSuccessMessage('Login efetuado com sucesso.');
             return new Result(Result::SUCCESS, array('user' => $user), array('SUCCESS'));
         } else {
             $messages->addErrorMessage('E-mail ou senha incorretos.');

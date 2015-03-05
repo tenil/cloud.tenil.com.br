@@ -14,7 +14,7 @@ class User extends Form {
             'method' => 'post',
             'role' => 'form',
             'class' => 'form-signin',
-            'label' => 'Crie sua conta. Gratuita!'
+            'label' => 'Crie sua conta.'
         ));
 
         $this->setInputFilter(new UserFilter());

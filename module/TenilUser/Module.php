@@ -64,7 +64,10 @@ class Module {
         return array(
             'invokables' => array(
                 'FormElementErrors' => 'TenilUser\Form\View\Helper\FormElementErrors',
-                'UserIdentity' => new View\Helper\UserIdentity(),
+                //'UserIdentity' => new View\Helper\UserIdentity(),
+                'UserIdentity' => 'TenilUser\View\Helper\UserIdentity',
+                //'Session' => new View\Helper\Session(), //Elton Minetto
+                
             ),
         );
     }

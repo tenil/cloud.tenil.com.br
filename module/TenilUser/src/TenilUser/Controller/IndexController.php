@@ -12,11 +12,42 @@ use TenilUser\Form\User as FormUser;
 use TenilUser\Form\Forgot as FormForgot;
 use TenilUser\Form\Reset as FormReset;
 
+
+use Zend\Authentication\AuthenticationService;
+use Zend\Authentication\Storage\Session as SessionStorage;
+
 class IndexController extends AbstractActionController {
 
+    protected $em; //
+    protected $user;
+    protected $authService;
+
+    public function getAuthService() {
+        return $this->authService;
+    }
+    
     public function indexAction() {
 
-        return new ViewModel();
+        $storage = new SessionStorage("Tenil");
+        $this->authService = new AuthenticationService;
+        $this->authService->setStorage($storage);
+
+        if ($this->getAuthService()->hasIdentity()) {
+            $this->user = $this->getAuthService()->getIdentity();
+        } else {
+            $this->user = FALSE;
+        }
+        
+        $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+        $perfil = $this->em
+                ->getRepository('TenilUser\Entity\Perfil')
+                ->find($this->user->getId())
+                //->getRepository('TenilUser\Entity\User')
+                //->findOneBy(array('id' => 15))
+        ;
+
+        return new ViewModel(array('perfil' => $perfil));
     }
 
     public function registerAction() {
@@ -52,7 +83,7 @@ class IndexController extends AbstractActionController {
         }
 
         $view = new ViewModel();
-        $this->layout('layout/login');
+        //$this->layout('layout/login');
         $view->setVariables(array('form' => $form));
 
         return $view;
@@ -108,7 +139,7 @@ class IndexController extends AbstractActionController {
         }
 
         $view = new ViewModel(array('form' => $form));
-        $this->layout('layout/login');
+        //$this->layout('layout/login');
         return $view;
     }
 
@@ -155,7 +186,7 @@ class IndexController extends AbstractActionController {
         }
 
         $view = new ViewModel(array('form' => $form));
-        $this->layout('layout/login');
+        //$this->layout('layout/login');
         return $view;
     }
 

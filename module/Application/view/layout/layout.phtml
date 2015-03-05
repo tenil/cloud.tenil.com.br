@@ -1,81 +1,98 @@
 <?php echo $this->doctype(); ?>
-
 <html lang="pt-br">
     <head>
+        <!-- Meta -->
         <meta charset="utf-8">
-        <?php echo $this->headTitle($this->translate('Sistema Político'))->setSeparator(' - ')->setAutoEscape(false) ?>
-
         <?php
         echo $this->headMeta()
-                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
                 ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+                ->appendName('description', 'Área Administrativa')
+                ->appendName('title', 'Rede ICB')
+                ->appendName('author', 'Tenil Tecnologia')
+                ->appendName('keywords', 'ICB, Casa da Bênção, Catedral da Bênção, ITEJ')
         ?>
-
-        <!-- Le styles -->
+        <?php echo $this->headTitle($this->translate('Rede ICB'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <!-- Styles -->
         <?php
         echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                ->prependStylesheet($this->basePath() . '/css/style.css')
-                ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
-                ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
+                ->headLink(array('rel' => 'icon', 'href' => $this->basePath() . '/img/favicon-64.png', 'sizes' => '64x64'))
+                ->headLink(array('rel' => 'apple-touch-icon', 'href' => $this->basePath() . '/img/favicon-144.png', 'sizes' => '144x144'))
+                ->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/img/favicon-144.png', 'sizes' => '144x144'))
+                ->appendStylesheet($this->basePath() . '/css/bootstrap.min.css')
+                ->appendStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+                ->appendStylesheet($this->basePath() . '/css/style.css')
+                ->prependStylesheet($this->basePath() . '/css/signin.css')
         ?>
-
         <!-- Scripts -->
         <?php
         echo $this->headScript()
-                ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-                //->prependFile($this->basePath() . '/js/jquery.min.js')
-                ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-                ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-                ->prependFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-        ;
+                //->appendFile($this->basePath() . '/js/jquery-2.1.1.min.js')
+                ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+                ->appendFile($this->basePath() . '/js/bootstrap.min.js')
         ?>
-
     </head>
+    <?php
+    $user = $this->userIdentity("Tenil");
+    $mail = '';
+    if ($user) {
+        $mail = $this->userIdentity("Tenil")->getEmail();
+    }
+    ?>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- menu area -->
+        <header class="navbar navbar-inverse navbar-static-top" role="banner">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><!--<img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Sistema Político"/>&nbsp;--><?php echo $this->translate('Home') ?></a>
+                    <a href="/" class="navbar-brand">Rede ICB</a>
                 </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'index', 'action' => 'register')) ?>"><?php echo $this->translate('Register') ?></a></li>
-                        <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'index')) ?>"><?php echo $this->translate('Usuários') ?></a></li>
-                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'roles')) ?>"><?php echo $this->translate('Roles') ?></a></li>
-                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources')) ?>"><?php echo $this->translate('Resources') ?></a></li>
-                        <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'privileges')) ?>"><?php echo $this->translate('Privileges') ?></a></li>
-                        <?php if ($this->userIdentity("Tenil")): ?>
-                            <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'auth', 'action' => 'logout')) ?>"><?php echo $this->translate('Logout') ?></a></li>
+                <nav class="collapse navbar-collapse" role="navigation">
+                    <ul class="nav navbar-nav navbar-right">
+                        <?php if ($user): ?>
+                            <li><a href="#"><?php echo $user->getEmail(); ?></a></li>
+                            <li><a href="#"><?php echo $this->gravatar($user->getEmail())->setImgSize(20)->getImgTag(); ?></a></li>
+                            <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'auth', 'action' => 'logout')) ?>" data-toggle="tooltip" data-placement="bottom" title="Sair"><span class="glyphicon glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
                         <?php else : ?>
+                            <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'index', 'action' => 'register')) ?>"><?php echo $this->translate('Register') ?></a></li>
                             <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'auth', 'action' => 'index')) ?>"><?php echo $this->translate('Login') ?></a></li>
                         <?php endif; ?>
                     </ul>
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success"><?php echo $this->translate('Sign in') ?></button>
-                    </form>
-                </div><!--/.nav-collapse -->
+                </nav>
             </div>
-        </nav>
+        </header>
+        <!-- /menu area -->
+        <!-- Begin Mensagens -->
         <?php echo $this->partial('partials/mensagens.phtml', array('chave' => 'valor')); ?>
-        <div class="container">
-            <?php echo $this->content; ?>
-            <hr>
-            <footer>
-                <p>&copy; 2012 - <?php echo date('Y') ?> by Tenil Technologia LTDA <?php echo $this->translate('All rights reserved.') . ' v' . \Zend\Version\Version::VERSION ?></p>
-                <p><?php echo $this->partial('partials/ip.phtml', array('chave' => 'valor')); ?></p>
-            </footer>
-        </div> <!-- /container -->
-        <?php echo $this->inlineScript() ?>
+        <!-- Begin Body -->
+        <?php
+        if ($user):
+            echo $this->partial('partials/sidebar.phtml', array('usuario' => $user, 'content' => $this->content));
+        else :
+            echo $this->partial('partials/full-width.phtml');
+        endif;
+        ?>
+        <!-- Begin Footer -->
+        <footer id="footer">
+            <div class="container">
+                <hr>
+                <div id="copyright">
+                    &copy; <?php echo date('Y') ?> <a href="http://tenil.com.br" target="_blank">Tenil Tecnologia</a> &#8482; | <?php echo $this->translate('All rights reserved.') . ' | ' . \Zend\Version\Version::VERSION ?> | <?php echo $this->partial('partials/ip.phtml', array('chave' => 'valor')); ?>
+                </div>
+            </div>
+        </footer>
+        <?php
+        echo $this->inlineScript()
+                ->appendFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                ->appendFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                ->appendFile($this->basePath() . '/js/init.js')
+        //->appendFile($this->basePath() . '/js/docs.min.js')
+        //->appendFile($this->basePath() . '/js/ie10-viewport-bug-workaround.js')
+        ?>
     </body>
 </html>

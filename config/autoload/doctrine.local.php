@@ -11,7 +11,7 @@ return array(
                     'port' => '3306',
                     'user' => 'root',
                     'password' => 'root',
-                    'dbname' => 'jk.tenil.com.br_001',
+                    'dbname' => 'rede.cb_01',
                     'driverOptions' => array(
                         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"
                     )

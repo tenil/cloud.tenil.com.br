@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-12">
         <p>
-            <a class="btn btn-lg btn-default" href="<?php echo $this->url('tenil-user/default', array('action' => 'add')) ?>" target="_self">Novo</a>
+            <a class="btn btn-lg btn-default" href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'add')) ?>" target="_self">Novo</a>
         </p>
     </div>
     <div class="col-md-12">
@@ -16,6 +16,7 @@
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Img</th>
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Ativo</th>
@@ -29,6 +30,7 @@
                 
                     <tr <?php echo $value->getActive() ? 'class="success"' : null; ?>>
                         <td><?php echo $this->escapeHtml($value->getId()); ?></td>
+                        <td><?php echo $this->gravatar($value->getEmail())->setImgSize(40)->getImgTag(); ?></td>
                         <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
                         <td><?php echo $this->escapeHtml($value->getEmail()); ?></td>
                         <td><?php echo $value->getActive() ? 'Sim' : 'Não'; ?></td>
