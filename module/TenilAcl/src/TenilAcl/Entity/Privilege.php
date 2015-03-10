@@ -6,10 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Zend\Stdlib\Hydrator;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="TenilAcl\Entity\PrivilegeRepository")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="tenilacl_privileges")
- * @ORM\Entity(repositoryClass="TenilAcl\Entity\PrivilegeRepository")
  */
 class Privilege {
 

@@ -221,4 +221,15 @@ class TipoFone extends \TenilUser\Entity\TipoFone implements \Doctrine\ORM\Proxy
         return parent::setNome($nome);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function __toString()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', array());
+
+        return parent::__toString();
+    }
+
 }

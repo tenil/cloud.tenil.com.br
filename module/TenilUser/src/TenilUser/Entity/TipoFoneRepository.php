@@ -8,6 +8,6 @@ namespace TenilUser\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
-class PerfilRepository extends EntityRepository {
+class TipoFoneRepository extends EntityRepository {
 
 }

@@ -50,7 +50,6 @@ class Module {
         $moduleName = $routeMatch->getParam('module');
         $controllerName = $routeMatch->getParam('controller');
         $actionName = $routeMatch->getParam('action');
-
     }
 
     public function getServiceConfig() {
@@ -58,46 +57,45 @@ class Module {
         return array(
             'factories' => array(
                 'TenilAcl\Service\Role' => function($sm) {
-            return new Service\Role($sm->get('Doctrine\ORM\EntityManager'));
-        },
+                    return new Service\Role($sm->get('Doctrine\ORM\EntityManager'));
+                },
                 'TenilAcl\Service\Resource' => function($sm) {
-            return new Service\Resource($sm->get('Doctrine\ORM\EntityManager'));
-        },
+                    return new Service\Resource($sm->get('Doctrine\ORM\EntityManager'));
+                },
                 'TenilAcl\Service\Privilege' => function($sm) {
-            return new Service\Privilege($sm->get('Doctrine\ORM\EntityManager'));
-        },
+                    return new Service\Privilege($sm->get('Doctrine\ORM\EntityManager'));
+                },
                 'TenilAcl\Form\Role' => function($sm) {
-            $em = $sm->get('Doctrine\ORM\EntityManager');
-            $repositorio = $em->getRepository('TenilAcl\Entity\Role');
-            $parent = $repositorio->fetchParent();
-
-            return new Form\Role('role', NULL, $parent);
-        },
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $repositorio = $em->getRepository('TenilAcl\Entity\Role');
+                    $parent = $repositorio->fetchParent();
+                    return new Form\Role('role', NULL, $parent);
+                },
                 'TenilAcl\Form\Privilege' => function($sm) {
-            $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
 
-            $roleRepository = $em->getRepository('TenilAcl\Entity\Role');
-            $role = $roleRepository->fetchParent();
+                    $roleRepository = $em->getRepository('TenilAcl\Entity\Role');
+                    $role = $roleRepository->fetchParent();
 
-            $resourceRepository = $em->getRepository('TenilAcl\Entity\Resource');
-            $resource = $resourceRepository->fetchPairs();
+                    $resourceRepository = $em->getRepository('TenilAcl\Entity\Resource');
+                    $resource = $resourceRepository->fetchPairs();
 
-            return new Form\Privilege('privilege', NULL, $role, $resource);
-        },
+                    return new Form\Privilege('privilege', NULL, $role, $resource);
+                },
                 'TenilAcl\Permissions\Acl' => function($sm) {
-            $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
 
-            $roleRepository = $em->getRepository('TenilAcl\Entity\Role');
-            $roles = $roleRepository->findAll();
+                    $roleRepository = $em->getRepository('TenilAcl\Entity\Role');
+                    $roles = $roleRepository->findAll();
 
-            $resourceRepository = $em->getRepository('TenilAcl\Entity\Resource');
-            $resources = $resourceRepository->findAll();
+                    $resourceRepository = $em->getRepository('TenilAcl\Entity\Resource');
+                    $resources = $resourceRepository->findAll();
 
-            $privilegeRepository = $em->getRepository('TenilAcl\Entity\Privilege');
-            $privileges = $privilegeRepository->findAll();
+                    $privilegeRepository = $em->getRepository('TenilAcl\Entity\Privilege');
+                    $privileges = $privilegeRepository->findAll();
 
-            return new Permissions\Acl($roles, $resources, $privileges);
-        }
+                    return new Permissions\Acl($roles, $resources, $privileges);
+                }
             )
         );
     }

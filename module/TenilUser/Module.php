@@ -35,27 +35,35 @@ class Module {
         return array(
             'factories' => array(
                 'TenilUser\Mail\Transport' => function($sm) {
-            // Recupera as informações do global.php
-            $config = $sm->get('Config');
-            // Recupera as informações de mail do global.php
-            $options = new SmtpOptions($config['mail']);
+                    // Recupera as informações do global.php
+                    $config = $sm->get('Config');
+                    // Recupera as informações de mail do global.php
+                    $options = new SmtpOptions($config['mail']);
 
-            $transport = new SmtpTransport();
-            $transport->setOptions($options);
-
-            return $transport;
-        },
+                    $transport = new SmtpTransport();
+                    $transport->setOptions($options);
+                    return $transport;
+                },
                 'TenilUser\Service\User' => function($sm) {
-            $em = $sm->get('Doctrine\ORM\EntityManager');
-            $transport = $sm->get('TenilUser\Mail\Transport');
-            $view = $sm->get('view');
-
-            return new Service\User($em, $transport, $view);
-        },
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $transport = $sm->get('TenilUser\Mail\Transport');
+                    $view = $sm->get('view');
+                    return new Service\User($em, $transport, $view);
+                },
+                'TenilUser\Service\Perfil' => function($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    return new Service\Perfil($em);
+                },
                 'TenilUser\Auth\Adapter' => function($sm) {
-
-            return new AuthAdapter($sm->get('Doctrine\ORM\EntityManager'));
-        }
+                    return new AuthAdapter($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'TenilUser\Form\Perfil' => function($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $repo = $em->getRepository('TenilUser\Entity\TipoTratamento');
+                    $tratamento = $repo->fetchTratamento();
+                    
+                    return new Form\Perfil('perfil', NULL, $tratamento);
+                },
             )
         );
     }
@@ -66,8 +74,7 @@ class Module {
                 'FormElementErrors' => 'TenilUser\Form\View\Helper\FormElementErrors',
                 //'UserIdentity' => new View\Helper\UserIdentity(),
                 'UserIdentity' => 'TenilUser\View\Helper\UserIdentity',
-                //'Session' => new View\Helper\Session(), //Elton Minetto
-                
+            //'Session' => new View\Helper\Session(), //Elton Minetto
             ),
         );
     }

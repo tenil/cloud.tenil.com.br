@@ -150,6 +150,7 @@ return array(
             'TenilUser\Controller\Index' => 'TenilUser\Controller\IndexController',
             'TenilUser\Controller\Users' => 'TenilUser\Controller\UsersController',
             'TenilUser\Controller\Auth' => 'TenilUser\Controller\AuthController',
+            'TenilUser\Controller\Profile' => 'TenilUser\Controller\ProfileController',
         )
     ),
     'view_manager' => array(

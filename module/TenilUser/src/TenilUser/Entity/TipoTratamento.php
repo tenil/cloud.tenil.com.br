@@ -69,8 +69,12 @@ class TipoTratamento {
         return $this;
     }
 
-    public function toString() {
-        return $this->nome;
+    public function __toString() {
+        return $this->abreviacao;
+    }
+
+    public function toArray() {
+        return (new Hydrator\ClassMethods)->extract($this);
     }
 
 }

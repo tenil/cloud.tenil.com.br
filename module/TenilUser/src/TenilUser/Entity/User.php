@@ -14,16 +14,15 @@ use Zend\Stdlib\Hydrator;
 /**
  * TeniluserUser
  *
- * @ORM\Table(name="teniluser_user", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="TenilUser\Entity\UserRepository")
+ * @ORM\Table(name="teniluser_user", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
+ * @ORM\HasLifecycleCallbacks
  */
 class User {
 
     /**
-     * @var Perfil 
      * @ORM\OneToOne(targetEntity="Perfil", mappedBy="user")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
     private $perfil;
 
@@ -244,7 +243,11 @@ class User {
         return $this;
     }
 
-    public function toArray() {
+    public function __toString() {
+        return $this->email;
+    }
+
+        public function toArray() {
 
         $hydrator = new Hydrator\ClassMethods();
         return $hydrator->extract($this);

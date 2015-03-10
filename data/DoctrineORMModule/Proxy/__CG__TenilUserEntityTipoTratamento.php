@@ -246,12 +246,23 @@ class TipoTratamento extends \TenilUser\Entity\TipoTratamento implements \Doctri
     /**
      * {@inheritDoc}
      */
-    public function toString()
+    public function __toString()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'toString', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', array());
 
-        return parent::toString();
+        return parent::__toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', array());
+
+        return parent::toArray();
     }
 
 }

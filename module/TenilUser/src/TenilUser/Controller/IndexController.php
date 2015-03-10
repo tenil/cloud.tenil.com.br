@@ -11,8 +11,6 @@ use Zend\View\Model\ViewModel;
 use TenilUser\Form\User as FormUser;
 use TenilUser\Form\Forgot as FormForgot;
 use TenilUser\Form\Reset as FormReset;
-
-
 use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Storage\Session as SessionStorage;
 
@@ -25,29 +23,9 @@ class IndexController extends AbstractActionController {
     public function getAuthService() {
         return $this->authService;
     }
-    
+
     public function indexAction() {
-
-        $storage = new SessionStorage("Tenil");
-        $this->authService = new AuthenticationService;
-        $this->authService->setStorage($storage);
-
-        if ($this->getAuthService()->hasIdentity()) {
-            $this->user = $this->getAuthService()->getIdentity();
-        } else {
-            $this->user = FALSE;
-        }
-        
-        $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-
-        $perfil = $this->em
-                ->getRepository('TenilUser\Entity\Perfil')
-                ->find($this->user->getId())
-                //->getRepository('TenilUser\Entity\User')
-                //->findOneBy(array('id' => 15))
-        ;
-
-        return new ViewModel(array('perfil' => $perfil));
+        return new ViewModel();
     }
 
     public function registerAction() {

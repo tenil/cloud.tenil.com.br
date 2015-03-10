@@ -4,16 +4,13 @@ namespace TenilUser\Entity;
 
 // Uso padrão do doctrine, criado na geração automática do arquivo por linha de comando.
 use Doctrine\ORM\Mapping as ORM;
-// Usado para geração de valores para o salt.
-use Zend\Math\Rand;
 // Responsável por preencher os sets com os dados passados. Usado no construtor.
 use Zend\Stdlib\Hydrator;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="TenilUser\Entity\PerfilRepository")
  * @ORM\Table(name="teniluser_perfil")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity(repositoryClass="TenilUser\Entity\PerfilRepository")
  */
 class Perfil {
 
@@ -22,207 +19,180 @@ class Perfil {
      * @ORM\OneToOne(targetEntity="User", inversedBy="perfil")
      * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
-    private $user;
+    protected $user;
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="nome", type="string", length=255, nullable=true)
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="sobrenome", type="string", length=255, nullable=true)
      */
-    private $sobrenome;
+    protected $sobrenome;
 
     /**
      * @ORM\OneToOne(targetEntity="TipoTratamento")
      * @ORM\JoinColumn(name="id_tratamento", referencedColumnName="id")
      */
-    private $tratamento;
+    protected $tratamento;
 
     /**
      * @var boolean
-     *
      * @ORM\Column(name="is_gravatar", type="boolean", nullable=true)
      */
-    private $isGravatar = '0';
+    protected $isGravatar = '0';
 
     /**
      * @var string
-     *
      * @ORM\Column(name="id_foto", type="string", length=45, nullable=true)
      */
-    private $foto;
+    protected $foto;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_1_numero", type="string", length=10, nullable=true)
      */
-    private $fone1numero;
+    protected $fone1numero;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_1_ddd", type="string", length=2, nullable=true)
      */
-    private $fone1ddd;
+    protected $fone1ddd;
 
     /**
      * @var integer
-     *
      * @ORM\OneToOne(targetEntity="TipoFone")
      * @ORM\JoinColumn(name="fone_1_tipo", referencedColumnName="id")
      */
-    private $fone1tipo;
+    protected $fone1tipo;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_1_ramal", type="string", length=5, nullable=true)
      */
-    private $fone1ramal;
+    protected $fone1ramal;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_1_contato", type="string", length=45, nullable=true)
      */
-    private $fone1contato;
+    protected $fone1contato;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_2_numero", type="string", length=10, nullable=true)
      */
-    private $fone2numero;
+    protected $fone2numero;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_2_ddd", type="string", length=2, nullable=true)
      */
-    private $fone2ddd;
+    protected $fone2ddd;
 
     /**
      * @var integer
-     *
      * @ORM\OneToOne(targetEntity="TipoFone")
      * @ORM\JoinColumn(name="fone_2_tipo", referencedColumnName="id")
      */
-    private $fone2tipo;
+    protected $fone2tipo;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_2_ramal", type="string", length=5, nullable=true)
      */
-    private $fone2ramal;
+    protected $fone2ramal;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_2_contato", type="string", length=45, nullable=true)
      */
-    private $fone2contato;
+    protected $fone2contato;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_3_numero", type="string", length=10, nullable=true)
      */
-    private $fone3numero;
+    protected $fone3numero;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_3_ddd", type="string", length=2, nullable=true)
      */
-    private $fone3ddd;
+    protected $fone3ddd;
 
     /**
      * @var integer
-     *
      * @ORM\OneToOne(targetEntity="TipoFone")
      * @ORM\JoinColumn(name="fone_3_tipo", referencedColumnName="id")
      */
-    private $fone3tipo;
+    protected $fone3tipo;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_3_ramal", type="string", length=5, nullable=true)
      */
-    private $fone3ramal;
+    protected $fone3ramal;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="fone_3_contato", type="string", length=45, nullable=true)
      */
-    private $fone3contato;
+    protected $fone3contato;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="endereco_logradouro", type="string", length=255, nullable=true)
      */
-    private $logradouro;
+    protected $logradouro;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="endereco_numero", type="string", length=5, nullable=true)
      */
-    private $numero;
+    protected $numero;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="endereco_complemento", type="string", length=45, nullable=true)
      */
-    private $complemento;
+    protected $complemento;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="endereco_bairro", type="string", length=255, nullable=true)
      */
-    private $bairro;
+    protected $bairro;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="endereco_localidade", type="string", length=255, nullable=true)
      */
-    private $localidade;
+    protected $localidade;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="endereco_uf", type="string", length=2, nullable=true)
      */
-    private $uf;
+    protected $uf;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="endereco_cep", type="string", length=8, nullable=true)
      */
-    private $cep;
+    protected $cep;
 
     public function __construct(array $options = array()) {
         (new Hydrator\ClassMethods)->hydrate($options, $this);
@@ -489,8 +459,65 @@ class Perfil {
         return $this;
     }
 
-    public function toString() {
-        return $this->nome;
+    public function toArray() {
+
+        if (isset($this->tratamento)) {
+            $tratamento = $this->tratamento->getId();
+        } else {
+            $tratamento = NULL;
+        }
+
+        if (isset($this->fone1tipo)) {
+            $fone1tipo = $this->fone1tipo->getId();
+        } else {
+            $fone1tipo = NULL;
+        }
+        
+        if (isset($this->fone2tipo)) {
+            $fone2tipo = $this->fone2tipo->getId();
+        } else {
+            $fone2tipo = NULL;
+        }
+        
+        if (isset($this->fone3tipo)) {
+            $fone3tipo = $this->fone3tipo->getId();
+        } else {
+            $fone3tipo = NULL;
+        }
+        
+        return array(
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'sobrenome' => $this->sobrenome,
+            'tratamento' => $tratamento,
+            'isGravatar' => $this->isGravatar,
+            'foto' => $this->foto,
+            'fone1numero' => $this->fone1numero,
+            'fone1ddd' => $this->fone1ddd,
+            'fone1tipo' => $fone1tipo,
+            'fone1ramal' => $this->fone1ramal,
+            'fone1contato' => $this->fone1contato,
+            'fone2numero' => $this->fone2numero,
+            'fone2ddd' => $this->fone2ddd,
+            'fone2tipo' => $fone2tipo,
+            'fone2ramal' => $this->fone2ramal,
+            'fone2contato' => $this->fone2contato,
+            'fone3numero' => $this->fone3numero,
+            'fone3ddd' => $this->fone3ddd,
+            'fone3tipo' => $fone3tipo,
+            'fone3ramal' => $this->fone3ramal,
+            'fone3contato' => $this->fone3contato,
+            'logradouro' => $this->logradouro,
+            'numero' => $this->numero,
+            'complemento' => $this->complemento,
+            'bairro' => $this->bairro,
+            'localidade' => $this->localidade,
+            'uf' => $this->uf,
+            'cep' => $this->cep,
+        );
+
+
+        // return (new Hydrator\ClassMethods())->extract($this);
     }
 
 }

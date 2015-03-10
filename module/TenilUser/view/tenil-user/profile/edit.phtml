@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="clearfix"></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title"><?php echo $this->translate('Editar Usuário') ?></h2>
+            </div>
+            <div class="panel-body">
+                <?php
+                $form = $this->form;
+                $form->prepare();
+
+                $form->setAttribute('action', $this->url('tenil-user/default', array('controller' => 'profile', 'action' => 'edit')));
+
+                echo $this->form()->openTag($form);
+
+                $id = $form->get('id');
+                echo $this->formHidden($id);
+
+                $security = $form->get('security');
+                echo $this->formElement($security);
+                
+                echo '<div class="form-group">';
+                $tratamento = $form->get('tratamento');
+                echo $this->formLabel($tratamento);
+                echo '<div class="col-sm-10">';
+                echo $this->formSelect($tratamento);
+                echo '</div>';
+                echo '</div>';                
+                
+                echo '<div class="form-group">';
+                $nome = $form->get('nome');
+                echo $this->formLabel($nome);
+                echo '<div class="col-sm-10">';
+                echo $this->formInput($nome);
+                echo '</div>';
+                echo '</div>';
+
+
+                echo '<div class="form-group">';
+                $sobrenome = $form->get('sobrenome');
+                echo $this->formLabel($sobrenome);
+                echo '<div class="col-sm-10">';
+                echo $this->formInput($sobrenome);
+                echo '</div>';
+                echo '</div>';
+
+                echo '<div class="form-group">';
+                $fone1numero = $form->get('fone1numero');
+                echo $this->formLabel($fone1numero);
+                echo '<div class="col-sm-10">';
+                echo $this->formInput($fone1numero);
+                echo '</div>';
+                echo '</div>';
+
+                echo '<div class="form-group">';
+                $submit = $form->get('submit');
+                echo '<div class="col-sm-offset-2 col-sm-10">';
+                echo $this->formSubmit($submit);
+                echo '</div>';
+                echo '</div>';
+
+                echo $this->form()->closeTag();
+
+                foreach ($form as $element) {
+                    echo $this->formElementErrors($element);
+                }
+                ?>
+            </div>
+
+        </div>
+
+    </div>
+</div>
