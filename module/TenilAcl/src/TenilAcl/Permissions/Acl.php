@@ -13,6 +13,7 @@ class Acl extends ClassAcl {
     protected $privileges;
 
     public function __construct(array $roles, array $resources, array $privileges) {
+
         $this->roles = $roles;
         $this->resources = $resources;
         $this->privileges = $privileges;

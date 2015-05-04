@@ -33,10 +33,10 @@
         ?>
     </head>
     <?php
-    $user = $this->userIdentity("Tenil");
+    $user = $this->userIdentity();
     $mail = '';
     if ($user) {
-        $mail = $this->userIdentity("Tenil")->getEmail();
+        $mail = $this->userIdentity()->getEmail();
     }
     ?>
     <body>

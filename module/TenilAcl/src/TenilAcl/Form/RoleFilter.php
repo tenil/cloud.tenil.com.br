@@ -23,6 +23,12 @@ class RoleFilter extends InputFilter {
             ),
             'validators' => array($nomeValidator),
         ));
+        
+        $this->add(array(
+            'name' => 'parent',
+            'required' => FALSE,
+        ));
+        
     }
 
 }

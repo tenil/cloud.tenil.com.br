@@ -31,6 +31,27 @@ class Perfil extends AbstractService {
             $entity->setTratamento(NULL);
         }
 
+        if ($data['fone1tipo']) {
+            $fone1tipo = $this->em->getReference($this->entity, $data['fone1tipo']);
+            $entity->setFone1tipo($fone1tipo);
+        } else {
+            $entity->setFone1tipo(NULL);
+        }
+
+        if ($data['fone2tipo']) {
+            $fone2tipo = $this->em->getReference($this->entity, $data['fone2tipo']);
+            $entity->setFone2tipo($fone2tipo);
+        } else {
+            $entity->setFone2tipo(NULL);
+        }
+
+        if ($data['fone3tipo']) {
+            $fone3tipo = $this->em->getReference($this->entity, $data['fone3tipo']);
+            $entity->setFone3tipo($fone3tipo);
+        } else {
+            $entity->setFone3tipo(NULL);
+        }
+
         $this->em->persist($entity);
         $this->em->flush();
         return $entity;

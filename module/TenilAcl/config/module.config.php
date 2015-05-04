@@ -8,7 +8,7 @@ return array(
             'tenil-acl-admin' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/admin/acl',
+                    'route' => '/acl',
                     'defaults' => array(
                         '__NAMESPACE__' => 'TenilAcl\Controller',
                         'controller' => 'roles',

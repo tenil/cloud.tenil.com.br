@@ -8,11 +8,11 @@ use Zend\View\Model\ViewModel;
 class RolesController extends CrudController {
 
     public function __construct() {
-        $this->entity = "TenilAcl\Entity\Role";
-        $this->service = "TenilAcl\Service\Role";
-        $this->form = "TenilAcl\Form\Role";
-        $this->controller = "Roles";
-        $this->route = "tenil-acl-admin/default";
+        $this->entity = 'TenilAcl\Entity\Role';
+        $this->service = 'TenilAcl\Service\Role';
+        $this->form = 'TenilAcl\Form\Role';
+        $this->controller = 'Roles';
+        $this->route = 'tenil-acl-admin/default';
             
     }
     
@@ -30,7 +30,7 @@ class RolesController extends CrudController {
                 $service = $this->getServiceLocator()->get($this->service);
                 $service->insert($request->getPost()->toArray());
 
-                $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Cadastrado com sucesso!');
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Cadastrado com sucesso!');
 
                 return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
             }

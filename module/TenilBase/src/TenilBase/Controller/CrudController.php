@@ -40,7 +40,7 @@ abstract class CrudController extends AbstractActionController {
                 ->findAll();
 
         $pageNumber = $this->params()->fromRoute('page');
-        $count = 10;
+        $count = 5;
 
         $paginator = new Paginator(new ArrayAdapter($list));
         $paginator->setCurrentPageNumber($pageNumber)->setDefaultItemCountPerPage($count);
@@ -62,7 +62,7 @@ abstract class CrudController extends AbstractActionController {
                 $service = $this->getServiceLocator()->get($this->service);
                 $service->insert($request->getPost()->toArray());
 
-                $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Cadastrado com sucesso!');
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Cadastrado com sucesso!');
 
                 return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
             }
@@ -95,7 +95,7 @@ abstract class CrudController extends AbstractActionController {
                 $service = $this->getServiceLocator()->get($this->service);
                 $service->update($request->getPost()->toArray());
 
-                $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Atualizado com sucesso!');
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Atualizado com sucesso!');
 
                 return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
             }
@@ -109,7 +109,7 @@ abstract class CrudController extends AbstractActionController {
         
         $service = $this->getServiceLocator()->get($this->service);
         if($service->delete($this->params()->fromRoute('id',0))){
-            $this->flashMessenger()->setNamespace('TenilUser')->addSuccessMessage('Excluído com sucesso!');
+            $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Excluído com sucesso!');
             return $this->redirect()->toRoute($this->route,array('controller'=>  $this->controller));
         }
         

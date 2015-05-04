@@ -13,17 +13,38 @@ class PerfilFilter extends InputFilter {
 
     public function __construct() {
 
-//        $nomeValidator = new Validator\NotEmpty();
-//        $this->add(array(
-//            'name' => 'nome',
-//            'required' => TRUE,
-//            'filters' => array(
-//                array('name' => 'StripTags'),
-//                array('name' => 'StringTrim'),
-//                array('name' => 'StringToLower')
-//            ),
-//            'validators' => array($nomeValidator),
-//        ));
+        $nomeValidator = new Validator\NotEmpty();
+        $this->add(array(
+            'name' => 'nome',
+            'required' => TRUE,
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+                array('name' => 'StringToLower')
+            ),
+            'validators' => array($nomeValidator),
+        ));
+        
+        $this->add(array(
+            'name' => 'tratamento',
+            'required' => FALSE,
+        ));
+        
+        $this->add(array(
+            'name' => 'fone1tipo',
+            'required' => FALSE,
+        ));        
+        
+        $this->add(array(
+            'name' => 'fone2tipo',
+            'required' => FALSE,
+        ));
+
+        $this->add(array(
+            'name' => 'fone3tipo',
+            'required' => FALSE,
+        ));
+
 
 //        $emailValidator = new Validator\EmailAddress();
 //        $this->add(array(

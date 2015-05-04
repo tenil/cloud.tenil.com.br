@@ -27,14 +27,14 @@ class ProfileController extends CrudController {
 
     public function indexAction() {
 
-        $storage = new SessionStorage("Tenil");
         $this->authService = new AuthenticationService;
-        $this->authService->setStorage($storage);
 
         if ($this->getAuthService()->hasIdentity()) {
             $this->user = $this->getAuthService()->getIdentity();
         } else {
             $this->user = FALSE;
+
+            return $this->redirect()->toRoute('home');
         }
 
         $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
@@ -51,17 +51,36 @@ class ProfileController extends CrudController {
 
     public function editAction() {
 
+        /**
+         * @todo Aprimorar edição, o usuário deve estar logado
+         * @todo O id do usuário deve ser o mesmo do usuário logado
+         *
+         */
+
+        /**
+         * @todo Essa parte deverá ser resolvida pela ACL
+         */
+
+        $this->authService = new AuthenticationService;
+
+        if ($this->getAuthService()->hasIdentity()) {
+            $this->user = $this->getAuthService()->getIdentity();
+        } else {
+            $this->user = FALSE;
+
+            $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Seção expirada!');
+            return $this->redirect()->toRoute('home');
+        }
+
         $form = $this->getServiceLocator()->get($this->form);
         $request = $this->getRequest();
 
-        $repository = $this->getEm()->getRepository($this->entity);
-        $entity = $repository->find($this->params()->fromRoute('id', 0));
 
-        //Teste muito sem vergonha
-        if ($this->params()->fromRoute('id', 0)) {
-            $data = $entity->toArray();
-            $form->setData($data);
-        }
+        $repository = $this->getEm()->getRepository($this->entity);
+        $entity = $repository->find($this->user->getId());
+
+        $data = $entity->toArray();
+        $form->setData($data);
 
         if ($request->isPost()) {
 

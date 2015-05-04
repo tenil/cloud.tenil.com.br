@@ -11,21 +11,24 @@ use Zend\Mail\Transport\Smtp as SmtpTransport;
 use TenilBase\Mail\Mail;
 use TenilBase\Service\AbstractService;
 
-class User extends AbstractService {
+class User extends AbstractService
+{
 
     protected $transport;
     protected $view;
 
-    public function __construct(EntityManager $em, SmtpTransport $transport, $view) {
+    public function __construct(EntityManager $em, SmtpTransport $transport, $view)
+    {
         // Executa o método contrutor da classe pai.
         parent::__construct($em);
 
-        $this->entity = "TenilUser\Entity\User";
+        $this->entity = 'TenilUser\Entity\User';
         $this->transport = $transport;
         $this->view = $view;
     }
 
-    public function insert(array $data) {
+    public function insert(array $data)
+    {
         // Executa o metodo da classe pai e atribui o retorno a variavel
         $entity = parent::insert($data);
 
@@ -38,16 +41,17 @@ class User extends AbstractService {
             // Parâmetros: Transport, View e Page
             $mail = new Mail($this->transport, $this->view, 'user-add');
             $mail->setSubjet('Confirmação de cadastro')
-                    ->setTo($data['email'])
-                    ->setData($dataEmail)
-                    ->prepare()
-                    ->send();
+                ->setTo($data['email'])
+                ->setData($dataEmail)
+                ->prepare()
+                ->send();
         }
 
         return $entity;
     }
 
-    public function update(array $data) {
+    public function update(array $data)
+    {
 
         if (empty($data['password'])) {
             unset($data['password']);
@@ -56,10 +60,11 @@ class User extends AbstractService {
         return parent::update($data);
     }
 
-    public function activate($key) {
+    public function activate($key)
+    {
 
         // Pegando o repository usando o EntityManager;
-        $repo = $this->em->getRepository("TenilUser\Entity\User");
+        $repo = $this->em->getRepository('TenilUser\Entity\User');
         // Utilizando um método "mágico";
         $user = $repo->findOneByActivationKey($key);
 
@@ -78,21 +83,21 @@ class User extends AbstractService {
             // Parâmetros: Transport, View e Page
             $mail = new Mail($this->transport, $this->view, 'user-activate');
             $mail->setSubjet('Confirmação de ativação')
-                    ->setTo($user->getEmail())
-                    ->setData($dataEmail)
-                    ->prepare()
-                    ->send()
-            ;
+                ->setTo($user->getEmail())
+                ->setData($dataEmail)
+                ->prepare()
+                ->send();
 
 
             return $user;
         }
     }
 
-    public function passwordReset($email) {
+    public function passwordReset($email)
+    {
 
         // Pegando o repository usando o EntityManager;
-        $repo = $this->em->getRepository("TenilUser\Entity\User");
+        $repo = $this->em->getRepository('TenilUser\Entity\User');
         // Utilizando um método "mágico";
         $user = $repo->findOneByEmail($email);
 
@@ -112,19 +117,19 @@ class User extends AbstractService {
             // Parâmetros: Transport, View e Page
             $mail = new Mail($this->transport, $this->view, 'user-reset');
             $mail->setSubjet('Redefinição de senha')
-                    ->setTo($user->getEmail())
-                    ->setData($dataEmail)
-                    ->prepare()
-                    ->send()
-            ;
+                ->setTo($user->getEmail())
+                ->setData($dataEmail)
+                ->prepare()
+                ->send();
 
             return $user;
         }
     }
 
-    public function findByKey($key) {
+    public function findByKey($key)
+    {
         // Pegando o repository usando o EntityManager;
-        $repo = $this->em->getRepository("TenilUser\Entity\User");
+        $repo = $this->em->getRepository('TenilUser\Entity\User');
         // Utilizando um método "mágico";
         return $repo->findOneByPasswordResetKey($key);
     }

@@ -30,6 +30,10 @@ class IndexController extends AbstractActionController {
 
     public function registerAction() {
 
+        /**
+         * @todo Se o usuário estiver logado, não permitir acesso.
+         */
+
         // Primeira coisa a fazer é chamar o Form, ele vai aparecer sempre.
         $form = new FormUser;
         // Também recupera informações do REQUEST
@@ -87,6 +91,10 @@ class IndexController extends AbstractActionController {
 
     public function forgotAction() {
 
+        /**
+         * @todo Não permitir acesso se o usuário estiver logado.
+         */
+
         $form = new FormForgot;
         $request = $this->getRequest();
 
@@ -122,6 +130,10 @@ class IndexController extends AbstractActionController {
     }
 
     public function resetAction() {
+
+        /**
+         * @todo Não permitir acesso se o usuário estiver logado
+         */
 
         $resetKey = $this->params()->fromRoute('key');
         $request = $this->getRequest();

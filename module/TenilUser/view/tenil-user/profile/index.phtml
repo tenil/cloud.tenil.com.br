@@ -1,40 +1,51 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Seu perfil</h3>
+        <div class="panel-title">
+            Meu perfil
+        </div>
     </div>
     <div class="panel-body">
-        <div class="media">
-            <div class="media-left">
-                <a href="#">
-                    <?php echo $this->gravatar($this->perfil->getUser())->setImgSize(160)->getImgTag(); ?>
-                </a>
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading">Foto do perfil</h4>
-                <p>Nam vitae libero elementum, varius odio nec, condimentum quam. Vestibulum laoreet massa vitae feugiat rhoncus. Duis viverra dui id blandit convallis. Vivamus nec risus accumsan nisl tincidunt convallis. Praesent nec cursus leo. Nunc risus orci, mollis ac nisl maximus, bibendum ultrices neque. Vivamus sit amet nisi sollicitudin, rhoncus urna non, dapibus augue. Aenean venenatis cursus maximus. Aliquam facilisis quis elit id ullamcorper. Quisque et elit nec leo pellentesque auctor.</p>
-            </div>
-        </div>
-        <hr>
         <dl class="dl-horizontal">
-            <dt>Nome</dt><dd><?php echo $this->perfil->getTratamento() . ' ' . $this->perfil->getNome() . ' ' . $this->perfil->getSobrenome(); ?></dd>
-            <dt>Email</dt><dd><?php echo $this->perfil->getUser(); ?></dd>
-            <dt>Telefone</dt><dd><?php echo $this->perfil->getFone1ddd() . ' ' . $this->perfil->getFone1Numero() . ' <small>' . $this->perfil->getFone1tipo() . ' </small>'; ?></dd>
-            <dt>Telefone</dt><dd><?php echo $this->perfil->getFone2ddd() . ' ' . $this->perfil->getFone2Numero() . ' <small>' . $this->perfil->getFone2tipo() . ' </small>'; ?></dd>
-            <dt>Telefone</dt><dd><?php echo $this->perfil->getFone3ddd() . ' ' . $this->perfil->getFone3Numero() . ' <small>' . $this->perfil->getFone3tipo() . ' </small>'; ?></dd>
+            <dt><?php echo $this->gravatar($this->perfil->getUser())->setImgSize(160)->getImgTag(); ?></dt>
+            <dd><p>Nam vitae libero elementum, varius odio nec, condimentum quam. Vestibulum laoreet massa vitae feugiat
+                    rhoncus. Duis viverra dui id blandit convallis. Vivamus nec risus accumsan nisl tincidunt convallis.
+                    Praesent nec cursus leo. Nunc risus orci, mollis ac nisl maximus, bibendum ultrices neque. Vivamus
+                    sit amet nisi sollicitudin, rhoncus urna non, dapibus augue. Aenean venenatis cursus maximus.
+                    Aliquam facilisis quis elit id ullamcorper. Quisque et elit nec leo pellentesque auctor.</p></dd>
         </dl>
         <hr>
         <dl class="dl-horizontal">
-            <dt>Endereço</dt><dd><?php echo $this->perfil->getLogradouro() . ', ' . $this->perfil->getNumero(); ?></dd>
-            <dt>Complemento</dt><dd><?php echo $this->perfil->getComplemento(); ?></dd>
-            <dt>Bairro</dt><dd><?php echo $this->perfil->getBairro(); ?></dd>
-            <dt>Cidade</dt><dd><?php echo $this->perfil->getLocalidade() . '/' . $this->perfil->GetUf(); ?></dd>
-            <dt>CEP</dt><dd><?php echo $this->perfil->getCep(); ?></dd>
+            <dt>Nome</dt>
+            <dd><?php echo $this->perfil->getTratamento() . ' ' . $this->perfil->getNome() . ' ' . $this->perfil->getSobrenome(); ?></dd>
+            <dt>Email</dt>
+            <dd><?php echo $this->perfil->getUser(); ?></dd>
+            <dt>Telefone</dt>
+            <dd><?php echo $this->perfil->getFone1ddd() . ' ' . $this->perfil->getFone1Numero() . ' <small><span class="label label-default">' . $this->perfil->getFone1tipo() . '</span></small>'; ?></dd>
+            <dt>Telefone</dt>
+            <dd><?php echo $this->perfil->getFone2ddd() . ' ' . $this->perfil->getFone2Numero() . ' <small><span class="label label-default">' . $this->perfil->getFone2tipo() . '</span></small>'; ?></dd>
+            <dt>Telefone</dt>
+            <dd><?php echo $this->perfil->getFone3ddd() . ' ' . $this->perfil->getFone3Numero() . ' <small><span class="label label-default">' . $this->perfil->getFone3tipo() . '</span></small>'; ?></dd>
+        </dl>
+        <hr>
+        <dl class="dl-horizontal">
+            <dt>Endereço</dt>
+            <dd><?php echo $this->perfil->getLogradouro() . ', ' . $this->perfil->getNumero(); ?></dd>
+            <dt>Complemento</dt>
+            <dd><?php echo $this->perfil->getComplemento(); ?></dd>
+            <dt>Bairro</dt>
+            <dd><?php echo $this->perfil->getBairro(); ?></dd>
+            <dt>Cidade</dt>
+            <dd><?php echo $this->perfil->getLocalidade() . '/' . $this->perfil->GetUf(); ?></dd>
+            <dt>CEP</dt>
+            <dd><?php echo $this->perfil->getCep(); ?></dd>
         </dl>
     </div>
     <div class="panel-footer">
         <div class="clearfix">
             <div class="pull-right">
-                <a class="btn btn-default" href="<?php echo $this->url('tenil-user/default', array('controller' => 'profile', 'action' => 'edit')) . '/id/' . $this->perfil->getId() ?>" target="_self">Editar</a>
+                <a class="btn btn-default"
+                   href="<?php echo $this->url('tenil-user/default', array('controller' => 'profile', 'action' => 'edit')) ?>"
+                   target="_self">Editar</a>
             </div>
         </div>
     </div>

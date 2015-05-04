@@ -32,14 +32,14 @@ class Role extends Form {
                 ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
         $this->add($nome);
 
-        $parent = new Element\Select('parent');
-        $parent->setLabel('Pai')
+        $parents = new Element\Select('parent');
+        $parents->setLabel('Pai')
                 ->setAttribute('placeholder', 'Pai')
                 ->setAttribute('class', 'form-control input-lg')
                 ->setLabelAttributes(array('class' => 'col-lg-2 control-label'))
                 ->setValueOptions($this->parent)
-                ->setEmptyOption('Nenhum');
-        $this->add($parent);
+                ->setEmptyOption('Nenhum', NULL);
+        $this->add($parents);
         
         $isAdmin = new Element\Checkbox('isAdmin');
         $isAdmin->setLabel('Administrador');

@@ -59,10 +59,13 @@ class Module {
                 },
                 'TenilUser\Form\Perfil' => function($sm) {
                     $em = $sm->get('Doctrine\ORM\EntityManager');
-                    $repo = $em->getRepository('TenilUser\Entity\TipoTratamento');
-                    $tratamento = $repo->fetchTratamento();
+                    $repositoryTratamento = $em->getRepository('TenilUser\Entity\TipoTratamento');
+                    $tratamento = $repositoryTratamento->fetchTratamento();
                     
-                    return new Form\Perfil('perfil', NULL, $tratamento);
+                    $repositoryTipoFone = $em->getRepository('TenilUser\Entity\TipoFone');
+                    $tipoFone = $repositoryTipoFone->fetchTipoFone();
+                    
+                    return new Form\Perfil('perfil', NULL, $tratamento, $tipoFone);
                 },
             )
         );

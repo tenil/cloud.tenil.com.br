@@ -26,11 +26,10 @@ class AuthController extends AbstractActionController {
                 $data = $form->getData();
 
                 $auth = new AuthenticationService;
-                $storage = new SessionStorage("Tenil");
-
+                $storage = new SessionStorage();
                 $auth->setStorage($storage);
 
-                $authAdapter = $this->getServiceLocator()->get("TenilUser\Auth\Adapter");
+                $authAdapter = $this->getServiceLocator()->get('TenilUser\Auth\Adapter');
 
                 $authAdapter->setUsername($data['email']);
                 $authAdapter->setPassword($data['password']);
@@ -63,7 +62,7 @@ class AuthController extends AbstractActionController {
 
     public function logoutAction() {
         $auth = new AuthenticationService;
-        $auth->setStorage(new SessionStorage("Tenil"));
+        //$auth->setStorage(new SessionStorage());
         $auth->clearIdentity();
         //$this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Logout efetuado com sucesso.');
         return $this->redirect()->toRoute('home');

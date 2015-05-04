@@ -1,35 +1,37 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3" id="leftCol">
-            <div class="panel panel-primary">
+
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
                 <div class="panel-heading">
-                    <h3 class="panel-title">Configurações pessoais</h3>
+                    <div class="panel-title">Configurações pessoais</div>
                 </div>
-                <div class="panel-body">
-                    <ul class="nav nav-stacked" id="sidebar">
-                        <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'profile')) ?>">Perfil</a></li>
-                        <li><a href="#sec2">Alterar Senha</a></li>
-                        <li><a href="#sec3">Endereço</a></li>
-                        <li><a href="#sec4">Faturamento</a></li>
-                    </ul>
+                <!-- List group -->
+                <div class="list-group">
+                    <a href="<?php echo $this->url('tenil-user/default', array('controller' => 'profile')) ?>" class="list-group-item">Perfil</a>
+                    <a href="#sec2" class="list-group-item">Alterar Senha</a>
+                    <a href="#sec3" class="list-group-item">Endereço</a>
+                    <a href="#sec4" class="list-group-item">Faturamento</a>
                 </div>
             </div>
+
             <?php if ($this->usuario->getEmail() == 'roberto.tenil@gmail.com'): ?>
-                <div class="panel panel-danger">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
                     <div class="panel-heading">
-                        <h3 class="panel-title">Administrador</h3>
+                        <div class="panel-title">Administrador</div>
                     </div>
-                    <div class="panel-body">
-                        <ul class="nav nav-stacked">
-                            <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'index')) ?>"><?php echo $this->translate('Usuários') ?></a></li>
-                            <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'roles')) ?>"><?php echo $this->translate('Roles') ?></a></li>
-                            <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources')) ?>"><?php echo $this->translate('Resources') ?></a></li>
-                            <li><a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'privileges')) ?>"><?php echo $this->translate('Privileges') ?></a></li>
-                        </ul>
+                    <!-- List group -->
+                    <div class="list-group">
+                        <a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'index')) ?>" class="list-group-item"><?php echo $this->translate('Usuários') ?></a>
+                        <a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'roles')) ?>" class="list-group-item"><?php echo $this->translate('Roles') ?></a>
+                        <a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources')) ?>" class="list-group-item"><?php echo $this->translate('Resources') ?></a>
+                        <a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'privileges')) ?>" class="list-group-item"><?php echo $this->translate('Privileges') ?></a>
                     </div>
                 </div>
             <?php endif; ?>
-        </div>  
+        </div>
         <div class="col-md-9">
             <?php echo $this->content; ?>
         </div> 
