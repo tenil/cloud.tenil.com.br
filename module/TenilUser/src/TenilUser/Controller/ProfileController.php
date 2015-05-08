@@ -99,5 +99,4 @@ class ProfileController extends CrudController {
 
         return new ViewModel(array('form' => $form));
     }
-
 }

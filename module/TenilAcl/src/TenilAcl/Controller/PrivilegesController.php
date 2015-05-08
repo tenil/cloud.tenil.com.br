@@ -11,7 +11,7 @@ class PrivilegesController extends CrudController {
         $this->entity = 'TenilAcl\Entity\Privilege';
         $this->service = 'TenilAcl\Service\Privilege';
         $this->form = 'TenilAcl\Form\Privilege';
-        $this->controller = 'Privileges';
+        $this->controller = 'privileges';
         $this->route = 'tenil-acl-admin/default';
             
     }

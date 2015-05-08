@@ -11,9 +11,8 @@ class RolesController extends CrudController {
         $this->entity = 'TenilAcl\Entity\Role';
         $this->service = 'TenilAcl\Service\Role';
         $this->form = 'TenilAcl\Form\Role';
-        $this->controller = 'Roles';
+        $this->controller = 'roles';
         $this->route = 'tenil-acl-admin/default';
-            
     }
     
     public function addAction() {

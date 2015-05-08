@@ -57,6 +57,9 @@ class Module {
                 'TenilUser\Auth\Adapter' => function($sm) {
                     return new AuthAdapter($sm->get('Doctrine\ORM\EntityManager'));
                 },
+                'TenilUser\Service\Auth' => function($sm) {
+                    return new Service\Auth();
+                },
                 'TenilUser\Form\Perfil' => function($sm) {
                     $em = $sm->get('Doctrine\ORM\EntityManager');
                     $repositoryTratamento = $em->getRepository('TenilUser\Entity\TipoTratamento');

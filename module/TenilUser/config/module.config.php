@@ -182,7 +182,7 @@ return array(
             'orm_default' => array(
                 'drivers' => array(
                     __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
-                )
+                ),
             )
         )
     ),
@@ -195,5 +195,7 @@ return array(
             'message_close_string' => '</li></ul></div>',
             'message_separator_string' => '</li><li>'
         ),
-    )
+    ),
+
+
 );

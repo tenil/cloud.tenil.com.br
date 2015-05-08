@@ -61,6 +61,17 @@
 </div>
 
 <div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                Página: <?php echo $this->page ?>
+                <hr>
+
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-12">
         <?php
         echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v2', array('route' => 'tenil-acl-admin/paginator'));

@@ -14,7 +14,7 @@ class UsersController extends CrudController {
         $this->entity = 'TenilUser\Entity\User';
         $this->form = 'TenilUser\Form\User';
         $this->service = 'TenilUser\Service\User';
-        $this->controller = 'Users';
+        $this->controller = 'users';
         $this->route = 'tenil-user/default';
     }
 

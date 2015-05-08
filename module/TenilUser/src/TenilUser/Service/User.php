@@ -11,6 +11,8 @@ use Zend\Mail\Transport\Smtp as SmtpTransport;
 use TenilBase\Mail\Mail;
 use TenilBase\Service\AbstractService;
 
+use Zend\Authentication\AuthenticationService;
+
 class User extends AbstractService
 {
 

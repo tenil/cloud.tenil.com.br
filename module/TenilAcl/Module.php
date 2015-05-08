@@ -2,6 +2,7 @@
 
 namespace TenilAcl;
 
+use Zend\Authentication\AuthenticationService;
 use Zend\Mvc\MvcEvent;
 
 class Module
@@ -38,15 +39,27 @@ class Module
      * Verifica a autorização do acesso
      * @param MvcEvent $event Evento
      * @return boolean
+     * @throws \Exception Acesso negado
      */
     public function mvcPreDispatch($event)
     {
-
         $di = $event->getTarget()->getServiceLocator();
         $routeMatch = $event->getRouteMatch();
         $moduleName = $routeMatch->getParam('module');
         $controllerName = $routeMatch->getParam('controller');
         $actionName = $routeMatch->getParam('action');
+
+/*
+        //$user = $di->get('TenilBase\Acl\Builder');
+
+        $auth = new AuthenticationService();
+        $user = $auth->getIdentity();
+
+        if (! $user->authorize($moduleName, $controllerName, $actionName)) {
+            throw new \Exception('Voce nao tem permissao para acessar este recurso');
+        }
+*/
+        return true;
     }
 
     public function getServiceConfig()

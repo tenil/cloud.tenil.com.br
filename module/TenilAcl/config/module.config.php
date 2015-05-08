@@ -44,6 +44,7 @@ return array(
                             'defaults' => array(
                                 '__NAMESPACE__' => 'TenilAcl\Controller',
                                 'controller' => 'roles',
+                                'page' => 1,
                             )
                         )
                     )

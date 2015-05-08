@@ -13,9 +13,11 @@ use TenilUser\Form\Login as LoginForm;
  *
  * @author Roberto
  */
-class AuthController extends AbstractActionController {
+class AuthController extends AbstractActionController
+{
 
-    public function indexAction() {
+    public function loginBkpAction()
+    {
 
         $form = new LoginForm;
         $request = $this->getRequest();
@@ -60,12 +62,42 @@ class AuthController extends AbstractActionController {
         return $view;
     }
 
-    public function logoutAction() {
+    public function logoutAction()
+    {
         $auth = new AuthenticationService;
         //$auth->setStorage(new SessionStorage());
         $auth->clearIdentity();
         //$this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Logout efetuado com sucesso.');
         return $this->redirect()->toRoute('home');
+    }
+
+
+    public function loginAction()
+    {
+
+        $form = new LoginForm;
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $login = $this->getServiceLocator()->get('TenilUser\Service\Auth');
+                $result = $login->authenticate(array('username' => $data['email'], 'password' => $data['password']));
+
+                if ($result->isValid()) {
+                    return $this->redirect()->toRoute('home');
+                }
+            } else {
+                foreach ($form->getMessages() as $message) {
+                    $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
+                }
+            }
+        }
+
+        $view = new ViewModel(array('form' => $form));
+        return $view;
     }
 
 }

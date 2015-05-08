@@ -16,7 +16,7 @@ class Perfil extends AbstractService {
     public function __construct(EntityManager $em) {
         // Executa o método contrutor da classe pai.
         parent::__construct($em);
-        $this->entity = "TenilUser\Entity\Perfil";
+        $this->entity = 'TenilUser\Entity\Perfil';
     }
 
     public function update(array $data) {

@@ -55,12 +55,12 @@
                 <nav class="collapse navbar-collapse" role="navigation">
                     <ul class="nav navbar-nav navbar-right">
                         <?php if ($user): ?>
-                            <li><a href="#"><?php echo $user->getEmail(); ?></a></li>
-                            <li><a href="#"><?php echo $this->gravatar($user->getEmail())->setImgSize(20)->getImgTag(); ?></a></li>
+                            <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'profile')) ?>"><?php echo $user->getEmail(); ?></a></li>
+                            <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'profile')) ?>"><?php echo $this->gravatar($user->getEmail())->setImgSize(20)->getImgTag(); ?></a></li>
                             <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'auth', 'action' => 'logout')) ?>" data-toggle="tooltip" data-placement="bottom" title="Sair"><span class="glyphicon glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
                         <?php else : ?>
                             <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'index', 'action' => 'register')) ?>"><?php echo $this->translate('Register') ?></a></li>
-                            <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'auth', 'action' => 'index')) ?>"><?php echo $this->translate('Login') ?></a></li>
+                            <li><a href="<?php echo $this->url('tenil-user/default', array('controller' => 'auth', 'action' => 'login')) ?>"><?php echo $this->translate('Login') ?></a></li>
                         <?php endif; ?>
                     </ul>
                 </nav>
