@@ -15,6 +15,7 @@ use Zend\Authentication\Storage\Session as SessionStorage;
 use Doctrine\ORM\EntityManager;
 use Zend\Authentication\Result;
 use Zend\Stdlib\Hydrator;
+
 /**
  * Serviço responsável pela autenticação da aplicação
  *
@@ -37,28 +38,32 @@ class Auth extends Service
     /**
      * @return mixed
      */
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
     }
 
     /**
      * @return mixed
      */
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
     /**
      * @param $username
      */
-    public function setUsername($username) {
+    public function setUsername($username)
+    {
         $this->username = $username;
     }
 
     /**
      * @param $password
      */
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $this->password = $password;
     }
 
@@ -67,7 +72,23 @@ class Auth extends Service
      * @return Result
      * @throws \Exception
      */
-    public function authenticate($params) {
+    public function authenticate($params)
+    {
+        $this->setUsername($params['username']);
+        $this->setPassword($params['password']);
+
+        $authService = $this->getServiceManager()->get('Zend\Authentication\AuthenticationService');
+
+        $adapter = $authService->getAdapter();
+        $adapter->setIdentityValue($this->getUsername());
+        $adapter->setCredentialValue($this->getPassword());
+
+        $authResult = $authService->authenticate();
+
+        return $authResult;
+    }
+
+    public function authenticateBkp($params) {
 
         $this->setUsername($params['username']);
         $this->setPassword($params['password']);
@@ -92,12 +113,12 @@ class Auth extends Service
         return $result;
 
     }
-
     /**
      * @return bool
      */
 
-    public function logout() {
+    public function logout()
+    {
         $auth = new AuthenticationService;
         $auth->clearIdentity();
         // return $this->redirect()->toRoute('home');
@@ -128,7 +149,7 @@ class Auth extends Service
             ->setCredential($password);
         $result = $auth->authenticate($authAdapter);
 
-        if (! $result->isValid()) {
+        if (!$result->isValid()) {
             throw new \Exception("Login ou senha inválidos");
         }
 
@@ -144,7 +165,8 @@ class Auth extends Service
      *
      * @return void
      */
-    public function logoutEmineto() {
+    public function logoutEmineto()
+    {
         $auth = new AuthenticationService();
         $session = $this->getServiceManager()->get('Session');
         $session->offsetUnset('user');

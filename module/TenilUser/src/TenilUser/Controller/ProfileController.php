@@ -3,8 +3,6 @@
 namespace TenilUser\Controller;
 
 use Zend\View\Model\ViewModel;
-use Zend\Authentication\AuthenticationService;
-use Zend\Authentication\Storage\Session as SessionStorage;
 
 class ProfileController extends CrudController {
 
@@ -19,13 +17,24 @@ class ProfileController extends CrudController {
 
     protected $em; //
     protected $user;
-    protected $authService;
 
     public function getAuthService() {
-        return $this->authService;
+        return $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
     }
 
     public function indexAction() {
+
+        $loggedUser = $this->getAuthService()->getIdentity();
+
+        $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+        $perfil = $this->em->getRepository($this->entity)->find($loggedUser->getId());
+
+        return new ViewModel(array('perfil' => $perfil));
+
+    }
+
+    public function indexBkpAction() {
 
         $this->authService = new AuthenticationService;
 
@@ -45,38 +54,17 @@ class ProfileController extends CrudController {
         //->getRepository('TenilUser\Entity\User')
         //->findOneBy(array('id' => 15))
         ;
-        
+
         return new ViewModel(array('perfil' => $perfil));
     }
 
     public function editAction() {
 
-        /**
-         * @todo Aprimorar edição, o usuário deve estar logado
-         * @todo O id do usuário deve ser o mesmo do usuário logado
-         *
-         */
-
-        /**
-         * @todo Essa parte deverá ser resolvida pela ACL
-         */
-
-        $this->authService = new AuthenticationService;
-
-        if ($this->getAuthService()->hasIdentity()) {
-            $this->user = $this->getAuthService()->getIdentity();
-        } else {
-            $this->user = FALSE;
-
-            $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Seção expirada!');
-            return $this->redirect()->toRoute('home');
-        }
-
         $form = $this->getServiceLocator()->get($this->form);
         $request = $this->getRequest();
 
-
         $repository = $this->getEm()->getRepository($this->entity);
+        $this->user = $this->getAuthService()->getIdentity();
         $entity = $repository->find($this->user->getId());
 
         $data = $entity->toArray();

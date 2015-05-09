@@ -18,7 +18,8 @@ use Zend\Stdlib\Hydrator;
  * @ORM\Table(name="teniluser_user", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
  * @ORM\HasLifecycleCallbacks
  */
-class User {
+class User
+{
 
     /**
      * @ORM\OneToOne(targetEntity="Perfil", mappedBy="user")
@@ -98,7 +99,8 @@ class User {
      */
     private $createdAt;
 
-    public function __construct(array $options = array()) {
+    public function __construct(array $options = array())
+    {
         /*
          * Executado no momento da criação do objeto.
          * 
@@ -124,7 +126,8 @@ class User {
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
 
-    public function encryptPassword($password) {
+    public function encryptPassword($password)
+    {
 
         $hash = 'sha256';
         $salt = $this->salt;
@@ -135,119 +138,143 @@ class User {
         return base64_encode($data);
     }
 
-    function getPerfil() {
+    function getPerfil()
+    {
         return $this->perfil;
     }
 
-    function setPerfil(Perfil $perfil) {
+    function setPerfil(Perfil $perfil)
+    {
         $this->perfil = $perfil;
         return $this;
     }
-    
-    public function getId() {
+
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
         return $this;
     }
 
-    public function getNome() {
+    public function getNome()
+    {
         return $this->nome;
     }
 
-    public function setNome($nome) {
+    public function setNome($nome)
+    {
         $this->nome = $nome;
         return $this;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = strtolower($email);
         return $this;
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $this->password = $this->encryptPassword($password);
         return $this;
     }
 
-    public function getSalt() {
+    public function getSalt()
+    {
         return $this->salt;
     }
 
-    public function setSalt($salt) {
+    public function setSalt($salt)
+    {
         $this->salt = $salt;
         return $this;
     }
 
-    public function getActive() {
+    public function getActive()
+    {
         return $this->active;
     }
 
-    public function setActive($active) {
+    public function setActive($active)
+    {
         $this->active = $active;
         return $this;
     }
 
-    public function getActivationKey() {
+    public function getActivationKey()
+    {
         return $this->activationKey;
     }
 
-    public function setActivationKey($activationKey) {
+    public function setActivationKey($activationKey)
+    {
         $this->activationKey = $activationKey;
         return $this;
     }
 
-    public function getPasswordResetKey() {
+    public function getPasswordResetKey()
+    {
         return $this->passwordResetKey;
     }
 
-    public function setPasswordResetKey($passwordResetKey = NULL) {
+    public function setPasswordResetKey($passwordResetKey = NULL)
+    {
         // se for passado um valor TRUE, então será gerada a chave.
         // caso contrario, a chave será nula
         $this->passwordResetKey = $passwordResetKey ? Rand::getString(64, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', TRUE) : NULL;
         return $this;
     }
 
-    public function getUpdatedAt() {
+    public function getUpdatedAt()
+    {
         return $this->updatedAt;
     }
 
     // prePersist: Antes de gravar as informações no banco, ele executa o método.
     /**
-     * 
+     *
      * @param \DateTime $updatedAt
      * @return \TenilUser\Entity\User
      * @ORM\PreUpdate
      */
-    public function setUpdatedAt() {
+    public function setUpdatedAt()
+    {
         $this->updatedAt = new \DateTime("now");
         return $this;
     }
 
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt) {
+    public function setCreatedAt(\DateTime $createdAt)
+    {
         $this->createdAt = $createdAt;
         return $this;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->email;
     }
 
-        public function toArray() {
+    public function toArray()
+    {
 
         $hydrator = new Hydrator\ClassMethods();
         return $hydrator->extract($this);

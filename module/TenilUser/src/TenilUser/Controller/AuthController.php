@@ -7,6 +7,7 @@ use Zend\View\Model\ViewModel;
 use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Storage\Session as SessionStorage;
 use TenilUser\Form\Login as LoginForm;
+use Zend\Authentication\Result;
 
 /**
  * Description of AuthController
@@ -73,6 +74,37 @@ class AuthController extends AbstractActionController
 
 
     public function loginAction()
+    {
+        $form = new LoginForm;
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $login = $this->getServiceLocator()->get('TenilUser\Service\Auth');
+                $result = $login->authenticate(array('username' => $data['email'], 'password' => $data['password']));
+
+                if ($result->isValid()) {
+                    return $this->redirect()->toRoute('home');
+                } else {
+                    foreach($result->getMessages() as $message) {
+                        $this->flashmessenger()->setNamespace('Tenil')->addErrorMessage($message);
+                    }
+                }
+            } else {
+                foreach ($form->getMessages() as $message) {
+                    $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
+                }
+            }
+        }
+
+        $view = new ViewModel(array('form' => $form));
+        return $view;
+    }
+
+    public function loginBkp2Action()
     {
 
         $form = new LoginForm;

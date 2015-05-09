@@ -55,94 +55,6 @@ return array(
                     )
                 ),
             ),
-//            'tenil-user-admin' => array(
-//                'type' => 'Literal',
-//                'options' => array(
-//                    'route' => '/user',
-//                    'defaults' => array(
-//                        '__NAMESPACE__' => 'TenilUser\Controller',
-//                        'controller' => 'Users',
-//                        'action' => 'index'
-//                    )
-//                ),
-//                'may_terminate' => true,
-//                'child_routes' => array(
-//                    'default' => array(
-//                        'type' => 'Segment',
-//                        'options' => array(
-//                            'route' => '/[:controller[/:action[/:id]]]',
-//                            'constraints' => array(
-//                                'contronller' => '[a-zA-Z][a-zA-z0-9_-]*',
-//                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
-//                                'id' => '\d+',
-//                            ),
-//                            'defaults' => array(
-//                                '__NAMESPACE__' => 'TenilUser\Controller',
-//                                'controller' => 'Users',
-//                            )
-//                        )
-//                    ),
-//                    'paginator' => array(
-//                        'type' => 'Segment',
-//                        'options' => array(
-//                            'route' => '/[:controller[/page/:page]]',
-//                            'constraints' => array(
-//                                'contronller' => '[a-zA-Z][a-zA-z0-9_-]*',
-//                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
-//                                'page' => '\d+',
-//                            ),
-//                            'defaults' => array(
-//                                '__NAMESPACE__' => 'TenilUser\Controller',
-//                                'controller' => 'users',
-//                            )
-//                        )
-//                    )
-//                )
-//            ),
-//            'tenil-user-register' => array(
-//                'type' => 'Literal',
-//                'options' => array(
-//                    'route' => '/register',
-//                    'defaults' => array(
-//                        '__NAMESPACE__' => 'TenilUser\Controller',
-//                        'controller' => 'Index',
-//                        'action' => 'register'
-//                    )
-//                )
-//            ),
-//            'tenil-user-activate' => array(
-//                'type' => 'Segment',
-//                'options' => array(
-//                    'route' => '/register/activate[/:key]',
-//                    'defaults' => array(
-//                        '__NAMESPACE__' => 'TenilUser\Controller',
-//                        'controller' => 'Index',
-//                        'action' => 'activate'
-//                    )
-//                )
-//            ),
-//            'tenil-user-auth' => array(
-//                'type' => 'Literal',
-//                'options' => array(
-//                    'route' => '/login',
-//                    'defaults' => array(
-//                        '__NAMESPACE__' => 'TenilUser\Controller',
-//                        'controller' => 'Auth',
-//                        'action' => 'index'
-//                    )
-//                )
-//            ),
-//            'tenil-user-logout' => array(
-//                'type' => 'Literal',
-//                'options' => array(
-//                    'route' => '/logout',
-//                    'defaults' => array(
-//                        '__NAMESPACE__' => 'TenilUser\Controller',
-//                        'controller' => 'Auth',
-//                        'action' => 'logout'
-//                    )
-//                )
-//            ),
         )
     ),
     'controllers' => array(
@@ -184,7 +96,18 @@ return array(
                     __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
                 ),
             )
-        )
+        ),
+        'authentication' => array(
+            'orm_default' => array(
+                'object_manager' => 'Doctrine\ORM\EntityManager',
+                'identity_class' => 'TenilUser\Entity\User',
+                'identity_property' => 'email',
+                'credential_property' => 'password',
+                'credential_Callable' => function($identity, $credential) {
+                    return $identity->encryptPassword($credential);
+                },
+            ),
+        ),
     ),
     'data-fixture' => array(
         'TenilUser_fixture' => __DIR__ . '/../src/' . __NAMESPACE__ . '/Fixture'

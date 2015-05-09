@@ -14,6 +14,8 @@ use Zend\Mail\Transport\Smtp as SmtpTransport;
 use Zend\Mail\Transport\SmtpOptions;
 use TenilUser\Auth\Adapter as AuthAdapter;
 
+use Zend\Authentication\AuthenticationService;
+
 class Module {
 
     public function getConfig() {
@@ -54,11 +56,20 @@ class Module {
                     $em = $sm->get('Doctrine\ORM\EntityManager');
                     return new Service\Perfil($em);
                 },
+                /**
+                 * Esse serviço pode ser desativado
+                 */
                 'TenilUser\Auth\Adapter' => function($sm) {
                     return new AuthAdapter($sm->get('Doctrine\ORM\EntityManager'));
                 },
+                /**
+                 * Esse serviço pode ser desativado
+                 */
                 'TenilUser\Service\Auth' => function($sm) {
                     return new Service\Auth();
+                },
+                'Zend\Authentication\AuthenticationService' => function($sm){
+                    return $sm->get('doctrine.authenticationservice.orm_default');
                 },
                 'TenilUser\Form\Perfil' => function($sm) {
                     $em = $sm->get('Doctrine\ORM\EntityManager');
