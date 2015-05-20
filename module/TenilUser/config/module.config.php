@@ -55,6 +55,67 @@ return array(
                     )
                 ),
             ),
+            'perfil' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/perfil',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TenilUser\Controller',
+                        'module' => 'TenilUser',
+                        'controller' => 'profile',
+                        'action' => 'list'
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'datail' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/:id',
+                            'defaults' => array(
+                                'action' => 'detail'
+                            ),
+                            'constraints' => array(
+                                'id' => '\d+'
+                            ),
+                        ),
+                    ),
+                    'create' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/create',
+                            'defaults' => array(
+                                'action' => 'create'
+                            ),
+                        ),
+                    ),
+                    'update' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/update/:id',
+                            'defaults' => array(
+                                'action' => 'update'
+                            ),
+                            'constraints' => array(
+                                'id' => '\d+'
+                            ),
+                        ),
+                    ),
+                    'delete' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/delete/:id',
+                            'defaults' => array(
+                                'action' => 'update'
+                            ),
+                            'constraints' => array(
+                                'id' => '\d+'
+                            ),
+                        ),
+                    ),
+
+                ),
+            ),
         )
     ),
     'controllers' => array(

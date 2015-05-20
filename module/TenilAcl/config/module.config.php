@@ -2,6 +2,9 @@
 
 namespace TenilAcl;
 
+use Zend\Cache\Storage\Adapter\Session;
+use Zend\Session\Container;
+
 return array(
     'router' => array(
         'routes' => array(
@@ -11,8 +14,9 @@ return array(
                     'route' => '/acl',
                     'defaults' => array(
                         '__NAMESPACE__' => 'TenilAcl\Controller',
+                        'module' => 'TenilAcl',
                         'controller' => 'roles',
-                        'action' => 'Index'
+                        'action' => 'index'
                     )
                 ),
                 'may_terminate' => true,
@@ -101,5 +105,5 @@ return array(
             'message_close_string' => '</li></ul></div>',
             'message_separator_string' => '</li><li>'
         )
-    )
+    ),
 );

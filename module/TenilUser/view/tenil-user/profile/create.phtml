@@ -1,0 +1,61 @@
+<?php
+$title = 'Perfil criação';
+$this->headTitle($title);
+?>
+    <h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url('tenil-user/default', array('controller' => 'profile', 'action' => 'create')));
+$formLabel = $this->plugin('formLabel');
+
+echo $this->form()->openTag($form);
+
+$id = $form->get('perfil')->get('id');
+echo $this->formHidden($id);
+
+$security = $form->get('security');
+echo $this->formElement($security);
+?>
+
+    <div class="form-group">
+        <?php
+        $nome = $form->get('perfil')->get('nome');
+        echo $formLabel->openTag() . $nome->getOption('label');
+        echo $this->formInput($nome);
+        echo $this->formElementErrors($nome);
+        echo $formLabel->closeTag();
+        ?>
+    </div>
+
+    <div class="form-group">
+        <?php
+        $sobrenome = $form->get('perfil')->get('sobrenome');
+        echo $formLabel->openTag() . $sobrenome->getOption('label');
+        echo $this->formInput($sobrenome);
+        echo $this->formElementErrors($sobrenome);
+        echo $formLabel->closeTag();
+        ?>
+    </div>
+
+    <div class="form-group">
+        <?php
+        $apelido = $form->get('perfil')->get('apelido');
+        echo $formLabel->openTag() . $apelido->getOption('label');
+        echo $this->formInput($apelido);
+        echo $this->formElementErrors($apelido);
+        echo $formLabel->closeTag();
+        ?>
+    </div>
+
+<?php
+echo $this->formInput($form->get('submit'));
+
+
+echo $this->form()->closeTag($form);
+
+
+foreach ($form as $element) {
+    echo $element->getName() . ' ' . $this->formElementErrors($element);
+}

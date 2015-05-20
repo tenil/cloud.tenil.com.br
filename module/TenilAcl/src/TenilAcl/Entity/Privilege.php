@@ -22,16 +22,16 @@ class Privilege {
     private $id;
 
     /**
-     * @var integer
-     * 
+     * @var Role
+     *
      * @ORM\OneToOne(targetEntity="Role")
      * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
     private $role;
 
     /**
-     * @var integer
-     * 
+     * @var Resource
+     *
      * @ORM\OneToOne(targetEntity="Resource")
      * @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
      */

@@ -10,7 +10,7 @@ class Role extends AbstractService {
 
     public function __construct(EntityManager $em) {
         parent::__construct($em);
-        $this->entity = "TenilAcl\Entity\Role";
+        $this->entity = 'TenilAcl\Entity\Role';
     }
 
     public function insert(array $data) {

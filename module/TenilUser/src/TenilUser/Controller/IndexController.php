@@ -36,6 +36,10 @@ class IndexController extends AbstractActionController {
 
         // Primeira coisa a fazer é chamar o Form, ele vai aparecer sempre.
         $form = new FormUser;
+        $form->setAttributes(array(
+            'class' => 'form-signin',
+            'label' => 'Crie sua conta'
+        ));
         // Também recupera informações do REQUEST
         $request = $this->getRequest();
 
@@ -116,7 +120,7 @@ class IndexController extends AbstractActionController {
                 $this->flashMessenger()->setNamespace('Tenil')->addInfoMessage($message);
 
                 // redirecionar para tela de login
-                return $this->redirect()->toRoute('tenil-user/default', array('controller' => 'auth', 'action' => 'index'));
+                return $this->redirect()->toRoute('tenil-user/default', array('controller' => 'auth', 'action' => 'login'));
             } else {
                 foreach ($form->getMessages() as $message) {
                     $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);

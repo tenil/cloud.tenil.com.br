@@ -38,13 +38,6 @@ class Role {
     protected $nome;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_admin", type="boolean")
-     */
-    protected $isAdmin;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
@@ -68,7 +61,7 @@ class Role {
 
     public function toArray() {
 
-        $parent = FALSE;
+        $parent = NULL;
 
         if (isset($this->parent)) {
             $parent = $this->parent->getId();
@@ -77,7 +70,6 @@ class Role {
         return array(
             'id' => $this->id,
             'nome' => $this->nome,
-            'isAdmin' => $this->isAdmin,
             'parent' => $parent
         );
     }
@@ -102,10 +94,6 @@ class Role {
         return $this->nome;
     }
 
-    public function getIsAdmin() {
-        return $this->isAdmin;
-    }
-
     public function getCreatedAt() {
         return $this->createdAt;
     }
@@ -126,11 +114,6 @@ class Role {
 
     public function setNome($nome) {
         $this->nome = $nome;
-        return $this;
-    }
-
-    public function setIsAdmin($isAdmin) {
-        $this->isAdmin = $isAdmin;
         return $this;
     }
 

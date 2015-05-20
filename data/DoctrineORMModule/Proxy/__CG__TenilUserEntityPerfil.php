@@ -64,10 +64,10 @@ class Perfil extends \TenilUser\Entity\Perfil implements \Doctrine\ORM\Proxy\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'user', 'id', 'nome', 'sobrenome', 'tratamento', 'isGravatar', 'foto', 'fone1numero', 'fone1ddd', 'fone1tipo', 'fone1ramal', 'fone1contato', 'fone2numero', 'fone2ddd', 'fone2tipo', 'fone2ramal', 'fone2contato', 'fone3numero', 'fone3ddd', 'fone3tipo', 'fone3ramal', 'fone3contato', 'logradouro', 'numero', 'complemento', 'bairro', 'localidade', 'uf', 'cep');
+            return array('__isInitialized__', 'id', 'telefones', 'enderecos', 'nome', 'sobrenome', 'apelido', 'isGravatar', 'foto');
         }
 
-        return array('__isInitialized__', 'user', 'id', 'nome', 'sobrenome', 'tratamento', 'isGravatar', 'foto', 'fone1numero', 'fone1ddd', 'fone1tipo', 'fone1ramal', 'fone1contato', 'fone2numero', 'fone2ddd', 'fone2tipo', 'fone2ramal', 'fone2contato', 'fone3numero', 'fone3ddd', 'fone3tipo', 'fone3ramal', 'fone3contato', 'logradouro', 'numero', 'complemento', 'bairro', 'localidade', 'uf', 'cep');
+        return array('__isInitialized__', 'id', 'telefones', 'enderecos', 'nome', 'sobrenome', 'apelido', 'isGravatar', 'foto');
     }
 
     /**
@@ -176,28 +176,6 @@ class Perfil extends \TenilUser\Entity\Perfil implements \Doctrine\ORM\Proxy\Pro
     /**
      * {@inheritDoc}
      */
-    public function getUser()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', array());
-
-        return parent::getUser();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setUser(\TenilUser\Entity\Perfil $user)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', array($user));
-
-        return parent::setUser($user);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -235,12 +213,12 @@ class Perfil extends \TenilUser\Entity\Perfil implements \Doctrine\ORM\Proxy\Pro
     /**
      * {@inheritDoc}
      */
-    public function getTratamento()
+    public function getApelido()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTratamento', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getApelido', array());
 
-        return parent::getTratamento();
+        return parent::getApelido();
     }
 
     /**
@@ -263,248 +241,6 @@ class Perfil extends \TenilUser\Entity\Perfil implements \Doctrine\ORM\Proxy\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFoto', array());
 
         return parent::getFoto();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone1numero()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone1numero', array());
-
-        return parent::getFone1numero();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone1ddd()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone1ddd', array());
-
-        return parent::getFone1ddd();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone1tipo()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone1tipo', array());
-
-        return parent::getFone1tipo();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone1ramal()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone1ramal', array());
-
-        return parent::getFone1ramal();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone1contato()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone1contato', array());
-
-        return parent::getFone1contato();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone2numero()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone2numero', array());
-
-        return parent::getFone2numero();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone2ddd()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone2ddd', array());
-
-        return parent::getFone2ddd();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone2tipo()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone2tipo', array());
-
-        return parent::getFone2tipo();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone2ramal()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone2ramal', array());
-
-        return parent::getFone2ramal();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone2contato()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone2contato', array());
-
-        return parent::getFone2contato();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone3numero()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone3numero', array());
-
-        return parent::getFone3numero();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone3ddd()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone3ddd', array());
-
-        return parent::getFone3ddd();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone3tipo()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone3tipo', array());
-
-        return parent::getFone3tipo();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone3ramal()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone3ramal', array());
-
-        return parent::getFone3ramal();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFone3contato()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFone3contato', array());
-
-        return parent::getFone3contato();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getLogradouro()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLogradouro', array());
-
-        return parent::getLogradouro();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNumero()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNumero', array());
-
-        return parent::getNumero();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getComplemento()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getComplemento', array());
-
-        return parent::getComplemento();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getBairro()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBairro', array());
-
-        return parent::getBairro();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getLocalidade()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLocalidade', array());
-
-        return parent::getLocalidade();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUf()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUf', array());
-
-        return parent::getUf();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCep()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCep', array());
-
-        return parent::getCep();
     }
 
     /**
@@ -543,12 +279,12 @@ class Perfil extends \TenilUser\Entity\Perfil implements \Doctrine\ORM\Proxy\Pro
     /**
      * {@inheritDoc}
      */
-    public function setTratamento($tratamento)
+    public function setApelido($apelido)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTratamento', array($tratamento));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setApelido', array($apelido));
 
-        return parent::setTratamento($tratamento);
+        return parent::setApelido($apelido);
     }
 
     /**
@@ -576,254 +312,78 @@ class Perfil extends \TenilUser\Entity\Perfil implements \Doctrine\ORM\Proxy\Pro
     /**
      * {@inheritDoc}
      */
-    public function setFone1numero($fone1numero)
+    public function addTelefones(\Doctrine\Common\Collections\Collection $telefones)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone1numero', array($fone1numero));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addTelefones', array($telefones));
 
-        return parent::setFone1numero($fone1numero);
+        return parent::addTelefones($telefones);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setFone1ddd($fone1ddd)
+    public function removeTelefones(\Doctrine\Common\Collections\Collection $telefones)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone1ddd', array($fone1ddd));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeTelefones', array($telefones));
 
-        return parent::setFone1ddd($fone1ddd);
+        return parent::removeTelefones($telefones);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setFone1tipo($fone1tipo)
+    public function getTelefones()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone1tipo', array($fone1tipo));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTelefones', array());
 
-        return parent::setFone1tipo($fone1tipo);
+        return parent::getTelefones();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setFone1ramal($fone1ramal)
+    public function addEnderecos(\Doctrine\Common\Collections\Collection $enderecos)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone1ramal', array($fone1ramal));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addEnderecos', array($enderecos));
 
-        return parent::setFone1ramal($fone1ramal);
+        return parent::addEnderecos($enderecos);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setFone1contato($fone1contato)
+    public function removeEnderecos(\Doctrine\Common\Collections\Collection $enderecos)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone1contato', array($fone1contato));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeEnderecos', array($enderecos));
 
-        return parent::setFone1contato($fone1contato);
+        return parent::removeEnderecos($enderecos);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setFone2numero($fone2numero)
+    public function getEnderecos()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone2numero', array($fone2numero));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEnderecos', array());
 
-        return parent::setFone2numero($fone2numero);
+        return parent::getEnderecos();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setFone2ddd($fone2ddd)
+    public function __toString()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone2ddd', array($fone2ddd));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', array());
 
-        return parent::setFone2ddd($fone2ddd);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFone2tipo($fone2tipo)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone2tipo', array($fone2tipo));
-
-        return parent::setFone2tipo($fone2tipo);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFone2ramal($fone2ramal)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone2ramal', array($fone2ramal));
-
-        return parent::setFone2ramal($fone2ramal);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFone2contato($fone2contato)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone2contato', array($fone2contato));
-
-        return parent::setFone2contato($fone2contato);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFone3numero($fone3numero)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone3numero', array($fone3numero));
-
-        return parent::setFone3numero($fone3numero);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFone3ddd($fone3ddd)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone3ddd', array($fone3ddd));
-
-        return parent::setFone3ddd($fone3ddd);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFone3tipo($fone3tipo)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone3tipo', array($fone3tipo));
-
-        return parent::setFone3tipo($fone3tipo);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFone3ramal($fone3ramal)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone3ramal', array($fone3ramal));
-
-        return parent::setFone3ramal($fone3ramal);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setFone3contato($fone3contato)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFone3contato', array($fone3contato));
-
-        return parent::setFone3contato($fone3contato);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setLogradouro($logradouro)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLogradouro', array($logradouro));
-
-        return parent::setLogradouro($logradouro);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNumero($numero)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNumero', array($numero));
-
-        return parent::setNumero($numero);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setComplemento($complemento)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setComplemento', array($complemento));
-
-        return parent::setComplemento($complemento);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setBairro($bairro)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setBairro', array($bairro));
-
-        return parent::setBairro($bairro);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setLocalidade($localidade)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLocalidade', array($localidade));
-
-        return parent::setLocalidade($localidade);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setUf($uf)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUf', array($uf));
-
-        return parent::setUf($uf);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setCep($cep)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCep', array($cep));
-
-        return parent::setCep($cep);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function toArray()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', array());
-
-        return parent::toArray();
+        return parent::__toString();
     }
 
 }

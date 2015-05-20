@@ -11,6 +11,8 @@ use Zend\Crypt\Key\Derivation\Pbkdf2;
 // Responsável por preencher os sets com os dados passados. Usado no construtor.
 use Zend\Stdlib\Hydrator;
 
+use TenilAcl\Entity\Role;
+
 /**
  * TeniluserUser
  *
@@ -26,6 +28,26 @@ class User
      * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
     private $perfil;
+
+    /**
+     * @ORM\OneToOne(targetEntity="TenilAcl\Entity\Role", mappedBy="user")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     */
+    private $role;
+
+    /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole(Role $role)
+    {
+        $this->role = $role;
+        return $this;
+    }
 
     /**
      * @var integer

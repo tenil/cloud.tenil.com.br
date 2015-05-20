@@ -16,7 +16,7 @@ use Zend\Authentication\Result;
  */
 class AuthController extends AbstractActionController
 {
-
+/*
     public function loginBkpAction()
     {
 
@@ -40,12 +40,12 @@ class AuthController extends AbstractActionController
                 $result = $auth->authenticate($authAdapter);
 
                 if ($result->isValid()) {
-                    /*
-                      $user = $auth->getIdentity();
-                      $user = $user['user'];
-                      $storage->write($user, null);
-                     * 
-                     */
+                    //
+                    //  $user = $auth->getIdentity();
+                    //  $user = $user['user'];
+                    //  $storage->write($user, null);
+                    //
+                    //
 
                     $storage->write($auth->getIdentity()['user'], null);
 
@@ -62,7 +62,7 @@ class AuthController extends AbstractActionController
         //$this->layout('layout/login');
         return $view;
     }
-
+*/
     public function logoutAction()
     {
         $auth = new AuthenticationService;
@@ -103,7 +103,7 @@ class AuthController extends AbstractActionController
         $view = new ViewModel(array('form' => $form));
         return $view;
     }
-
+/*
     public function loginBkp2Action()
     {
 
@@ -131,5 +131,5 @@ class AuthController extends AbstractActionController
         $view = new ViewModel(array('form' => $form));
         return $view;
     }
-
+*/
 }

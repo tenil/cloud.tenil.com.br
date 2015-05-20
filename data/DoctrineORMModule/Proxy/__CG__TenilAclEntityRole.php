@@ -64,10 +64,10 @@ class Role extends \TenilAcl\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'parent', 'nome', 'isAdmin', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'updatedAt', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'createdAt');
+            return array('__isInitialized__', 'id', 'parent', 'nome', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'updatedAt', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'createdAt');
         }
 
-        return array('__isInitialized__', 'id', 'parent', 'nome', 'isAdmin', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'updatedAt', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'createdAt');
+        return array('__isInitialized__', 'id', 'parent', 'nome', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'updatedAt', '' . "\0" . 'TenilAcl\\Entity\\Role' . "\0" . 'createdAt');
     }
 
     /**
@@ -246,17 +246,6 @@ class Role extends \TenilAcl\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getIsAdmin()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsAdmin', array());
-
-        return parent::getIsAdmin();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getCreatedAt()
     {
 
@@ -307,17 +296,6 @@ class Role extends \TenilAcl\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNome', array($nome));
 
         return parent::setNome($nome);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setIsAdmin($isAdmin)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsAdmin', array($isAdmin));
-
-        return parent::setIsAdmin($isAdmin);
     }
 
     /**

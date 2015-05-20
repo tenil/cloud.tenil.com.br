@@ -78,7 +78,7 @@ abstract class CrudController extends AbstractActionController {
 
         $repository = $this->getEm()->getRepository($this->entity);
         $entity = $repository->find($this->params()->fromRoute('id',0));
-        
+
         //Teste muito sem vergonha
         if($this->params()->fromRoute('id',0)){
             $data = $entity->toArray();

@@ -30,9 +30,6 @@ class Acl extends ClassAcl {
             } else {
                 $this->addRole(new Role($role));
             }
-            if ($role->getIsAdmin()) {
-                $this->allow($role, array(), array());
-            }
         }
     }
 

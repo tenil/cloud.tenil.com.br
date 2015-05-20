@@ -2,6 +2,7 @@
 
 namespace TenilAcl\Controller;
 
+use TenilAcl\Form\RoleDoctrine;
 use TenilBase\Controller\CrudController;
 use Zend\View\Model\ViewModel;
 
@@ -41,12 +42,14 @@ class RolesController extends CrudController {
     public function editAction() {
 
         $form = $this->getServiceLocator()->get($this->form);
+
+        //$form = new RoleDoctrine();
         $request = $this->getRequest();
 
         $repository = $this->getEm()->getRepository($this->entity);
         $entity = $repository->find($this->params()->fromRoute('id',0));
-        
-        if($this->params()->fromRoute('id', 0)){
+
+        if($entity){
             $form->setData($entity->toArray());
         }
         

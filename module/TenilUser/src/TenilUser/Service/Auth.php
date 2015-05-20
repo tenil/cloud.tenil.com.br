@@ -25,14 +25,7 @@ use Zend\Stdlib\Hydrator;
  */
 class Auth extends Service
 {
-    /**
-     * @var
-     */
     protected $username;
-
-    /**
-     * @var
-     */
     protected $password;
 
     /**
@@ -77,17 +70,28 @@ class Auth extends Service
         $this->setUsername($params['username']);
         $this->setPassword($params['password']);
 
-        $authService = $this->getServiceManager()->get('Zend\Authentication\AuthenticationService');
+        $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
 
         $adapter = $authService->getAdapter();
         $adapter->setIdentityValue($this->getUsername());
         $adapter->setCredentialValue($this->getPassword());
 
         $authResult = $authService->authenticate();
+/*
+        if($authResult->isValid()){
 
+            $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+            $perfil = $em->getRepository('TenilUser\Entity\Perfil')->find($authService->getIdentity()->getId());
+
+            $session = $this->getServiceLocator()->get('Session');
+            $session->offsetSet('user', $adapter->getResultRowObject());
+        }
+*/
         return $authResult;
     }
 
+    /*
     public function authenticateBkp($params) {
 
         $this->setUsername($params['username']);
@@ -113,6 +117,8 @@ class Auth extends Service
         return $result;
 
     }
+    */
+
     /**
      * @return bool
      */
@@ -126,12 +132,47 @@ class Auth extends Service
     }
 
     /**
+     * Faz a autorização do usuário para acessar o recurso
+     * @param string $moduleName Nome do módulo sendo acessado
+     * @param string $controllerName Nome do controller
+     * @param string $actionName Nome da ação
+     * @return boolean
+     */
+    public function authorize($moduleName, $controllerName, $actionName)
+    {
+        $auth = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+
+        $role = ($auth->hasIdentity()) ? strtolower($auth->getIdentity()->getRole()) : 'visitante';
+
+        $resource = $controllerName . '.' . $actionName;
+        $acl = $this->getServiceLocator()->get('TenilAcl\Acl\Builder')->build();
+
+        if ($acl->isAllowed($role, $resource)) {
+            return true;
+        }
+        return false;
+    }
+
+    /*
+    public function authorize()
+    {
+        $authService = $this->getServiceManager()->get('Zend\Authentication\AuthenticationService');
+
+        if ($authService->hasIdentity()){
+            return true;
+        }
+
+        return false;
+    }*/
+
+    /**
      * Faz a autenticação dos usuários
      *
      * @param array $params
      * @return array
      * @throws \Exception
      */
+    /*
     public function authenticateEmineto($params)
     {
         if (!isset($params['username']) || !isset($params['password'])) {
@@ -159,12 +200,14 @@ class Auth extends Service
 
         return true;
     }
+    */
 
     /**
      * Faz o logout do sistema
      *
      * @return void
      */
+    /*
     public function logoutEmineto()
     {
         $auth = new AuthenticationService();
@@ -173,5 +216,6 @@ class Auth extends Service
         $auth->clearIdentity();
         return true;
     }
+    */
 
 }

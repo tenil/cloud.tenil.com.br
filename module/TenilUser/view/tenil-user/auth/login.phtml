@@ -11,6 +11,7 @@ echo $this->form()->openTag($form);
 echo $formLabel->openTag() . $this->translate($form->getAttribute('label')) . $formLabel->closeTag();
 
 $email = $form->get('email');
+$email->setAttribute('autofocus', 'autofocus');
 echo $this->formInput($email);
 
 $password = $form->get('password');

@@ -10,7 +10,7 @@ class Privilege extends AbstractService {
 
     public function __construct(EntityManager $em) {
         parent::__construct($em);
-        $this->entity = "TenilAcl\Entity\Privilege";
+        $this->entity = 'TenilAcl\Entity\Privilege';
     }
 
     public function insert(array $data) {

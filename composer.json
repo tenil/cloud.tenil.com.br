@@ -14,6 +14,8 @@
         "doctrine/doctrine-module": "0.8.*@dev",
         "doctrine/doctrine-orm-module": "0.8.*@dev",
         "hounddog/doctrine-data-fixture-module": "dev-master",
-        "symfony/serializer": "v2.4.4"
+        "symfony/serializer": "v2.4.4",
+        "dino/dompdf-module": "dev-master",
+        "jotjunior/boletophp-zf2": "dev-master"
     }
 }

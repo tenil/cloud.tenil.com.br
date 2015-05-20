@@ -9,6 +9,7 @@ return array(
     'ZendXml' => array($vendorDir . '/zendframework/zendxml/library'),
     'Symfony\\Component\\Serializer\\' => array($vendorDir . '/symfony/serializer'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
+    'PhpBoletoZf2' => array($vendorDir . '/jotjunior/boletophp-zf2/src'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
@@ -22,4 +23,5 @@ return array(
     'DoctrineORMModule\\' => array($vendorDir . '/doctrine/doctrine-orm-module/src'),
     'DoctrineModule\\' => array($vendorDir . '/doctrine/doctrine-module/src'),
     'DoctrineDataFixtureModule' => array($vendorDir . '/hounddog/doctrine-data-fixture-module/src'),
+    'DOMPDFModule' => array($vendorDir . '/dino/dompdf-module/src'),
 );

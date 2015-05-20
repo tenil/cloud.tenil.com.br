@@ -8,35 +8,30 @@
 
 namespace TenilBase\Service;
 
-use Zend\ServiceManager\ServiceManager;
-use Zend\ServiceManager\ServiceManagerAwareInterface;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
-abstract class Service implements ServiceManagerAwareInterface {
-    /**
-     * @var ServiceManager
-     */
-    protected $serviceManager;
+abstract class Service implements ServiceLocatorAwareInterface {
+
+    protected $serviceLocator;
 
     /**
-     * Retrieve service manager instance
+     * Set service locator
      *
-     * @return ServiceManager
+     * @param ServiceLocatorInterface $serviceLocator
      */
-    public function getServiceManager()
+    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
-        return $this->serviceManager;
+        $this->serviceLocator = $serviceLocator;
     }
 
     /**
-     * Set service manager instance
+     * Get service locator
      *
-     * @param ServiceManager $locator
-     * @return User
+     * @return ServiceLocatorInterface
      */
-    public function setServiceManager(ServiceManager $serviceManager)
+    public function getServiceLocator()
     {
-        $this->serviceManager = $serviceManager;
-        return $this;
+        return $this->serviceLocator;
     }
 }

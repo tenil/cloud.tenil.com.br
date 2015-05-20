@@ -1,0 +1,78 @@
+<?php
+$title = $this->translate('Editar Perfil');
+$this->headTitle($title);
+?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <?php echo $title ?>
+        </div>
+    </div>
+    <?php
+    $form = $this->form;
+
+    $form->setAttribute('action', $this->url('perfil/update', array(), true));
+
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+    ?>
+    <div class="panel-body">
+        <?php
+
+        $id = $form->get('perfil')->get('id');
+        echo $this->formHidden($id);
+
+        $security = $form->get('security');
+        echo $this->formElement($security);
+
+        echo '<div class="form-group">';
+        $nome = $form->get('perfil')->get('nome');
+        echo $this->formLabel($nome);
+        echo '<div class="col-md-10">';
+        echo $this->formInput($nome);
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="form-group">';
+        $sobrenome = $form->get('perfil')->get('sobrenome');
+        echo $this->formLabel($sobrenome);
+        echo '<div class="col-md-10">';
+        echo $this->formInput($sobrenome);
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="form-group">';
+        $apelido = $form->get('perfil')->get('apelido');
+        echo $this->formLabel($apelido);
+        echo '<div class="col-md-10">';
+        echo $this->formInput($apelido);
+        echo '</div>';
+        echo '</div>';
+
+        ?>
+    </div>
+
+    <div class="panel-footer">
+        <div class="clearfix">
+            <div class="pull-right">
+                <?php
+                $submit = $form->get('submit');
+                $submit->setAttribute('class', 'btn btn-default');
+                echo $this->formSubmit($submit);
+                ?>
+            </div>
+        </div>
+    </div>
+
+    <?php
+
+
+    echo $this->form()->closeTag();
+
+    foreach ($form as $element) {
+        echo $this->formElementErrors($element);
+    }
+    ?>
+
+</div>

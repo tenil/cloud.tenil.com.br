@@ -19,6 +19,7 @@ return array(
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'TenilUserRest\Controller',
+                        'module' => 'TenilUserRest',
                         'controller' => 'UserRest',
                     )
                 )

@@ -66,7 +66,7 @@ class Module {
                  * Esse serviço pode ser desativado
                  */
                 'TenilUser\Service\Auth' => function($sm) {
-                    return new Service\Auth();
+                    return new Service\Auth;
                 },
                 'Zend\Authentication\AuthenticationService' => function($sm){
                     return $sm->get('doctrine.authenticationservice.orm_default');

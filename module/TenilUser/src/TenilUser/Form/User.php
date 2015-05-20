@@ -13,8 +13,8 @@ class User extends Form {
         $this->setAttributes(array(
             'method' => 'post',
             'role' => 'form',
-            'class' => 'form-signin',
-            'label' => 'Crie sua conta.'
+            'class' => 'form-horizontal',
+            'label' => 'Editar conta'
         ));
 
         $this->setInputFilter(new UserFilter());
@@ -24,30 +24,33 @@ class User extends Form {
 
         $nome = new Element\Text('nome');
         $nome->setLabel('Nome')
-                ->setAttribute('placeholder', 'Informe seu nome')
+                ->setAttribute('placeholder', 'Nome')
                 ->setAttribute('class', 'form-control')
-                ->setAttribute('required', 'required');
+                ->setAttribute('required', 'required')
+                ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
         $this->add($nome);
 
         $email = new Element\Email('email');
         $email->setLabel('E-mail')
-                ->setAttribute('placeholder', 'Informe o e-mail')
+                ->setAttribute('placeholder', 'E-mail')
                 ->setAttribute('class', 'form-control')
                 ->setAttribute('required', 'required')
-                ->setAttribute('autofocus', 'autofocus');
+                ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
         $this->add($email);
 
         $password = new Element\Password('password');
         $password->setLabel('Senha')
-                ->setAttribute('placeholder', 'Digite a senha')
+                ->setAttribute('placeholder', 'Senha')
                 ->setAttribute('class', 'form-control')
-                ->setAttribute('required', 'required');
+                ->setAttribute('required', 'required')
+                ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
         $this->add($password);
 
         $confirmation = new Element\Password('confirmation');
         $confirmation->setLabel('Confirmação')
                 ->setAttribute('placeholder', 'Redigite a senha')
-                ->setAttribute('class', 'form-control');
+                ->setAttribute('class', 'form-control')
+                ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
         $this->add($confirmation);
 
         $security = new Element\Csrf('security');

@@ -2,8 +2,9 @@
 
 namespace TenilAcl;
 
-use Zend\Authentication\AuthenticationService;
+use Zend\Authentication\Storage\Session;
 use Zend\Mvc\MvcEvent;
+use Zend\Session\Container;
 
 class Module
 {
@@ -45,28 +46,67 @@ class Module
     {
         $di = $event->getTarget()->getServiceLocator();
         $routeMatch = $event->getRouteMatch();
+        $routeName = $routeMatch->getMatchedRouteName();
         $moduleName = $routeMatch->getParam('module');
         $controllerName = $routeMatch->getParam('controller');
         $actionName = $routeMatch->getParam('action');
 
-/*
-        //$user = $di->get('TenilBase\Acl\Builder');
 
-        $auth = new AuthenticationService();
-        $user = $auth->getIdentity();
+        $authService = $di->get('TenilUser\Service\Auth');
 
-        if (! $user->authorize($moduleName, $controllerName, $actionName)) {
-            throw new \Exception('Voce nao tem permissao para acessar este recurso');
+        /*
+        if (!$authService->authorize($moduleName, $controllerName, $actionName)) {
+            throw new \Exception('Você não tem permissão para acessar este recurso.');
         }
 */
         return true;
     }
 
-    public function getServiceConfig()
+    /**
+     * @description Authorisation (Make sure users are logged in before allowing them to see anything)
+     * @param MvcEvent $e
+     * @return \Zend\Stdlib\ResponseInterface
+     */
+    public function authPreDispatch(MvcEvent $e)
     {
 
+        $matches = $e->getRouteMatch();
+
+        if (!$matches instanceof RouteMatch) {
+            return false;
+        }
+
+        $controller = $matches->getParam('controller');
+
+        $app = $e->getApplication();
+        $serviceManager = $app->getServiceManager();
+
+        $auth = $serviceManager->get('TenilUser\Service\Auth');
+        if (!$auth->hasIdentity() && $controller != 'TenilUser\Controller\Auth') {
+            $router = $e->getRouter();
+            $url = $router->assemble(array(), array('name' => 'login'));
+
+            $response = $e->getResponse();
+            $response->getHeaders()->addHeaderLine('Location', $url);
+            $response->setStatusCode(302);
+
+            return $response;
+        }
+
+        return false;
+    }
+
+
+    public function getServiceConfig()
+    {
         return array(
             'factories' => array(
+                'Session' => function () {
+                    return new Container('tenil');
+                },
+                'TenilAcl\Acl\Builder' => function () {
+                    return new Acl\Builder;
+                },
                 'TenilAcl\Service\Role' => function ($sm) {
                     return new Service\Role($sm->get('Doctrine\ORM\EntityManager'));
                 },
@@ -110,5 +150,4 @@ class Module
             )
         );
     }
-
 }

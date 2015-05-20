@@ -24,15 +24,15 @@ class Resource extends Form {
         $nome = new Element\Text('nome');
         $nome->setLabel('Recurso')
                 ->setAttribute('placeholder', 'Informe o nome do Recurso')
-                ->setAttribute('class', 'form-control input-lg')
-                ->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
+                ->setAttribute('class', 'form-control')
+                ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
         $this->add($nome);
 
         $security = new Element\Csrf('security');
         $this->add($security);
 
         $submit = new Element\Submit('submit');
-        $submit->setValue('Gravar')->setAttribute('class', 'btn btn-primary btn-lg btn-block');
+        $submit->setValue('Gravar')->setAttribute('class', 'btn btn-default');
         $this->add($submit);
     }
 
