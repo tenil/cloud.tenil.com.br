@@ -1,0 +1,53 @@
+<?php
+// Título da página
+$title = $this->translate('Meu perfil');
+$this->headTitle($title);
+?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <?php echo $title ?>
+        </div>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>Nome</dt>
+            <dd><?php echo $this->perfil->getTratamento() . ' ' . $this->perfil->getNome() . ' ' . $this->perfil->getSobrenome(); ?></dd>
+            <dt>Email</dt>
+            <dd><?php echo $this->perfil->getUser(); ?></dd>
+            <dt>Apelido</dt>
+            <dd><?php echo $this->perfil->getApelido(); ?></dd>
+            <?php foreach ($this->perfil->getTelefones() as $telefone): ?>
+                <dt>Telefone</dt>
+                <dd><?php echo '(' . $telefone->getDdd() . ') ' . $telefone->getNumero(); ?></dd>
+            <?php endforeach ?>
+        </dl>
+        <?php foreach ($this->perfil->getEnderecos() as $endereco): ?>
+        <hr>
+        <dl class="dl-horizontal">
+            <dt>Endereço</dt>
+            <dd><?php echo $endereco->getLogradouro() . ', ' . $endereco->getNumero(); ?></dd>
+            <dt>Complemento</dt>
+            <dd><?php echo $endereco->getComplemento(); ?></dd>
+            <dt>Bairro</dt>
+            <dd><?php echo $endereco->getBairro(); ?></dd>
+            <dt>Cidade</dt>
+            <dd><?php echo $endereco->getLocalidade() . '/' . $endereco->GetUf(); ?></dd>
+            <dt>CEP</dt>
+            <dd><?php echo $endereco->getCep(); ?></dd>
+        </dl>
+        <?php endforeach ?>
+    </div>
+    <div class="panel-footer">
+        <div class="clearfix">
+            <div class="pull-right">
+                <a class="btn btn-default"
+                   href="<?php echo $this->url('perfil/edit') ?>"
+                   target="_self">Editar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

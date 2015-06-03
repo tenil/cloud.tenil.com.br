@@ -24,6 +24,12 @@ class Perfil
     protected $id;
 
     /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="perfil", cascade={"persist"})
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id", nullable=false)
+     */
+    protected $user;
+
+    /**
      * @ORM\OneToMany(targetEntity="Telefone", mappedBy="perfil", cascade={"persist"})
      */
     protected $telefones;
@@ -50,6 +56,12 @@ class Perfil
      * @ORM\Column(name="apelido", type="string", length=255, nullable=true)
      */
     protected $apelido;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PerfilTratamento")
+     * @ORM\JoinColumn(name="id_tratamento", referencedColumnName="id")
+     */
+    protected $tratamento;
 
     /**
      * @var boolean
@@ -102,6 +114,11 @@ class Perfil
     function getApelido()
     {
         return $this->apelido;
+    }
+
+    function getTratamento()
+    {
+        return $this->tratamento;
     }
 
     /**
@@ -243,8 +260,36 @@ class Perfil
     /**
      * @return string
      */
-    public function __toString(){
-        return $this->nome;
+    public function __toString()
+    {
+        return $this->getNome();
+    }
+
+    /**
+     * Allow null to remove association
+     *
+     * @param User $user
+     * @return Perfil $this
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+
+    public function setTratamento(PerfilTratamento $tratamento = null)
+    {
+        $this->tratamento = $tratamento;
+        return $this;
     }
 
 }

@@ -34,8 +34,23 @@ class ProfileController extends CrudController
 
     public function indexAction()
     {
-
         $authenticationService = $this->getAuthService();
+        if (!$user = $authenticationService->getIdentity()) {
+            return $this->redirect()->toRoute('tenil-user/login');
+        }
+
+        $perfil = $authenticationService->getIdentity()->getPerfil();
+
+        return new ViewModel(array('perfil' => $perfil));
+
+    }
+    public function detailAction()
+    {
+        $authenticationService = $this->getAuthService();
+        if (!$user = $authenticationService->getIdentity()) {
+            return $this->redirect()->toRoute('tenil-user/login');
+        }
+
         $perfil = $authenticationService->getIdentity()->getPerfil();
 
         return new ViewModel(array('perfil' => $perfil));
@@ -156,29 +171,40 @@ class ProfileController extends CrudController
     */
     public function editAction()
     {
+        $authenticationService = $this->getAuthService();
+        if (!$user = $authenticationService->getIdentity()) {
+            return $this->redirect()->toRoute('tenil-user/login');
+        }
 
-        $form = $this->getServiceLocator()->get($this->form);
+        // Get your ObjectManager from the ServiceManager
+        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+        // Create the form and inject the ObjectManager
+        $form = new PerfilUpdate($objectManager);
+
+        $perfil = $this->identity()->getPerfil();
+
+        $form->bind($perfil);
+
         $request = $this->getRequest();
 
-        $repository = $this->getEm()->getRepository($this->entity);
-        $this->user = $this->getAuthService()->getIdentity();
-        $entity = $repository->find($this->user->getId());
-
-        $data = $entity->toArray();
-        $form->setData($data);
-
         if ($request->isPost()) {
+
+            // @HACK para corrigir remoção de elementos do formCollection
+
+            $data = $request->getPost()->toArray();
+            if ( !isset($data['perfil']['telefones']) || empty($data['perfil']['telefones']) ) {
+                $perfil->removeTelefones($perfil->getTelefones());
+            }
 
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
 
-                $service = $this->getServiceLocator()->get($this->service);
-                $result = $service->update($request->getPost()->toArray());
-
-                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Usuário atualizado com sucesso!');
-
-                return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
+                // Save the changes
+                $objectManager->flush();
+                $this->flashMessenger()->addSuccessMessage('Perfil atualizado com sucesso!');
+                return $this->redirect()->toRoute('perfil/detail');
             }
         }
 

@@ -1,158 +1,181 @@
+<?php
+// Título da página e formulário
+$title = $this->translate('Editar Perfil');
+$this->headTitle($title);
+?>
+<?php
+// Configurando o formulário
+$form = $this->form;
+$form->setAttribute('action', $this->url('perfil/edit'));
+$form->setAttributes(array(
+    'method' => 'post',
+    'role' => 'form',
+    'class' => 'form-horizontal',
+    'label' => $title
+));
+$form->prepare();
+
+// Elementos do form
+$id = $form->get('perfil')->get('id');
+$security = $form->get('security');
+$nome = $form->get('perfil')->get('nome');
+$sobrenome = $form->get('perfil')->get('sobrenome');
+$apelido = $form->get('perfil')->get('apelido');
+$telefones = $form->get('perfil')->get('telefones');
+$enderecos = $form->get('perfil')->get('enderecos');
+$tratamento = $form->get('perfil')->get('tratamento');
+
+$submit = $form->get('submit');
+
+// Configurando atributos dos Elementos
+$nome->setLabel('Nome')
+    ->setAttribute('placeholder', 'Nome')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+$sobrenome->setLabel('Sobrenome')
+    ->setAttribute('placeholder', 'Sobrenome')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+$apelido->setLabel('Apelido')
+    ->setAttribute('placeholder', 'Apelido')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+$telefones->setLabel('Telefone')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+$enderecos->setLabel('Endereço')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+$tratamento->setLabel('Tratamento')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+$submit->setAttribute('class', 'btn btn-default');
+
+// Configurando Elemento de erro
+$this->formElementErrors()
+    ->setMessageOpenFormat('<div class="col-md-10 col-md-offset-2"><span id="helpBlock" class="help-block">')
+    ->setMessageSeparatorString('</span><span id="helpBlock" class="help-block">')
+    ->setMessageCloseString('</span></div>');
+?>
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="panel-title">
-            <?php echo $this->translate('Meus dados') ?>
+            <?php echo $title ?>
         </div>
     </div>
-    <?php
-    $form = $this->form;
-    $form->prepare();
-
-    $form->setAttribute('action', $this->url('tenil-user/default', array('controller' => 'profile', 'action' => 'edit')));
-
-    echo $this->form()->openTag($form);
-
-    ?>
+    <?php echo $this->form()->openTag($form); ?>
     <div class="panel-body">
-
-
         <?php
-
-
-        $id = $form->get('id');
         echo $this->formHidden($id);
-
-        $security = $form->get('security');
         echo $this->formElement($security);
-
-        echo '<div class="form-group">';
-        $tratamento = $form->get('tratamento');
-        $sobrenome = $form->get('sobrenome');
-        $nome = $form->get('nome');
-        echo $this->formLabel($nome);
-        echo '<div class="col-md-2">';
-        echo $this->formSelect($tratamento);
-        echo '</div>';
-        echo '<div class="col-md-4">';
-        echo $this->formInput($nome);
-        echo '</div>';
-        echo '<div class="col-md-4">';
-        echo $this->formInput($sobrenome);
-        echo '</div>';
-        echo '</div>';
-
-        echo '<div class="form-group">';
-        $fone1numero = $form->get('fone1numero');
-        $fone1ddd = $form->get('fone1ddd');
-        $fone1tipo = $form->get('fone1tipo');
-        echo $this->formLabel($fone1numero);
-        echo '<div class="col-md-2">';
-        echo $this->formInput($fone1ddd);
-        echo '</div>';
-        echo '<div class="col-md-4">';
-        echo $this->formInput($fone1numero);
-        echo '</div>';
-        echo '<div class="col-md-4">';
-        echo $this->formSelect($fone1tipo);
-        echo '</div>';
-        echo '</div>';
-
-        echo '<div class="form-group">';
-        $fone2numero = $form->get('fone2numero');
-        $fone2ddd = $form->get('fone2ddd');
-        $fone2tipo = $form->get('fone2tipo');
-        echo $this->formLabel($fone2numero);
-        echo '<div class="col-md-2">';
-        echo $this->formInput($fone2ddd);
-        echo '</div>';
-        echo '<div class="col-md-4">';
-        echo $this->formInput($fone2numero);
-        echo '</div>';
-        echo '<div class="col-md-4">';
-        echo $this->formSelect($fone2tipo);
-        echo '</div>';
-        echo '</div>';
-
-        echo '<div class="form-group">';
-        $fone3numero = $form->get('fone3numero');
-        $fone3ddd = $form->get('fone3ddd');
-        $fone3tipo = $form->get('fone3tipo');
-        echo $this->formLabel($fone3numero);
-        echo '<div class="col-md-2">';
-        echo $this->formInput($fone3ddd);
-        echo '</div>';
-        echo '<div class="col-md-4">';
-        echo $this->formInput($fone3numero);
-        echo '</div>';
-        echo '<div class="col-md-4">';
-        echo $this->formSelect($fone3tipo);
-        echo '</div>';
-        echo '</div>';
-
-
-        echo '<div class="form-group">';
-
-        $logradouro = $form->get('logradouro');
-        echo $this->formLabel($logradouro);
-        echo '<div class="col-md-10">';
-        echo $this->formInput($logradouro);
-        echo '</div>';
-
-        $numero = $form->get('numero');
-        echo '<div class="col-md-offset-2 col-md-2">';
-        echo $this->formInput($numero);
-        echo '</div>';
-
-        $complemento = $form->get('complemento');
-        echo '<div class="col-md-4">';
-        echo $this->formInput($complemento);
-        echo '</div>';
-
-        $bairro = $form->get('bairro');
-        echo '<div class="col-md-4">';
-        echo $this->formInput($bairro);
-        echo '</div>';
-
-        $cidade = $form->get('localidade');
-        echo '<div class="col-md-offset-2 col-md-4">';
-        echo $this->formInput($cidade);
-        echo '</div>';
-
-        $estado = $form->get('uf');
-        echo '<div class="col-md-2">';
-        echo $this->formInput($estado);
-        echo '</div>';
-
-        $cep = $form->get('cep');
-        echo '<div class="col-md-4">';
-        echo $this->formInput($cep);
-        echo '</div>';
-
-
-        echo '</div>';
         ?>
+        <div class="form-group <?php echo ($tratamento->getMessages()? 'has-error' : '');?>">
+            <?php echo $this->formLabel($tratamento); ?>
+
+            <div class="col-md-10">
+                <?php echo $this->formSelect($tratamento); ?>
+            </div>
+            <?php echo $this->formElementErrors($tratamento); ?>
+        </div>
+        <div class="form-group <?php echo ($nome->getMessages()? 'has-error' : '');?>">
+            <?php echo $this->formLabel($nome); ?>
+
+            <div class="col-md-10">
+                <?php echo $this->formInput($nome); ?>
+            </div>
+            <?php echo $this->formElementErrors($nome); ?>
+        </div>
+        <div class="form-group">
+            <?php echo $this->formLabel($sobrenome); ?>
+
+            <div class="col-md-10">
+                <?php echo $this->formInput($sobrenome); ?>
+            </div>
+        </div>
+        <div class="form-group">
+            <?php echo $this->formLabel($apelido); ?>
+
+            <div class="col-md-10">
+                <?php echo $this->formInput($apelido); ?>
+            </div>
+        </div>
+        <hr>
+
+        <div id="telefones">
+            <span
+                data-template="<div class=&quot;form-group&quot;><input type=&quot;hidden&quot; name=&quot;perfil&amp;#x5B;telefones&amp;#x5D;&amp;#x5B;__index__&amp;#x5D;&amp;#x5B;id&amp;#x5D;&quot; value=&quot;&quot;><label class=&quot;col-md-2 control-label&quot; for=&quot;perfil[telefones]&quot;>Telefone</label><div class=&quot;col-md-1&quot;><input type=&quot;text&quot; name=&quot;perfil&amp;#x5B;telefones&amp;#x5D;&amp;#x5B;__index__&amp;#x5D;&amp;#x5B;ddd&amp;#x5D;&quot; placeholder=&quot;DDD&quot; class=&quot;form-control&quot; value=&quot;&quot;></div><div class=&quot;col-md-2&quot;><input type=&quot;text&quot; name=&quot;perfil&amp;#x5B;telefones&amp;#x5D;&amp;#x5B;__index__&amp;#x5D;&amp;#x5B;numero&amp;#x5D;&quot; placeholder=&quot;Número&quot; class=&quot;form-control&quot; value=&quot;&quot;></div><div class=&quot;col-md-1&quot;><button type=&quot;button&quot; class=&quot;btn btn-danger&quot; onclick=&quot;return telefone_remove(this);&quot;><span class=&quot;glyphicon glyphicon-trash&quot; aria-hidden=&quot;true&quot;></span></button></div></div>"></span>
+            <?php foreach ($telefones as $telefone): ?>
+                <?php
+                $ddd = $telefone->get('ddd');
+                $numero = $telefone->get('numero');
+
+                $ddd->setLabel('DDD')
+                    ->setAttribute('placeholder', 'DDD')
+                    ->setAttribute('class', 'form-control')
+                    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+                $numero->setLabel('Número')
+                    ->setAttribute('placeholder', 'Número')
+                    ->setAttribute('class', 'form-control')
+                    ->setAttribute('aria-describedby', 'helpBlock')
+                    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+                ?>
+                <div class="form-group telefone <?php if ($telefone->getMessages()) {
+                    echo 'has-error';
+                } ?>">
+                    <?php echo $this->formHidden($telefone->get('id')); ?>
+                    <?php echo $this->formLabel($telefones); ?>
+
+                    <div class="col-md-1">
+                        <?php echo $this->formInput($ddd); ?>
+                    </div>
+                    <div class="col-md-2">
+                        <?php echo $this->formInput($numero); ?>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-danger" onclick="return telefone_remove(this);">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <?php echo $this->formElementErrors($telefone); ?>
+                </div>
+            <?php endforeach ?>
+            <div class="form-group" id="adicionar-button">
+                <label class="col-md-2 control-label" for="perfil[telefones]">Telefone</label>
+
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-success" onclick="return telefone_add()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function telefone_add() {
+                var currentCount = $('#telefones .telefone').length;
+
+                var template = $("#telefones span").data("template");
+                template = template.replace(/__index__/g, currentCount);
+
+                $(template).insertBefore("#adicionar-button").hide().slideDown("fast");
+                //$('#adicionar-button').before(template);
+                return false;
+            }
+
+            function telefone_remove(e) {
+                obj = $(e).parent().parent();
+                obj.slideUp("fast", function () {
+                    obj.remove()
+                });
+                return false;
+            }
+        </script>
     </div>
-
-
     <div class="panel-footer">
         <div class="clearfix">
             <div class="pull-right">
-                <?php
-                $submit = $form->get('submit');
-                echo $this->formSubmit($submit);
-                ?>
+                <?php echo $this->formSubmit($submit); ?>
             </div>
         </div>
     </div>
-
-    <?php
-
-
-    echo $this->form()->closeTag();
-
-    foreach ($form as $element) {
-        echo $this->formElementErrors($element);
-    }
-    ?>
-
 </div>

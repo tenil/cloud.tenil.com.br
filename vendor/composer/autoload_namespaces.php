@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'ZendXml' => array($vendorDir . '/zendframework/zendxml/library'),
     'Symfony\\Component\\Serializer\\' => array($vendorDir . '/symfony/serializer'),
-    'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'PhpBoletoZf2' => array($vendorDir . '/jotjunior/boletophp-zf2/src'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src'),

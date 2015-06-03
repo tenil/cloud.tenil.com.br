@@ -52,7 +52,39 @@ return array(
                                 'controller' => 'users',
                             )
                         )
-                    )
+                    ),
+                    'register' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/register',
+                            'defaults' => array(
+                                'action' => 'register'
+                            ),
+                        ),
+                    ),
+                    'login' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/login',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'TenilUser\Controller',
+                                'controller' => 'auth',
+                                'action' => 'login'
+                            ),
+                        ),
+                    ),
+                    'logout' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/logout',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'TenilUser\Controller',
+                                'controller' => 'auth',
+                                'action' => 'logout'
+                            ),
+                        ),
+                    ),
+
                 ),
             ),
             'perfil' => array(
@@ -68,15 +100,12 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
-                    'datail' => array(
-                        'type' => 'segment',
+                    'detail' => array(
+                        'type' => 'literal',
                         'options' => array(
-                            'route' => '/:id',
+                            'route' => '/detail',
                             'defaults' => array(
                                 'action' => 'detail'
-                            ),
-                            'constraints' => array(
-                                'id' => '\d+'
                             ),
                         ),
                     ),
@@ -101,6 +130,15 @@ return array(
                             ),
                         ),
                     ),
+                    'edit' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/edit',
+                            'defaults' => array(
+                                'action' => 'edit'
+                            ),
+                        ),
+                    ),
                     'delete' => array(
                         'type' => 'segment',
                         'options' => array(
@@ -115,8 +153,7 @@ return array(
                     ),
 
                 ),
-            ),
-        )
+            ),        )
     ),
     'controllers' => array(
         'invokables' => array(

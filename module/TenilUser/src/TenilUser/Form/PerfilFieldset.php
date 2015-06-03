@@ -23,6 +23,8 @@ class PerfilFieldset extends Fieldset implements InputFilterProviderInterface
         $this->setHydrator(new DoctrineHydrator($objectManager))
             ->setObject(new Perfil());
 
+        $this->setLabel('Perfil');
+
         $this->add(array(
             'type' => 'Zend\Form\Element\Hidden',
             'name' => 'id'
@@ -33,7 +35,7 @@ class PerfilFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'nome',
             'options' => array(
                 'label' => 'Nome'
-            )
+            ),
         ));
 
         $this->add(array(
@@ -52,12 +54,28 @@ class PerfilFieldset extends Fieldset implements InputFilterProviderInterface
             )
         ));
 
+        $this->add(array(
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'tratamento',
+            'options' => array(
+                'object_manager' => $objectManager,
+                'target_class'   => 'TenilUser\Entity\PerfilTratamento',
+                'property'       => 'nome',
+                'display_empty_item' => true,
+                'empty_item_label'   => '---',
+            ),
+        ));
+
         $telefoneFieldset = new TelefoneFieldset($objectManager);
         $this->add(array(
             'type' => 'Zend\Form\Element\Collection',
             'name' => 'telefones',
             'options' => array(
-                'count' => 3,
+                'label' =>'Telefones',
+                'count' => 0,
+                'should_create_template' => false,
+                'allow_add' => true,
+                'allow_remove' => true,
                 'target_element' => $telefoneFieldset
             )
         ));
@@ -67,6 +85,9 @@ class PerfilFieldset extends Fieldset implements InputFilterProviderInterface
             'type' => 'Zend\Form\Element\Collection',
             'name' => 'enderecos',
             'options' => array(
+                'label' => 'Endereços',
+                'should_create_template' => true,
+                'allow_add' => true,
                 'count' => 1,
                 'target_element' => $enderecoFieldset
             )
@@ -76,7 +97,10 @@ class PerfilFieldset extends Fieldset implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return array(
-            'id' => array(
+            'nome' => array(
+                'required' => true
+            ),
+            'tratamento' => array(
                 'required' => false
             )
         );

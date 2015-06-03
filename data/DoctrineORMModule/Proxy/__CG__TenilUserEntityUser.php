@@ -64,10 +64,10 @@ class User extends \TenilUser\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'perfil', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'role', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'id', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'email', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'password', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'salt', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'active', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'activationKey', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'passwordResetKey', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'createdAt');
+            return array('__isInitialized__', 'id', 'perfil', 'email', 'password', 'salt', 'active', 'activationKey', 'passwordResetKey', 'updatedAt', 'createdAt');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'perfil', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'role', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'id', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'nome', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'email', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'password', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'salt', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'active', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'activationKey', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'passwordResetKey', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'updatedAt', '' . "\0" . 'TenilUser\\Entity\\User' . "\0" . 'createdAt');
+        return array('__isInitialized__', 'id', 'perfil', 'email', 'password', 'salt', 'active', 'activationKey', 'passwordResetKey', 'updatedAt', 'createdAt');
     }
 
     /**
@@ -176,56 +176,12 @@ class User extends \TenilUser\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getRole()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRole', array());
-
-        return parent::getRole();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setRole(\TenilAcl\Entity\Role $role)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRole', array($role));
-
-        return parent::setRole($role);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function encryptPassword($password)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'encryptPassword', array($password));
 
         return parent::encryptPassword($password);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getPerfil()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPerfil', array());
-
-        return parent::getPerfil();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setPerfil(\TenilUser\Entity\Perfil $perfil)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPerfil', array($perfil));
-
-        return parent::setPerfil($perfil);
     }
 
     /**
@@ -241,39 +197,6 @@ class User extends \TenilUser\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
 
         return parent::getId();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setId($id)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', array($id));
-
-        return parent::setId($id);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNome()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNome', array());
-
-        return parent::getNome();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNome($nome)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNome', array($nome));
-
-        return parent::setNome($nome);
     }
 
     /**
@@ -466,12 +389,23 @@ class User extends \TenilUser\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function toArray()
+    public function getPerfil()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'toArray', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPerfil', array());
 
-        return parent::toArray();
+        return parent::getPerfil();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPerfil(\TenilUser\Entity\Perfil $perfil = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPerfil', array($perfil));
+
+        return parent::setPerfil($perfil);
     }
 
 }

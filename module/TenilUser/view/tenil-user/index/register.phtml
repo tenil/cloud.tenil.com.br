@@ -1,8 +1,17 @@
 <?php
+$title = $this->escapeHtml($this->translate('Crie sua conta'));
+$this->headTitle($title);
+?>
+<?php
 $form = $this->form;
 $form->prepare();
 
-$form->setAttribute('action', $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'register')));
+$form->setAttribute('action', $this->url('tenil-user/register'));
+
+$this->formElementErrors()
+    ->setMessageOpenFormat('<span id="helpBlock" class="help-block">')
+    ->setMessageSeparatorString('</span><span id="helpBlock" class="help-block">')
+    ->setMessageCloseString('</span>');
 
 $formLabel = $this->plugin('formLabel');
 
@@ -13,11 +22,19 @@ echo $formLabel->openTag() . $form->getAttribute('label') . $formLabel->closeTag
 $security = $form->get('security');
 echo $this->formInput($security);
 
-$email = $form->get('email');
+$email = $form->get('user')->get('email');
 $email->setAttribute('autofocus', 'autofocus');
 echo $this->formInput($email);
 
-$password = $form->get('password');
+$nome = $form->get('user')->get('perfil')->get('nome');
+$nome->setAttribute('placeholder', 'Nome')
+    ->setAttribute('class', 'form-control')
+    ->setAttribute('aria-described-by', 'helpBlock')
+    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+echo $this->formInput($nome);
+echo $this->formElementErrors($nome);
+
+$password = $form->get('user')->get('password');
 echo $this->formInput($password);
 
 $name = $form->get('submit');
@@ -25,7 +42,7 @@ echo $this->formSubmit($name);
 ?>
 <div class="footer">
     <p>Ao inscrever-se, você concorda com os <a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'forgot')) ?>">Termos de Serviço</a></p>
-    <p>Já tem uma conta? <a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'auth', 'action'=>'login')) ?>">Entre</a></p>
+    <p><strong>Já tem uma conta? <a href="<?php echo $this->url('tenil-user/login') ?>">Entre</a></strong></p>
 </div>
 
 <?php echo $this->form()->closeTag(); ?>

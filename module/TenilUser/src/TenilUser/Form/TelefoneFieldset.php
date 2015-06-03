@@ -13,6 +13,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
+use Zend\Validator;
 
 class TelefoneFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -22,6 +23,8 @@ class TelefoneFieldset extends Fieldset implements InputFilterProviderInterface
 
         $this->setHydrator(new DoctrineHydrator($objectManager))
             ->setObject(new Telefone());
+
+        $this->setLabel('Telefone');
 
         $this->add(array(
             'type' => 'Zend\Form\Element\Hidden',
@@ -33,6 +36,8 @@ class TelefoneFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'ddd',
             'options' => array(
                 'label' => 'DDD'
+            ),
+            'attributes' => array(//  'required' => 'required'
             )
         ));
 
@@ -41,6 +46,8 @@ class TelefoneFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'numero',
             'options' => array(
                 'label' => 'Número'
+            ),
+            'attributes' => array(//   'required' => 'required'
             )
         ));
 
@@ -71,9 +78,29 @@ class TelefoneFieldset extends Fieldset implements InputFilterProviderInterface
      */
     public function getInputFilterSpecification()
     {
+        $validatorDigitos = new Validator\Digits();
+        $validatorTamanhoNumero = new Validator\StringLength();
+        $validatorTamanhoNumero->setMin(8)->setMax(9);
+        $validatorTamanhoDDD = new Validator\StringLength();
+        $validatorTamanhoDDD->setMin(2)->setMax(2);
         return array(
-            'id' => array(
-                'required' => false
+            'ddd' => array(
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim')
+                ),
+                'validators' => array(
+                    $validatorTamanhoDDD,
+                    $validatorDigitos
+                )
+            ),
+            'numero' => array(
+                'required' => true,
+                'validators' => array(
+                    $validatorTamanhoNumero,
+                    $validatorDigitos
+                )
             )
         );
     }

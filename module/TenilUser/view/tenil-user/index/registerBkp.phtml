@@ -1,0 +1,31 @@
+<?php
+$form = $this->form;
+$form->prepare();
+
+$form->setAttribute('action', $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'register')));
+
+$formLabel = $this->plugin('formLabel');
+
+echo $this->form()->openTag($form);
+
+echo $formLabel->openTag() . $form->getAttribute('label') . $formLabel->closeTag();
+
+$security = $form->get('security');
+echo $this->formInput($security);
+
+$email = $form->get('email');
+$email->setAttribute('autofocus', 'autofocus');
+echo $this->formInput($email);
+
+$password = $form->get('password');
+echo $this->formInput($password);
+
+$name = $form->get('submit');
+echo $this->formSubmit($name);
+?>
+<div class="footer">
+    <p>Ao inscrever-se, você concorda com os <a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'forgot')) ?>">Termos de Serviço</a></p>
+    <p>Já tem uma conta? <a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'auth', 'action'=>'login')) ?>">Entre</a></p>
+</div>
+
+<?php echo $this->form()->closeTag(); ?>

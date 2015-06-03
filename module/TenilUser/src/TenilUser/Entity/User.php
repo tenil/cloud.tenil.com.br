@@ -2,124 +2,88 @@
 
 namespace TenilUser\Entity;
 
-// Uso padrão do doctrine, criado na geração automática do arquivo por linha de comando.
 use Doctrine\ORM\Mapping as ORM;
-// Usado para geração de valores para o salt.
 use Zend\Math\Rand;
-// Usado para gerar um valor criptografado para senha. Muito forte.
 use Zend\Crypt\Key\Derivation\Pbkdf2;
-// Responsável por preencher os sets com os dados passados. Usado no construtor.
-use Zend\Stdlib\Hydrator;
-
-use TenilAcl\Entity\Role;
-
 /**
- * TeniluserUser
+ * User
  *
  * @ORM\Entity(repositoryClass="TenilUser\Entity\UserRepository")
- * @ORM\Table(name="teniluser_user", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
+ * @ORM\Table(name="teniluser_user")
  * @ORM\HasLifecycleCallbacks
  */
 class User
 {
 
     /**
-     * @ORM\OneToOne(targetEntity="Perfil", mappedBy="user")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
-     */
-    private $perfil;
-
-    /**
-     * @ORM\OneToOne(targetEntity="TenilAcl\Entity\Role", mappedBy="user")
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
-     */
-    private $role;
-
-    /**
-     * @return mixed
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    public function setRole(Role $role)
-    {
-        $this->role = $role;
-        return $this;
-    }
-
-    /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Perfil", mappedBy="user", cascade={"persist"})
+     **/
+    protected $perfil;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nome", type="string", length=255, nullable=true)
+     * @ORM\Column(name="email", type="string", length=255, nullable=false, unique=true)
      */
-    private $nome;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
-     */
-    private $email;
+    protected $email;
 
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
-    private $password;
+    protected $password;
 
     /**
      * @var string
      *
      * @ORM\Column(name="salt", type="string", length=255, nullable=false)
      */
-    private $salt;
+    protected $salt;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="active", type="boolean", nullable=false)
      */
-    private $active = '0';
+    protected $active = '0';
 
     /**
      * @var string
      *
      * @ORM\Column(name="activation_key", type="string", length=255, nullable=false)
      */
-    private $activationKey;
+    protected $activationKey;
 
     /**
      * @var string
      *
      * @ORM\Column(name="password_reset_key", type="string", length=255, nullable=false)
      */
-    private $passwordResetKey;
+    protected $passwordResetKey;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      */
-    private $updatedAt;
+    protected $updatedAt;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    private $createdAt;
+    protected $createdAt;
 
     public function __construct(array $options = array())
     {
@@ -145,7 +109,6 @@ class User
          * $hydrator->hydrate($options, $this);        
          */
         // Somente php >= 5.4
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
 
     public function encryptPassword($password)
@@ -160,37 +123,9 @@ class User
         return base64_encode($data);
     }
 
-    function getPerfil()
-    {
-        return $this->perfil;
-    }
-
-    function setPerfil(Perfil $perfil)
-    {
-        $this->perfil = $perfil;
-        return $this;
-    }
-
     public function getId()
     {
         return $this->id;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    public function getNome()
-    {
-        return $this->nome;
-    }
-
-    public function setNome($nome)
-    {
-        $this->nome = $nome;
-        return $this;
     }
 
     public function getEmail()
@@ -266,11 +201,10 @@ class User
         return $this->updatedAt;
     }
 
-    // prePersist: Antes de gravar as informações no banco, ele executa o método.
     /**
-     *
-     * @param \DateTime $updatedAt
-     * @return \TenilUser\Entity\User
+     * prePersist: Antes de gravar as informações no banco, ele executa o método.
+     * @return User
+     * @internal param \DateTime $updatedAt
      * @ORM\PreUpdate
      */
     public function setUpdatedAt()
@@ -295,13 +229,21 @@ class User
         return $this->email;
     }
 
-    public function toArray()
+    public function getPerfil()
     {
-
-        $hydrator = new Hydrator\ClassMethods();
-        return $hydrator->extract($this);
-
-        // return (new Hydrator\ClassMethods())->extract($this);
+        return $this->perfil;
     }
 
+    /**
+     * Allow null to remove association
+     *
+     * @param Perfil $perfil
+     * @return User $this
+     */
+    public function setPerfil(Perfil $perfil = null)
+    {
+        $perfil->setUser($this);
+        $this->perfil = $perfil;
+        return $this;
+    }
 }

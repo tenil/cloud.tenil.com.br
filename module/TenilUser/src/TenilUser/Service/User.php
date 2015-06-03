@@ -111,19 +111,20 @@ class User extends AbstractService
             $this->em->flush();
 
             $dataEmail = array(
-                'nome' => $user->getNome(),
+                'nome' => $user->getPerfil(),
                 'resetKey' => $user->getPasswordResetKey()
             );
 
             // Enviando e-mail de confirmação
             // Parâmetros: Transport, View e Page
+            /*
             $mail = new Mail($this->transport, $this->view, 'user-reset');
             $mail->setSubjet('Redefinição de senha')
                 ->setTo($user->getEmail())
                 ->setData($dataEmail)
                 ->prepare()
                 ->send();
-
+            */
             return $user;
         }
     }

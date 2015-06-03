@@ -22,6 +22,12 @@ class PerfilUpdate extends Form
 
         // The form will hydrate an object of type "Perfil"
         $this->setHydrator(new DoctrineHydrator($objectManager));
+        $this->setAttributes(array(
+            'method' => 'post',
+            'role' => 'form',
+            'class' => 'form-horizontal',
+            'label' => 'Atualizar perfil'
+        ));
 
         // Add the user fieldset, and set it as the base fieldset
         $perfilFieldset = new PerfilFieldset($objectManager);
@@ -37,12 +43,7 @@ class PerfilUpdate extends Form
         $submit->setValue('Salvar')->setAttribute('class', 'btn btn-default');
         $this->add($submit);
 
-        $this->setAttributes(array(
-            'method' => 'post',
-            'role' => 'form',
-            'class' => 'form-horizontal',
-            'label' => 'Atualizar perfil'
-        ));
+
 
         // Optionally set your validation group here
     }

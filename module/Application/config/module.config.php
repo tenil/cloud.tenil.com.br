@@ -61,6 +61,7 @@ return array(
         'aliases' => array(
             'translator' => 'MvcTranslator',
         ),
+
     ),
     'translator' => array(
         'locale' => 'pt_BR',
@@ -69,6 +70,11 @@ return array(
                 'type' => 'gettext',
                 'base_dir' => __DIR__ . '/../language',
                 'pattern' => '%s.mo',
+            ),
+            array(
+                'type' => 'phpArray',
+                'base_dir' => __DIR__ . '/../data/language',
+                'pattern' => '%s.php',
             ),
         ),
     ),

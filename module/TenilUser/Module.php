@@ -88,7 +88,7 @@ class Module {
     public function getViewHelperConfig() {
         return array(
             'invokables' => array(
-                'FormElementErrors' => 'TenilUser\Form\View\Helper\FormElementErrors',
+              //  'FormElementErrors' => 'TenilUser\Form\View\Helper\FormElementErrors',
                 //'UserIdentity' => new View\Helper\UserIdentity(),
                 'UserIdentity' => 'TenilUser\View\Helper\UserIdentity',
             //'Session' => new View\Helper\Session(), //Elton Minetto

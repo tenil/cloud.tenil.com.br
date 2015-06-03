@@ -10,9 +10,13 @@ $this->headTitle($title);
     </div>
     <?php
     $form = $this->form;
-
     $form->setAttribute('action', $this->url('perfil/update', array(), true));
-
+    $form->setAttributes(array(
+        'method' => 'post',
+        'role' => 'form',
+        'class' => 'form-horizontal',
+        'label' => $title
+    ));
     $form->prepare();
 
     echo $this->form()->openTag($form);
@@ -20,39 +24,54 @@ $this->headTitle($title);
     <div class="panel-body">
         <?php
 
-        $id = $form->get('perfil')->get('id');
+        // Elementos do form
+        $id         = $form->get('perfil')->get('id');
+        $security   = $form->get('security');
+        $nome       = $form->get('perfil')->get('nome');
+        $sobrenome  = $form->get('perfil')->get('sobrenome');
+        $apelido    = $form->get('perfil')->get('apelido');
+
+        // Configurando atributos dos Elementos
+        $nome->setLabel('Nome')
+            ->setAttribute('placeholder', 'Nome')
+            ->setAttribute('class', 'form-control')
+            ->setAttribute('required', 'required')
+            ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+        $sobrenome->setLabel('Sobrenome')
+            ->setAttribute('placeholder', 'Sobrenome')
+            ->setAttribute('class', 'form-control')
+            ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+        $apelido->setLabel('Apelido')
+            ->setAttribute('placeholder', 'Apelido')
+            ->setAttribute('class', 'form-control')
+            ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+
         echo $this->formHidden($id);
-
-        $security = $form->get('security');
         echo $this->formElement($security);
-
-        echo '<div class="form-group">';
-        $nome = $form->get('perfil')->get('nome');
-        echo $this->formLabel($nome);
-        echo '<div class="col-md-10">';
-        echo $this->formInput($nome);
-        echo '</div>';
-        echo '</div>';
-
-        echo '<div class="form-group">';
-        $sobrenome = $form->get('perfil')->get('sobrenome');
-        echo $this->formLabel($sobrenome);
-        echo '<div class="col-md-10">';
-        echo $this->formInput($sobrenome);
-        echo '</div>';
-        echo '</div>';
-
-        echo '<div class="form-group">';
-        $apelido = $form->get('perfil')->get('apelido');
-        echo $this->formLabel($apelido);
-        echo '<div class="col-md-10">';
-        echo $this->formInput($apelido);
-        echo '</div>';
-        echo '</div>';
-
         ?>
+        <div class="form-group">
+            <?php echo $this->formLabel($nome); ?>
+            <div class="col-md-2">
+                <label for="temp">Tratamento</label>
+                <select id="temp" class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <?php echo $this->formInput($nome); ?>
+            </div>
+            <div class="col-md-4">
+                <?php echo $this->formInput($sobrenome); ?>
+            </div>
+            <div class="col-md-4">
+                <?php echo $this->formInput($apelido); ?>
+            </div>
+        </div>
     </div>
-
     <div class="panel-footer">
         <div class="clearfix">
             <div class="pull-right">
@@ -64,9 +83,7 @@ $this->headTitle($title);
             </div>
         </div>
     </div>
-
     <?php
-
 
     echo $this->form()->closeTag();
 
@@ -74,5 +91,4 @@ $this->headTitle($title);
         echo $this->formElementErrors($element);
     }
     ?>
-
 </div>

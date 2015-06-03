@@ -103,6 +103,39 @@ class AuthController extends AbstractActionController
         $view = new ViewModel(array('form' => $form));
         return $view;
     }
+
+/*
+    public function loginBkp3Action()
+    {
+        $form = new LoginForm;
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $login = $this->getServiceLocator()->get('TenilUser\Service\Auth');
+                $result = $login->authenticate(array('username' => $data['email'], 'password' => $data['password']));
+
+                if ($result->isValid()) {
+                    return $this->redirect()->toRoute('home');
+                } else {
+                    foreach($result->getMessages() as $message) {
+                        $this->flashmessenger()->setNamespace('Tenil')->addErrorMessage($message);
+                    }
+                }
+            } else {
+                foreach ($form->getMessages() as $message) {
+                    $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage($message);
+                }
+            }
+        }
+
+        $view = new ViewModel(array('form' => $form));
+        return $view;
+    }
+*/
 /*
     public function loginBkp2Action()
     {

@@ -10,6 +10,7 @@ return array(
         'TenilUser',
         'TenilUserRest',
         'TenilAcl',
+        'TenilEvento',
         'PhpBoletoZf2'
     ),
 

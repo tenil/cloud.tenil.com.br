@@ -11,24 +11,20 @@
             <dt>Email</dt>
             <dd><?php echo $this->perfil->getUser(); ?></dd>
             <dt>Telefone</dt>
-            <dd><?php echo $this->perfil->getTelefone1() . ' <small><span class="label label-default">' . $this->perfil->getTelefone1() . '</span></small>'; ?></dd>
-            <dt>Telefone</dt>
-            <dd><?php echo $this->perfil->getTelefone2() . ' <small><span class="label label-default">' . $this->perfil->getTelefone2() . '</span></small>'; ?></dd>
-            <dt>Telefone</dt>
-            <dd><?php echo $this->perfil->getTelefone2() . ' <small><span class="label label-default">' . $this->perfil->getTelefone3() . '</span></small>'; ?></dd>
+            <dd><?php // echo $this->perfil->getTelefones() . ' <small><span class="label label-default">' . $this->perfil->getTelefones() . '</span></small>'; ?></dd>
         </dl>
         <hr>
         <dl class="dl-horizontal">
             <dt>Endereço</dt>
-            <dd><?php echo $this->perfil->getEndereco1()->getLogradouro() . ', ' . $this->perfil->getEndereco1()->getNumero(); ?></dd>
+            <dd><?php // echo $this->perfil->getEndereco()->getLogradouro() . ', ' . $this->perfil->getEndereco()->getNumero(); ?></dd>
             <dt>Complemento</dt>
-            <dd><?php echo $this->perfil->getEndereco1()->getComplemento(); ?></dd>
+            <dd><?php // echo $this->perfil->getEndereco()->getComplemento(); ?></dd>
             <dt>Bairro</dt>
-            <dd><?php echo $this->perfil->getEndereco1()->getBairro(); ?></dd>
+            <dd><?php // echo $this->perfil->getEndereco()->getBairro(); ?></dd>
             <dt>Cidade</dt>
-            <dd><?php echo $this->perfil->getEndereco1()->getLocalidade() . '/' . $this->perfil->getEndereco1()->GetUf(); ?></dd>
+            <dd><?php // echo $this->perfil->getEndereco()->getLocalidade() . '/' . $this->perfil->getEndereco()->GetUf(); ?></dd>
             <dt>CEP</dt>
-            <dd><?php echo $this->perfil->getEndereco1()->getCep(); ?></dd>
+            <dd><?php // echo $this->perfil->getEndereco()->getCep(); ?></dd>
         </dl>
     </div>
     <div class="panel-footer">
