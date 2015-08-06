@@ -7,10 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ZendXml' => array($vendorDir . '/zendframework/zendxml/library'),
-    'Symfony\\Component\\Serializer\\' => array($vendorDir . '/symfony/serializer'),
+    'ZendDiagnostics\\' => array($vendorDir . '/zendframework/zenddiagnostics/src'),
+    'ZendDiagnosticsTest\\' => array($vendorDir . '/zendframework/zenddiagnostics/tests'),
+    'ZFTool\\' => array($vendorDir . '/zendframework/zftool/src'),
     'PhpBoletoZf2' => array($vendorDir . '/jotjunior/boletophp-zf2/src'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),
-    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),

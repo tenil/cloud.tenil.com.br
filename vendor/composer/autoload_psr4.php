@@ -7,5 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Zend\\' => array($vendorDir . '/zendframework/zendframework/library/Zend'),
+    'Symfony\\Component\\Serializer\\' => array($vendorDir . '/symfony/serializer'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
+    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
 );

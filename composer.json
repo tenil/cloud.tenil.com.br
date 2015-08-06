@@ -9,13 +9,14 @@
     ],
     "homepage": "http://framework.zend.com/",
     "require": {
-        "php": ">=5.3.3",
-        "zendframework/zendframework": "2.*",
+        "php": ">=5.5",
+        "zendframework/zendframework": "~2.4.0",
         "doctrine/doctrine-module": "0.8.*@dev",
         "doctrine/doctrine-orm-module": "0.8.*@dev",
         "hounddog/doctrine-data-fixture-module": "dev-master",
-        "symfony/serializer": "v2.4.4",
+        "symfony/serializer": "3.*@dev",
         "dino/dompdf-module": "dev-master",
-        "jotjunior/boletophp-zf2": "dev-master"
+        "jotjunior/boletophp-zf2": "dev-master",
+        "zendframework/zftool": "dev-master"
     }
 }

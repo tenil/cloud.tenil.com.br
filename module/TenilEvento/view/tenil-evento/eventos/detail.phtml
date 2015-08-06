@@ -1,0 +1,55 @@
+<?php
+// Título da página
+$title = $this->translate('Informações do evento');
+$this->headTitle($title);
+$evento = $this->evento;
+?>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title"><?php echo $evento->getNome(); ?>
+            <span class="pull-right"><?php echo $evento->getTema(); ?></span>
+        </h1>
+    </div>
+
+    <div class="panel-body">
+
+        <dl class="dl-horizontal">
+            <dt>Data início</dt>
+            <dd><?php
+                echo $this->dateFormat(
+                    $evento->getDataInicio(),
+                    IntlDateFormatter::MEDIUM, // date
+                    IntlDateFormatter::NONE, // time
+                    "pt_BR"
+                );
+                ?>
+            </dd>
+            <dt>Data encerramento</dt>
+            <dd><?php
+                echo $this->dateFormat(
+                    $evento->getDataFim(),
+                    IntlDateFormatter::MEDIUM, // date
+                    IntlDateFormatter::NONE, // time
+                    "pt_BR"
+                );
+                ?></dd>
+            <dt>Sinópse</dt>
+            <dd class="text-justify"><?php echo $evento->getDescricao(); ?></dd>
+            <dt>Site do evento</dt>
+            <dd><a href="<?php echo $evento->getUrlEvento(); ?>"
+                   target="_blank"><?php echo $evento->getUrlEvento(); ?></a></dd>
+
+        </dl>
+    </div>
+    <div class="panel-footer">
+        <div class="clearfix">
+            <a href="<?php echo $this->url('tenil-evento'); ?>"
+               class="btn btn-default" data-toggle="tooltip" data-placement="right"
+               title="" data-original-title="Todos os eventos">Eventos</a>
+            <a href="<?php echo $this->url('tenil-evento/detail', array('id' => $evento->getId())); ?>"
+               class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="left"
+               title="" data-original-title="Faça sua inscrição.">Fazer inscrição</a>
+        </div>
+    </div>
+</div>

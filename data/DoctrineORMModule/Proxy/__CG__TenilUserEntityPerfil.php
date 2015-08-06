@@ -64,10 +64,10 @@ class Perfil extends \TenilUser\Entity\Perfil implements \Doctrine\ORM\Proxy\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'telefones', 'enderecos', 'nome', 'sobrenome', 'apelido', 'isGravatar', 'foto');
+            return array('__isInitialized__', 'id', 'user', 'telefones', 'enderecos', 'nome', 'sobrenome', 'apelido', 'tratamento', 'isGravatar', 'foto');
         }
 
-        return array('__isInitialized__', 'id', 'telefones', 'enderecos', 'nome', 'sobrenome', 'apelido', 'isGravatar', 'foto');
+        return array('__isInitialized__', 'id', 'user', 'telefones', 'enderecos', 'nome', 'sobrenome', 'apelido', 'tratamento', 'isGravatar', 'foto');
     }
 
     /**
@@ -219,6 +219,17 @@ class Perfil extends \TenilUser\Entity\Perfil implements \Doctrine\ORM\Proxy\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getApelido', array());
 
         return parent::getApelido();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTratamento()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTratamento', array());
+
+        return parent::getTratamento();
     }
 
     /**
@@ -384,6 +395,39 @@ class Perfil extends \TenilUser\Entity\Perfil implements \Doctrine\ORM\Proxy\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', array());
 
         return parent::__toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUser(\TenilUser\Entity\User $user = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', array($user));
+
+        return parent::setUser($user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUser()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', array());
+
+        return parent::getUser();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTratamento(\TenilUser\Entity\PerfilTratamento $tratamento = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTratamento', array($tratamento));
+
+        return parent::setTratamento($tratamento);
     }
 
 }

@@ -51,7 +51,6 @@ class Module
         $controllerName = $routeMatch->getParam('controller');
         $actionName = $routeMatch->getParam('action');
 
-
         $authService = $di->get('TenilUser\Service\Auth');
 
         /*

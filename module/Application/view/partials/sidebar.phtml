@@ -10,9 +10,18 @@
                 <!-- List group -->
                 <div class="list-group">
                     <a href="<?php echo $this->url('perfil/detail') ?>" class="list-group-item">Perfil</a>
-                    <a href="#sec2" class="list-group-item">Alterar Senha</a>
-                    <a href="#sec3" class="list-group-item">Endereço</a>
-                    <a href="#sec4" class="list-group-item">Faturamento</a>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <div class="panel-title">Eventos</div>
+                </div>
+                <!-- List group -->
+                <div class="list-group">
+                    <a href="<?php echo $this->url('tenil-evento'); ?>" class="list-group-item">Todos os eventos</a>
+                    <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'meus-eventos')); ?>" class="list-group-item">Meus eventos</a>
                 </div>
             </div>
 

@@ -1,0 +1,54 @@
+<?php
+// Título da página
+$title = $this->translate('Eventos');
+$this->headTitle($title);
+$data = $this->data;
+?>
+
+<?php foreach ($data as $evento): ?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo $evento->getNome(); ?>
+                <span class="pull-right"><?php echo $evento->getTema(); ?></span>
+            </h3>
+        </div>
+
+        <div class="panel-body">
+
+            <dl class="dl-horizontal">
+                <dt>Data início</dt>
+                <dd><?php
+                    echo $this->dateFormat(
+                        $evento->getDataInicio(),
+                        IntlDateFormatter::MEDIUM, // date
+                        IntlDateFormatter::NONE, // time
+                        "pt_BR"
+                    );
+                    ?>
+                </dd>
+                <dt>Data encerramento</dt>
+                <dd><?php
+                    echo $this->dateFormat(
+                        $evento->getDataFim(),
+                        IntlDateFormatter::MEDIUM, // date
+                        IntlDateFormatter::NONE, // time
+                        "pt_BR"
+                    );
+                    ?></dd>
+                <dt>Sinópse</dt>
+                <dd class="text-justify"><?php echo $evento->getDescricao(); ?></dd>
+                <dt>Site do evento</dt>
+                <dd><a href="<?php echo $evento->getUrlEvento(); ?>"
+                       target="_blank"><?php echo $evento->getUrlEvento(); ?></a></dd>
+
+            </dl>
+        </div>
+        <div class="panel-footer">
+            <div class="clearfix">
+                <a href="<?php echo $this->url('tenil-evento/detail', array('controller' => 'evento', 'action' => 'detail', 'id' => $evento->getId())) ?>"
+                   class="btn btn-default pull-right" data-toggle="tooltip" data-placement="left"
+                   title="" data-original-title="Faça sua inscrição.">Saiba mais</a>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>

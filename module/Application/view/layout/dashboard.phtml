@@ -1,0 +1,97 @@
+<?php echo $this->doctype(); ?>
+<html lang="pt-br">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <?php
+        echo $this->headMeta()
+    ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+    ->appendName('description', 'Área Administrativa')
+    ->appendName('title', 'Rede ICB')
+    ->appendName('author', 'Tenil Tecnologia')
+    ->appendName('keywords', 'ICB, Casa da Bênção, Catedral da Bênção, ITEJ')
+    ?>
+    <?php echo $this->headTitle($this->translate('Rede ICB'))->setSeparator(' - ')->setAutoEscape(false) ?>
+    <!-- Styles -->
+    <?php
+        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+    ->headLink(array('rel' => 'icon', 'href' => $this->basePath() . '/img/favicon-64.png', 'sizes' => '64x64'))
+    ->headLink(array('rel' => 'apple-touch-icon', 'href' => $this->basePath() . '/img/favicon-144.png', 'sizes' => '144x144'))
+    ->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/img/favicon-144.png', 'sizes' => '144x144'))
+    ->appendStylesheet($this->basePath() . '/css/bootstrap.min.css')
+    ->appendStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+    ->appendStylesheet($this->basePath() . '/css/style.css')
+    ->prependStylesheet($this->basePath() . '/css/signin.css')
+    ?>
+    <!-- Scripts -->
+    <?php
+        echo $this->headScript()
+    //->appendFile($this->basePath() . '/js/jquery-2.1.1.min.js')
+    ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+    ->appendFile($this->basePath() . '/js/bootstrap.min.js')
+    ?>
+</head>
+<?php
+//    $mail = '';
+    if ($user = $this->identity()) {
+$mail = $user->getEmail();
+}
+?>
+<body>
+<!-- menu area -->
+<header class="navbar navbar-inverse navbar-static-top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">Rede ICB</a>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav navbar-right">
+                <?php if ($user): ?>
+                <li><a href="<?php echo $this->url('perfil/detail') ?>"><?php echo $user->getEmail(); ?></a></li>
+                <li><a href="<?php echo $this->url('perfil/detail') ?>"><?php echo $this->gravatar($user->getEmail())->setImgSize(20)->getImgTag(); ?></a></li>
+                <li><a href="<?php echo $this->url('tenil-user/logout') ?>" data-toggle="tooltip" data-placement="bottom" title="Sair"><span class="glyphicon glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+                <?php else : ?>
+                <li><a href="<?php echo $this->url('tenil-user/register') ?>"><?php echo $this->translate('Crie sua conta') ?></a></li>
+                <li><a href="<?php echo $this->url('tenil-user/login') ?>"><?php echo $this->translate('Login') ?></a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!-- /menu area -->
+<!-- Begin Mensagens -->
+<?php echo $this->partial('partials/mensagens.phtml', array('chave' => 'valor')); ?>
+<!-- Begin Body -->
+<?php
+        if ($user):
+            echo $this->partial('partials/sidebar.phtml', array('usuario' => $user, 'content' => $this->content));
+else :
+echo $this->partial('partials/full-width.phtml');
+endif;
+?>
+<!-- Begin Footer -->
+<footer id="footer">
+    <div class="container">
+        <hr>
+        <div id="copyright">
+            &copy; <?php echo date('Y') ?> <a href="http://tenil.com.br" target="_blank">Tenil Tecnologia</a> &#8482; | <?php echo $this->translate('All rights reserved.') . ' | ' . \Zend\Version\Version::VERSION ?> | <?php echo $this->partial('partials/ip.phtml', array('chave' => 'valor')); ?>
+        </div>
+    </div>
+</footer>
+<?php
+        echo $this->inlineScript()
+->appendFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+->appendFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+->appendFile($this->basePath() . '/js/init.js')
+//->appendFile($this->basePath() . '/js/docs.min.js')
+//->appendFile($this->basePath() . '/js/ie10-viewport-bug-workaround.js')
+?>
+</body>
+</html>

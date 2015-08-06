@@ -7,7 +7,7 @@ return array(
                 'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                 'params' => array(
 //                    'host' => 'localhost',
-                    'host' => '192.168.0.22',
+                    'host' => '192.168.0.20',
                     'port' => '3306',
                     'user' => 'root',
                     'password' => 'root',
