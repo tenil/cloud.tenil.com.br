@@ -86,15 +86,9 @@ abstract class AbstractNormalizer extends SerializerAwareNormalizer implements N
      * @param callable $circularReferenceHandler
      *
      * @return self
-     *
-     * @throws InvalidArgumentException
      */
-    public function setCircularReferenceHandler($circularReferenceHandler)
+    public function setCircularReferenceHandler(callable $circularReferenceHandler)
     {
-        if (!is_callable($circularReferenceHandler)) {
-            throw new InvalidArgumentException('The given circular reference handler is not callable.');
-        }
-
         $this->circularReferenceHandler = $circularReferenceHandler;
 
         return $this;
@@ -103,7 +97,7 @@ abstract class AbstractNormalizer extends SerializerAwareNormalizer implements N
     /**
      * Set normalization callbacks.
      *
-     * @param array $callbacks help normalize the result
+     * @param callable[] $callbacks help normalize the result
      *
      * @return self
      *
@@ -159,7 +153,7 @@ abstract class AbstractNormalizer extends SerializerAwareNormalizer implements N
                 return true;
             }
 
-            $context['circular_reference_limit'][$objectHash]++;
+            ++$context['circular_reference_limit'][$objectHash];
         } else {
             $context['circular_reference_limit'][$objectHash] = 1;
         }
@@ -263,7 +257,15 @@ abstract class AbstractNormalizer extends SerializerAwareNormalizer implements N
 
                 $allowed = $allowedAttributes === false || in_array($paramName, $allowedAttributes);
                 $ignored = in_array($paramName, $this->ignoredAttributes);
-                if ($allowed && !$ignored && array_key_exists($key, $data)) {
+                if (method_exists($constructorParameter, 'isVariadic') && $constructorParameter->isVariadic()) {
+                    if ($allowed && !$ignored && (isset($data[$key]) || array_key_exists($key, $data))) {
+                        if (!is_array($data[$paramName])) {
+                            throw new RuntimeException(sprintf('Cannot create an instance of %s from serialized data because the variadic parameter %s can only accept an array.', $class, $constructorParameter->name));
+                        }
+
+                        $params = array_merge($params, $data[$paramName]);
+                    }
+                } elseif ($allowed && !$ignored && (isset($data[$key]) || array_key_exists($key, $data))) {
                     $params[] = $data[$key];
                     // don't run set for a parameter passed to the constructor
                     unset($data[$key]);

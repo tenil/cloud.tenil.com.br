@@ -30,6 +30,6 @@ sudo apt-get install phpmyadmin
 Xdebug
 sudo apt-get install php5-xdebug
 
-Configurar /etc/apache2/sites-avalable default para apontar para /vagrant/www
+Configurar /etc/apache2/sites-avalable default para apontar para /vagrant/public
 
 sudo apt-get install php5 php5-cli php5-dev php5-mcrypt php5-curl php5-gd libapache2-mod-php5
