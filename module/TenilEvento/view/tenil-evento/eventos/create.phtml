@@ -1,0 +1,226 @@
+<?php
+// Título da página e formulário
+$title = $this->translate('Novo evento');
+$this->headTitle($title);
+?>
+<?php
+// Configurando o formulário
+$form = $this->form;
+$form->setAttribute('action', $this->url('tenil-evento/default', array('action' => 'create')));
+
+$form->setAttributes(array(
+    'method' => 'post',
+    'role' => 'form',
+    'class' => 'form-horizontal',
+    'label' => $title
+));
+$form->prepare();
+
+// Elementos do form
+$id = $form->get('evento')->get('id');
+$security = $form->get('security');
+$nome = $form->get('evento')->get('nome');
+$tema = $form->get('evento')->get('tema');
+$dataInicio = $form->get('evento')->get('dataInicio');
+$dataFim = $form->get('evento')->get('dataFim');
+$descricao = $form->get('evento')->get('descricao');
+$email = $form->get('evento')->get('email');
+$horaInicio = $form->get('evento')->get('horaInicio');
+$horaFim = $form->get('evento')->get('horaFim');
+$organizador = $form->get('evento')->get('organizador');
+$qtdVagas = $form->get('evento')->get('qtdVagas');
+$valorInscricao = $form->get('evento')->get('valorInscricao');
+$flagEventoGratuito = $form->get('evento')->get('flagEventoGratuito');
+$flagInscricoesAbertas = $form->get('evento')->get('flagInscricoesAbertas');
+$urlEvento = $form->get('evento')->get('urlEvento');
+
+$submit = $form->get('submit');
+
+// Configurando atributos dos Elementos
+
+
+$nome->setLabel('Nome')
+    ->setAttribute('placeholder', 'Nome')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$tema->setLabel('Tema')
+    ->setAttribute('placeholder', 'Tema')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$descricao->setLabel('Descrição')
+    ->setAttribute('placeholder', 'Descrição')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$dataInicio->setLabel('Data de início')
+    ->setAttribute('placeholder', 'Data de início')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$dataFim->setLabel('Data de encerramento')
+    ->setAttribute('placeholder', 'Data de encerramento')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$horaInicio->setLabel('Hora de início')
+    ->setAttribute('placeholder', 'Hora de início')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$horaFim->setLabel('Hora de encerramento')
+    ->setAttribute('placeholder', 'Hora de encerramento')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$flagInscricoesAbertas->setLabel('Inscrições abertas')
+    ->setAttribute('placeholder', 'Inscrições abertas')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$organizador->setLabel('Organizador do evento')
+    ->setAttribute('placeholder', 'Organizador ou produtor do evento')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$email->setLabel('E-mail')
+    ->setAttribute('placeholder', 'E-mail para contato')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$submit->setAttribute('class', 'btn btn-primary');
+
+/*
+$telefones->setLabel('Telefone')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+$enderecos->setLabel('Endereço')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+$tratamento->setLabel('Tratamento')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+$submit->setAttribute('class', 'btn btn-default');
+*/
+// Configurando Elemento de erro
+$this->formElementErrors()
+    ->setMessageOpenFormat('<div class="col-md-10 col-md-offset-2"><span id="helpBlock" class="help-block">')
+    ->setMessageSeparatorString('</span><span id="helpBlock" class="help-block">')
+    ->setMessageCloseString('</span></div>');
+?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <?php echo $title ?>
+        </div>
+    </div>
+    <?php echo $this->form()->openTag($form); ?>
+    <div class="panel-body">
+        <?php
+        echo $this->formHidden($id);
+        echo $this->formElement($security);
+        ?>
+        <div class="alert alert-info">Informações do evento</div>
+        <div class="form-group <?php echo($nome->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($nome); ?>
+
+            <div class="col-md-9">
+                <?php echo $this->formInput($nome); ?>
+            </div>
+            <?php echo $this->formElementErrors($nome); ?>
+        </div>
+        <div class="form-group <?php echo($tema->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($tema); ?>
+
+            <div class="col-md-9">
+                <?php echo $this->formInput($tema); ?>
+            </div>
+            <?php echo $this->formElementErrors($tema); ?>
+        </div>
+
+        <div class="form-group <?php echo($descricao->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($descricao); ?>
+
+            <div class="col-md-9">
+                <?php echo $this->formTextarea($descricao); ?>
+            </div>
+            <?php echo $this->formElementErrors($descricao); ?>
+        </div>
+
+        <div class="form-group <?php echo($dataInicio->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($dataInicio); ?>
+
+            <div class="col-md-3">
+                <?php echo $this->formDate($dataInicio); ?>
+            </div>
+            <?php echo $this->formElementErrors($dataInicio); ?>
+        </div>
+
+        <div class="form-group <?php echo($horaInicio->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($horaInicio); ?>
+
+            <div class="col-md-3">
+                <?php echo $this->formTime($horaInicio); ?>
+            </div>
+            <?php echo $this->formElementErrors($horaInicio); ?>
+        </div>
+
+        <div class="form-group <?php echo($dataFim->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($dataFim); ?>
+
+            <div class="col-md-3">
+                <?php echo $this->formDate($dataFim); ?>
+            </div>
+            <?php echo $this->formElementErrors($dataFim); ?>
+        </div>
+
+        <div class="form-group <?php echo($horaFim->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($horaFim); ?>
+
+            <div class="col-md-3">
+                <?php echo $this->formTime($horaFim); ?>
+            </div>
+            <?php echo $this->formElementErrors($horaFim); ?>
+        </div>
+
+        <div class="form-group <?php echo($flagInscricoesAbertas->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($flagInscricoesAbertas); ?>
+
+            <div class="col-md-3">
+                <?php echo $this->formCheckbox($flagInscricoesAbertas); ?>
+            </div>
+            <?php echo $this->formElementErrors($flagInscricoesAbertas); ?>
+        </div>
+
+        <div class="alert alert-info">Informações de contato</div>
+
+        <div class="form-group <?php echo($organizador->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($organizador); ?>
+
+            <div class="col-md-9">
+                <?php echo $this->formInput($organizador); ?>
+            </div>
+            <?php echo $this->formElementErrors($organizador); ?>
+        </div>
+
+        <div class="form-group <?php echo($email->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($email); ?>
+
+            <div class="col-md-9">
+                <?php echo $this->formEmail($email); ?>
+            </div>
+            <?php echo $this->formElementErrors($email); ?>
+        </div>
+
+
+    </div>
+    <div class="panel-body">
+        <?php
+        foreach ($form as $element) {
+            echo $this->formElementErrors($element) . PHP_EOL;
+        }
+        ?>
+    </div>
+
+    <div class="panel-footer">
+        <div class="clearfix">
+            <div class="btn-toolbar pull-right" role="toolbar">
+                <div class="btn-group" role="group">
+                    <a href="<?php echo $this->url('tenil-evento') ?>"
+                       class="btn btn-danger">Cancelar</a>
+                    <?php echo $this->formSubmit($submit); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

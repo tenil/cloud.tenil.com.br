@@ -14,9 +14,10 @@
         "doctrine/doctrine-module": "0.8.*@dev",
         "doctrine/doctrine-orm-module": "0.8.*@dev",
         "hounddog/doctrine-data-fixture-module": "dev-master",
-        "symfony/serializer": "3.*@dev",
+        "symfony/serializer": "~3",
         "dino/dompdf-module": "dev-master",
         "jotjunior/boletophp-zf2": "dev-master",
-        "zendframework/zftool": "dev-master"
+        "zendframework/zftool": "dev-master",
+		"cocur/slugify": "~2"
     }
 }

@@ -10,6 +10,7 @@ namespace TenilEvento\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
+use Cocur\Slugify\Slugify;
 
 /**
  * Evento
@@ -109,9 +110,9 @@ class Evento
     /**
      * @var string
      *
-     * @ORM\Column(name="url_evento", type="string", length=1024)
+     * @ORM\Column(name="slug", type="string", length=1024)
      */
-    protected $urlEvento;
+    protected $slug;
 
     /**
      * @var string
@@ -390,18 +391,20 @@ class Evento
     /**
      * @return string
      */
-    public function getUrlEvento()
+    public function getSlug()
     {
-        return $this->urlEvento;
+        return $this->slug;
     }
 
     /**
      * @param string $urlEvento
      * @return $this
      */
-    public function setUrlEvento($urlEvento)
+    public function setSlug()
     {
-        $this->urlEvento = $urlEvento;
+        $slugify = new Slugify();
+        $slugify->slugify($this->nome);
+        $this->slug = $slugify;
         return $this;
     }
 

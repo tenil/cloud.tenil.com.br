@@ -32,7 +32,9 @@ class EventosController extends AbstractActionController
     {
         $id = $this->params()->fromRoute('id', null);
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $evento = $em->getRepository('TenilEvento\Entity\Evento')->find($id);
+
+        // $evento = $em->getRepository('TenilEvento\Entity\Evento')->find($id);
+        $evento = $em->getRepository('TenilEvento\Entity\Evento')->findOneBy(array('slug' => $id));
 
         if ($evento) {
             return new ViewModel(array('evento' => $evento));

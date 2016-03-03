@@ -36,7 +36,8 @@ return array(
                                 'action' => 'detail'
                             ),
                             'constraints' => array(
-                                'id' => '\d+'
+                                //'id' => '\d+'
+                                'id' => '[a-zA-Z][a-zA-z0-9_-]*'
                             )
                         ),
                     ),

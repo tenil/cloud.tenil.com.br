@@ -5,6 +5,8 @@ $this->headTitle($title);
 $data = $this->data;
 ?>
 
+Teste: <?php echo $this->slugify('Bebê   - (/e atenção~~~--sdfkjsasçáí)    da Priscila e    Claytão    '); ?>
+
 <?php foreach ($data as $evento): ?>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -37,9 +39,9 @@ $data = $this->data;
                     ?></dd>
                 <dt>Sinópse</dt>
                 <dd class="text-justify"><?php echo $evento->getDescricao(); ?></dd>
-                <dt>Site do evento</dt>
-                <dd><a href="<?php echo $evento->getUrlEvento(); ?>"
-                       target="_blank"><?php echo $evento->getUrlEvento(); ?></a></dd>
+                <dt>Site do evento (slug)</dt>
+                <dd><a href="<?php echo $this->url('tenil-evento/detail', array('controller' => 'evento', 'action' => 'detail', 'id' => $evento->getSlug())) ?>"
+                       target="_self"><?php echo $evento->getSlug() ?></a></dd>
 
             </dl>
         </div>
