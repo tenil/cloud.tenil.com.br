@@ -17,4 +17,5 @@ class Evento extends AbstractService
         parent::__construct($em);
         $this->entity = 'TenilEvento\Entity\Evento';
     }
+
 }

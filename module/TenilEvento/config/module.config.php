@@ -2,13 +2,21 @@
 
 namespace TenilEvento;
 
+use Zend\Mvc\Router\Http\Segment;
+
 return array(
     'router' => array(
         'routes' => array(
+
             'tenil-evento' => array(
-                'type' => 'Literal',
+                'type' => 'segment',
                 'options' => array(
-                    'route' => '/eventos',
+                    'route' => '/eventos[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-z0-9_-]*',
+                        'id' => '[a-zA-Z][a-zA-z0-9_-]*',
+                       // 'id' => '\d+',
+                    ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'TenilEvento\Controller',
                         'module' => 'TenilEvento',
@@ -16,70 +24,7 @@ return array(
                         'action' => 'list'
                     )
                 ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type' => 'segment',
-                        'options' => array(
-                            'route' => '/:action[/:id]',
-                            'constraints' => array(
-                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
-                                'id' => '\d+',
-                            ),
-                        ),
-                    ),
-                    'detail' => array(
-                        'type' => 'segment',
-                        'options' => array(
-                            'route' => '/:id',
-                            'defaults' => array(
-                                'action' => 'detail'
-                            ),
-                            'constraints' => array(
-                                //'id' => '\d+'
-                                'id' => '[a-zA-Z][a-zA-z0-9_-]*'
-                            )
-                        ),
-                    ),
-                ),
-            ),
-            'tenil-inscricao' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/inscricoes',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'TenilEvento\Controller',
-                        'module' => 'TenilEvento',
-                        'controller' => 'inscricoes',
-                        'action' => 'list'
-                    )
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type' => 'segment',
-                        'options' => array(
-                            'route' => '/:action[/:id]',
-                            'constraints' => array(
-                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
-                                'id' => '\d+',
-                            ),
-                        ),
-                    ),
-                    'detail' => array(
-                        'type' => 'segment',
-                        'options' => array(
-                            'route' => '/:id',
-                            'defaults' => array(
-                                'action' => 'detail'
-                            ),
-                            'constraints' => array(
-                                'id' => '\d+'
-                            )
-                        ),
-                    ),
-                ),
-            ),
+            )
         )
     ),
     'controllers' => array(

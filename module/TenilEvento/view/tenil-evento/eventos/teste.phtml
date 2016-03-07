@@ -1,0 +1,33 @@
+<?php
+// Título da página
+$title = $this->translate('Teste');
+$this->headTitle($title);
+$data = $this->data;
+$routes = $this->routes;
+?>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title">Testando
+            <span class="pull-right">Pagina</span>
+        </h1>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <?php foreach ($data as $chave => $valor): ?>
+            <dt><?php echo $chave; ?></dt>
+            <dd><?php echo $valor; ?></dd>
+            <?php endforeach; ?>
+        </dl>
+        <dl class="dl-horizontal">
+            <?php foreach ($routes as $chave => $valor): ?>
+                <dt>Rota</dt>
+                <dd><?php echo $chave; ?></dd>
+            <?php endforeach; ?>
+        </dl>
+    </div>
+    <div class="panel-footer">
+        <div class="clearfix">
+        </div>
+    </div>
+</div>

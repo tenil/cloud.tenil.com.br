@@ -12,7 +12,8 @@ use Zend\View\Model\ViewModel;
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\ArrayAdapter;
 
-abstract class CrudController extends AbstractActionController {
+abstract class CrudController extends AbstractActionController
+{
 
     protected $em;
     protected $service;
@@ -22,10 +23,11 @@ abstract class CrudController extends AbstractActionController {
     protected $controller;
 
     /**
-     * 
+     *
      * @return EntityManager
      */
-    protected function getEm() {
+    protected function getEm()
+    {
         if (null === $this->em) {
             $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         }
@@ -33,11 +35,12 @@ abstract class CrudController extends AbstractActionController {
         return $this->em;
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
 
         $list = $this->getEm()
-                ->getRepository($this->entity)
-                ->findAll();
+            ->getRepository($this->entity)
+            ->findAll();
 
         $pageNumber = $this->params()->fromRoute('page');
         $count = 10;
@@ -48,7 +51,8 @@ abstract class CrudController extends AbstractActionController {
         return new ViewModel(array('data' => $paginator, 'page' => $pageNumber));
     }
 
-    public function addAction() {
+    public function addAction()
+    {
 
         $form = new $this->form();
         $request = $this->getRequest();
@@ -71,21 +75,22 @@ abstract class CrudController extends AbstractActionController {
         return new ViewModel(array('form' => $form));
     }
 
-    public function editAction() {
+    public function editAction()
+    {
 
         $form = new $this->form();
         $request = $this->getRequest();
 
         $repository = $this->getEm()->getRepository($this->entity);
-        $entity = $repository->find($this->params()->fromRoute('id',0));
-        
+        $entity = $repository->find($this->params()->fromRoute('id', 0));
+
         //Teste muito sem vergonha
-        if($this->params()->fromRoute('id',0)){
+        if ($this->params()->fromRoute('id', 0)) {
             $data = $entity->toArray();
             unset($data['password']);
             $form->setData($data);
         }
-        
+
         if ($request->isPost()) {
 
             $form->setData($request->getPost());
@@ -104,15 +109,100 @@ abstract class CrudController extends AbstractActionController {
         return new ViewModel(array('form' => $form));
 
     }
-    
-    public function deleteAction(){
-        
+
+    public function deleteAction()
+    {
+
         $service = $this->getServiceLocator()->get($this->service);
-        if($service->delete($this->params()->fromRoute('id',0))){
+        if ($service->delete($this->params()->fromRoute('id', 0))) {
             $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Excluído com sucesso!');
-            return $this->redirect()->toRoute($this->route,array('controller'=>  $this->controller));
         }
-        
+
+        return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
+
     }
 
+    public function testeAction()
+    {
+        $data = array(
+            'controller' => $this->controller,
+            'entity' => $this->entity,
+            'form' => $this->form,
+            'route' => $this->route,
+            'service' => $this->service
+        );
+
+        // $sl instanceof Zend\ServiceManager\ServiceManager
+
+        $config = $this->getServiceLocator()->get('Config');
+        $routes = $config['router']['routes'];
+
+        return new ViewModel(array('data' => $data, 'routes' => $routes));
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function listAction()
+    {
+//        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+//        $list = $em->getRepository('TenilEvento\Entity\Evento')->findAll();
+
+        $list = $this->getEm()->getRepository($this->entity)->findAll();
+
+        return new ViewModel(array('data' => $list));
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function detailAction()
+    {
+        $id = $this->params()->fromRoute('id', null);
+        //$em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+        // $evento = $em->getRepository('TenilEvento\Entity\Evento')->find($id);
+        $data = $this->getEm()->getRepository($this->entity)->findOneBy(array('slug' => $id));
+
+        if ($data) {
+            return new ViewModel(array('data' => $data));
+        } else {
+            return $this->notFoundAction();
+        }
+
+    }
+
+    public function createAction()
+    {
+        // Get ObjectManager from the ServiceManager
+        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+        // Create the form and inject the ObjectManager
+        $form = new $this->form($objectManager);
+
+        // Create a new, empty entity and bind it to the form
+        $entity = new $this->entity();
+
+        $form->bind($entity);
+
+        if ($this->request->isPost()) {
+            $form->setData($this->request->getPost());
+
+            if ($form->isValid()) {
+                $objectManager->persist($entity);
+                $objectManager->flush();
+
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Cadastro realizado com sucesso!');
+                return $this->redirect()->toRoute($this->route, array('controller' => $this->controller, 'action' => 'list'));
+            }
+
+        }
+
+        return array('form' => $form);
+    }
+
+    public function getAuthService()
+    {
+        return $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+    }
 }

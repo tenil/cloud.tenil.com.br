@@ -6,7 +6,7 @@ $this->headTitle($title);
 <?php
 // Configurando o formulário
 $form = $this->form;
-$form->setAttribute('action', $this->url('tenil-evento/default', array('action' => 'create')));
+$form->setAttribute('action', $this->url('tenil-evento', array('action' => 'create')));
 
 $form->setAttributes(array(
     'method' => 'post',
@@ -32,7 +32,7 @@ $qtdVagas = $form->get('evento')->get('qtdVagas');
 $valorInscricao = $form->get('evento')->get('valorInscricao');
 $flagEventoGratuito = $form->get('evento')->get('flagEventoGratuito');
 $flagInscricoesAbertas = $form->get('evento')->get('flagInscricoesAbertas');
-$urlEvento = $form->get('evento')->get('urlEvento');
+// $slug = $form->get('evento')->get('slug');
 
 $submit = $form->get('submit');
 

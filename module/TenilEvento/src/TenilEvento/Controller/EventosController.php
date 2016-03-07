@@ -10,62 +10,47 @@ namespace TenilEvento\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use TenilBase\Controller\CrudController;
 
-class EventosController extends AbstractActionController
+class EventosController extends CrudController
 {
 
-    /**
-     * @return ViewModel
-     */
-    public function listAction()
+    public function __construct()
     {
-        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $list = $em->getRepository('TenilEvento\Entity\Evento')->findAll();
-
-        return new ViewModel(array('data' => $list));
+        $this->controller   = 'eventos';
+        $this->entity       = 'TenilEvento\Entity\Evento';
+        $this->form         = 'TenilEvento\Form\EventoCreate';
+        $this->route        = 'tenil-evento';
+        $this->service      = 'TenilEvento\Service\Evento';
     }
 
-    /**
-     * @return ViewModel
-     */
-    public function detailAction()
+    public function signupAction()
     {
-        $id = $this->params()->fromRoute('id', null);
-        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        // Get ObjectManager from the ServiceManager
+        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
-        // $evento = $em->getRepository('TenilEvento\Entity\Evento')->find($id);
-        $evento = $em->getRepository('TenilEvento\Entity\Evento')->findOneBy(array('slug' => $id));
+        // Create the form and inject the ObjectManager
+        $form = new $this->form($objectManager);
 
-        if ($evento) {
-            return new ViewModel(array('evento' => $evento));
-        } else {
-            return $this->notFoundAction();
+        // Create a new, empty entity and bind it to the form
+        $entity = new $this->entity();
+
+        $form->bind($entity);
+
+        if ($this->request->isPost()) {
+            $form->setData($this->request->getPost());
+
+            if ($form->isValid()) {
+                $objectManager->persist($entity);
+                $objectManager->flush();
+
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Cadastro realizado com sucesso!');
+                return $this->redirect()->toRoute($this->route, array('controller' => $this->controller, 'action' => 'list'));
+            }
+
         }
 
+        return array('form' => $form);
     }
 
-    public function meusEventosAction()
-    {
-        /**
-         * Lista eventos em que a pessoa fez inscrição
-         */
-
-        $authenticationService = $this->getAuthService();
-        if (!$user = $authenticationService->getIdentity()) {
-            return $this->redirect()->toRoute('tenil-user/login');
-        }
-
-        $perfil = $authenticationService->getIdentity()->getId();
-
-        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $list = $em->getRepository('TenilEvento\Entity\Evento')->findby(array("responsavel" => $perfil));
-
-
-        return new ViewModel(array('data' => $list));
-    }
-
-    public function getAuthService()
-    {
-        return $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
-    }
 }

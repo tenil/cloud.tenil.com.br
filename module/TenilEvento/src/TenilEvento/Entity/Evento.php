@@ -17,6 +17,7 @@ use Cocur\Slugify\Slugify;
  *
  * @ORM\Table(name="tenilevento_evento")
  * @ORM\Entity(repositoryClass="TenilEvento\Entity\EventoRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Evento
 {
@@ -397,14 +398,16 @@ class Evento
     }
 
     /**
-     * @param string $urlEvento
+     * prePersist: Antes de gravar as informações no banco, ele executa o método.
+     * @param string $slug
      * @return $this
+     * @ORM\PrePersist
      */
     public function setSlug()
     {
         $slugify = new Slugify();
-        $slugify->slugify($this->nome);
-        $this->slug = $slugify;
+        $slug = $slugify->slugify($this->nome);
+        $this->slug = $slug;
         return $this;
     }
 

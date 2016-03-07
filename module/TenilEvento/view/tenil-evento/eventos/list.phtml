@@ -4,9 +4,6 @@ $title = $this->translate('Eventos');
 $this->headTitle($title);
 $data = $this->data;
 ?>
-
-Teste: <?php echo $this->slugify('Bebê   - (/e atenção~~~--sdfkjsasçáí)    da Priscila e    Claytão    '); ?>
-
 <?php foreach ($data as $evento): ?>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -18,6 +15,8 @@ Teste: <?php echo $this->slugify('Bebê   - (/e atenção~~~--sdfkjsasçáí)   
         <div class="panel-body">
 
             <dl class="dl-horizontal">
+                <dt>ID</dt>
+                <dd><?php echo $evento->getId(); ?></dd>
                 <dt>Data início</dt>
                 <dd><?php
                     echo $this->dateFormat(
@@ -40,16 +39,23 @@ Teste: <?php echo $this->slugify('Bebê   - (/e atenção~~~--sdfkjsasçáí)   
                 <dt>Sinópse</dt>
                 <dd class="text-justify"><?php echo $evento->getDescricao(); ?></dd>
                 <dt>Site do evento (slug)</dt>
-                <dd><a href="<?php echo $this->url('tenil-evento/detail', array('controller' => 'evento', 'action' => 'detail', 'id' => $evento->getSlug())) ?>"
+                <dd>
+                    <a href="<?php echo $this->url('tenil-evento', array('controller' => 'evento', 'action' => 'detail', 'id' => $evento->getSlug())) ?>"
                        target="_self"><?php echo $evento->getSlug() ?></a></dd>
 
             </dl>
         </div>
         <div class="panel-footer">
             <div class="clearfix">
-                <a href="<?php echo $this->url('tenil-evento/detail', array('controller' => 'evento', 'action' => 'detail', 'id' => $evento->getId())) ?>"
-                   class="btn btn-default pull-right" data-toggle="tooltip" data-placement="left"
-                   title="" data-original-title="Faça sua inscrição.">Saiba mais</a>
+                <div class="btn-toolbar pull-right" role="toolbar">
+                    <div class="btn-group" role="group">
+                        <a href="<?php echo $this->url('tenil-evento') ?>"
+                           class="btn btn-danger">Cancelar</a>
+                        <a href="<?php echo $this->url('tenil-evento', array('controller' => 'evento', 'action' => 'signup', 'id' => $evento->getId())) ?>"
+                           class="btn btn-primary">Fazer Inscrição</a>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
