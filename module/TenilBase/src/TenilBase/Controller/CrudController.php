@@ -153,24 +153,6 @@ abstract class CrudController extends AbstractActionController
         return new ViewModel(array('data' => $list));
     }
 
-    /**
-     * @return ViewModel
-     */
-    public function detailAction()
-    {
-        $id = $this->params()->fromRoute('id', null);
-        //$em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-
-        // $evento = $em->getRepository('TenilEvento\Entity\Evento')->find($id);
-        $data = $this->getEm()->getRepository($this->entity)->findOneBy(array('slug' => $id));
-
-        if ($data) {
-            return new ViewModel(array('data' => $data));
-        } else {
-            return $this->notFoundAction();
-        }
-
-    }
 
     public function createAction()
     {

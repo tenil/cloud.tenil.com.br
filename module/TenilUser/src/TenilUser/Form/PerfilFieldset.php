@@ -11,6 +11,7 @@ namespace TenilUser\Form;
 use TenilUser\Entity\Perfil;
 use Doctrine\Common\Persistence\ObjectManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+use Zend\Form\ElementInterface;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
 
@@ -104,5 +105,17 @@ class PerfilFieldset extends Fieldset implements InputFilterProviderInterface
                 'required' => false
             )
         );
+    }
+
+    /**
+     * Set a single option for an element
+     *
+     * @param  string $key
+     * @param  mixed $value
+     * @return self
+     */
+    public function setOption($key, $value)
+    {
+        // TODO: Implement setOption() method.
     }
 }

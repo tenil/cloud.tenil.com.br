@@ -27,49 +27,98 @@ class Inscricao
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="TenilUser\Entity\Perfil")
-     * @ORM\JoinColumn(name="id_responsavel", referencedColumnName="id")
-     **/
-    private $responsavel;
+    protected $id;
 
     /**
      *
      * @ORM\ManyToOne(targetEntity="Evento")
      * @ORM\JoinColumn(name="id_evento", referencedColumnName="id")
      **/
-    private $evento;
+    protected $evento;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nome", type="string", length=512, nullable=false)
      */
-    private $nome;
+    protected $nome;
 
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=512)
      */
-    private $email;
+    protected $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cpf", type="string", length=512)
+     */
+    protected $cpf;
 
     /**
      * @var DateTime
      *
-     * @ORM\Column(name="criado_em", type="datetime")
+     * @ORM\Column(name="data_nascimento", type="date")
      */
-    private $criadoEm;
+    protected $dataNascimento;
+
+    /**
+     * @var string
+     * @ORM\Column(name="end_logradouro", type="string", length=255, nullable=true)
+     */
+    protected $logradouro;
+
+    /**
+     * @var string
+     * @ORM\Column(name="end_numero", type="string", length=5, nullable=true)
+     */
+    protected $numero;
+
+    /**
+     * @var string
+     * @ORM\Column(name="end_complemento", type="string", length=45, nullable=true)
+     */
+    protected $complemento;
+
+    /**
+     * @var string
+     * @ORM\Column(name="end_bairro", type="string", length=255, nullable=true)
+     */
+    protected $bairro;
+
+    /**
+     * @var string
+     * @ORM\Column(name="end_localidade", type="string", length=255, nullable=true)
+     */
+    protected $localidade;
+
+    /**
+     * @var string
+     * @ORM\Column(name="end_uf", type="string", length=2, nullable=true)
+     */
+    protected $uf;
+
+    /**
+     * @var string
+     * @ORM\Column(name="end_cep", type="string", length=8, nullable=true)
+     */
+    protected $cep;
 
     /**
      * @var DateTime
      *
-     * @ORM\Column(name="modificado_em", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime")
      */
-    private $modificadoEm;
+    protected $criadoEm;
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    protected $modificadoEm;
 
     /**
      * @return string
@@ -89,30 +138,16 @@ class Inscricao
 
     /**
      * @param int $id
+     * @return Inscricao
      */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getResponsavel()
-    {
-        return $this->responsavel;
-    }
-
-    /**
-     * @param mixed $responsavel
-     */
-    public function setResponsavel($responsavel)
-    {
-        $this->responsavel = $responsavel;
-    }
-
-    /**
-     * @return mixed
+     * @return Evento
      */
     public function getEvento()
     {
@@ -120,11 +155,13 @@ class Inscricao
     }
 
     /**
-     * @param mixed $evento
+     * @param Evento $evento
+     * @return Inscricao
      */
-    public function setEvento($evento)
+    public function setEvento(Evento $evento)
     {
         $this->evento = $evento;
+        return $this;
     }
 
     /**
@@ -137,10 +174,12 @@ class Inscricao
 
     /**
      * @param string $nome
+     * @return Inscricao
      */
     public function setNome($nome)
     {
         $this->nome = $nome;
+        return $this;
     }
 
     /**
@@ -153,10 +192,174 @@ class Inscricao
 
     /**
      * @param string $email
+     * @return Inscricao
      */
     public function setEmail($email)
     {
         $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCpf()
+    {
+        return $this->cpf;
+    }
+
+    /**
+     * @param string $cpf
+     * @return Inscricao
+     */
+    public function setCpf($cpf)
+    {
+        $this->cpf = $cpf;
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getDataNascimento()
+    {
+        return $this->dataNascimento;
+    }
+
+    /**
+     * @param DateTime $dataNascimento
+     * @return Inscricao
+     */
+    public function setDataNascimento($dataNascimento)
+    {
+        $this->dataNascimento = $dataNascimento;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogradouro()
+    {
+        return $this->logradouro;
+    }
+
+    /**
+     * @param string $logradouro
+     * @return Inscricao
+     */
+    public function setLogradouro($logradouro)
+    {
+        $this->logradouro = $logradouro;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+
+    /**
+     * @param string $numero
+     * @return Inscricao
+     */
+    public function setNumero($numero)
+    {
+        $this->numero = $numero;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComplemento()
+    {
+        return $this->complemento;
+    }
+
+    /**
+     * @param string $complemento
+     * @return Inscricao
+     */
+    public function setComplemento($complemento)
+    {
+        $this->complemento = $complemento;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBairro()
+    {
+        return $this->bairro;
+    }
+
+    /**
+     * @param string $bairro
+     * @return Inscricao
+     */
+    public function setBairro($bairro)
+    {
+        $this->bairro = $bairro;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocalidade()
+    {
+        return $this->localidade;
+    }
+
+    /**
+     * @param string $localidade
+     * @return Inscricao
+     */
+    public function setLocalidade($localidade)
+    {
+        $this->localidade = $localidade;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUf()
+    {
+        return $this->uf;
+    }
+
+    /**
+     * @param string $uf
+     * @return Inscricao
+     */
+    public function setUf($uf)
+    {
+        $this->uf = $uf;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCep()
+    {
+        return $this->cep;
+    }
+
+    /**
+     * @param string $cep
+     * @return Inscricao
+     */
+    public function setCep($cep)
+    {
+        $this->cep = $cep;
+        return $this;
     }
 
     /**
@@ -168,27 +371,11 @@ class Inscricao
     }
 
     /**
-     * @param DateTime $criadoEm
-     */
-    public function setCriadoEm($criadoEm)
-    {
-        $this->criadoEm = $criadoEm;
-    }
-
-    /**
      * @return DateTime
      */
     public function getModificadoEm()
     {
         return $this->modificadoEm;
-    }
-
-    /**
-     * @param DateTime $modificadoEm
-     */
-    public function setModificadoEm($modificadoEm)
-    {
-        $this->modificadoEm = $modificadoEm;
     }
 
 }

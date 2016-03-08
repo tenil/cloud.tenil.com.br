@@ -52,7 +52,7 @@ $evento = $this->data;
                 <div class="btn-group" role="group">
                     <a href="<?php echo $this->url('tenil-evento') ?>"
                        class="btn btn-danger">Cancelar</a>
-                    <a href="<?php echo $this->url('tenil-evento', array('controller' => 'evento', 'action' => 'signup', 'id' => $evento->getId())) ?>"
+                    <a href="<?php echo $this->url('tenil-evento', array('controller' => 'evento', 'action' => 'signup', 'id' => $evento->getSlug())) ?>"
                        class="btn btn-primary">Fazer Inscrição</a>
 
                 </div>
