@@ -66,6 +66,18 @@ class Inscricao
 
     /**
      * @var string
+     * @ORM\Column(name="fone_fixo", type="string", length=11, nullable=true)
+     */
+    protected $foneFixo;
+
+    /**
+     * @var string
+     * @ORM\Column(name="fone_celular", type="string", length=11, nullable=true)
+     */
+    protected $foneCelular;
+
+    /**
+     * @var string
      * @ORM\Column(name="end_logradouro", type="string", length=255, nullable=true)
      */
     protected $logradouro;
@@ -233,6 +245,42 @@ class Inscricao
     public function setDataNascimento($dataNascimento)
     {
         $this->dataNascimento = $dataNascimento;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFoneFixo()
+    {
+        return $this->foneFixo;
+    }
+
+    /**
+     * @param string $foneFixo
+     * @return Inscricao
+     */
+    public function setFoneFixo($foneFixo)
+    {
+        $this->foneFixo = $foneFixo;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFoneCelular()
+    {
+        return $this->foneCelular;
+    }
+
+    /**
+     * @param string $foneCelular
+     * @return Inscricao
+     */
+    public function setFoneCelular($foneCelular)
+    {
+        $this->foneCelular = $foneCelular;
         return $this;
     }
 

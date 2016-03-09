@@ -61,6 +61,8 @@ $security = $form->get('security');
 $nome = $form->get('inscricao')->get('nome');
 $email = $form->get('inscricao')->get('email');
 $cpf = $form->get('inscricao')->get('cpf');
+$foneFixo = $form->get('inscricao')->get('foneFixo');
+$foneCelular = $form->get('inscricao')->get('foneCelular');
 $dataNascimento = $form->get('inscricao')->get('dataNascimento');
 $logradouro = $form->get('inscricao')->get('logradouro');
 $numero = $form->get('inscricao')->get('numero');
@@ -88,6 +90,14 @@ $cpf->setLabel('CPF')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $dataNascimento->setLabel('Data de nascimento')
     ->setAttribute('placeholder', 'Data de nascimento')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$foneFixo->setLabel('Telefone fixo')
+    ->setAttribute('placeholder', 'Telefone fixo com DDD')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$foneCelular->setLabel('Telefone celular')
+    ->setAttribute('placeholder', 'Telefone celular com DDD')
     ->setAttribute('class', 'form-control')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $logradouro->setLabel('Endereço')
@@ -170,6 +180,26 @@ $this->formElementErrors()
             <?php echo $this->formElementErrors($dataNascimento); ?>
         </div>
 
+        <div class="form-group <?php echo($foneCelular->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($foneCelular); ?>
+
+            <div class="col-md-9">
+                <?php echo $this->formInput($foneCelular); ?>
+            </div>
+            <?php echo $this->formElementErrors($foneCelular); ?>
+        </div>
+
+        <div class="form-group <?php echo($foneFixo->getMessages() ? 'has-error' : ''); ?>">
+            <?php echo $this->formLabel($foneFixo); ?>
+
+            <div class="col-md-9">
+                <?php echo $this->formInput($foneFixo); ?>
+            </div>
+            <?php echo $this->formElementErrors($foneFixo); ?>
+        </div>
+
+
+
         <div class="alert alert-info">Endereço</div>
         <div class="form-group <?php echo($logradouro->getMessages() ? 'has-error' : ''); ?>">
             <?php echo $this->formLabel($logradouro); ?>
@@ -211,7 +241,7 @@ $this->formElementErrors()
             <?php echo $this->formLabel($uf); ?>
 
             <div class="col-md-9">
-                <?php echo $this->formInput($uf); ?>
+                <?php echo $this->formSelect($uf); ?>
             </div>
             <?php echo $this->formElementErrors($uf); ?>
         </div>
