@@ -23,14 +23,14 @@
                 ->headLink(array('rel' => 'apple-touch-icon-precomposed', 'href' => $this->basePath() . '/img/favicon-144.png', 'sizes' => '144x144'))
                 ->appendStylesheet($this->basePath() . '/css/bootstrap.min.css')
                 ->appendStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
-                ->appendStylesheet($this->basePath() . '/css/style.css')
-                ->prependStylesheet($this->basePath() . '/css/signin.css');
+                ->appendStylesheet($this->basePath() . '/css/style.css');
+           //     ->prependStylesheet($this->basePath() . '/css/signin.css');
 
         echo PHP_EOL;
 
         echo $this->headScript()
-                //->appendFile($this->basePath() . '/js/jquery-2.1.1.min.js')
-                ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+                ->prependFile($this->basePath() . '/js/jquery-2.2.1.min.js')
+                //->prependFile('//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
                 ->appendFile($this->basePath() . '/js/bootstrap.min.js');
 
         echo PHP_EOL;

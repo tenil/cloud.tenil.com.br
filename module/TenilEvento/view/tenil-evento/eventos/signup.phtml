@@ -2,6 +2,14 @@
 // Título da página e formulário
 $title = $this->translate('Nova Inscrição');
 $this->headTitle($title);
+$this->headScript()->appendFile('/js/jquery.mask.js');
+$this->headScript()->appendFile('/js/jquery.mask.init.js');
+/*
+$this->headScript()->appendFile('/js/jquery-ui-1.11.4/jquery-ui.min.js');
+$this->headScript()->appendFile('/js/init.signup.js');
+$this->headLink()->appendStylesheet('/js/jquery-ui-1.11.4/jquery-ui.min.css');
+*/
+
 $evento = $this->data;
 ?>
 <div class="panel panel-default">
@@ -86,7 +94,7 @@ $email->setLabel('E-mail')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $cpf->setLabel('CPF')
     ->setAttribute('placeholder', 'CPF')
-    ->setAttribute('class', 'form-control')
+    ->setAttribute('class', 'form-control cpf')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $dataNascimento->setLabel('Data de nascimento')
     ->setAttribute('placeholder', 'Data de nascimento')
@@ -94,11 +102,11 @@ $dataNascimento->setLabel('Data de nascimento')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $foneFixo->setLabel('Telefone fixo')
     ->setAttribute('placeholder', 'Telefone fixo com DDD')
-    ->setAttribute('class', 'form-control')
+    ->setAttribute('class', 'form-control sp_celphones')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $foneCelular->setLabel('Telefone celular')
     ->setAttribute('placeholder', 'Telefone celular com DDD')
-    ->setAttribute('class', 'form-control')
+    ->setAttribute('class', 'form-control sp_celphones')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $logradouro->setLabel('Endereço')
     ->setAttribute('placeholder', 'Endereço completo')
@@ -122,7 +130,7 @@ $uf->setLabel('UF')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $cep->setLabel('CEP')
     ->setAttribute('placeholder', 'CEP')
-    ->setAttribute('class', 'form-control')
+    ->setAttribute('class', 'form-control cep')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $submit->setAttribute('class', 'btn btn-primary');
 
@@ -175,7 +183,7 @@ $this->formElementErrors()
             <?php echo $this->formLabel($dataNascimento); ?>
 
             <div class="col-md-3">
-                <?php echo $this->formDate($dataNascimento); ?>
+                <?php echo $this->formInput($dataNascimento); ?>
             </div>
             <?php echo $this->formElementErrors($dataNascimento); ?>
         </div>

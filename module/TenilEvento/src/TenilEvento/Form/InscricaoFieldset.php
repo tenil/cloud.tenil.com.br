@@ -52,7 +52,9 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'options' => array(
                 'label' => 'Nome'
             ),
-            'attributes' => array(//  'required' => 'required'
+            'attributes' => array(
+                //  'required' => 'required',
+                'maxlength' => 512,
             )
         ));
 
@@ -64,6 +66,8 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             )
         ));
 
+        // Verificar a função strtotime() caso for utilizar Element\Input
+
         $this->add(array(
                 'type' => 'Zend\Form\Element\Date',
                 'name' => 'dataNascimento',
@@ -72,8 +76,8 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
                     'format' => 'd/m/Y'
                 ),
                 'attributes' => array(
-                    'min' => '01/01/1900',
-                    'max' => '01/08/2016',
+                    'min' => Date('Y-m-d', strtotime('-100 years')), //'2016-07-07',
+                    'max' =>  Date('Y-m-d'), //'2016-07-07',
                     'step' => '1', // days; default step interval is 1 day
                 )
             )
@@ -109,6 +113,10 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'numero',
             'options' => array(
                 'label' => 'Número'
+            ),
+            'attributes' => array(
+                //  'required' => 'required',
+                'maxlength' => 5,
             )
         ));
 
@@ -221,7 +229,7 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
                 ),
             ),
             'cpf' => array(
-                'required' => false,
+                'required' => true,
                 'filters' => array(
                     new Filter\Digits(),
                 ),
@@ -231,8 +239,11 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             ),
             'dataNascimento' => array(
                 'required' => true,
+                'filters' => array(
+                  //  new Validator\Date(array('format' => 'd/m/Y'))
+                ),
                 'validators' => array(
-                    new Validator\Date(array('format' => 'd/m/Y'))
+                    new Validator\Date(array('format' => 'Y-m-d'))
                 )
             ),
             'foneFixo' => array(
@@ -242,22 +253,47 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
                 )
             ),
             'foneCelular' => array(
-                'required' => false,
+                'required' => true,
                 'filters' => array(
                     new Filter\Digits()
                 )
             ),
             'logradouro' => array(
-                'required' => true
+                'required' => true,
+                'filters' => array(
+                    new Filter\StringTrim()
+                ),
+                'validators' => array(
+                    new Validator\StringLength(array('max' => 255))
+                )
             ),
             'numero' => array(
-                'required' => true
+                'required' => true,
+                'filters' => array(
+                    new Filter\StringTrim()
+                ),
+                'validators' => array(
+                    new Validator\StringLength(array('max' => 5))
+                )
             ),
             'bairro' => array(
-                'required' => true
+                'required' => true,
+                'filters' => array(
+                    new Filter\StringTrim()
+                ),
+                'validators' => array(
+                    new Validator\StringLength(array('max' => 255))
+                )
             ),
             'localidade' => array(
-                'required' => true
+                'required' => true,
+                'filters' => array(
+                    new Filter\StringTrim()
+                ),
+                'validators' => array(
+                    new Validator\StringLength(array('max' => 255))
+                )
+
             ),
             'uf' => array(
                 'required' => true

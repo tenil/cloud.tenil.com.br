@@ -1,6 +1,7 @@
 <?php
 $title = $this->escapeHtml($this->translate('Crie sua conta'));
 $this->headTitle($title);
+$this->headLink()->appendStylesheet('/css/signin.css');
 ?>
 <?php
 $form = $this->form;
