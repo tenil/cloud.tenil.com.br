@@ -14,7 +14,7 @@ return array(
                     'route' => '/eventos[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-z0-9_-]*',
-                        'id' => '[a-zA-Z][a-zA-z0-9_-]*',
+                        'id' => '[a-zA-z0-9_-]*',
                        // 'id' => '\d+',
                     ),
                     'defaults' => array(

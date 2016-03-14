@@ -8,11 +8,15 @@
 
 namespace TenilEvento\Controller;
 
+use PhpBoletoZf2\Model\BoletoBradesco;
+use PhpBoletoZf2\Model\Cedente;
+use PhpBoletoZf2\Model\Sacado;
 use TenilEvento\Entity\Inscricao;
 use TenilEvento\Form\InscricaoCreate;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use TenilBase\Controller\CrudController;
+
 
 class EventosController extends CrudController
 {
@@ -86,6 +90,53 @@ class EventosController extends CrudController
             return $this->notFoundAction();
         }
 
+    }
+
+    public function boletoAction()
+    {
+        // recebendo os dados do boleto, seja por REQUEST ou Banco de Dados
+        // $data = array(/** dados para emissão do boleto **/);
+
+        // $config = $this->getServiceLocator()->get('Config');
+        // $dataBradesco = $config['php-zf2-boleto']['237']['dados_cedente'];
+
+        $data = array(
+            'documento' => '123.456.789-09',
+            'nome' => 'Roberto Tenil',
+            'endereco1' => 'Rua das Gretrudes, 25 - Apartamento 522',
+            'endereco2' => 'Bairro Blaster - São Paulo - SP',
+            'dataVencimento' => date("d/m/Y", strtotime('+1 week')),
+            'dataDocumento' => date("d/m/Y"),
+            'dataProcessamento' => date("d/m/Y"),
+            'nossoNumero' => rand(100, 500),
+            'numeroDocumento' => rand(100, 500),
+            'valor' => $val = rand(1000, 2000) * 100,
+            'valorUnitario' => $val,
+            'quantidade' => 1,
+            'demonstrativo1' => 'Dados do produto ou serviço que foi vendido',
+            'demonstrativo2' => 'que deve ser aproveitado em 3 únicas linhas de ',
+            'demonstrativo3' => 'até 50 caracteres',
+        );
+
+        // Instanciando as classes relacionadas ao boleto
+        $boleto = new BoletoBradesco($data);
+        $sacado = new Sacado($data);
+       // $cedente = new Cedente($dataBradesco);
+
+        // chamando o serviço para criação do boleto
+        $bradesco = $this->getServiceLocator()
+            ->get('Boleto\Bradesco')
+            ->setSacado($sacado)
+        //    ->setCedente($cedente)
+            ->setBoleto($boleto);
+        $dados = $bradesco->prepare();
+
+        // montando a view
+        $view = new ViewModel(array("dados" => $dados));
+        $view->setTerminal(true); // elimina o layout
+        $view->setTemplate("/php-boleto-zf2/bradesco/index");
+
+        return $view;
     }
 
 }
