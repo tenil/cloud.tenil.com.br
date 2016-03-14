@@ -1,0 +1,10 @@
+vagrantup.com
+vagrantbox.es
+
+
+1. vagrant box add <nome> <box>
+2. vagrant init
+3. Configurar vagrant file
+	- Definir configuração da rede
+4. vagrant up
+5. vagrant ssh
