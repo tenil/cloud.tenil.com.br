@@ -18,4 +18,16 @@ class Module
             ),
         );
     }
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'TenilEvento\Service\Boleto' => function ($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    return new Service\Boleto($em);
+                },
+            )
+        );
+    }
 }

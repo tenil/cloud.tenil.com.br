@@ -76,6 +76,18 @@ class EventosController extends CrudController
                     $objectManager->persist($inscricao);
                     $objectManager->flush();
 
+                    // GERAR BOLETO AQUI
+
+
+                    $service = $this->getServiceLocator()->get('TenilEvento\Service\Evento');
+                    $service->gerarBoleto(array(
+                        'inscricao' => $inscricao->getId(),
+                        //'valor' =>
+                    ));
+
+
+                    // GERAR BOLETO AQUI - FIM
+
                     $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Cadastro realizado com sucesso!');
                     return $this->redirect()->toRoute($this->route, array('controller' => $this->controller, 'action' => 'list'));
 
@@ -121,13 +133,13 @@ class EventosController extends CrudController
         // Instanciando as classes relacionadas ao boleto
         $boleto = new BoletoBradesco($data);
         $sacado = new Sacado($data);
-       // $cedente = new Cedente($dataBradesco);
+        // $cedente = new Cedente($dataBradesco);
 
         // chamando o serviço para criação do boleto
         $bradesco = $this->getServiceLocator()
             ->get('Boleto\Bradesco')
             ->setSacado($sacado)
-        //    ->setCedente($cedente)
+            //    ->setCedente($cedente)
             ->setBoleto($boleto);
         $dados = $bradesco->prepare();
 
