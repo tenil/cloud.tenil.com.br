@@ -32,7 +32,7 @@ class Boleto
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Inscricao")
+     * @ORM\ManyToOne(targetEntity="Inscricao", inversedBy="boleto")
      * @ORM\JoinColumn(name="id_pagador", referencedColumnName="id")
      **/
     protected $pagador;
@@ -54,7 +54,7 @@ class Boleto
     /**
      * @var DecimalType
      *
-     * @ORM\Column(name="valor_boleto", type="decimal")
+     * @ORM\Column(name="valor_boleto", type="decimal", precision=10, scale=2)
      */
     protected $valorBoleto;
 
@@ -138,7 +138,7 @@ class Boleto
     }
 
     /**
-     * @return mixed
+     * @return Inscricao
      */
     public function getPagador()
     {

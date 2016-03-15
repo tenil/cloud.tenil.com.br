@@ -64,10 +64,10 @@ class Evento extends \TenilEvento\Entity\Evento implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'urlEvento', 'valorInscricao', 'flagEventoGratuito');
+            return array('__isInitialized__', 'id', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'slug', 'valorInscricao', 'flagEventoGratuito');
         }
 
-        return array('__isInitialized__', 'id', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'urlEvento', 'valorInscricao', 'flagEventoGratuito');
+        return array('__isInitialized__', 'id', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'slug', 'valorInscricao', 'flagEventoGratuito');
     }
 
     /**
@@ -499,23 +499,23 @@ class Evento extends \TenilEvento\Entity\Evento implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
-    public function getUrlEvento()
+    public function getSlug()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUrlEvento', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSlug', array());
 
-        return parent::getUrlEvento();
+        return parent::getSlug();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setUrlEvento($urlEvento)
+    public function setSlug()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUrlEvento', array($urlEvento));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSlug', array());
 
-        return parent::setUrlEvento($urlEvento);
+        return parent::setSlug();
     }
 
 }
