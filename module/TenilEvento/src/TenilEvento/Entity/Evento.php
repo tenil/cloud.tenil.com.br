@@ -11,6 +11,8 @@ namespace TenilEvento\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use Cocur\Slugify\Slugify;
+use Doctrine\DBAL\Types\DecimalType;
+
 
 /**
  * Evento
@@ -116,7 +118,7 @@ class Evento
     protected $slug;
 
     /**
-     * @var string
+     * @var DecimalType
      *
      * @ORM\Column(name="valor_inscricao", type="decimal", precision=10, scale=2)
      */
@@ -374,7 +376,7 @@ class Evento
     }
 
     /**
-     * @return string
+     * @return DecimalType
      */
     public function getValorInscricao()
     {

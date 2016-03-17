@@ -122,6 +122,14 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
 
         $this->add(array(
             'type' => 'Zend\Form\Element\Text',
+            'name' => 'complemento',
+            'options' => array(
+                'label' => 'Complemento'
+            )
+        ));
+
+        $this->add(array(
+            'type' => 'Zend\Form\Element\Text',
             'name' => 'bairro',
             'options' => array(
                 'label' => 'Bairro'
@@ -150,7 +158,7 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'uf',
             'options' => array(
                 'label' => 'Estado',
-                'empty_option' => 'Selecione seu estado',
+                'empty_option' => 'Estado',
                 'value_options' => array(
                     'AC' => 'AC - Acre',
                     'AL' => 'AL - Alagoas',
@@ -274,6 +282,15 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
                 ),
                 'validators' => array(
                     new Validator\StringLength(array('max' => 5))
+                )
+            ),
+            'complemento' => array(
+                'required' => false,
+                'filters' => array(
+                    new Filter\StringTrim()
+                ),
+                'validators' => array(
+                    new Validator\StringLength(array('max' => 255))
                 )
             ),
             'bairro' => array(
