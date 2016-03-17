@@ -30,7 +30,6 @@ class EventosController extends CrudController
         $this->service = 'TenilEvento\Service\Evento';
     }
 
-
     /**
      * @return ViewModel
      */
@@ -49,7 +48,6 @@ class EventosController extends CrudController
         }
 
     }
-
 
     public function signupAction()
     {
@@ -77,19 +75,23 @@ class EventosController extends CrudController
                     $objectManager->flush();
 
                     // GERAR BOLETO AQUI
-
-
-                    $service = $this->getServiceLocator()->get('TenilEvento\Service\Evento');
-                    $service->gerarBoleto(array(
+                    $service = $this->getServiceLocator()->get('TenilEvento\Service\Boleto');
+                    $boleto = $service->gerarBoleto(array(
                         'inscricao' => $inscricao->getId(),
-                        //'valor' =>
                     ));
-
-
                     // GERAR BOLETO AQUI - FIM
 
-                    $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Cadastro realizado com sucesso!');
-                    return $this->redirect()->toRoute($this->route, array('controller' => $this->controller, 'action' => 'list'));
+                    /**
+                     * @todo Disparar e-mail com todos os dados
+                     */
+
+                    /**
+                     * @todo Redirecionar para página de inscrição efetuada com sucesso.
+                     * @todo Clicar em gerar boleto
+                     */
+
+                    $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Inscrição realizada com sucesso!');
+                    return $this->redirect()->toRoute($this->route, array('controller' => $this->controller, 'action' => 'inscricao', 'id' => $inscricao->getId()));
 
                 } else {
                     $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage('Preencha todos os valores corretamente!');
@@ -104,51 +106,94 @@ class EventosController extends CrudController
 
     }
 
+    /**
+     * @return ViewModel
+     * @todo Receber id do boleto (nossoNumero) e exibir boleto
+     */
     public function boletoAction()
     {
-        // recebendo os dados do boleto, seja por REQUEST ou Banco de Dados
-        // $data = array(/** dados para emissão do boleto **/);
+        $id = $this->params()->fromRoute('id', null);
+        $inscricao = $this->getEm()->getRepository('TenilEvento\Entity\Inscricao')->find($id);
 
-        // $config = $this->getServiceLocator()->get('Config');
-        // $dataBradesco = $config['php-zf2-boleto']['237']['dados_cedente'];
+        if ($inscricao) {
 
-        $data = array(
-            'documento' => '123.456.789-09',
-            'nome' => 'Roberto Tenil',
-            'endereco1' => 'Rua das Gretrudes, 25 - Apartamento 522',
-            'endereco2' => 'Bairro Blaster - São Paulo - SP',
-            'dataVencimento' => date("d/m/Y", strtotime('+1 week')),
-            'dataDocumento' => date("d/m/Y"),
-            'dataProcessamento' => date("d/m/Y"),
-            'nossoNumero' => rand(100, 500),
-            'numeroDocumento' => rand(100, 500),
-            'valor' => $val = rand(1000, 2000) * 100,
-            'valorUnitario' => $val,
-            'quantidade' => 1,
-            'demonstrativo1' => 'Dados do produto ou serviço que foi vendido',
-            'demonstrativo2' => 'que deve ser aproveitado em 3 únicas linhas de ',
-            'demonstrativo3' => 'até 50 caracteres',
-        );
+            $data = array(
+                'documento' => $this->mask($inscricao->getCpf(), '###.###.###-##'), // '123.456.789-09',
+                'nome' => $inscricao->getNome(), // 'Roberto Tenil',
+                'endereco1' => $inscricao->getLogradouro() . ', ' . $inscricao->getNumero(), // 'Rua das Gretrudes, 25 - Apartamento 522',
+                'endereco2' => $inscricao->getBairro() . ' - ' . $inscricao->getLocalidade() . ' - ' . $inscricao->getUf() . ' CEP:' . $inscricao->getCep(), //'Bairro Blaster - São Paulo - SP',
+                'dataVencimento' => $inscricao->getBoleto()->getDataVencimento()->format("d/m/Y"),
+                'dataDocumento' => date("d/m/Y"),
+                'dataProcessamento' => $inscricao->getBoleto()->getDataProcessamento()->format("d/m/Y"),
+                'nossoNumero' => $inscricao->getBoleto()->getNossoNumero(),
+                'numeroDocumento' => $inscricao->getBoleto()->getNumeroDocumento(),
+                'valor' => $val = $inscricao->getBoleto()->getValorBoleto() * 100, // $val = rand(1000, 2000) * 100,
+                'valorUnitario' => $val,
+                'quantidade' => 1,
+                'demonstrativo1' => 'Referente à inscrição no evento:', // 'Dados do produto ou serviço que foi vendido',
+                'demonstrativo2' => substr($inscricao->getEvento(), 0, 50),// 'que deve ser aproveitado em 3 únicas linhas de ',
+                'demonstrativo3' => null, //'até 50 caracteres',
+                'instrucoes1' => $inscricao->getBoleto()->getInstrucoes1(),
+                'instrucoes2' => $inscricao->getBoleto()->getInstrucoes2(),
+                'instrucoes3' => $inscricao->getBoleto()->getInstrucoes3(),
+                'instrucoes4' => $inscricao->getBoleto()->getInstrucoes4(),
+            );
 
-        // Instanciando as classes relacionadas ao boleto
-        $boleto = new BoletoBradesco($data);
-        $sacado = new Sacado($data);
-        // $cedente = new Cedente($dataBradesco);
 
-        // chamando o serviço para criação do boleto
-        $bradesco = $this->getServiceLocator()
-            ->get('Boleto\Bradesco')
-            ->setSacado($sacado)
-            //    ->setCedente($cedente)
-            ->setBoleto($boleto);
-        $dados = $bradesco->prepare();
 
-        // montando a view
-        $view = new ViewModel(array("dados" => $dados));
-        $view->setTerminal(true); // elimina o layout
-        $view->setTemplate("/php-boleto-zf2/bradesco/index");
+            // Instanciando as classes relacionadas ao boleto
+            $boleto = new BoletoBradesco($data);
+            $sacado = new Sacado($data);
+            // $cedente = new Cedente($dataBradesco);
 
-        return $view;
+            // chamando o serviço para criação do boleto
+            $bradesco = $this->getServiceLocator()
+                ->get('Boleto\Bradesco')
+                ->setSacado($sacado)
+                //    ->setCedente($cedente)
+                ->setBoleto($boleto);
+            $dados = $bradesco->prepare();
+
+            // montando a view
+            $view = new ViewModel(array("dados" => $dados));
+            $view->setTerminal(true); // elimina o layout
+            $view->setTemplate("/php-boleto-zf2/bradesco/index");
+
+            return $view;
+
+        } else {
+            return $this->notFoundAction();
+        }
+
+    }
+
+    public function inscricaoAction()
+    {
+        $id = $this->params()->fromRoute('id', null);
+        $data = $this->getEm()->getRepository('TenilEvento\Entity\Inscricao')->find($id);
+
+        if ($data) {
+            return new ViewModel(array('data' => $data));
+        } else {
+            return $this->notFoundAction();
+        }
+
+    }
+
+    function mask($val, $mask)
+    {
+        $maskared = '';
+        $k = 0;
+        for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+            if ($mask[$i] == '#') {
+                if (isset($val[$k]))
+                    $maskared .= $val[$k++];
+            } else {
+                if (isset($mask[$i]))
+                    $maskared .= $mask[$i];
+            }
+        }
+        return $maskared;
     }
 
 }

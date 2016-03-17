@@ -9,56 +9,78 @@ $this->headScript()->appendFile('/js/jquery-ui-1.11.4/jquery-ui.min.js');
 $this->headScript()->appendFile('/js/init.signup.js');
 $this->headLink()->appendStylesheet('/js/jquery-ui-1.11.4/jquery-ui.min.css');
 */
-
 $evento = $this->data;
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h1 class="panel-title"><?php echo $evento->getNome(); ?>
-            <span class="pull-right"><?php echo $evento->getTema(); ?></span>
-        </h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="page-header">
+            <h1><?php echo $evento->getNome(); ?> <br>
+                <small><?php echo $evento->getTema(); ?></small>
+            </h1>
+        </div>
+        <div class="lead">
+            <?php echo $evento->getDescricao(); ?>
+        </div>
     </div>
-
-    <div class="panel-body">
-
-        <dl class="dl-horizontal">
-            <dt>Data início</dt>
-            <dd><?php
-                echo $this->dateFormat(
-                    $evento->getDataInicio(),
-                    IntlDateFormatter::MEDIUM, // date
-                    IntlDateFormatter::NONE, // time
-                    "pt_BR"
-                );
-                ?>
-            </dd>
-            <dt>Data encerramento</dt>
-            <dd><?php
-                echo $this->dateFormat(
-                    $evento->getDataFim(),
-                    IntlDateFormatter::MEDIUM, // date
-                    IntlDateFormatter::NONE, // time
-                    "pt_BR"
-                );
-                ?></dd>
-            <dt>Sinópse</dt>
-            <dd class="text-justify"><?php echo $evento->getDescricao(); ?></dd>
-            <dt>Site do evento (slug)</dt>
-            <dd><a href="<?php echo $this->url('tenil-evento', array('controller' => 'evento', 'action' => 'detail', 'id' => $evento->getSlug())) ?>"
-                   target="_self"><?php echo $evento->getSlug() ?></a></dd>
-        </dl>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Detalhes</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Início</dt>
+                    <dd><?php echo $evento->getDataInicio()->format("d/m/Y"); ?></dd>
+                    <dt>Final</dt>
+                    <dd><?php echo $evento->getDataFim()->format("d/m/Y"); ?></dd>
+                </dl>
+            </div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Informações</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Organizador</dt>
+                    <dd><?php echo $evento->getOrganizador(); ?></dd>
+                    <dt>E-mail</dt>
+                    <dd><?php echo $evento->getEmail(); ?></dd>
+                </dl>
+            </div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Investimento</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Valor:</dt>
+                    <dd>R$ <?php echo str_replace('.', ',', $evento->getValorInscricao()); ?></dd>
+                </dl>
+            </div>
+        </div>
     </div>
 </div>
 
 <?php
 // Configurando o formulário
 $form = $this->form;
-$form->setAttribute('action', $this->url('tenil-evento', array('action' => 'signup', 'id' => $evento->getSlug() )));
+$form->setAttribute('action', $this->url('tenil-evento', array('action' => 'signup', 'id' => $evento->getSlug())));
 
 $form->setAttributes(array(
     'method' => 'post',
     'role' => 'form',
-    'class' => 'form-horizontal',
+    // 'class' => 'form-horizontal',
     'label' => $title
 ));
 $form->prepare();
@@ -74,11 +96,11 @@ $foneCelular = $form->get('inscricao')->get('foneCelular');
 $dataNascimento = $form->get('inscricao')->get('dataNascimento');
 $logradouro = $form->get('inscricao')->get('logradouro');
 $numero = $form->get('inscricao')->get('numero');
+$complemento = $form->get('inscricao')->get('complemento');
 $bairro = $form->get('inscricao')->get('bairro');
 $cidade = $form->get('inscricao')->get('localidade');
 $uf = $form->get('inscricao')->get('uf');
 $cep = $form->get('inscricao')->get('cep');
-
 $submit = $form->get('submit');
 
 // Configurando atributos dos Elementos
@@ -99,6 +121,9 @@ $cpf->setLabel('CPF')
 $dataNascimento->setLabel('Data de nascimento')
     ->setAttribute('placeholder', 'Data de nascimento')
     ->setAttribute('class', 'form-control')
+    ->setAttribute('data-toggle', 'tooltip')
+    ->setAttribute('data-placement', 'top')
+    ->setAttribute('title', 'Data de nascimento')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $foneFixo->setLabel('Telefone fixo')
     ->setAttribute('placeholder', 'Telefone fixo com DDD')
@@ -109,11 +134,15 @@ $foneCelular->setLabel('Telefone celular')
     ->setAttribute('class', 'form-control sp_celphones')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $logradouro->setLabel('Endereço')
-    ->setAttribute('placeholder', 'Endereço completo')
+    ->setAttribute('placeholder', 'Rua')
     ->setAttribute('class', 'form-control')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $numero->setLabel('Número')
     ->setAttribute('placeholder', 'Número')
+    ->setAttribute('class', 'form-control')
+    ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
+$complemento->setLabel('Complemento')
+    ->setAttribute('placeholder', 'Complemento')
     ->setAttribute('class', 'form-control')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $bairro->setLabel('Bairro')
@@ -132,147 +161,150 @@ $cep->setLabel('CEP')
     ->setAttribute('placeholder', 'CEP')
     ->setAttribute('class', 'form-control cep')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
-$submit->setAttribute('class', 'btn btn-primary');
+$submit->setAttribute('class', 'btn btn-primary btn-lg');
 
 // Configurando Elemento de erro
 $this->formElementErrors()
-    ->setMessageOpenFormat('<div class="col-md-10 col-md-offset-2"><span id="helpBlock" class="help-block">')
+    ->setMessageOpenFormat('<div><span id="helpBlock" class="help-block">')
     ->setMessageSeparatorString('</span><span id="helpBlock" class="help-block">')
     ->setMessageCloseString('</span></div>');
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <?php echo $title ?>
-        </div>
-    </div>
-    <?php echo $this->form()->openTag($form); ?>
-    <div class="panel-body">
-        <?php
-        echo $this->formHidden($id);
-        echo $this->formElement($security);
-        ?>
-        <div class="alert alert-info">Dados pessoais</div>
-        <div class="form-group <?php echo($nome->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($nome); ?>
-
-            <div class="col-md-9">
-                <?php echo $this->formInput($nome); ?>
-            </div>
-            <?php echo $this->formElementErrors($nome); ?>
-        </div>
-        <div class="form-group <?php echo($cpf->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($cpf); ?>
-
-            <div class="col-md-9">
-                <?php echo $this->formInput($cpf); ?>
-            </div>
-            <?php echo $this->formElementErrors($cpf); ?>
-        </div>
-
-        <div class="form-group <?php echo($email->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($email); ?>
-
-            <div class="col-md-9">
-                <?php echo $this->formEmail($email); ?>
-            </div>
-            <?php echo $this->formElementErrors($email); ?>
-        </div>
-
-        <div class="form-group <?php echo($dataNascimento->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($dataNascimento); ?>
-
-            <div class="col-md-3">
-                <?php echo $this->formInput($dataNascimento); ?>
-            </div>
-            <?php echo $this->formElementErrors($dataNascimento); ?>
-        </div>
-
-        <div class="form-group <?php echo($foneCelular->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($foneCelular); ?>
-
-            <div class="col-md-9">
-                <?php echo $this->formInput($foneCelular); ?>
-            </div>
-            <?php echo $this->formElementErrors($foneCelular); ?>
-        </div>
-
-        <div class="form-group <?php echo($foneFixo->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($foneFixo); ?>
-
-            <div class="col-md-9">
-                <?php echo $this->formInput($foneFixo); ?>
-            </div>
-            <?php echo $this->formElementErrors($foneFixo); ?>
-        </div>
+<?php
+echo $this->form()->openTag($form);
+echo $this->formHidden($id);
+echo $this->formElement($security);
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
 
 
 
-        <div class="alert alert-info">Endereço</div>
-        <div class="form-group <?php echo($logradouro->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($logradouro); ?>
 
-            <div class="col-md-9">
-                <?php echo $this->formInput($logradouro); ?>
-            </div>
-            <?php echo $this->formElementErrors($logradouro); ?>
-        </div>
 
-        <div class="form-group <?php echo($numero->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($numero); ?>
 
-            <div class="col-md-9">
-                <?php echo $this->formInput($numero); ?>
-            </div>
-            <?php echo $this->formElementErrors($numero); ?>
-        </div>
 
-        <div class="form-group <?php echo($bairro->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($bairro); ?>
 
-            <div class="col-md-9">
-                <?php echo $this->formInput($bairro); ?>
-            </div>
-            <?php echo $this->formElementErrors($bairro); ?>
-        </div>
 
-        <div class="form-group <?php echo($cidade->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($cidade); ?>
-
-            <div class="col-md-9">
-                <?php echo $this->formInput($cidade); ?>
-            </div>
-            <?php echo $this->formElementErrors($cidade); ?>
-        </div>
-
-        <div class="form-group <?php echo($uf->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($uf); ?>
-
-            <div class="col-md-9">
-                <?php echo $this->formSelect($uf); ?>
-            </div>
-            <?php echo $this->formElementErrors($uf); ?>
-        </div>
-
-        <div class="form-group <?php echo($cep->getMessages() ? 'has-error' : ''); ?>">
-            <?php echo $this->formLabel($cep); ?>
-
-            <div class="col-md-9">
-                <?php echo $this->formInput($cep); ?>
-            </div>
-            <?php echo $this->formElementErrors($cep); ?>
-        </div>
-
-    </div>
-
-    <div class="panel-footer">
-        <div class="clearfix">
-            <div class="btn-toolbar pull-right" role="toolbar">
-                <div class="btn-group" role="group">
-                    <a href="<?php echo $this->url('tenil-evento') ?>"
-                       class="btn btn-danger">Cancelar</a>
-                    <?php echo $this->formSubmit($submit); ?>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Dados Pessoais</h4>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group <?php echo(!$nome->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($nome); ?>
+                                    <?php echo $this->formElementErrors($nome); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group <?php echo(!$cpf->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($cpf); ?>
+                                    <?php echo $this->formElementErrors($cpf); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group <?php echo(!$email->getMessages() ?: 'has-error'); ?>">
+                            <?php echo $this->formEmail($email); ?>
+                            <?php echo $this->formElementErrors($email); ?>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group <?php echo(!$dataNascimento->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($dataNascimento); ?>
+                                    <?php echo $this->formElementErrors($dataNascimento); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group <?php echo(!$foneCelular->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($foneCelular); ?>
+                                    <?php echo $this->formElementErrors($foneCelular); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group <?php echo(!$foneFixo->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($foneFixo); ?>
+                                    <?php echo $this->formElementErrors($foneFixo); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Endereço</h4>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group <?php echo(!$logradouro->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($logradouro); ?>
+                                    <?php echo $this->formElementErrors($logradouro); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group <?php echo(!$numero->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($numero); ?>
+                                    <?php echo $this->formElementErrors($numero); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group <?php echo(!$complemento->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($complemento); ?>
+                                    <?php echo $this->formElementErrors($complemento); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group <?php echo(!$bairro->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($bairro); ?>
+                                    <?php echo $this->formElementErrors($bairro); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group <?php echo(!$cidade->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($cidade); ?>
+                                    <?php echo $this->formElementErrors($cidade); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group <?php echo(!$uf->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formSelect($uf); ?>
+                                    <?php echo $this->formElementErrors($uf); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group <?php echo(!$cep->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formInput($cep); ?>
+                                    <?php echo $this->formElementErrors($cep); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group pull-right" role="group">
+                                <?php echo $this->formSubmit($submit); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php echo $this->form()->closeTag() ?>
+
+
+
+
+
+
+
+
+
+
+
             </div>
         </div>
     </div>

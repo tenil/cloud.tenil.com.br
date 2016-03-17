@@ -56,9 +56,9 @@ return array(
         ),
         '237' => array(// codigo do BRADESCO
             'dados_cedente' => array(
-                'documento' => '03.940.797/0001-03',
+                'documento' => '00.113.233/0001-09',
                 'identificacao' => 'Igreja Catedral da Bênção',
-                'nomeCedente' => 'IGREJA CATEDRAL DA BÊNÇÃO',
+                'nomeCedente' => 'IGREJA TARBENACULO EVANGELICO DE JESUS',
                 'endereco' => 'QSF AE 4/5, Taguatinga Sul',
                 'cidade' => 'Brasília',
                 'uf' => 'DF',
@@ -68,7 +68,7 @@ return array(
                 'agenciaDv' => 6,
                 'contaCedente' => '0112012',
                 'contaCedenteDv' => 3,
-                'carteira' => '06',
+                'carteira' => '6',
             ),
         ),
         '104' => array(// codigo da CAIXA
@@ -103,11 +103,10 @@ return array(
             ),
         ),
         'instrucoes' => array(
-            'instrucoes1' => '- Sr. Caixa, cobrar multa de 2% após o vencimento',
-            'instrucoes2' => '- Receber até 10 dias após o vencimento',
-            'instrucoes3' => '- Em caso de dúvidas entre em contato conosco: xxxx@xxxx.com.br',
-            'instrucoes4' => '- Emitido pelo BoletoPhp para Zend Framework 2 - phpboleto-zf2.jot.com.br',
+            'instrucoes1' => '- Sr. Caixa, não receber após o vencimento',
+            'instrucoes2' => '',
+            'instrucoes3' => '- Em caso de dúvidas entre em contato conosco: (61) 3451-7200',
+            'instrucoes4' => '- Emitido pelo sistema web.cb.org.br - tenil.com.br',
         ),
     ),
 );
-

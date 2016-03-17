@@ -37,6 +37,11 @@ class Inscricao
     protected $evento;
 
     /**
+     * @ORM\OneToOne(targetEntity="Boleto", mappedBy="pagador")
+     */
+    private $boleto;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="nome", type="string", length=512, nullable=false)
@@ -424,6 +429,14 @@ class Inscricao
     public function getModificadoEm()
     {
         return $this->modificadoEm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBoleto()
+    {
+        return $this->boleto;
     }
 
 }

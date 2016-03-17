@@ -35,13 +35,13 @@ class InscricaoCreate extends Form
         $this->add($security);
 
         $submit = new Element\Submit('submit');
-        $submit->setValue('Salvar')->setAttribute('class', 'btn btn-default');
+        $submit->setValue('Finalizar')->setAttribute('class', 'btn btn-default');
         $this->add($submit);
 
         $this->setAttributes(array(
             'method' => 'post',
-            'role' => 'form',
-            'class' => 'form-horizontal',
+//            'role' => 'form',
+//            'class' => 'form-horizontal',
             'label' => 'Fazer inscrição'
         ));
 
