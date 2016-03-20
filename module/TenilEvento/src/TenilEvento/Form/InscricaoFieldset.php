@@ -20,6 +20,7 @@ use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\Validator;
 use Zend\Filter;
 use TenilBase\Validator\CpfValidator;
+use TenilBase\Filter\DataFilter;
 use Zend\Form\Element;
 
 class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
@@ -68,6 +69,7 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
 
         // Verificar a função strtotime() caso for utilizar Element\Input
 
+        /*
         $this->add(array(
                 'type' => 'Zend\Form\Element\Date',
                 'name' => 'dataNascimento',
@@ -83,6 +85,15 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             )
 
         );
+        */
+
+        $this->add(array(
+            'type' => 'Zend\Form\Element\Text',
+            'name' => 'dataNascimento',
+            'options' => array(
+                'label' => 'Data de Nascimento',
+            )
+        ));
 
         $this->add(array(
             'type' => 'Zend\Form\Element\Text',
@@ -248,10 +259,10 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'dataNascimento' => array(
                 'required' => true,
                 'filters' => array(
-                  //  new Validator\Date(array('format' => 'd/m/Y'))
+                    new DataFilter()
                 ),
                 'validators' => array(
-                    new Validator\Date(array('format' => 'Y-m-d'))
+                    new Validator\Date(array('format' => 'd/m/Y'))
                 )
             ),
             'foneFixo' => array(
