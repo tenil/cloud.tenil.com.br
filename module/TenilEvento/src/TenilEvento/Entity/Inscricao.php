@@ -16,6 +16,7 @@ use DateTime;
  *
  * @ORM\Table(name="tenilevento_inscricao")
  * @ORM\Entity(repositoryClass="TenilEvento\Entity\InscricaoRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Inscricao
 {
@@ -126,16 +127,25 @@ class Inscricao
     /**
      * @var DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      */
-    protected $criadoEm;
+    protected $updatedAt;
 
     /**
      * @var DateTime
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    protected $modificadoEm;
+    protected $createdAt;
+
+    /**
+     * Inscricao constructor.
+     */
+    public function __construct()
+    {
+        $this->createdAt = new DateTime("now");
+        $this->updatedAt = new DateTime("now");
+    }
 
     /**
      * @return string
@@ -416,27 +426,49 @@ class Inscricao
     }
 
     /**
-     * @return DateTime
-     */
-    public function getCriadoEm()
-    {
-        return $this->criadoEm;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getModificadoEm()
-    {
-        return $this->modificadoEm;
-    }
-
-    /**
      * @return mixed
      */
     public function getBoleto()
     {
         return $this->boleto;
     }
+
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTime $updatedAt
+     * @return Inscricao
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param DateTime $createdAt
+     * @return Inscricao
+     */
+    public function setCreatedAt(DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
 
 }

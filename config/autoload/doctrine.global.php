@@ -6,11 +6,11 @@ return array(
             'orm_default' => array(
                 'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                 'params' => array(
-                    'host' => 'localhost',
+                    'host' => '10.128.9.112',
                     'port' => '3306',
-                    'user' => 'root',
-                    'password' => 'Brain13245',
-                    'dbname' => 'sp.tenil.com.br_001',
+                    'user' => 'cb.org.br',
+                    'password' => 'RCgcan72tQzdeAtAEq',
+                    'dbname' => 'cb.org.br_web',
                     'driverOptions' => array(
                         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"
                     )

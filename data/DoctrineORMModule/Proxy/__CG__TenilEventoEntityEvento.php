@@ -64,10 +64,10 @@ class Evento extends \TenilEvento\Entity\Evento implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'slug', 'valorInscricao', 'flagEventoGratuito');
+            return array('__isInitialized__', 'id', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'slug', 'valorInscricao', 'flagEventoGratuito', 'updatedAt', 'createdAt');
         }
 
-        return array('__isInitialized__', 'id', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'slug', 'valorInscricao', 'flagEventoGratuito');
+        return array('__isInitialized__', 'id', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'slug', 'valorInscricao', 'flagEventoGratuito', 'updatedAt', 'createdAt');
     }
 
     /**
@@ -516,6 +516,50 @@ class Evento extends \TenilEvento\Entity\Evento implements \Doctrine\ORM\Proxy\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSlug', array());
 
         return parent::setSlug();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUpdatedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUpdatedAt', array());
+
+        return parent::getUpdatedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUpdatedAt', array($updatedAt));
+
+        return parent::setUpdatedAt($updatedAt);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreatedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatedAt', array());
+
+        return parent::getCreatedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreatedAt', array($createdAt));
+
+        return parent::setCreatedAt($createdAt);
     }
 
 }

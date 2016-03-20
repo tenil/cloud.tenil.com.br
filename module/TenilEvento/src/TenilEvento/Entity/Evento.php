@@ -113,7 +113,7 @@ class Evento
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=1024)
+     * @ORM\Column(name="slug", type="string", length=256)
      */
     protected $slug;
 
@@ -130,6 +130,29 @@ class Evento
      * @ORM\Column(name="flag_evento_gratuito", type="boolean")
      */
     protected $flagEventoGratuito = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     */
+    protected $updatedAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
+
+    /**
+     * Evento constructor.
+     */
+    public function __construct()
+    {
+        $this->createdAt = new DateTime("now");
+        $this->updatedAt = new DateTime("now");
+    }
 
     /**
      * @return string
@@ -412,5 +435,43 @@ class Evento
         $this->slug = $slug;
         return $this;
     }
+
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTime $updatedAt
+     * @return Evento
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param DateTime $createdAt
+     * @return Evento
+     */
+    public function setCreatedAt(DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
 
 }

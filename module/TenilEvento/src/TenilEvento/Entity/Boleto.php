@@ -8,15 +8,16 @@
 
 namespace TenilEvento\Entity;
 
-use Doctrine\DBAL\Types\DecimalType;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
+use Doctrine\DBAL\Types\DecimalType;
 
 /**
  * Boleto
  *
  * @ORM\Table(name="tenilevento_boleto")
  * @ORM\Entity(repositoryClass="TenilEvento\Entity\BoletoRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Boleto
 {
@@ -118,6 +119,29 @@ class Boleto
      * @ORM\Column(name="instrucoes_4", type="string", length=50, nullable=true)
      */
     protected $instrucoes4;
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     */
+    protected $updatedAt;
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
+
+    /**
+     * Boleto constructor.
+     */
+    public function __construct()
+    {
+        $this->createdAt = new DateTime("now");
+        $this->updatedAt = new DateTime("now");
+    }
 
     /**
      * @return int
@@ -396,5 +420,43 @@ class Boleto
     {
         return (string)$this->nossoNumero;
     }
+
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTime $updatedAt
+     * @return Boleto
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param DateTime $createdAt
+     * @return Boleto
+     */
+    public function setCreatedAt(DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
 
 }
