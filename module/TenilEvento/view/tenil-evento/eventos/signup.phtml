@@ -120,10 +120,10 @@ $cpf->setLabel('CPF')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $dataNascimento->setLabel('Data de nascimento')
     ->setAttribute('placeholder', 'Data de nascimento')
-    ->setAttribute('class', 'form-control')
+    ->setAttribute('class', 'form-control date')
     ->setAttribute('data-toggle', 'tooltip')
     ->setAttribute('data-placement', 'top')
-    ->setAttribute('title', 'Data de nascimento')
+    ->setAttribute('title', 'DD/MM/AAAA')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $foneFixo->setLabel('Telefone fixo')
     ->setAttribute('placeholder', 'Telefone fixo com DDD')
@@ -180,13 +180,6 @@ echo $this->formElement($security);
             <div class="panel-body">
 
 
-
-
-
-
-
-
-
                 <div class="row">
                     <div class="col-md-6">
                         <h4>Dados Pessoais</h4>
@@ -204,18 +197,23 @@ echo $this->formElement($security);
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group <?php echo(!$email->getMessages() ?: 'has-error'); ?>">
-                            <?php echo $this->formEmail($email); ?>
-                            <?php echo $this->formElementErrors($email); ?>
-                        </div>
+
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-7">
+                                <div class="form-group <?php echo(!$email->getMessages() ?: 'has-error'); ?>">
+                                    <?php echo $this->formEmail($email); ?>
+                                    <?php echo $this->formElementErrors($email); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
                                 <div class="form-group <?php echo(!$dataNascimento->getMessages() ?: 'has-error'); ?>">
                                     <?php echo $this->formInput($dataNascimento); ?>
                                     <?php echo $this->formElementErrors($dataNascimento); ?>
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group <?php echo(!$foneCelular->getMessages() ?: 'has-error'); ?>">
@@ -293,19 +291,9 @@ echo $this->formElement($security);
                     </div>
                 </div>
 
-                <?php echo $this->form()->closeTag() ?>
-
-
-
-
-
-
-
-
-
-
 
             </div>
         </div>
     </div>
 </div>
+<?php echo $this->form()->closeTag() ?>
