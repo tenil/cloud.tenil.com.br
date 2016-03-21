@@ -2,27 +2,41 @@
 
 namespace TenilEvento;
 
-use Zend\Mvc\Router\Http\Segment;
-
 return array(
     'router' => array(
         'routes' => array(
-
             'tenil-evento' => array(
-                'type' => 'segment',
+                'type' => 'literal',
                 'options' => array(
-                    'route' => '/eventos[/:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-z0-9_-]*',
-                        'id' => '[a-zA-z0-9_-]*',
-                       // 'id' => '\d+',
-                    ),
+                    'route' => '/eventos',
                     'defaults' => array(
                         '__NAMESPACE__' => 'TenilEvento\Controller',
                         'module' => 'TenilEvento',
                         'controller' => 'eventos',
                         'action' => 'list'
-                    )
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:action][/:id]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
+                                'id' => '[a-zA-z0-9_-]*',
+                            ),
+                        ),
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/page/[:page]',
+                            'constraints' => array(
+                                'page' => '\d+',
+                            ),
+                        )
+                    ),
                 ),
             )
         )

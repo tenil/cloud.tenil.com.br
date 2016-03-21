@@ -43,7 +43,7 @@
         echo $this->headMeta();
         echo PHP_EOL;
 
-        echo $this->headTitle($this->translate('Rede ICB'))->setSeparator(' - ')->setAutoEscape(false);
+        echo $this->headTitle($this->translate('Arcanjo'))->setSeparator(' - ')->setAutoEscape(false);
 
         echo PHP_EOL;
 
@@ -81,17 +81,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/" class="navbar-brand">WEB ICB</a>
+                    <a href="/" class="navbar-brand">ARCANJO</a>
                 </div>
                 <nav class="collapse navbar-collapse" role="navigation">
                     <ul class="nav navbar-nav navbar-right">
                         <?php if ($user): ?>
-                            <li><a href="<?php echo $this->url('perfil/detail') ?>"><?php echo $user->getEmail(); ?></a></li>
-                            <li><a href="<?php echo $this->url('perfil/detail') ?>"><?php echo $this->gravatar($user->getEmail())->setImgSize(20)->getImgTag(); ?></a></li>
-                            <li><a href="<?php echo $this->url('tenil-user/logout') ?>" data-toggle="tooltip" data-placement="bottom" title="Sair"><span class="glyphicon glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+                            <li><a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'detail')) ?>"><?php echo $user->getEmail(); ?></a></li>
+                            <li><a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'detail')) ?>"><?php echo $this->gravatar($user->getEmail())->setImgSize(20)->getImgTag(); ?></a></li>
+                            <li><a href="<?php echo $this->url('tenil-auth/default', array('action' => 'logout')) ?>" data-toggle="tooltip" data-placement="bottom" title="Sair"><span class="glyphicon glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
                         <?php else : ?>
-                            <li><a href="<?php echo $this->url('tenil-user/register') ?>"><?php echo $this->translate('Crie sua conta') ?></a></li>
-                            <li><a href="<?php echo $this->url('tenil-user/login') ?>"><?php echo $this->translate('Login') ?></a></li>
+                            <li><a href="<?php echo $this->url('tenil-user/default', array('action' => 'register')) ?>"><?php echo $this->translate('Crie sua conta') ?></a></li>
+                            <li><a href="<?php echo $this->url('tenil-auth/default', array('action' => 'login')) ?>"><?php echo $this->translate('Login') ?></a></li>
                         <?php endif; ?>
                     </ul>
                 </nav>

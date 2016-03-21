@@ -9,7 +9,7 @@
                 </div>
                 <!-- List group -->
                 <div class="list-group">
-                    <a href="<?php echo $this->url('perfil/detail') ?>" class="list-group-item">Perfil</a>
+                    <a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'detail')) ?>" class="list-group-item">Perfil</a>
                 </div>
             </div>
 
@@ -20,8 +20,8 @@
                 </div>
                 <!-- List group -->
                 <div class="list-group">
-                    <a href="<?php echo $this->url('tenil-evento'); ?>" class="list-group-item">Todos os eventos</a>
-                    <a href="<?php echo $this->url('tenil-evento', array('action' => 'meus-eventos')); ?>" class="list-group-item">Meus eventos</a>
+                    <a href="<?php echo $this->url('tenil-evento/default'); ?>" class="list-group-item">Todos os eventos</a>
+                    <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'meus-eventos')); ?>" class="list-group-item">Meus eventos</a>
                 </div>
             </div>
 
@@ -33,7 +33,7 @@
                     </div>
                     <!-- List group -->
                     <div class="list-group">
-                        <a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'index')) ?>" class="list-group-item"><?php echo $this->translate('Usuários') ?></a>
+                        <a href="<?php echo $this->url('tenil-user/default', array('action' => 'list')) ?>" class="list-group-item"><?php echo $this->translate('Usuários') ?></a>
                         <a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'roles')) ?>" class="list-group-item"><?php echo $this->translate('Roles') ?></a>
                         <a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources')) ?>" class="list-group-item"><?php echo $this->translate('Resources') ?></a>
                         <a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'privileges')) ?>" class="list-group-item"><?php echo $this->translate('Privileges') ?></a>

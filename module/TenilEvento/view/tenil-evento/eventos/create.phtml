@@ -6,7 +6,7 @@ $this->headTitle($title);
 <?php
 // Configurando o formulário
 $form = $this->form;
-$form->setAttribute('action', $this->url('tenil-evento', array('action' => 'create')));
+$form->setAttribute('action', $this->url('tenil-evento/default', array('action' => 'create')));
 
 $form->setAttributes(array(
     'method' => 'post',
@@ -209,7 +209,7 @@ $this->formElementErrors()
         <div class="clearfix">
             <div class="btn-toolbar pull-right" role="toolbar">
                 <div class="btn-group" role="group">
-                    <a href="<?php echo $this->url('tenil-evento') ?>"
+                    <a href="<?php echo $this->url('tenil-evento/default') ?>"
                        class="btn btn-danger">Cancelar</a>
                     <?php echo $this->formSubmit($submit); ?>
                 </div>

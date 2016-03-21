@@ -23,10 +23,10 @@
                 <td><?php echo $this->escapeHtml($value->getSobrenome()); ?></td>
                 <td><?php echo $this->escapeHtml($value->getApelido()); ?></td>
                 <td>
-                    <a href="<?php echo $this->url('perfil/update', array('id' => $value->getId()), true); ?>">Editar</a>
+                    <a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'update', 'id' => $value->getId()), true); ?>">Editar</a>
                 </td>
                 <td>
-                    <a href="<?php echo $this->url('perfil/delete', array('id' => $value->getId()), true); ?>">Editar</a>
+                    <a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'delete', 'id' => $value->getId()), true); ?>">Deletar</a>
                 </td>
 
                 <td><?php // echo $this->escapeHtml($value->getTelefones()); ?></td>
@@ -39,7 +39,7 @@
         <div class="clearfix">
             <div class="pull-right">
                 <a class="btn btn-default"
-                   href="<?php echo $this->url('tenil-user/default', array('controller' => 'profile', 'action' => 'create')); ?>"
+                   href="<?php echo $this->url('tenil-perfil/default', array('action' => 'create')); ?>"
                    target="_self">Novo</a>
             </div>
         </div>
@@ -50,7 +50,7 @@
 <div class="row">
     <div class="col-md-12">
         <?php
-        // echo  $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v2', array('route' => 'tenil-user/paginator'));
+         echo  $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v2', array('route' => 'tenil-perfil/paginator'));
         ?>
     </div>
 </div>

@@ -5,6 +5,7 @@ namespace TenilUser\Controller;
 use TenilUser\Entity\Perfil;
 use TenilUser\Form\PerfilCreate;
 use TenilUser\Form\PerfilUpdate;
+use TenilBase\Controller\CrudController;
 
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\ArrayAdapter;
@@ -21,7 +22,7 @@ class ProfileController extends CrudController
         $this->form = 'TenilUser\Form\Perfil';
         $this->service = 'TenilUser\Service\Perfil';
         $this->controller = 'profile';
-        $this->route = 'perfil';
+        $this->route = 'tenil-perfil/default';
     }
 
     protected $em;
@@ -36,7 +37,7 @@ class ProfileController extends CrudController
     {
         $authenticationService = $this->getAuthService();
         if (!$user = $authenticationService->getIdentity()) {
-            return $this->redirect()->toRoute('tenil-user/login');
+            return $this->redirect()->toRoute('tenil-auth/default', array('action' => 'login'));
         }
 
         $perfil = $authenticationService->getIdentity()->getPerfil();
@@ -44,6 +45,7 @@ class ProfileController extends CrudController
         return new ViewModel(array('perfil' => $perfil));
 
     }
+
     public function detailAction()
     {
         $authenticationService = $this->getAuthService();
@@ -54,16 +56,6 @@ class ProfileController extends CrudController
         $perfil = $authenticationService->getIdentity()->getPerfil();
 
         return new ViewModel(array('perfil' => $perfil));
-
-    }
-
-    public function listAction()
-    {
-        $list = $this->getEm()
-            ->getRepository($this->entity)
-            ->findAll();
-
-        return new ViewModel(array('data' => $list));
 
     }
 
@@ -101,7 +93,7 @@ class ProfileController extends CrudController
         // Verificar se existe parâmetro passado na rota
         //$id = (int)$this->params()->fromRoute('id', 0);
 
-        $id = (int) $this->params('id');
+        $id = (int)$this->params('id');
         // Se não existe parâmetro, redirecionar para lista
         if (!$id) {
             return $this->redirect()->toRoute($this->route);
@@ -173,7 +165,7 @@ class ProfileController extends CrudController
     {
         $authenticationService = $this->getAuthService();
         if (!$user = $authenticationService->getIdentity()) {
-            return $this->redirect()->toRoute('tenil-user/login');
+            return $this->redirect()->toRoute('tenil-auth', array('action' => 'login'));
         }
 
         // Get your ObjectManager from the ServiceManager
@@ -193,7 +185,7 @@ class ProfileController extends CrudController
             // @HACK para corrigir remoção de elementos do formCollection
 
             $data = $request->getPost()->toArray();
-            if ( !isset($data['perfil']['telefones']) || empty($data['perfil']['telefones']) ) {
+            if (!isset($data['perfil']['telefones']) || empty($data['perfil']['telefones'])) {
                 $perfil->removeTelefones($perfil->getTelefones());
             }
 
@@ -204,7 +196,7 @@ class ProfileController extends CrudController
                 // Save the changes
                 $objectManager->flush();
                 $this->flashMessenger()->addSuccessMessage('Perfil atualizado com sucesso!');
-                return $this->redirect()->toRoute('perfil/detail');
+                return $this->redirect()->toRoute('tenil-perfil/default', array('action' => 'detail'));
             }
         }
 

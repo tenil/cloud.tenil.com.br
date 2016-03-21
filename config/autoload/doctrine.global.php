@@ -10,7 +10,7 @@ return array(
                     'port' => '3306',
                     'user' => 'cb.org.br',
                     'password' => 'RCgcan72tQzdeAtAEq',
-                    'dbname' => 'cb.org.br_web',
+                    'dbname' => 'cb.org.br_arcanjo',
                     'driverOptions' => array(
                         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"
                     )

@@ -7,7 +7,7 @@ $this->headLink()->appendStylesheet('/css/signin.css');
 $form = $this->form;
 $form->prepare();
 
-$form->setAttribute('action', $this->url('tenil-user/register'));
+$form->setAttribute('action', $this->url('tenil-user/default', array('action' => 'register')));
 
 $this->formElementErrors()
     ->setMessageOpenFormat('<span id="helpBlock" class="help-block">')
@@ -42,8 +42,8 @@ $name = $form->get('submit');
 echo $this->formSubmit($name);
 ?>
 <div class="footer">
-    <p>Ao inscrever-se, você concorda com os <a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'forgot')) ?>">Termos de Serviço</a></p>
-    <p><strong>Já tem uma conta? <a href="<?php echo $this->url('tenil-user/login') ?>">Entre</a></strong></p>
+    <p>Ao inscrever-se, você concorda com os <a href="<?php echo $this->url('tenil-user/default', array('action'=>'forgot')) ?>">Termos de Serviço</a></p>
+    <p><strong>Já tem uma conta? <a href="<?php echo $this->url('tenil-auth', array('action' => 'login')) ?>">Entre</a></strong></p>
 </div>
 
 <?php echo $this->form()->closeTag(); ?>

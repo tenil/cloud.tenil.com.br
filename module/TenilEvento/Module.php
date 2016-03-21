@@ -27,6 +27,10 @@ class Module
                     $em = $sm->get('Doctrine\ORM\EntityManager');
                     return new Service\Boleto($em);
                 },
+                'TenilEvento\Service\Evento' => function ($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    return new Service\Evento($em);
+                },
             )
         );
     }

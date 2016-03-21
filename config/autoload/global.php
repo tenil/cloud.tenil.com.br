@@ -13,7 +13,7 @@
  */
 return array(
     'mail' => array(
-        'name' => 'tenil.com.br',
+        'name' => 'cb.org.br',
         'host' => 'email-smtp.us-east-1.amazonaws.com',
         'port' => 587, // Notice port change for TLS is 587
         'connection_class' => 'plain',
@@ -21,8 +21,8 @@ return array(
             'username' => 'AKIAIFLK4RVKZEWBW4NA',
             'password' => 'AgSiyezSIzWH7UvOSj+SM7Zs3ICg1+eAmb8CIYj/3ghr',
             'ssl' => 'tls',
-            'from' => 'contato@tenil.com.br',
-            'sender' => 'Tenil Tecnologia'
+            'from' => 'arcanjo@cb.org.br',
+            'sender' => 'Arcanjo ICB'
         )
     ),
 );

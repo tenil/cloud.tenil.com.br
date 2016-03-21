@@ -30,7 +30,7 @@ $inscricao = $this->data;
                 <div class="btn-toolbar" role="toolbar">
                     <div class="btn-group pull-right" role="group">
                         <a class="btn btn-primary btn-lg"
-                           href="<?php echo $this->url('tenil-evento', array('controller' => 'evento', 'action' => 'boleto', 'id' => $inscricao->getId())) ?>"
+                           href="<?php echo $this->url('tenil-evento/default', array('controller' => 'evento', 'action' => 'boleto', 'id' => $inscricao->getId())) ?>"
                            role="button">Gerar boleto</a>
                     </div>
                 </div>

@@ -75,7 +75,7 @@ $evento = $this->data;
 <?php
 // Configurando o formulário
 $form = $this->form;
-$form->setAttribute('action', $this->url('tenil-evento', array('action' => 'signup', 'id' => $evento->getSlug())));
+$form->setAttribute('action', $this->url('tenil-evento/default', array('action' => 'signup', 'id' => $evento->getSlug())));
 
 $form->setAttributes(array(
     'method' => 'post',

@@ -6,13 +6,13 @@ return array(
     'router' => array(
         'routes' => array(
             'tenil-user' => array(
-                'type' => 'Literal',
+                'type' => 'literal',
                 'options' => array(
                     'route' => '/user',
                     'defaults' => array(
                         '__NAMESPACE__' => 'TenilUser\Controller',
                         'module' => 'TenilUser',
-                        'controller' => 'Index',
+                        'controller' => 'index',
                         'action' => 'index',
                     ),
                 ),
@@ -21,72 +21,84 @@ return array(
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[/:action]]',
+                            'route' => '/[:action][/:id]',
                             'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                                'controller' => 'Index',
-                                'action' => 'index',
-                            ),
-                        ),
-                        'may_terminate' => true,
-                        'child_routes' => array(//permite mandar dados pela url 
-                            'wildcard' => array(
-                                'type' => 'Wildcard'
+                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
+                                'id' => '[a-zA-z0-9_-]*',
                             ),
                         ),
                     ),
                     'paginator' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[/page/:page]]',
+                            'route' => '/page/[:page]',
                             'constraints' => array(
-                                'contronller' => '[a-zA-Z][a-zA-z0-9_-]*',
-                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
                                 'page' => '\d+',
                             ),
-                            'defaults' => array(
-                                '__NAMESPACE__' => 'TenilUser\Controller',
-                                'controller' => 'users',
-                            )
                         )
                     ),
-                    'register' => array(
-                        'type' => 'literal',
-                        'options' => array(
-                            'route' => '/register',
-                            'defaults' => array(
-                                'action' => 'register'
-                            ),
-                        ),
-                    ),
-                    'login' => array(
-                        'type' => 'literal',
-                        'options' => array(
-                            'route' => '/login',
-                            'defaults' => array(
-                                '__NAMESPACE__' => 'TenilUser\Controller',
-                                'controller' => 'auth',
-                                'action' => 'login'
-                            ),
-                        ),
-                    ),
-                    'logout' => array(
-                        'type' => 'literal',
-                        'options' => array(
-                            'route' => '/logout',
-                            'defaults' => array(
-                                '__NAMESPACE__' => 'TenilUser\Controller',
-                                'controller' => 'auth',
-                                'action' => 'logout'
-                            ),
-                        ),
-                    ),
-
                 ),
             ),
+            'tenil-auth' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/auth',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TenilUser\Controller',
+                        'module' => 'TenilUser',
+                        'controller' => 'auth',
+                        'action' => 'login',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:action]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'tenil-perfil' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/perfil',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'TenilUser\Controller',
+                        'module' => 'TenilUser',
+                        'controller' => 'profile',
+                        'action' => 'detail',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:action][/:id]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-z0-9_-]*',
+                                'id' => '[a-zA-z0-9_-]*',
+                            ),
+                        ),
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/page/[:page]',
+                            'constraints' => array(
+                                'page' => '\d+',
+                            ),
+                        )
+                    ),
+                ),
+            ),
+
+            /*
             'perfil' => array(
                 'type' => 'literal',
                 'options' => array(
@@ -153,7 +165,15 @@ return array(
                     ),
 
                 ),
-            ),        )
+            ),
+            */
+
+
+
+
+
+
+        )
     ),
     'controllers' => array(
         'invokables' => array(
@@ -201,7 +221,7 @@ return array(
                 'identity_class' => 'TenilUser\Entity\User',
                 'identity_property' => 'email',
                 'credential_property' => 'password',
-                'credential_Callable' => function($identity, $credential) {
+                'credential_Callable' => function ($identity, $credential) {
                     return $identity->encryptPassword($credential);
                 },
             ),

@@ -4,7 +4,7 @@ $this->headLink()->appendStylesheet('/css/signin.css');
 $form = $this->form;
 $form->prepare();
 
-$form->setAttribute('action', $this->url('tenil-user/default', array('controller'=> 'auth', 'action'=>'login')));
+$form->setAttribute('action', $this->url('tenil-auth/default', array('action'=>'login')));
 
 $formLabel = $this->plugin('formLabel');
 
@@ -23,7 +23,7 @@ $name = $form->get('submit');
 echo $this->formSubmit($name);
 ?>
 <div class="footer">
-    <p><a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'forgot')) ?>">Esqueceu a senha?</a></p>
+    <p><a href="<?php echo $this->url('tenil-user/default', array('action'=>'forgot')) ?>">Esqueceu a senha?</a></p>
     <p>Não tem uma conta? <a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'register')) ?>">Cadastre-se</a></p>
 </div>
 

@@ -23,7 +23,7 @@ class IndexController extends AbstractActionController
     protected $user;
     protected $authService;
 
-    public function getAuthService()
+    protected function getAuthService()
     {
         return $this->authService;
     }
@@ -68,6 +68,7 @@ class IndexController extends AbstractActionController
                     $this->flashMessenger()->addErrorMessage('Esse e-mail já está em uso.');
                 } else {
                     $this->flashMessenger()->addSuccessMessage('Um link para ativação da sua conta foi enviado para seu e-mail.');
+                    $this->flashMessenger()->addInfoMessage('Se o e-mail não estiver na sua caixa de entrada, vefifique o lixo eletrônico.');
                     return $this->redirect()->toRoute('tenil-user/login');
                 }
             }
