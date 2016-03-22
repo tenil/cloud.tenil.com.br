@@ -25,10 +25,10 @@
                 <td><?php echo $this->escapeHtml($value->getEmail()); ?></td>
                 <td <?php echo $value->getActive() ? 'class="success"' : 'class="danger"'; ?>><?php echo $value->getActive() ? 'Sim' : 'Não'; ?></td>
                 <td>
-                    <a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'edit')) . '/id/' . $value->getId() ?>">Editar</a>
+                    <a href="<?php echo $this->url('tenil-user/default', array('action' => 'edit', 'id' => $value->getId())) ?>">Editar</a>
                 </td>
                 <td>
-                    <a href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'delete')) . '/id/' . $value->getId() ?>">Excluir</a>
+                    <a href="<?php echo $this->url('tenil-user/default', array('action' => 'delete', 'id' => $value->getId()))  ?>">Excluir</a>
                 </td>
                 <td>
                     <small><?php
@@ -55,7 +55,7 @@
         <div class="clearfix">
             <div class="pull-right">
                 <a class="btn btn-default"
-                   href="<?php echo $this->url('tenil-user/default', array('controller' => 'users', 'action' => 'add')); ?>"
+                   href="<?php echo $this->url('tenil-user/default', array('action' => 'add')); ?>"
                    target="_self">Novo</a>
             </div>
         </div>

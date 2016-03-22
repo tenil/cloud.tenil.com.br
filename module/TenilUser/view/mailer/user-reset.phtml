@@ -1,5 +1,5 @@
 <?php
-$link = $this->serverUrl($this->url('tenil-user/default', array('action' => 'reset')) . '/key/' . $this->resetKey);
+$link = $this->serverUrl($this->url('tenil-user/default', array('action' => 'reset', 'id' => $this->resetKey)) );
 ?>
-<p>Seu link para redefinir a senha é: <a href="<?php echo $link; ?>"><?php echo $link; ?></a></p>
+<p>O link para redefinir sua senha é: <a href="<?php echo $link; ?>"><?php echo $link; ?></a></p>
 <p>Se você não solicitou alteração da sua senha, ignore essa mensagem.</p>

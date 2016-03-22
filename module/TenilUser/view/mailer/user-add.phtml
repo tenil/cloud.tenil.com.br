@@ -1,6 +1,6 @@
 <?php
 
-$link = $this->serverUrl($this->url('tenil-user/default', array('action' => 'activate')) . '/key/' . $this->activationKey);
+$link = $this->serverUrl($this->url('tenil-user/default', array('action' => 'activate', 'id' => $this->activationKey)) );
 
 ?>
-<p>Seu link para ativar a conta é: <a href="<?php echo $link; ?>"><?php echo $link; ?></a></p>
+<p>O link para ativar sua conta é: <a href="<?php echo $link; ?>"><?php echo $link; ?></a></p>

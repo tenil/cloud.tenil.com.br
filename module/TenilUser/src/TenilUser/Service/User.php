@@ -29,10 +29,10 @@ class User extends AbstractService
         $this->view = $view;
     }
 
-    public function insert(array $data)
+    public function insert($entity)
     {
         // Executa o metodo da classe pai e atribui o retorno a variavel
-        $entity = parent::insert($data);
+        $entity = parent::insert($entity);
 
         $dataEmail = array(
             'activationKey' => $entity->getActivationKey()
@@ -43,7 +43,7 @@ class User extends AbstractService
             // Parâmetros: Transport, View e Page
             $mail = new Mail($this->transport, $this->view, 'user-add');
             $mail->setSubjet('Confirmação de cadastro')
-                ->setTo($data['email'])
+                ->setTo($entity->getEmail())
                 ->setData($dataEmail)
                 ->prepare()
                 ->send();
@@ -62,57 +62,58 @@ class User extends AbstractService
         return parent::update($data);
     }
 
-    public function activate($key)
+    public function activate($id)
     {
 
         // Pegando o repository usando o EntityManager;
-        $repo = $this->em->getRepository('TenilUser\Entity\User');
+        $repository = $this->em->getRepository($this->entity);
         // Utilizando um método "mágico";
-        $user = $repo->findOneByActivationKey($key);
+        $entity = $repository->findOneByActivationKey($id);
 
-        if ($user && !$user->getActive()) {
+        if ($entity && !$entity->getActive()) {
 
             // Ativando o usuário na conta
-            $user->setActive(TRUE);
-            $this->em->persist($user);
+            $entity->setActive(TRUE);
+            $this->em->persist($entity);
             $this->em->flush();
 
             $dataEmail = array(
-                'nome' => $user->getNome(),
+                'nome' => $entity->getPerfil(),
             );
 
             // Enviando e-mail de confirmação
             // Parâmetros: Transport, View e Page
             $mail = new Mail($this->transport, $this->view, 'user-activate');
             $mail->setSubjet('Confirmação de ativação')
-                ->setTo($user->getEmail())
+                ->setTo($entity->getEmail())
                 ->setData($dataEmail)
                 ->prepare()
                 ->send();
 
-
-            return $user;
         }
+
+        return $entity;
+
     }
 
     public function passwordReset($email)
     {
 
         // Pegando o repository usando o EntityManager;
-        $repo = $this->em->getRepository('TenilUser\Entity\User');
+        $repository = $this->em->getRepository($this->entity);
         // Utilizando um método "mágico";
-        $user = $repo->findOneByEmail($email);
+        $entity = $repository->findOneByEmail($email);
 
-        if ($user) {
+        if ($entity) {
 
             // Criando a chave de recuperação de senha
-            $user->setPasswordResetKey(TRUE);
-            $this->em->persist($user);
+            $entity->setPasswordResetKey(TRUE);
+            $this->em->persist($entity);
             $this->em->flush();
 
             $dataEmail = array(
-                'nome' => $user->getPerfil(),
-                'resetKey' => $user->getPasswordResetKey()
+                'nome' => $entity->getPerfil(),
+                'resetKey' => $entity->getPasswordResetKey()
             );
 
             // Enviando e-mail de confirmação
@@ -120,21 +121,23 @@ class User extends AbstractService
 
             $mail = new Mail($this->transport, $this->view, 'user-reset');
             $mail->setSubjet('Redefinição de senha')
-                ->setTo($user->getEmail())
+                ->setTo($entity->getEmail())
                 ->setData($dataEmail)
                 ->prepare()
                 ->send();
 
-            return $user;
         }
+
+        return $entity;
+
     }
 
     public function findByKey($key)
     {
         // Pegando o repository usando o EntityManager;
-        $repo = $this->em->getRepository('TenilUser\Entity\User');
+        $repository = $this->em->getRepository($this->entity);
         // Utilizando um método "mágico";
-        return $repo->findOneByPasswordResetKey($key);
+        return $repository->findOneByPasswordResetKey($key);
     }
 
 }

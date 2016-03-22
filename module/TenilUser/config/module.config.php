@@ -12,8 +12,8 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'TenilUser\Controller',
                         'module' => 'TenilUser',
-                        'controller' => 'index',
-                        'action' => 'index',
+                        'controller' => 'user',
+                        'action' => 'list',
                     ),
                 ),
                 'may_terminate' => true,
@@ -178,7 +178,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'TenilUser\Controller\Index' => 'TenilUser\Controller\IndexController',
-            'TenilUser\Controller\Users' => 'TenilUser\Controller\UsersController',
+            'TenilUser\Controller\User' => 'TenilUser\Controller\UserController',
             'TenilUser\Controller\Auth' => 'TenilUser\Controller\AuthController',
             'TenilUser\Controller\Profile' => 'TenilUser\Controller\ProfileController',
         )
