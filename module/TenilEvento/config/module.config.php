@@ -21,7 +21,7 @@ return array(
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:action][/:id]',
+                            'route' => '/[:action][/:id][/:cpf]',
                             'constraints' => array(
                                 'action' => '[a-zA-Z][a-zA-z0-9_-]*',
                                 'id' => '[a-zA-z0-9_-]*',

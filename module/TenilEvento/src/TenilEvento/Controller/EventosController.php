@@ -104,7 +104,7 @@ class EventosController extends CrudController
 
 
                     $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Inscrição realizada com sucesso!');
-                    return $this->redirect()->toRoute($this->route, array('action' => 'inscricao', 'id' => $inscricao->getId()));
+                    return $this->redirect()->toRoute($this->route, array('action' => 'inscricao', 'id' => $inscricao->getId(), 'cpf' => $inscricao->getCpf()));
 
                 } else {
                     $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage('Preencha todos os valores corretamente!');
@@ -126,7 +126,8 @@ class EventosController extends CrudController
     public function boletoAction()
     {
         $id = $this->params()->fromRoute('id', null);
-        $inscricao = $this->getEm()->getRepository('TenilEvento\Entity\Inscricao')->find($id);
+        $cpf = $this->params()->fromRoute('cpf', null);
+        $inscricao = $this->getEm()->getRepository('TenilEvento\Entity\Inscricao')->findOneBy(array('id' => $id, 'cpf' => $cpf));
 
         if ($inscricao) {
 
@@ -182,7 +183,8 @@ class EventosController extends CrudController
     public function inscricaoAction()
     {
         $id = $this->params()->fromRoute('id', null);
-        $data = $this->getEm()->getRepository('TenilEvento\Entity\Inscricao')->find($id);
+        $cpf = $this->params()->fromRoute('cpf', null);
+        $data = $this->getEm()->getRepository('TenilEvento\Entity\Inscricao')->findOneBy(array('id' => $id, 'cpf' => $cpf));
 
         if ($data) {
             return new ViewModel(array('data' => $data));
