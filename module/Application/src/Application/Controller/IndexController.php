@@ -16,6 +16,8 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel();
+
+        return $this->redirect()->toRoute('tenil-evento');
+//        return new ViewModel();
     }
 }

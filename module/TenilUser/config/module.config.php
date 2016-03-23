@@ -97,87 +97,11 @@ return array(
                     ),
                 ),
             ),
-
-            /*
-            'perfil' => array(
-                'type' => 'literal',
-                'options' => array(
-                    'route' => '/perfil',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'TenilUser\Controller',
-                        'module' => 'TenilUser',
-                        'controller' => 'profile',
-                        'action' => 'list'
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'detail' => array(
-                        'type' => 'literal',
-                        'options' => array(
-                            'route' => '/detail',
-                            'defaults' => array(
-                                'action' => 'detail'
-                            ),
-                        ),
-                    ),
-                    'create' => array(
-                        'type' => 'literal',
-                        'options' => array(
-                            'route' => '/create',
-                            'defaults' => array(
-                                'action' => 'create'
-                            ),
-                        ),
-                    ),
-                    'update' => array(
-                        'type' => 'segment',
-                        'options' => array(
-                            'route' => '/update/:id',
-                            'defaults' => array(
-                                'action' => 'update'
-                            ),
-                            'constraints' => array(
-                                'id' => '\d+'
-                            ),
-                        ),
-                    ),
-                    'edit' => array(
-                        'type' => 'literal',
-                        'options' => array(
-                            'route' => '/edit',
-                            'defaults' => array(
-                                'action' => 'edit'
-                            ),
-                        ),
-                    ),
-                    'delete' => array(
-                        'type' => 'segment',
-                        'options' => array(
-                            'route' => '/delete/:id',
-                            'defaults' => array(
-                                'action' => 'update'
-                            ),
-                            'constraints' => array(
-                                'id' => '\d+'
-                            ),
-                        ),
-                    ),
-
-                ),
-            ),
-            */
-
-
-
-
-
-
         )
     ),
     'controllers' => array(
         'invokables' => array(
-            'TenilUser\Controller\Index' => 'TenilUser\Controller\IndexController',
+            // 'TenilUser\Controller\Index' => 'TenilUser\Controller\IndexController',
             'TenilUser\Controller\User' => 'TenilUser\Controller\UserController',
             'TenilUser\Controller\Auth' => 'TenilUser\Controller\AuthController',
             'TenilUser\Controller\Profile' => 'TenilUser\Controller\ProfileController',

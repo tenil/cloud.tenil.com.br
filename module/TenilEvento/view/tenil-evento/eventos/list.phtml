@@ -1,57 +1,27 @@
 <?php
-// Título da página
 $title = $this->translate('Eventos');
 $this->headTitle($title);
 $data = $this->data;
 ?>
 <?php foreach ($data as $evento): ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $evento->getNome(); ?>
-                <span class="pull-right"><?php echo $evento->getTema(); ?></span>
-            </h3>
+    <div class="row">
+        <div class="col-md-12">
+            <h1><?php echo $evento->getNome(); ?> <br>
+                <small><?php echo $evento->getTema(); ?></small>
+            </h1>
         </div>
-
-        <div class="panel-body">
-
-            <dl class="dl-horizontal">
-                <dt>Data início</dt>
-                <dd><?php
-                    echo $this->dateFormat(
-                        $evento->getDataInicio(),
-                        IntlDateFormatter::MEDIUM, // date
-                        IntlDateFormatter::NONE, // time
-                        "pt_BR"
-                    );
-                    ?>
-                </dd>
-                <dt>Data encerramento</dt>
-                <dd><?php
-                    echo $this->dateFormat(
-                        $evento->getDataFim(),
-                        IntlDateFormatter::MEDIUM, // date
-                        IntlDateFormatter::NONE, // time
-                        "pt_BR"
-                    );
-                    ?></dd>
-                <dt>Sinópse</dt>
-                <dd class="text-justify"><?php echo $evento->getDescricao(); ?></dd>
-            </dl>
-        </div>
-        <div class="panel-footer">
-            <div class="clearfix">
-                <div class="btn-toolbar pull-right" role="toolbar">
-                    <div class="btn-group" role="group">
-                        <a href="<?php echo $this->url('tenil-evento/default') ?>"
-                           class="btn btn-danger">Cancelar</a>
-                        <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'signup', 'id' => $evento->getSlug())) ?>"
-                           class="btn btn-primary">Fazer Inscrição</a>
-
-                    </div>
+        <div class="col-md-12"><p class="lead"><?php echo $evento->getDataInicio()->format("d/m/Y"); ?>
+                - <?php echo $evento->getDataFim()->format("d/m/Y"); ?></p></div>
+        <div class="col-md-12">
+            <div class="btn-toolbar pull-right" role="toolbar">
+                <div class="btn-group" role="group">
+                    <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'signup', 'id' => $evento->getSlug())) ?>"
+                       class="btn btn-primary">Mais informações</a>
                 </div>
             </div>
         </div>
     </div>
+    <hr>
 <?php endforeach; ?>
 <div class="row">
     <div class="col-md-12">
