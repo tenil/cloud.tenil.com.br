@@ -85,13 +85,26 @@ class EventosController extends CrudController
                      * @todo Disparar e-mail com todos os dados
                      */
 
+                    $data = array(
+                        'email' => $inscricao->getEmail(),
+                        'inscricao' => $inscricao->getId(),
+                        'nome' => $inscricao->getNome(),
+                        'cpf' => $inscricao->getCpf(),
+                        'evento' => $inscricao->getEvento()->getNome(),
+                        'valor' => $inscricao->getEvento()->getValorInscricao(),
+                        'slug' => $inscricao->getEvento()->getSlug(),
+                    );
+                    $serviceEvento = $this->getServiceLocator()->get('TenilEvento\Service\Evento');
+                    $serviceEvento->dispararEmail($data);
+
                     /**
                      * @todo Redirecionar para página de inscrição efetuada com sucesso.
                      * @todo Clicar em gerar boleto
                      */
 
+
                     $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Inscrição realizada com sucesso!');
-                    return $this->redirect()->toRoute($this->route, array('controller' => $this->controller, 'action' => 'inscricao', 'id' => $inscricao->getId()));
+                    return $this->redirect()->toRoute($this->route, array('action' => 'inscricao', 'id' => $inscricao->getId()));
 
                 } else {
                     $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage('Preencha todos os valores corretamente!');

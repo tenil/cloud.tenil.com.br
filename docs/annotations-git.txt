@@ -2,10 +2,10 @@
 02h00m - SSH. Repositório remoto. Não precisa necessarimente ser o GitHub.
 02h28m - Modelo distribuído, descentralizado. Github.
 
-$ git config --list
-$ git config --global user.name "John Doe"
-$ git config --global user.email johndoe@example.com
-$ git config --global color.ui auto 
+git config --list
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+git config --global color.ui auto 
 
 git help <comando>
     Obter ajuda.
@@ -18,6 +18,8 @@ git status
 
 git add
 	Adiciona arquivos ao índice (stage).
+	
+	- Stage é um apontamento que git faz para os arquivos.
 	
 git add -f
 	Adiciona arquivos ao índice (stage). Mesmo que o arquivo esteja sendo ignorado pelo .gitignore.

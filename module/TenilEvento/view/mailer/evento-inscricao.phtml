@@ -1,0 +1,23 @@
+<p>Olá <?php echo strtok($this->nome, ' '); ?>,</p>
+<p>Informamos o recebimento de sua inscrição para <strong><?php echo $this->evento; ?></strong>.<br>
+    Seguem os dados da sua inscrição:</p>
+
+<ul>
+    <li>Código da inscrição: <strong style="color: blue"><?php echo $this->inscricao; ?></strong></li>
+    <li>Valor: <strong>R$ <?php echo $this->valor; ?></strong></li>
+</ul>
+
+<p><span style="color:red; font-weight:bold">Sua vaga somente estar&aacute; garantida ap&oacute;s a confirma&ccedil;&atilde;o do pagamento.</span>
+</p>
+<p>Caso ainda não tenha efetuado o pagamento, <a
+        href="<?php echo $this->serverUrl($this->url('tenil-evento/default', array('action' => 'inscricao', 'id' => $this->inscricao))); ?>"
+        style="font-weight:bold">clique aqui</a> para finalizar sua inscrição.
+</p>
+<p>Maiores informa&ccedil;&otilde;es acesse: <a
+        href="<?php echo $this->serverUrl($this->url('tenil-evento/default', array('action' => 'detail', 'id' => $this->slug))); ?>"><?php echo $this->serverUrl($this->url('tenil-evento/default', array('action' => 'detail', 'id' => $this->slug))); ?></a>.
+</p>
+<br/>
+<br/>
+Atenciosamente,<br/>
+
+Organiza&ccedil;&atilde;o do evento

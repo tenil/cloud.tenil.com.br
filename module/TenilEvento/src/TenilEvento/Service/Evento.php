@@ -28,4 +28,17 @@ class Evento extends AbstractService
 
     }
 
+    public function dispararEmail(array $data)
+    {
+        // Parâmetros: Transport, View e Page
+        $mail = new Mail($this->transport, $this->view, 'evento-inscricao');
+        $mail->setSubjet('Inscrição realizada')
+            ->setTo($data['email'])
+            ->setData($data)
+            ->prepare()
+            ->send();
+        
+        return $data;
+    }
+
 }

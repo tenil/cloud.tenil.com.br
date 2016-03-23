@@ -29,7 +29,9 @@ class Module
                 },
                 'TenilEvento\Service\Evento' => function ($sm) {
                     $em = $sm->get('Doctrine\ORM\EntityManager');
-                    return new Service\Evento($em);
+                    $transport = $sm->get('TenilUser\Mail\Transport');
+                    $view = $sm->get('view');
+                    return new Service\Evento($em, $transport, $view);
                 },
             )
         );

@@ -107,7 +107,6 @@ abstract class CrudController extends AbstractActionController
         return $this->em;
     }
 
-
     public function editAction()
     {
 
@@ -176,5 +175,29 @@ abstract class CrudController extends AbstractActionController
     public function getAuthService()
     {
         return $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+    }
+
+    /**
+     * Retorna uma String com uma mascara definida
+     * Ex.: $this->mask($inscricao->getCpf(), '###.###.###-##')
+     *
+     * @param $val
+     * @param $mask
+     * @return string
+     */
+    private function mask($val, $mask)
+    {
+        $maskared = '';
+        $k = 0;
+        for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+            if ($mask[$i] == '#') {
+                if (isset($val[$k]))
+                    $maskared .= $val[$k++];
+            } else {
+                if (isset($mask[$i]))
+                    $maskared .= $mask[$i];
+            }
+        }
+        return $maskared;
     }
 }
