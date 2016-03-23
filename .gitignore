@@ -8,7 +8,7 @@ nbproject
 .settings
 .vagrant
 composer.lock
-vendor/bin
+vendor
 Vagrantfile
 *.box
 Thumbs.db
