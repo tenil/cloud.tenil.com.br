@@ -12,3 +12,4 @@ vendor/bin
 Vagrantfile
 *.box
 Thumbs.db
+*.local.php
