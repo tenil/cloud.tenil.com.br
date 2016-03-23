@@ -50,7 +50,7 @@ class ProfileController extends CrudController
     {
         $authenticationService = $this->getAuthService();
         if (!$user = $authenticationService->getIdentity()) {
-            return $this->redirect()->toRoute('tenil-user/login');
+            return $this->redirect()->toRoute('tenil-auth/default', array('action' => 'login'));
         }
 
         $perfil = $authenticationService->getIdentity()->getPerfil();

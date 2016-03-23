@@ -26,7 +26,7 @@ class EventosController extends CrudController
         $this->controller = 'eventos';
         $this->entity = 'TenilEvento\Entity\Evento';
         $this->form = 'TenilEvento\Form\EventoCreate';
-        $this->route = 'tenil-evento';
+        $this->route = 'tenil-evento/default';
         $this->service = 'TenilEvento\Service\Evento';
     }
 
@@ -140,7 +140,6 @@ class EventosController extends CrudController
             );
 
 
-
             // Instanciando as classes relacionadas ao boleto
             $boleto = new BoletoBradesco($data);
             $sacado = new Sacado($data);
@@ -178,6 +177,22 @@ class EventosController extends CrudController
             return $this->notFoundAction();
         }
 
+    }
+
+    private function mask($val, $mask)
+    {
+        $maskared = '';
+        $k = 0;
+        for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+            if ($mask[$i] == '#') {
+                if (isset($val[$k]))
+                    $maskared .= $val[$k++];
+            } else {
+                if (isset($mask[$i]))
+                    $maskared .= $mask[$i];
+            }
+        }
+        return $maskared;
     }
 
 }

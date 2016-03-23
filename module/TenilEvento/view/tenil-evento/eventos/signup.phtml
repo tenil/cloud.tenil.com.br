@@ -177,9 +177,14 @@ echo $this->formElement($security);
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td><strong>Fazer inscrição</strong></td>
+                </tr>
+                </thead>
+            </table>
             <div class="panel-body">
-
-
                 <div class="row">
                     <div class="col-md-6">
                         <h4>Dados Pessoais</h4>
@@ -212,8 +217,6 @@ echo $this->formElement($security);
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group <?php echo(!$foneCelular->getMessages() ?: 'has-error'); ?>">
@@ -299,8 +302,6 @@ echo $this->formElement($security);
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

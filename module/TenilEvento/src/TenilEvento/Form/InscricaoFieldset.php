@@ -45,6 +45,9 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'options' => array(
                 'label' => 'E-mail'
             ),
+            'attributes' => array(
+                'required' => 'required',
+            )
         ));
 
         $this->add(array(
@@ -54,7 +57,7 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
                 'label' => 'Nome'
             ),
             'attributes' => array(
-                //  'required' => 'required',
+                'required' => 'required',
                 'maxlength' => 512,
             )
         ));
@@ -64,6 +67,9 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'cpf',
             'options' => array(
                 'label' => 'CPF'
+            ),
+            'attributes' => array(
+                'required' => 'required',
             )
         ));
 
@@ -92,6 +98,9 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'dataNascimento',
             'options' => array(
                 'label' => 'Data de Nascimento',
+            ),
+            'attributes' => array(
+                'required' => 'required',
             )
         ));
 
@@ -108,6 +117,9 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'foneCelular',
             'options' => array(
                 'label' => 'Fone Celular'
+            ),
+            'attributes' => array(
+                'required' => 'required',
             )
         ));
 
@@ -116,6 +128,9 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'logradouro',
             'options' => array(
                 'label' => 'Endereço'
+            ),
+            'attributes' => array(
+                'required' => 'required',
             )
         ));
 
@@ -126,7 +141,7 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
                 'label' => 'Número'
             ),
             'attributes' => array(
-                //  'required' => 'required',
+                'required' => 'required',
                 'maxlength' => 5,
             )
         ));
@@ -144,6 +159,9 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'bairro',
             'options' => array(
                 'label' => 'Bairro'
+            ),
+            'attributes' => array(
+                'required' => 'required',
             )
         ));
 
@@ -152,6 +170,9 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'localidade',
             'options' => array(
                 'label' => 'Cidade'
+            ),
+            'attributes' => array(
+                'required' => 'required',
             )
         ));
         /*
@@ -199,7 +220,11 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
                     'SE' => 'SE - Sergipe',
                     'TO' => 'TO - Tocantins',
                 ),
+            ),
+            'attributes' => array(
+                'required' => 'required',
             )
+
         ));
 
 
@@ -208,6 +233,9 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => 'cep',
             'options' => array(
                 'label' => 'CEP'
+            ),
+            'attributes' => array(
+                'required' => 'required',
             )
         ));
 
