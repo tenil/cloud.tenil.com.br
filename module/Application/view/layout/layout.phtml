@@ -1,129 +1,141 @@
 <?php echo $this->doctype() . PHP_EOL; ?>
 <html lang="pt-br">
-    <head>
-        <?php
-        $this->headMeta()
-                ->setCharset("utf-8")
-                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-                ->appendName('description', 'Area Administrativa')
-                ->appendName('title', 'Arcanjo')
-                ->appendName('author', 'Tenil Tecnologia')
-                ->appendName('keywords', 'ICB, Casa da Bênção, Catedral da Bênção, ITEJ, Igreja Casa da Bênção');
-
-        // Configurando o favicon
-        $favicionVersion = "ngg4p7bELx";
-        $this->headMeta()
-            ->appendName('msapplication-TileColor', '#2d89ef')
-            ->appendName('msapplication-TileImage', "/mstile-144x144.png?v=$favicionVersion")
-            ->appendName('theme-color', "#ffffff");
-
-        $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '57x57', 'href' => "/apple-touch-icon-57x57.png?v=$favicionVersion"));
-        $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '60x60', 'href' => "/apple-touch-icon-60x60.png?v=$favicionVersion"));
-        $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '72x72', 'href' => "/apple-touch-icon-72x72.png?v=$favicionVersion"));
-        $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '76x76', 'href' => "/apple-touch-icon-76x76.png?v=$favicionVersion"));
-        $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '114x114', 'href' => "/apple-touch-icon-114x114.png?v=$favicionVersion"));
-        $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '120x120', 'href' => "/apple-touch-icon-120x120.png?v=$favicionVersion"));
-        $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '144x144', 'href' => "/apple-touch-icon-144x144.png?v=$favicionVersion"));
-        $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '152x152', 'href' => "/apple-touch-icon-152x152.png?v=$favicionVersion"));
-        $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '180x180', 'href' => "/apple-touch-icon-180x180.png?v=$favicionVersion"));
-
-        $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-16x16.png?v=$favicionVersion", 'sizes' => '16x16'));
-        $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-32x32.png?v=$favicionVersion", 'sizes' => '32x32'));
-        $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-96x96.png?v=$favicionVersion", 'sizes' => '96x96'));
-        $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-194x194.png?v=$favicionVersion", 'sizes' => '194x194'));
-        $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/android-chrome-192x192.png?v=$favicionVersion", 'sizes' => '192x192'));
-
-        $this->headLink(array('rel' => 'manifest', 'href' => "/manifest.json?v=$favicionVersion"));
-        $this->headLink(array('rel' => 'mask-icon', 'href' => "/safari-pinned-tab.svg?v=$favicionVersion", 'color' => '#5bbad5'));
-        $this->headLink(array('rel' => 'shortcut icon', 'href' => "/favicon.ico?v=$favicionVersion"));
-        // Configurando o favicon - fim
-
-
-        echo $this->headMeta();
-        echo PHP_EOL;
-
-        echo $this->headTitle($this->translate('Arcanjo'))->setSeparator(' - ')->setAutoEscape(false);
-
-        echo PHP_EOL;
-
-        echo $this->headLink()
-                ->appendStylesheet($this->basePath() . '/css/bootstrap.min.css')
-                ->appendStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
-                ->appendStylesheet($this->basePath() . '/css/style.css');
-           //     ->prependStylesheet($this->basePath() . '/css/signin.css');
-
-        echo PHP_EOL;
-
-        echo $this->headScript()
-                ->prependFile($this->basePath() . '/js/jquery-2.2.1.min.js')
-                //->prependFile('//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-                ->appendFile($this->basePath() . '/js/bootstrap.min.js');
-
-        echo PHP_EOL;
-
-        ?>
-    </head>
+<head>
     <?php
-//    $mail = '';
-    if ($user = $this->identity()) {
-        $mail = $user->getEmail();
-    }
+    $this->headMeta()
+        ->setCharset("utf-8")
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendName('description', 'Area Administrativa')
+        ->appendName('title', 'Arcanjo')
+        ->appendName('author', 'Tenil Tecnologia')
+        ->appendName('keywords', 'ICB, Casa da Bênção, Catedral da Bênção, ITEJ, Igreja Casa da Bênção');
+
+    // Configurando o favicon
+    $favicionVersion = "ngg4p7bELx";
+    $this->headMeta()
+        ->appendName('msapplication-TileColor', '#2d89ef')
+        ->appendName('msapplication-TileImage', "/mstile-144x144.png?v=$favicionVersion")
+        ->appendName('theme-color', "#ffffff");
+
+    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '57x57', 'href' => "/apple-touch-icon-57x57.png?v=$favicionVersion"));
+    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '60x60', 'href' => "/apple-touch-icon-60x60.png?v=$favicionVersion"));
+    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '72x72', 'href' => "/apple-touch-icon-72x72.png?v=$favicionVersion"));
+    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '76x76', 'href' => "/apple-touch-icon-76x76.png?v=$favicionVersion"));
+    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '114x114', 'href' => "/apple-touch-icon-114x114.png?v=$favicionVersion"));
+    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '120x120', 'href' => "/apple-touch-icon-120x120.png?v=$favicionVersion"));
+    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '144x144', 'href' => "/apple-touch-icon-144x144.png?v=$favicionVersion"));
+    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '152x152', 'href' => "/apple-touch-icon-152x152.png?v=$favicionVersion"));
+    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '180x180', 'href' => "/apple-touch-icon-180x180.png?v=$favicionVersion"));
+
+    $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-16x16.png?v=$favicionVersion", 'sizes' => '16x16'));
+    $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-32x32.png?v=$favicionVersion", 'sizes' => '32x32'));
+    $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-96x96.png?v=$favicionVersion", 'sizes' => '96x96'));
+    $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-194x194.png?v=$favicionVersion", 'sizes' => '194x194'));
+    $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/android-chrome-192x192.png?v=$favicionVersion", 'sizes' => '192x192'));
+
+    $this->headLink(array('rel' => 'manifest', 'href' => "/manifest.json?v=$favicionVersion"));
+    $this->headLink(array('rel' => 'mask-icon', 'href' => "/safari-pinned-tab.svg?v=$favicionVersion", 'color' => '#5bbad5'));
+    $this->headLink(array('rel' => 'shortcut icon', 'href' => "/favicon.ico?v=$favicionVersion"));
+    // Configurando o favicon - fim
+
+
+    echo $this->headMeta();
+    echo PHP_EOL;
+
+    echo $this->headTitle($this->translate('Arcanjo'))->setSeparator(' - ')->setAutoEscape(false);
+
+    echo PHP_EOL;
+
+    echo $this->headLink()
+        ->appendStylesheet($this->basePath() . '/css/bootstrap.min.css')
+        ->appendStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+        ->appendStylesheet($this->basePath() . '/css/style.css');
+    //     ->prependStylesheet($this->basePath() . '/css/signin.css');
+
+    echo PHP_EOL;
+
+    echo $this->headScript()
+        ->prependFile($this->basePath() . '/js/jquery-2.2.1.min.js')
+        //->prependFile('//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+        ->appendFile($this->basePath() . '/js/bootstrap.min.js');
+
+    echo PHP_EOL;
+
     ?>
-    <body>
-        <!-- menu area -->
-        <header class="navbar navbar-inverse navbar-static-top" role="banner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="/" class="navbar-brand">ARCANJO</a>
-                </div>
-                <nav class="collapse navbar-collapse" role="navigation">
-                    <ul class="nav navbar-nav navbar-right">
-                        <?php if ($user): ?>
-                            <li><a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'detail')) ?>"><?php echo $user->getEmail(); ?></a></li>
-                            <li><a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'detail')) ?>"><?php echo $this->gravatar($user->getEmail())->setImgSize(20)->getImgTag(); ?></a></li>
-                            <li><a href="<?php echo $this->url('tenil-auth/default', array('action' => 'logout')) ?>" data-toggle="tooltip" data-placement="bottom" title="Sair"><span class="glyphicon glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
-                        <?php else : ?>
-                            <li><a href="<?php echo $this->url('tenil-user/default', array('action' => 'register')) ?>"><?php echo $this->translate('Crie sua conta') ?></a></li>
-                            <li><a href="<?php echo $this->url('tenil-auth/default', array('action' => 'login')) ?>"><?php echo $this->translate('Login') ?></a></li>
-                        <?php endif; ?>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <!-- /menu area -->
-        <!-- Begin Mensagens -->
-        <?php echo $this->partial('partials/mensagens.phtml', array('chave' => 'valor')); ?>
-        <!-- Begin Body -->
-        <?php
-        if ($user):
-            echo $this->partial('partials/sidebar.phtml', array('usuario' => $user, 'content' => $this->content));
-        else :
-            echo $this->partial('partials/full-width.phtml');
-        endif;
-        ?>
-        <!-- Begin Footer -->
-        <footer id="footer">
-            <div class="container">
-                <hr>
-                <div id="copyright">
-                    Arcanjo &copy; <?php echo date('Y') ?> | Desenvolvido por <a href="http://tenil.com.br" target="_blank">tenil.com.br</a> | <?php echo $this->translate('All rights reserved.') ?> | <?php echo '0.' . \Zend\Version\Version::VERSION ?>
-                </div>
-            </div>
-        </footer>
-        <?php
-        echo $this->inlineScript()
-                ->appendFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-                ->appendFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-                ->appendFile($this->basePath() . '/js/init.js')
-        //->appendFile($this->basePath() . '/js/docs.min.js')
-        //->appendFile($this->basePath() . '/js/ie10-viewport-bug-workaround.js')
-        ?>
-    </body>
+</head>
+<?php
+//    $mail = '';
+if ($user = $this->identity()) {
+    $mail = $user->getEmail();
+}
+?>
+<body>
+<!-- menu area -->
+<header class="navbar navbar-inverse navbar-static-top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="<?php echo $this->url('home') ?>" class="navbar-brand">ARCANJO</a>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav navbar-right">
+                <?php if ($user): ?>
+                    <li>
+                        <a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'detail')) ?>"><?php echo $user->getEmail(); ?></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'detail')) ?>"><?php echo $this->gravatar($user->getEmail())->setImgSize(20)->getImgTag(); ?></a>
+                    </li>
+                    <li><a href="<?php echo $this->url('tenil-auth/default', array('action' => 'logout')) ?>"
+                           data-toggle="tooltip" data-placement="bottom" title="Sair"><span
+                                class="glyphicon glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+                <?php else : ?>
+                    <li>
+                        <a href="<?php echo $this->url('tenil-user/default', array('action' => 'register')) ?>"><?php echo $this->translate('Crie sua conta') ?></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo $this->url('tenil-auth/default', array('action' => 'login')) ?>"><?php echo $this->translate('Login') ?></a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!-- /menu area -->
+<!-- Begin Mensagens -->
+<?php echo $this->partial('partials/mensagens.phtml', array('chave' => 'valor')); ?>
+<!-- Begin Body -->
+<?php
+if ($user):
+    echo $this->partial('partials/sidebar.phtml', array('usuario' => $user, 'content' => $this->content));
+else :
+    echo $this->partial('partials/full-width.phtml');
+endif;
+?>
+<!-- Begin Footer -->
+<footer id="footer">
+    <div class="container">
+        <hr>
+        <div id="copyright">
+            Arcanjo &copy; <?php echo date('Y') ?> | Desenvolvido por <a href="http://tenil.com.br" target="_blank">tenil.com.br</a>
+            | <?php echo $this->translate('All rights reserved.') ?>
+            | <?php echo '0.' . \Zend\Version\Version::VERSION ?>
+        </div>
+    </div>
+</footer>
+<?php
+echo $this->inlineScript()
+    ->appendFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+    ->appendFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+    ->appendFile($this->basePath() . '/js/init.js')
+//->appendFile($this->basePath() . '/js/docs.min.js')
+//->appendFile($this->basePath() . '/js/ie10-viewport-bug-workaround.js')
+?>
+</body>
 </html>

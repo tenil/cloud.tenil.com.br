@@ -11,66 +11,22 @@ $this->headLink()->appendStylesheet('/js/jquery-ui-1.11.4/jquery-ui.min.css');
 */
 $evento = $this->data;
 ?>
-
 <div class="row">
-    <div class="col-md-8">
-        <div class="page-header">
-            <h1><?php echo $evento->getNome(); ?> <br>
-                <small><?php echo $evento->getTema(); ?></small>
-            </h1>
-        </div>
-        <div class="lead">
-            <?php echo $evento->getDescricao(); ?>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td>Detalhes</td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="panel-body">
-                <dl class="dl-horizontal">
-                    <dt>Início</dt>
-                    <dd><?php echo $evento->getDataInicio()->format("d/m/Y"); ?></dd>
-                    <dt>Final</dt>
-                    <dd><?php echo $evento->getDataFim()->format("d/m/Y"); ?></dd>
-                </dl>
-            </div>
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td>Informações</td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="panel-body">
-                <dl class="dl-horizontal">
-                    <dt>Organizador</dt>
-                    <dd><?php echo $evento->getOrganizador(); ?></dd>
-                    <dt>E-mail</dt>
-                    <dd><?php echo $evento->getEmail(); ?></dd>
-                </dl>
-            </div>
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td>Investimento</td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="panel-body">
-                <dl class="dl-horizontal">
-                    <dt>Valor:</dt>
-                    <dd>R$ <?php echo str_replace('.', ',', $evento->getValorInscricao()); ?></dd>
-                </dl>
-            </div>
+    <div class="col-md-12">
+        <div class="evento-banner">
+
+            <img src="/images/manual/convencao-mundial-2016-banner-1280x400.jpg" class="img-responsive img-rounded"
+                 alt="<?php echo $evento->getNome(); ?>">
+
         </div>
     </div>
 </div>
+
+
+
+
+
+
 
 <?php
 // Configurando o formulário
@@ -307,3 +263,99 @@ echo $this->formElement($security);
     </div>
 </div>
 <?php echo $this->form()->closeTag() ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="page-header">
+            <h1><?php echo $evento->getNome(); ?> <br>
+                <small><?php echo $evento->getTema(); ?></small>
+            </h1>
+        </div>
+        <div class="lead">
+            <?php echo $evento->getDescricao(); ?>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Detalhes</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Início</dt>
+                    <dd><?php echo $evento->getDataInicio()->format("d/m/Y"); ?></dd>
+                    <dt>Final</dt>
+                    <dd><?php echo $evento->getDataFim()->format("d/m/Y"); ?></dd>
+                </dl>
+            </div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Informações</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Organizador</dt>
+                    <dd><?php echo $evento->getOrganizador(); ?></dd>
+                    <dt>E-mail</dt>
+                    <dd><?php echo $evento->getEmail(); ?></dd>
+                </dl>
+            </div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Investimento</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Valor:</dt>
+                    <dd>R$ <?php echo str_replace('.', ',', $evento->getValorInscricao()); ?></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+

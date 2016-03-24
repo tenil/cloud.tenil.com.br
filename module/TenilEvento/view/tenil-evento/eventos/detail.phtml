@@ -4,7 +4,17 @@ $title = $this->translate('Informações do evento');
 $this->headTitle($title);
 $evento = $this->data;
 ?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="evento-banner">
 
+            <img src="/images/manual/convencao-mundial-2016-banner-1280x400.jpg" class="img-responsive img-rounded"
+                 alt="<?php echo $evento->getNome(); ?>">
+
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
 <div class="row">
     <div class="col-md-8">
         <div class="page-header">

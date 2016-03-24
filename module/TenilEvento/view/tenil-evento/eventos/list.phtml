@@ -5,19 +5,26 @@ $data = $this->data;
 ?>
 <?php foreach ($data as $evento): ?>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
+            <div class="evento-banner-list">
+                <img src="/images/manual/convencao-mundial-2016-banner-1080x1080.png" class="img-responsive"
+                     alt="<?php echo $evento->getNome(); ?>">
+            </div>
+        </div>
+        <div class="col-md-8">
             <h1><?php echo $evento->getNome(); ?> <br>
                 <small><?php echo $evento->getTema(); ?></small>
             </h1>
-        </div>
-        <div class="col-md-12"><p class="lead"><?php echo $evento->getDataInicio()->format("d/m/Y"); ?>
-                - <?php echo $evento->getDataFim()->format("d/m/Y"); ?></p></div>
-        <div class="col-md-12">
-            <div class="btn-toolbar pull-right" role="toolbar">
-                <div class="btn-group" role="group">
-                    <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'signup', 'id' => $evento->getSlug())) ?>"
-                       class="btn btn-primary">Mais informações</a>
+            <p class="lead"><?php echo $evento->getDataInicio()->format("d/m/Y"); ?>
+                - <?php echo $evento->getDataFim()->format("d/m/Y"); ?></p>
+            <div class="clearfix">
+                <div class="btn-toolbar pull-right" role="toolbar">
+                    <div class="btn-group" role="group">
+                        <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'signup', 'id' => $evento->getSlug())) ?>"
+                           class="btn btn-primary">Mais informações</a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
