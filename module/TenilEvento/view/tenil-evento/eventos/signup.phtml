@@ -11,14 +11,15 @@ $this->headLink()->appendStylesheet('/js/jquery-ui-1.11.4/jquery-ui.min.css');
 */
 $evento = $this->data;
 ?>
-<div class="row">
-    <div class="col-md-12">
-        <div class="evento-banner">
+<div class="row evento-banner">
+    <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+        <img class="img-responsive img-rounded" src="/images/manual/convencao-mundial-2016-banner-1080x1080.png"/>
+        <!--Mobile-->
+    </div>
 
-            <img src="/images/manual/convencao-mundial-2016-banner-1280x400.jpg" class="img-responsive img-rounded"
-                 alt="<?php echo $evento->getNome(); ?>">
-
-        </div>
+    <div class="hidden-xs col-sm-12 col-md-12 col-lg-12">
+        <img class="img-responsive img-rounded" src="/images/manual/convencao-mundial-2016-banner-1280x400.jpg"/>
+        <!--Tab--> <!--Desktop--> <!--Large-->
     </div>
 </div>
 
