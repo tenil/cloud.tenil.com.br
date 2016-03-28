@@ -8,12 +8,15 @@
 
 namespace TenilEvento\Form;
 
+use TenilBase\Filter\DataFilter;
 use TenilEvento\Entity\Evento;
 use Doctrine\Common\Persistence\ObjectManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\Form\ElementInterface;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
+
+use Zend\Validator;
 
 class EventoFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -61,17 +64,40 @@ class EventoFieldset extends Fieldset implements InputFilterProviderInterface
                 'rows' => 3
             )
         ));
+        /*
+        $this->add(array(
+            'type' => 'Zend\Form\Element\Text',
+            'name' => 'dataInicio',
+            'options' => array(
+                'label' => 'Data de Inicio',
+            ),
+            'attributes' => array(
+                'required' => 'required',
+            )
+        ));
+        
+        $this->add(array(
+            'type' => 'Zend\Form\Element\Text',
+            'name' => 'dataFim',
+            'options' => array(
+                'label' => 'Data de encerramento',
+            ),
+            'attributes' => array(
+                'required' => 'required',
+            )
+        ));
+        */
 
         $this->add(array(
                 'type' => 'Zend\Form\Element\Date',
                 'name' => 'dataInicio',
                 'options' => array(
                     'label' => 'Data de início',
-                    'format' => 'd-m-Y'
+                    'format' => 'Y-m-d'
                 ),
                 'attributes' => array(
-                    'min' => '01-01-2016',
-                    'max' => '01-01-2020',
+                    'min' => date('Y-m-d'),
+                    'max' => '2020-01-01',
                     'step' => '1', // days; default step interval is 1 day
                 )
             )
@@ -83,11 +109,11 @@ class EventoFieldset extends Fieldset implements InputFilterProviderInterface
                 'name' => 'dataFim',
                 'options' => array(
                     'label' => 'Data de encerramento',
-                    'format' => 'd-m-Y'
+                    'format' => 'Y-m-d'
                 ),
                 'attributes' => array(
-                    'min' => '01-01-2016',
-                    'max' => '01-01-2020',
+                    'min' => date('Y-m-d'),
+                    // 'max' => '01-01-2020',
                     'step' => '1', // days; default step interval is 1 day
                 )
             )
@@ -201,12 +227,34 @@ class EventoFieldset extends Fieldset implements InputFilterProviderInterface
             'nome' => array(
                 'required' => true
             ),
+            /*
+                        'dataInicio' => array(
+                            'required' => true,
+                            'filters' => array(
+                                new DataFilter()
+                            ),
+                            'validators' => array(
+                                new Validator\Date(array('format' => 'd/m/Y'))
+                            )
+                        ),
+
+                        'dataFim' => array(
+                            'required' => true,
+                            'filters' => array(
+                                new DataFilter()
+                            ),
+                            'validators' => array(
+                                new Validator\Date(array('format' => 'd/m/Y'))
+                            )
+                        ),
+            */
             'dataFim' => array(
                 'required' => true
             ),
             'dataInicio' => array(
                 'required' => true
             ),
+
             'descricao' => array(
                 'required' => false
             ),

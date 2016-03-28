@@ -28,6 +28,7 @@ abstract class CrudController extends AbstractActionController
     protected $controller;
     protected $entity;
     protected $form;
+    protected $formEdit;
     protected $route;
     protected $service;
 
@@ -110,6 +111,45 @@ abstract class CrudController extends AbstractActionController
     public function editAction()
     {
 
+        // Get ObjectManager from the ServiceManager
+        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+        // Create the form and inject the ObjectManager
+        $form = new $this->formEdit($objectManager);
+
+        // Create a new, empty entity and bind it to the form
+        $repository = $this->getEm()->getRepository($this->entity);
+        $id = $this->params()->fromRoute('id', 0);
+
+        $entity = $repository->find($id);
+
+        $form->bind($entity);
+
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+
+            $form->setData($request->getPost());
+
+            if ($form->isValid()) {
+
+                $service = $this->getServiceLocator()->get($this->service);
+                $service->update($entity);
+
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Atualizado com sucesso!');
+
+                return $this->redirect()->toRoute($this->route, array('controller' => $this->controller, 'action' => 'edit', 'id' => $id ));
+            }
+        }
+
+        return new ViewModel(array('form' => $form));
+
+    }
+
+    /*
+    public function editAction()
+    {
+
         $form = new $this->form();
         $request = $this->getRequest();
 
@@ -141,7 +181,7 @@ abstract class CrudController extends AbstractActionController
         return new ViewModel(array('form' => $form));
 
     }
-
+    */
     public function deleteAction()
     {
 

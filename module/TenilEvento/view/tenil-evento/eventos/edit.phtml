@@ -1,12 +1,14 @@
 <?php
-// Título da página e formulário
-$title = $this->translate('Novo evento');
-$this->headTitle($title);
-?>
-<?php
+
 // Configurando o formulário
 $form = $this->form;
-$form->setAttribute('action', $this->url('tenil-evento/default', array('action' => 'create')));
+
+// Título da página e formulário
+$title = $this->translate($form->getLabel());
+$this->headTitle($title);
+
+
+$form->setAttribute('action', $this->url('tenil-evento/default', array('action' => 'edit', 'id' => 1)));
 
 $form->setAttributes(array(
     'method' => 'post',
@@ -14,7 +16,6 @@ $form->setAttributes(array(
     'class' => 'form-horizontal',
     'label' => $title
 ));
-$form->prepare();
 
 // Elementos do form
 $id = $form->get('evento')->get('id');
@@ -80,23 +81,16 @@ $email->setLabel('E-mail')
     ->setLabelAttributes(array('class' => 'col-md-3 control-label'));
 $submit->setAttribute('class', 'btn btn-primary');
 
-/*
-$telefones->setLabel('Telefone')
-    ->setAttribute('class', 'form-control')
-    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
-$enderecos->setLabel('Endereço')
-    ->setAttribute('class', 'form-control')
-    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
-$tratamento->setLabel('Tratamento')
-    ->setAttribute('class', 'form-control')
-    ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
-$submit->setAttribute('class', 'btn btn-default');
-*/
+
 // Configurando Elemento de erro
 $this->formElementErrors()
     ->setMessageOpenFormat('<div class="col-md-10 col-md-offset-2"><span id="helpBlock" class="help-block">')
     ->setMessageSeparatorString('</span><span id="helpBlock" class="help-block">')
     ->setMessageCloseString('</span></div>');
+
+
+$form->prepare();
+
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">

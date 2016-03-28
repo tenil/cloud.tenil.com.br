@@ -8,6 +8,7 @@
 
 namespace TenilEvento\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use Cocur\Slugify\Slugify;
@@ -39,6 +40,11 @@ class Evento
      * @ORM\Column(name="nome", type="string", length=512, nullable=false)
      */
     protected $nome;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EventoImages", mappedBy="evento")
+     */
+    protected $imagens;
 
     /**
      * @var string
@@ -152,6 +158,8 @@ class Evento
     {
         $this->createdAt = new DateTime("now");
         $this->updatedAt = new DateTime("now");
+
+        $this->imagens = new ArrayCollection();
     }
 
     /**
@@ -437,6 +445,24 @@ class Evento
     }
 
     /**
+     * @return mixed
+     */
+    public function getImagens()
+    {
+        return $this->imagens;
+    }
+
+    /**
+     * @param mixed $imagens
+     * @return Evento
+     */
+    public function setImagens($imagens)
+    {
+        $this->imagens = $imagens;
+        return $this;
+    }
+
+    /**
      * @return DateTime
      */
     public function getUpdatedAt()
@@ -445,13 +471,12 @@ class Evento
     }
 
     /**
-     * @param DateTime $updatedAt
      * @return Evento
      * @ORM\PreUpdate
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt()
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime();
         return $this;
     }
 

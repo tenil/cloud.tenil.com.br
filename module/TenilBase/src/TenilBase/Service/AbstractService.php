@@ -43,14 +43,14 @@ abstract class AbstractService
     }
     */
 
-    public function update(array $data)
+    public function update($entity)
     {
-        $entity = $this->em->getReference($this->entity, $data['id']);
+        //$entity = $this->em->getReference($this->entity, $data['id']);
 
         // Aqui aplicamos os setters da entitade.
         // (new Hydrator\ClassMethods())->hydrate($data, $entity);
-        $hydrator = new Hydrator\ClassMethods();
-        $hydrator->hydrate($data, $entity);
+        // $hydrator = new Hydrator\ClassMethods();
+        // $hydrator->hydrate($data, $entity);
 
         $this->em->persist($entity);
         $this->em->flush();

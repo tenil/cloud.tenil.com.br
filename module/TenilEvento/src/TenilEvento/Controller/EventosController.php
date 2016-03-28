@@ -13,6 +13,7 @@ use PhpBoletoZf2\Model\Cedente;
 use PhpBoletoZf2\Model\Sacado;
 use TenilEvento\Entity\Inscricao;
 use TenilEvento\Form\InscricaoCreate;
+use TenilEvento\Form\Retorno;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use TenilBase\Controller\CrudController;
@@ -26,6 +27,7 @@ class EventosController extends CrudController
         $this->controller = 'eventos';
         $this->entity = 'TenilEvento\Entity\Evento';
         $this->form = 'TenilEvento\Form\EventoCreate';
+        $this->formEdit = 'TenilEvento\Form\EventoEdit';
         $this->route = 'tenil-evento/default';
         $this->service = 'TenilEvento\Service\Evento';
     }
@@ -191,6 +193,40 @@ class EventosController extends CrudController
         } else {
             return $this->notFoundAction();
         }
+
+    }
+
+    public function retornoAction()
+    {
+
+        $form = new Retorno();
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            // Make certain to merge the files info!
+            $post = array_merge_recursive(
+                $request->getPost()->toArray(),
+                $request->getFiles()->toArray()
+            );
+
+            $form->setData($post);
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                // Inserir no banco... etc...
+
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Arquivo enviado com sucesso.');
+
+                // Form is valid, save the form!
+                return $this->redirect()->toRoute($this->route, array('action' => 'retorno'));
+            } else {
+                $this->flashMessenger()->setNamespace('Tenil')->addErrorMessage('Erro ao enviar o arquivo.');
+            }
+
+        }
+
+        return array('form' => $form);
+
 
     }
 
