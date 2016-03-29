@@ -34,9 +34,9 @@ class Retorno extends Form
     public function addElements()
     {
         // File Input
-        $file = new Element\File('arquivo-retorno');
+        $file = new Element\File('arquivo');
         $file->setLabel('Selecione o arquivo de Retorno');
-        $file->setAttribute('id', 'arquivo-retorno');
+        $file->setAttribute('id', 'arquivo');
         $file->setAttribute('accept', '.ret');
         $this->add($file);
 
