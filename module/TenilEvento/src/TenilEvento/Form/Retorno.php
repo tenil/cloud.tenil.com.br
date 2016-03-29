@@ -36,6 +36,7 @@ class Retorno extends Form
         // File Input
         $file = new Element\File('arquivo-retorno');
         $file->setLabel('Selecione o arquivo de Retorno');
+        $file->setAttribute('id', 'arquivo-retorno');
         $file->setAttribute('accept', '.ret');
         $this->add($file);
 
@@ -43,7 +44,7 @@ class Retorno extends Form
         $this->add($security);
 
         $submit = new Element\Submit('submit');
-        $submit->setValue('Enviar')->setAttribute('class', 'btn btn-default');
+        $submit->setValue('Enviar')->setAttribute('class', 'btn btn-primary');
         $this->add($submit);
 
     }

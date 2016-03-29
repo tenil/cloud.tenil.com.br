@@ -25,7 +25,7 @@ class RetornoFilter extends InputFilter
 
         // Filters
         $arquivo->getFilterChain()->attach(new RenameUpload(array(
-            'target' => './data/retornos/retorno_',
+            'target' => './data/retornos/retorno',
             'use_upload_extension' => true,
             'randomize' => true,
         )));
@@ -36,6 +36,7 @@ class RetornoFilter extends InputFilter
             'text/plain',
             'enableHeaderCheck' => true
         )));
+        
         // Validators
         $arquivo->getValidatorChain()->attach(new Extension(array(
             'ret'

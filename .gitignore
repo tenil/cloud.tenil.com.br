@@ -10,6 +10,7 @@ nbproject
 composer.lock
 vendor
 Vagrantfile
-*.box
+.box
 Thumbs.db
-*.local.php
+.local.php
+*.RET

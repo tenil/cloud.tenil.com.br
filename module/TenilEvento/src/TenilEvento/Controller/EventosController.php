@@ -14,6 +14,7 @@ use PhpBoletoZf2\Model\Sacado;
 use TenilEvento\Entity\Inscricao;
 use TenilEvento\Form\InscricaoCreate;
 use TenilEvento\Form\Retorno;
+use Zend\Filter\File\RenameUpload;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use TenilBase\Controller\CrudController;
@@ -202,6 +203,7 @@ class EventosController extends CrudController
         $form = new Retorno();
 
         $request = $this->getRequest();
+
         if ($request->isPost()) {
             // Make certain to merge the files info!
             $post = array_merge_recursive(
@@ -215,7 +217,7 @@ class EventosController extends CrudController
 
                 // Inserir no banco... etc...
 
-                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Arquivo enviado com sucesso.');
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Arquivo enviado com sucesso!');
 
                 // Form is valid, save the form!
                 return $this->redirect()->toRoute($this->route, array('action' => 'retorno'));
