@@ -66,4 +66,9 @@ return array(
             )
         )
     ),
+    'view_helpers' => array(
+        'invokables' => array(
+            'formataCpf' => 'Application\View\Helper\FormataCpf',
+        ),
+    ),
 );
