@@ -11,7 +11,7 @@ namespace Application\View\Helper;
 use Zend\View\Helper\AbstractHelper;
 
 
-class formataCpf extends AbstractHelper
+class FormataCpf extends AbstractHelper
 {
     public function __invoke($cpf)
     {
@@ -27,6 +27,7 @@ class formataCpf extends AbstractHelper
         $cpf_formatado .= substr($cpf, 3, 3) . '.';
         $cpf_formatado .= substr($cpf, 6, 3) . '-';
         $cpf_formatado .= substr($cpf, 9, 3);
+
         return $cpf_formatado;
     }
 }

@@ -45,13 +45,4 @@ class Module
             ),
         );
     }
-
-    public function getViewHelperConfig()
-    {
-        return array(
-            'invokables' => array(
-                'formataCpf' => 'Application\View\Helper\FormataCpf',
-            ),
-        );
-    }
 }
