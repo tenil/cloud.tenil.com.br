@@ -263,16 +263,10 @@ class InscricaoFieldset extends Fieldset implements InputFilterProviderInterface
                 'required' => true,
                 'filters' => array(
                     array('name' => 'Zend\Filter\StringTrim'),
+                    array('name' => 'Zend\Filter\StringToLower'),
                 ),
                 'validators' => array(
                     new Validator\EmailAddress(),
-                    array(
-                        'name' => 'Zend\Validator\StringLength',
-                        'options' => array(
-                            'min' => 4,
-                            'max' => 512
-                        ),
-                    ),
                 ),
             ),
             'cpf' => array(
