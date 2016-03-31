@@ -35,16 +35,21 @@ class Evento
     protected $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nome", type="string", length=512, nullable=false)
+     * @ORM\OneToMany(targetEntity="Inscricao", mappedBy="evento")
      */
-    protected $nome;
+    protected $inscricoes;
 
     /**
      * @ORM\OneToMany(targetEntity="EventoImages", mappedBy="evento")
      */
     protected $imagens;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=512, nullable=false)
+     */
+    protected $nome;
 
     /**
      * @var string
@@ -160,6 +165,7 @@ class Evento
         $this->updatedAt = new DateTime("now");
 
         $this->imagens = new ArrayCollection();
+        $this->inscricoes = new ArrayCollection();
     }
 
     /**
@@ -459,6 +465,24 @@ class Evento
     public function setImagens($imagens)
     {
         $this->imagens = $imagens;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInscricoes()
+    {
+        return $this->inscricoes;
+    }
+
+    /**
+     * @param mixed $inscricoes
+     * @return Evento
+     */
+    public function setInscricoes($inscricoes)
+    {
+        $this->inscricoes = $inscricoes;
         return $this;
     }
 

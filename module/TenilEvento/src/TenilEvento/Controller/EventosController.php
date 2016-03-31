@@ -197,6 +197,17 @@ class EventosController extends CrudController
 
     }
 
+    public function inscricoesAction()
+    {
+        $id = $this->params()->fromRoute('id', null);
+        $data = $this->getEm()->getRepository($this->entity)->findOneBy(array('slug' => $id));
+        if ($data) {
+            return new ViewModel(array('data' => $data));
+        } else {
+            return $this->notFoundAction();
+        }
+    }
+
     public function retornoAction()
     {
 
@@ -228,7 +239,6 @@ class EventosController extends CrudController
         }
 
         return array('form' => $form);
-
 
     }
 

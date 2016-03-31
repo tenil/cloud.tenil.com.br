@@ -1,0 +1,60 @@
+<?php //evento-partial.phtml  ?>
+<div class="row">
+    <div class="col-md-8">
+        <div class="page-header">
+            <h1><?php echo $evento->getNome(); ?> <br>
+                <small><?php echo $evento->getTema(); ?></small>
+            </h1>
+        </div>
+        <div class="lead">
+            <?php echo $evento->getDescricao(); ?>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Detalhes</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Início</dt>
+                    <dd><?php echo $evento->getDataInicio()->format("d/m/Y"); ?></dd>
+                    <dt>Final</dt>
+                    <dd><?php echo $evento->getDataFim()->format("d/m/Y"); ?></dd>
+                </dl>
+            </div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Informações</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Organizador</dt>
+                    <dd><?php echo $evento->getOrganizador(); ?></dd>
+                    <dt>E-mail</dt>
+                    <dd><?php echo $evento->getEmail(); ?></dd>
+                </dl>
+            </div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Investimento</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Valor:</dt>
+                    <dd><?php echo $this->currencyFormat($evento->getValorInscricao(), "BRL", null, "pt_BR"); ?></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

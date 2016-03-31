@@ -1,0 +1,51 @@
+<?php
+$title = $this->translate($data->getNome());
+$this->headTitle($title);
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h1><?php echo $title ?> <br/>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-bordered table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Cidade</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+                <th>Data inscrição</th>
+            </tr>
+            <?php foreach ($data->getInscricoes() as $value): ?>
+                <tr>
+                    <td><?php echo $this->escapeHtml($value->getId()); ?></td>
+                    <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
+                    <td><?php echo $this->escapeHtml($value->getEmail()); ?></td>
+                    <td><?php echo $this->escapeHtml($value->getLocalidade()); ?></td>
+                    <td>
+                        <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'edit', 'id' => $value->getId())) ?>">Editar</a>
+                    </td>
+                    <td>
+                        <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a>
+                    </td>
+                    <td>
+                        <small><?php
+                            echo $this->dateFormat(
+                                $value->getCreatedAt(), IntlDateFormatter::MEDIUM, // date
+                                IntlDateFormatter::SHORT, // time
+                                "pt_BR"
+                            );
+                            ?></small>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+</div>

@@ -212,7 +212,7 @@ abstract class CrudController extends AbstractActionController
         return new ViewModel(array('data' => $data, 'routes' => $routes));
     }
 
-    public function getAuthService()
+    private function getAuthService()
     {
         return $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
     }

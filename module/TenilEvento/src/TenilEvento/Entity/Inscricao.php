@@ -32,7 +32,7 @@ class Inscricao
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Evento")
+     * @ORM\ManyToOne(targetEntity="Evento", inversedBy="inscricoes")
      * @ORM\JoinColumn(name="id_evento", referencedColumnName="id")
      **/
     protected $evento;

