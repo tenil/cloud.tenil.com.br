@@ -27,7 +27,7 @@ $this->headTitle($title);
             <?php foreach ($data->getInscricoes() as $value): ?>
                 <tr>
                     <td><?php echo $this->escapeHtml($value->getId()); ?></td>
-                    <td><?php echo $this->escapeHtml($this->formataCpf($value->getCpf())); ?></td>
+                    <td><?php echo $this->escapeHtml($value->getCpf()); ?></td>
                     <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
                     <td><?php echo $this->escapeHtml($value->getEmail()); ?></td>
                     <td><?php echo $this->escapeHtml($value->getUf()); ?></td>
