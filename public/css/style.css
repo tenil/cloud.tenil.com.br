@@ -3,5 +3,40 @@
     Author     : Roberto
 */
 
-footer {padding: 20px 0px;}
-.evento-banner {padding-bottom: 20px;}
+footer {
+    padding: 20px 0px;
+}
+
+.evento-banner {
+    padding-bottom: 20px;
+}
+
+.evento-dia {
+    font-size: 32px;
+    line-height: 32px;
+    font-weight: 300;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.evento-mes {
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 3px;
+    padding-top: 2px;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    color: #e34e60;
+}
+
+.evento-dados {
+    padding-bottom: 15px;
+}
