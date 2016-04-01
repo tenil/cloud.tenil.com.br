@@ -16,6 +16,7 @@ return array(
         'TenilUserRest',
         'TenilAcl',
         'TenilEvento',
+        'TenilBoleto',
         'PhpBoletoZf2',
         'Cocur\Slugify\Bridge\ZF2',
     ),

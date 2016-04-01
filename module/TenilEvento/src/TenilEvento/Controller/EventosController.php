@@ -228,7 +228,18 @@ class EventosController extends CrudController
 
                 // Inserir no banco... etc...
 
-                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage($data['arquivo']['tmp_name']);
+                $arquivo = $data['arquivo']['tmp_name'];
+
+                // Processar arquivo
+                $service = $this->getServiceLocator()->get('TenilBoleto\Service\Boleto');
+                $resposta = $service->processarRetorno($arquivo);
+                // Processar arquivo - FIM
+
+                var_dump($resposta);
+
+
+
+                $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Arquivo enviado e processado com sucesso.');
 
                 // Form is valid, save the form!
                 return $this->redirect()->toRoute($this->route, array('action' => 'retorno'));
