@@ -18,6 +18,7 @@
     "dino/dompdf-module": "dev-master",
     "jotjunior/boletophp-zf2": "dev-master",
     "zendframework/zftool": "dev-master",
-    "cocur/slugify": "~2"
+    "cocur/slugify": "~2",
+    "manoelcampos/retornoboleto": "^1.0"
   }
 }

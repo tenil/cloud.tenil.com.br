@@ -11,6 +11,8 @@ namespace TenilEvento\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use Doctrine\DBAL\Types\DecimalType;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Boleto
@@ -37,6 +39,11 @@ class Boleto
      * @ORM\JoinColumn(name="id_pagador", referencedColumnName="id")
      **/
     protected $pagador;
+
+    /**
+     * @ORM\OneToOne(targetEntity="TenilBoleto\Entity\BoletoRetorno", mappedBy="boleto", cascade={"persist"})
+     */
+    protected $retorno;
 
     /**
      * @var DateTime
@@ -74,7 +81,7 @@ class Boleto
 
     /**
      * @var integer
-     * @ORM\Column(name="numero_documento", type="integer", length=11, nullable=true)
+     * @ORM\Column(name="numero_documento", type="integer", length=10, nullable=true)
      */
     protected $numeroDocumento;
 
@@ -176,6 +183,24 @@ class Boleto
     public function setPagador(Inscricao $pagador)
     {
         $this->pagador = $pagador;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRetorno()
+    {
+        return $this->retorno;
+    }
+
+    /**
+     * @param mixed $retorno
+     * @return Boleto
+     */
+    public function setRetorno(\TenilBoleto\Entity\BoletoRetorno $retorno = null)
+    {
+        $this->retorno = $retorno;
         return $this;
     }
 
@@ -457,6 +482,5 @@ class Boleto
         $this->createdAt = $createdAt;
         return $this;
     }
-
 
 }

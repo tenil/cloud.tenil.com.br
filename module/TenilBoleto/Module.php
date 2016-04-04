@@ -25,8 +25,10 @@ class Module
     {
         return array(
             'factories' => array(
-                'TenilBoleto\Service\Boleto' => function () {
-                    return new Service\Boleto;
+                'TenilBoleto\Service\Boleto' => function ($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    
+                    return new Service\Boleto($em);
                 },
             )
         );
