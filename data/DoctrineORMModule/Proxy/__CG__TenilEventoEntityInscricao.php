@@ -64,10 +64,10 @@ class Inscricao extends \TenilEvento\Entity\Inscricao implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'evento', '' . "\0" . 'TenilEvento\\Entity\\Inscricao' . "\0" . 'boleto', 'nome', 'email', 'cpf', 'dataNascimento', 'foneFixo', 'foneCelular', 'logradouro', 'numero', 'complemento', 'bairro', 'localidade', 'uf', 'cep', 'updatedAt', 'createdAt');
+            return array('__isInitialized__', 'id', 'evento', 'boleto', 'nome', 'email', 'cpf', 'dataNascimento', 'foneFixo', 'foneCelular', 'logradouro', 'numero', 'complemento', 'bairro', 'localidade', 'uf', 'cep', 'updatedAt', 'createdAt');
         }
 
-        return array('__isInitialized__', 'id', 'evento', '' . "\0" . 'TenilEvento\\Entity\\Inscricao' . "\0" . 'boleto', 'nome', 'email', 'cpf', 'dataNascimento', 'foneFixo', 'foneCelular', 'logradouro', 'numero', 'complemento', 'bairro', 'localidade', 'uf', 'cep', 'updatedAt', 'createdAt');
+        return array('__isInitialized__', 'id', 'evento', 'boleto', 'nome', 'email', 'cpf', 'dataNascimento', 'foneFixo', 'foneCelular', 'logradouro', 'numero', 'complemento', 'bairro', 'localidade', 'uf', 'cep', 'updatedAt', 'createdAt');
     }
 
     /**
