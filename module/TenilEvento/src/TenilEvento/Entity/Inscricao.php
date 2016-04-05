@@ -40,7 +40,7 @@ class Inscricao
     /**
      * @ORM\OneToOne(targetEntity="Boleto", mappedBy="pagador")
      */
-    private $boleto;
+    protected $boleto;
 
     /**
      * @var string

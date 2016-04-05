@@ -32,10 +32,9 @@ class BoletoRetorno
     protected $id;
 
     /**
-     *
-     * @ORM\OneToOne(targetEntity="TenilEvento\Entity\Boleto", inversedBy="retorno")
+     * @ORM\OneToOne(targetEntity="TenilEvento\Entity\Boleto", mappedBy="retorno")
      * @ORM\JoinColumn(name="id_boleto", referencedColumnName="id")
-     **/
+     */
     protected $boleto;
 
     /**
@@ -273,16 +272,13 @@ class BoletoRetorno
     protected $createdAt;
 
     /**
-     * Boleto constructor.
+     * BoletoRetorno constructor.
      */
     public function __construct()
     {
         $this->createdAt = new DateTime("now");
         $this->updatedAt = new DateTime("now");
     }
-
-
-
 
     /**
      * @return string
@@ -361,10 +357,12 @@ class BoletoRetorno
      */
     public function setBoleto(\TenilEvento\Entity\Boleto $boleto)
     {
-        $boleto->setRetorno($this);
         $this->boleto = $boleto;
         return $this;
     }
+
+
+
 
     /**
      * @return string
@@ -977,8 +975,6 @@ class BoletoRetorno
         $this->sequencial = $sequencial;
         return $this;
     }
-    
-    
 
 
 }

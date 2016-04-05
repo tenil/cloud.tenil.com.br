@@ -16,17 +16,21 @@ $this->headTitle($title);
         <table class="table table-striped table-bordered table-hover">
             <tr>
                 <th>Número</th>
+                <th>Foto</th>
                 <th>CPF</th>
                 <th>Nome</th>
                 <th>E-mail</th>
                 <th>Estado</th>
                 <th>Cidade</th>
                 <th>Data inscrição</th>
+                <th>Valor Pago</th>
+                <th>Data pagamento</th>
                 <th>Ações</th>
             </tr>
             <?php foreach ($data->getInscricoes() as $value): ?>
                 <tr>
                     <td><?php echo $this->escapeHtml($value->getId()); ?></td>
+                    <td><?php echo $this->gravatar($value->getEmail())->setImgSize(40)->getImgTag(); ?></td>
                     <td><?php echo $this->escapeHtml($this->formataCpf($value->getCpf())); ?></td>
                     <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
                     <td><?php echo $this->escapeHtml($value->getEmail()); ?></td>
@@ -40,6 +44,35 @@ $this->headTitle($title);
                                 "pt_BR"
                             );
                             ?></small>
+                    </td>
+                    <td>
+                        <?php
+                        if ($value->getBoleto()) {
+                            if ($value->getBoleto()->getRetorno()) {
+                                echo $this->currencyFormat(
+                                    $value->getBoleto()->getRetorno()->getValorRecebido(),
+                                    "BRL",
+                                    null,
+                                    "pt_BR"
+                                );
+
+                            }
+                        }
+                        ?>
+                    </td>
+                    <td><small>
+                        <?php
+                        if ($value->getBoleto()) {
+                            if ($value->getBoleto()->getRetorno()) {
+                                echo $this->dateFormat(
+                                    $value->getBoleto()->getRetorno()->getDataPagamento(),
+                                    IntlDateFormatter::MEDIUM, // date
+                                    IntlDateFormatter::NONE, // time
+                                    "pt_BR"
+                                );
+                            }
+                        }
+                        ?></small>
                     </td>
                     <td></td>
                 </tr>

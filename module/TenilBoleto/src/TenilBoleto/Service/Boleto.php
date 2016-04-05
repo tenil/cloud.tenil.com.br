@@ -91,6 +91,7 @@ class Boleto
                             $retorno->setSequencial($linha->dados['sequencial']);
 
                             $retorno->setBoleto($boleto);
+                            $boleto->setRetorno($retorno);
 
                             $this->em->persist($boleto);
                             $this->em->flush();

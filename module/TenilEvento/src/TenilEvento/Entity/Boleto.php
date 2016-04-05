@@ -11,8 +11,6 @@ namespace TenilEvento\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use Doctrine\DBAL\Types\DecimalType;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * Boleto

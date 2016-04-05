@@ -19,6 +19,9 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use TenilBase\Controller\CrudController;
 
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+
+
 
 class EventosController extends CrudController
 {
