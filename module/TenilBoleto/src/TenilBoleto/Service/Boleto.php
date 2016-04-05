@@ -109,13 +109,11 @@ class Boleto
 
             $fileName = $caminho;
 
-            $cnab400 = RetornoFactory::getRetorno($fileName);
+            $cnab400 = \ManoelCampos\RetornoBoleto\RetornoFactory::getRetorno($fileName);
 
             $leitura = new LeituraArquivo($processarLinha1, $cnab400);
 
             $leitura->lerArquivoRetorno();
-
-          //  die;
 
 
         } else {
