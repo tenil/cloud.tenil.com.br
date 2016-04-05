@@ -9,13 +9,12 @@
 namespace TenilBoleto\Service;
 
 
-use ManoelCampos\RetornoBoleto\LeituraArquivo;
-use ManoelCampos\RetornoBoleto\RetornoFactory;
-use ManoelCampos\RetornoBoleto\RetornoInterface;
-use ManoelCampos\RetornoBoleto\LinhaArquivo;
+use \ManoelCampos\RetornoBoleto\LeituraArquivo;
+use \ManoelCampos\RetornoBoleto\RetornoFactory;
+use \ManoelCampos\RetornoBoleto\RetornoInterface;
+use \ManoelCampos\RetornoBoleto\LinhaArquivo;
 
 use Doctrine\ORM\EntityManager;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use TenilBoleto\Entity\BoletoRetorno;
 
 class Boleto
@@ -109,7 +108,7 @@ class Boleto
 
             $fileName = $caminho;
 
-            $cnab400 = \ManoelCampos\RetornoBoleto\RetornoFactory::getRetorno($fileName);
+            $cnab400 = RetornoFactory::getRetorno($fileName);
 
             $leitura = new LeituraArquivo($processarLinha1, $cnab400);
 
