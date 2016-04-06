@@ -17,8 +17,7 @@ return array(
         'TenilAcl',
         'TenilEvento',
         'TenilBoleto',
-        'PhpBoletoZf2',
-        'Cocur\Slugify\Bridge\ZF2'
+        'PhpBoletoZf2'
     ),
     'module_listener_options' => array(
         'module_paths' => array(
