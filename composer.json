@@ -19,7 +19,7 @@
     "jotjunior/boletophp-zf2": "dev-master",
     "zendframework/zftool": "dev-master",
     "cocur/slugify": "~2",
-    "manoelcampos/retornoboleto": "^1.0"
+    "manoelcampos/retornoboleto": "dev-master"
   },
   "repositories": [
     {
