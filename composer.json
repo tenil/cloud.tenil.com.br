@@ -20,11 +20,5 @@
     "zendframework/zftool": "dev-master",
     "cocur/slugify": "~2",
     "manoelcampos/retornoboleto": "dev-master"
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/fabiopaiva/retorno-boletophp"
-    }
-  ]
+  }
 }
