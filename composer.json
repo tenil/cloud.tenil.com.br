@@ -19,6 +19,7 @@
     "jotjunior/boletophp-zf2": "dev-master",
     "zendframework/zftool": "dev-master",
     "cocur/slugify": "~2",
-    "manoelcampos/retornoboleto": "dev-master"
+    "manoelcampos/retornoboleto": "dev-master",
+    "pagseguro/php": "@stable"
   }
 }

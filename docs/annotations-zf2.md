@@ -118,6 +118,9 @@ Serviços
 Definição: Uma porção de código que pode ser facilmente usado por um controller, outro serviço ou, mais tarde, uma API.
 Depois de criar um serviço, ele deve ser devidamente configurado no Module.php do módulo (getServiceConfig()).
 
+Factories
+---------
+Uma classe que tem a responsabilidade de instanciar objetos de acordo com determidas regras que ela mesma possui.
 
 
 AbstractService

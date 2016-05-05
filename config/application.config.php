@@ -17,6 +17,7 @@ return array(
         'TenilAcl',
         'TenilEvento',
         'TenilBoleto',
+        'TenilPagamento',
         'PhpBoletoZf2'
     ),
     'module_listener_options' => array(
