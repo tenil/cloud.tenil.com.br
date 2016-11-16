@@ -64,10 +64,10 @@ class Evento extends \TenilEvento\Entity\Evento implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'slug', 'valorInscricao', 'flagEventoGratuito', 'updatedAt', 'createdAt');
+            return array('__isInitialized__', 'id', 'inscricoes', 'imagens', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'slug', 'valorInscricao', 'flagEventoGratuito', 'updatedAt', 'createdAt');
         }
 
-        return array('__isInitialized__', 'id', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'slug', 'valorInscricao', 'flagEventoGratuito', 'updatedAt', 'createdAt');
+        return array('__isInitialized__', 'id', 'inscricoes', 'imagens', 'nome', 'tema', 'descricao', 'dataInicio', 'dataFim', 'horaInicio', 'horaFim', 'qtdVagas', 'flagInscricoesAbertas', 'organizador', 'email', 'slug', 'valorInscricao', 'flagEventoGratuito', 'updatedAt', 'createdAt');
     }
 
     /**
@@ -521,6 +521,50 @@ class Evento extends \TenilEvento\Entity\Evento implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
+    public function getImagens()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImagens', array());
+
+        return parent::getImagens();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setImagens($imagens)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImagens', array($imagens));
+
+        return parent::setImagens($imagens);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInscricoes()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInscricoes', array());
+
+        return parent::getInscricoes();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setInscricoes($inscricoes)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInscricoes', array($inscricoes));
+
+        return parent::setInscricoes($inscricoes);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getUpdatedAt()
     {
 
@@ -532,12 +576,12 @@ class Evento extends \TenilEvento\Entity\Evento implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUpdatedAt', array($updatedAt));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUpdatedAt', array());
 
-        return parent::setUpdatedAt($updatedAt);
+        return parent::setUpdatedAt();
     }
 
     /**

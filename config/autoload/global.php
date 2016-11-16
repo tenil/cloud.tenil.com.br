@@ -18,11 +18,91 @@ return array(
         'port' => 587, // Notice port change for TLS is 587
         'connection_class' => 'plain',
         'connection_config' => array(
-            'username' => 'AKIAIFLK4RVKZEWBW4NA',
-            'password' => 'AgSiyezSIzWH7UvOSj+SM7Zs3ICg1+eAmb8CIYj/3ghr',
+            'username' => 'AKIAJAMPI6DUW2Q3NKXQ',
+            'password' => 'AnVUfCSfFRehspon2MVhumYm5U5n0cZd1oXIqAi7t6ka',
             'ssl' => 'tls',
-            'from' => 'arcanjo@cb.org.br',
-            'sender' => 'Arcanjo ICB'
+            'from' => 'arcanjo@tenil.com.br',
+            'sender' => 'Arcanjo Project'
         )
+    ),
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Eventos',
+                'route' => 'tenil-evento',
+                'pages' => array(
+                    array(
+                        'label' => 'Listar',
+                        'route' => 'tenil-evento/default',
+                        'action' => 'list'
+                    ),
+                    array(
+                        'label' => 'Novo',
+                        'route' => 'tenil-evento/default',
+                        'action' => 'create',
+                    ),
+                ),
+            ),
+            array(
+                'label' => 'Usuários',
+                'route' => 'tenil-user/default',
+                'action' => 'list'
+            ),
+            array(
+                'label' => 'ACL',
+                'route' => 'tenil-acl-admin/default',
+                'controller' => 'roles',
+                'action' => 'index',
+                'pages' => array(
+                    array(
+                        'label' => 'Papéis',
+                        'route' => 'tenil-acl-admin/default',
+                        'controller' => 'roles',
+                        'action' => 'index',
+                        'pages' => array(
+                            array(
+                                'label' => 'Novo',
+                                'route' => 'tenil-acl-admin/default',
+                                'controller' => 'roles',
+                                'action' => 'add',
+                            ),
+                        ),
+                    ),
+                    array(
+                        'label' => 'Recursos',
+                        'route' => 'tenil-acl-admin/default',
+                        'controller' => 'resources',
+                        'action' => 'index',
+                        'pages' => array(
+                            array(
+                                'label' => 'Novo',
+                                'route' => 'tenil-acl-admin/default',
+                                'controller' => 'resources',
+                                'action' => 'add',
+                            ),
+                        ),
+                    ),
+                    array(
+                        'label' => 'Privilégios',
+                        'route' => 'tenil-acl-admin/default',
+                        'controller' => 'privileges',
+                        'action' => 'index',
+                        'pages' => array(
+                            array(
+                                'label' => 'Novo',
+                                'route' => 'tenil-acl-admin/default',
+                                'controller' => 'privileges',
+                                'action' => 'add',
+                            ),
+                        ),
+                    ),
+                ),
+            )
+        ),
+    ),
+    'service_manager' => array(
+        'factories' => array(
+            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+        ),
     ),
 );

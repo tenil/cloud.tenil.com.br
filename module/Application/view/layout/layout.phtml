@@ -43,7 +43,7 @@
     echo $this->headMeta();
     echo PHP_EOL;
 
-    echo $this->headTitle($this->translate('Arcanjo'))->setSeparator(' - ')->setAutoEscape(false);
+    echo $this->headTitle($this->translate('Arcanjo Project'))->setSeparator(' - ')->setAutoEscape(false);
 
     echo PHP_EOL;
 
@@ -72,42 +72,19 @@ if ($user = $this->identity()) {
 ?>
 <body>
 <!-- menu area -->
-<header class="navbar navbar-inverse navbar-static-top" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="<?php echo $this->url('home') ?>" class="navbar-brand">ARCANJO</a>
-        </div>
-        <nav class="collapse navbar-collapse" role="navigation">
-            <ul class="nav navbar-nav navbar-right">
-                <?php if ($user): ?>
-                    <li>
-                        <a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'detail')) ?>"><?php echo $user->getEmail(); ?></a>
-                    </li>
-                    <li>
-                        <a href="<?php echo $this->url('tenil-perfil/default', array('action' => 'detail')) ?>"><?php echo $this->gravatar($user->getEmail())->setImgSize(20)->getImgTag(); ?></a>
-                    </li>
-                    <li><a href="<?php echo $this->url('tenil-auth/default', array('action' => 'logout')) ?>"
-                           data-toggle="tooltip" data-placement="bottom" title="Sair"><span
-                                class="glyphicon glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
-                <?php else : ?>
-                    <li>
-                        <a href="<?php echo $this->url('tenil-user/default', array('action' => 'register')) ?>"><?php echo $this->translate('Crie sua conta') ?></a>
-                    </li>
-                    <li>
-                        <a href="<?php echo $this->url('tenil-auth/default', array('action' => 'login')) ?>"><?php echo $this->translate('Login') ?></a>
-                    </li>
-                <?php endif; ?>
-            </ul>
-        </nav>
-    </div>
-</header>
+<?php
+$this->navigation('navigation')->menu()->setPartial('/partials/menu-main');
+echo $this->navigation('navigation')->menu()->render();
+?>
 <!-- /menu area -->
+
+<!-- breadcrumbs area -->
+<?php
+$this->navigation('navigation')->breadcrumbs()->setPartial('/partials/breadcrumbs', 'default');
+echo $this->navigation('navigation')->breadcrumbs()->render();
+?>
+<!-- /breadcrumbs area -->
+
 <!-- Begin Mensagens -->
 <?php echo $this->partial('partials/mensagens.phtml', array('chave' => 'valor')); ?>
 <!-- Begin Body -->
