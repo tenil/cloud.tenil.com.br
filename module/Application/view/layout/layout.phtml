@@ -6,10 +6,10 @@
         ->setCharset("utf-8")
         ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-        ->appendName('description', 'Area Administrativa')
-        ->appendName('title', 'Arcanjo')
+        ->appendName('description', 'Sistema Multipropósito da Empresa Tenil Tecnologia')
+        ->appendName('title', 'Cloud TT')
         ->appendName('author', 'Tenil Tecnologia')
-        ->appendName('keywords', 'ICB, Casa da Bênção, Catedral da Bênção, ITEJ, Igreja Casa da Bênção');
+        ->appendName('keywords', 'Tenil, Tecnologia, Cloud, Sistema, TT');
 
     // Configurando o favicon
     $favicionVersion = "ngg4p7bELx";
@@ -43,7 +43,7 @@
     echo $this->headMeta();
     echo PHP_EOL;
 
-    echo $this->headTitle($this->translate('Arcanjo Project'))->setSeparator(' - ')->setAutoEscape(false);
+    echo $this->headTitle($this->translate('Cloud TT'))->setSeparator(' - ')->setAutoEscape(false);
 
     echo PHP_EOL;
 
@@ -100,7 +100,7 @@ endif;
     <div class="container">
         <hr>
         <div id="copyright">
-            Arcanjo &copy; <?php echo date('Y') ?> | Desenvolvido por <a href="http://tenil.com.br" target="_blank">tenil.com.br</a>
+            Cloud TT &copy; <?php echo date('Y') ?> | Desenvolvido por <a href="http://tenil.com.br" target="_blank">tenil.com.br</a>
             | <?php echo $this->translate('All rights reserved.') ?>
             | <?php echo '0.' . \Zend\Version\Version::VERSION ?>
         </div>
