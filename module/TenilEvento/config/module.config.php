@@ -13,7 +13,7 @@ return array(
                         '__NAMESPACE__' => 'TenilEvento\Controller',
                         'module' => 'TenilEvento',
                         'controller' => 'eventos',
-                        'action' => 'list'
+                        'action' => 'index'
                     ),
                 ),
                 'may_terminate' => true,
@@ -31,7 +31,7 @@ return array(
                     'paginator' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/page/[:page]',
+                            'route' => '[/:action]/page/[:page]',
                             'constraints' => array(
                                 'page' => '\d+',
                             ),

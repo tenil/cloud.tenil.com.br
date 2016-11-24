@@ -3,37 +3,77 @@ $title = $this->translate('Eventos');
 $this->headTitle($title);
 $data = $this->data;
 ?>
-<?php foreach ($data as $evento): ?>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="evento-banner-list">
-                <img src="/images/manual/convencao-mundial-2016-banner-1080x1080.png" class="img-responsive"
-                     alt="<?php echo $evento->getNome(); ?>">
-            </div>
-        </div>
-        <div class="col-md-8">
-            <h1><?php echo $evento->getNome(); ?> <br>
-                <small><?php echo $evento->getTema(); ?></small>
-            </h1>
-            <p class="lead"><?php echo $evento->getDataInicio()->format("d/m/Y"); ?>
-                - <?php echo $evento->getDataFim()->format("d/m/Y"); ?></p>
-            <div class="clearfix">
-                <div class="btn-toolbar pull-right" role="toolbar">
-                    <div class="btn-group" role="group">
-                        <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'signup', 'id' => $evento->getSlug())) ?>"
-                           class="btn btn-primary">Mais informações</a>
-                    </div>
-                </div>
 
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <?php echo $this->translate('Eventos') ?>
+            <small><?php echo $this->translate('Administração de Eventos') ?></small>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Img</th>
+            <th>Data</th>
+            <th>Nome</th>
+            <th>Tema</th>
+            <th>Descrição</th>
+            <th>Vagas</th>
+            <th>Inscrições</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+            <th>Data</th>
+        </tr>
+        <?php foreach ($this->data as $value): ?>
+            <tr>
+                <td><?php echo $this->escapeHtml($value->getId()); ?></td>
+                <td>IMG</td>
+                <td><?php echo $value->getDataInicio()->format("d/m/Y"); ?>
+                    - <?php echo $value->getDataFim()->format("d/m/Y"); ?></td>
+                <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
+                <td><?php echo $this->escapeHtml($value->getTema()); ?></td>
+                <td>Descrição</td>
+                <td><?php echo $this->escapeHtml($value->getQtdVagas()); ?></td>
+                <td>Inscrições</td>
+                <td>
+                    <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'edit', 'id' => $value->getId())) ?>">Editar</a>
+                </td>
+                <td>
+                    <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a>
+                </td>
+                <td>
+                    <small><?php echo $value->getCreatedAt()->format("d/m/Y"); ?></small>
+                    <br/>
+                    <small><?php echo $value->getUpdatedAt()->format("d/m/Y"); ?></small>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <div class="panel-footer">
+        <div class="clearfix">
+            <div class="pull-right">
+                <a class="btn btn-default"
+                   href="<?php echo $this->url('tenil-evento/default', array('action' => 'create')); ?>"
+                   target="_self">Novo</a>
             </div>
         </div>
     </div>
-    <hr>
-<?php endforeach; ?>
+
+</div>
+
 <div class="row">
     <div class="col-md-12">
         <?php
-        echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v2', array('route' => 'tenil-evento/paginator'));
+        echo $this->paginationControl(
+            $this->data,
+            'Sliding',
+            'partials/paginator/control_v2',
+            array(
+                'route' => 'tenil-evento/paginator', array('action' => 'list')
+            )
+        );
         ?>
     </div>
 </div>

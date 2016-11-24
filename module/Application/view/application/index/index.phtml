@@ -1,11 +1,36 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3>Convenção 2015 <small>Inscrições</small></h3>
+<?php
+$data = $this->data;
+?>
+<?php foreach ($data as $evento): ?>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="evento-banner-list">
+                <img src="http://placehold.it/1080x1080" class="img-responsive" alt="<?php echo $evento->getNome(); ?>">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h1><?php echo $evento->getNome(); ?> <br>
+                <small><?php echo $evento->getTema(); ?></small>
+            </h1>
+            <p class="lead"><?php echo $evento->getDataInicio()->format("d/m/Y"); ?>
+                - <?php echo $evento->getDataFim()->format("d/m/Y"); ?></p>
+            <div class="clearfix">
+                <div class="btn-toolbar pull-right" role="toolbar">
+                    <div class="btn-group" role="group">
+                        <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'signup', 'id' => $evento->getSlug())) ?>"
+                           class="btn btn-primary">Mais informações</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <p>Faça aqui a sua inscrição para a Convenção Mundial 2015.</p>
-        <p>
-            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Faça sua inscrição.">Clique aqui</button>
-        </p>
+    <hr>
+<?php endforeach; ?>
+<div class="row">
+    <div class="col-md-12">
+        <?php
+        echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v2', array('route' => 'tenil-evento/paginator'));
+        ?>
     </div>
 </div>
