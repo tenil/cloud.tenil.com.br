@@ -1,13 +1,16 @@
 <?php
 setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
+$dimensao = '896x504';
+$extensao = '.jpg'
+
 ?>
 <div class="row">
     <?php foreach ($this->data as $evento): ?>
         <div class="col s12 m12 l4">
             <div class="card sticky-action hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="<?php echo $this->basePath() . "/images/eventos/" . $evento->getSlug() . "/" . $evento->getSlug() . "-banner-1920x1080.png" ?>"
+                    <img class="activator" src="<?php echo $this->basePath() . "/images/eventos/" . $evento->getSlug() . "/" . $evento->getSlug() . "-banner-" . $dimensao . $extensao ?>"
 
                          alt="<?php echo $evento->getNome(); ?>">
                     <!-- <span class="card-title"><?php echo $evento->getNome(); ?></span> -->
