@@ -43,24 +43,26 @@
     echo $this->headMeta();
     echo PHP_EOL;
 
-    echo $this->headTitle($this->translate('Cloud TT'))->setSeparator(' - ')->setAutoEscape(false);
+    echo $this->headTitle($this->translate('Cloud T'))->setSeparator(' - ')->setAutoEscape(false);
+
+    echo PHP_EOL;
+
+    // Adicionando fontes externas
+    //<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    $this->headLink(array('rel' => 'stylesheet', 'href' => 'https://fonts.googleapis.com/icon?family=Material+Icons'));
+
 
     echo PHP_EOL;
 
     echo $this->headLink()
-        ->appendStylesheet($this->basePath() . '/css/bootstrap.min.css')
-        ->appendStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+        ->appendStylesheet($this->basePath() . '/css/materialize.min.css', 'screen, projection')
         ->appendStylesheet($this->basePath() . '/css/style.css');
     //     ->prependStylesheet($this->basePath() . '/css/signin.css');
 
     echo PHP_EOL;
 
-    echo $this->headScript()
-        ->prependFile($this->basePath() . '/js/jquery-2.2.1.min.js')
-        //->prependFile('//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-        ->appendFile($this->basePath() . '/js/bootstrap.min.js');
 
-    echo PHP_EOL;
 
     ?>
 </head>
@@ -72,19 +74,26 @@ if ($user = $this->identity()) {
 ?>
 <body>
 <!-- menu area -->
-<?php
-$this->navigation('navigation')->menu()->setPartial('/partials/menu-main');
-echo $this->navigation('navigation')->menu()->render();
-?>
+<nav role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="<?php echo $this->url('home') ?>" class="brand-logo">Cloud T</a>
+        <?php
+        //$this->navigation('navigation')->menu()->setPartial('/partials/menu-main-materialize');
+        echo $this->navigation('navigation')
+            ->menu()
+            ->setMinDepth(0)
+            ->setMaxDepth(0)
+            ->setUlClass('right hide-on-med-and-down');
+        ?>
+    </div>
+</nav>
 <!-- /menu area -->
-
 <!-- breadcrumbs area -->
 <?php
-$this->navigation('navigation')->breadcrumbs()->setPartial('/partials/breadcrumbs', 'default');
-echo $this->navigation('navigation')->breadcrumbs()->render();
+// $this->navigation('navigation')->breadcrumbs()->setPartial('/partials/breadcrumbs-materialize', 'default');
+// echo $this->navigation('navigation')->breadcrumbs()->render();
 ?>
 <!-- /breadcrumbs area -->
-
 <!-- Begin Mensagens -->
 <?php echo $this->partial('partials/mensagens.phtml', array('chave' => 'valor')); ?>
 <!-- Begin Body -->
@@ -95,24 +104,45 @@ else :
     echo $this->partial('partials/full-width.phtml');
 endif;
 ?>
+<!-- /Body -->
 <!-- Begin Footer -->
-<footer id="footer">
+<footer class="page-footer" id="footer">
     <div class="container">
-        <hr>
-        <div id="copyright">
-            Cloud TT &copy; <?php echo date('Y') ?> | Desenvolvido por <a href="http://tenil.com.br" target="_blank">tenil.com.br</a>
-            | <?php echo $this->translate('All rights reserved.') ?>
-            | <?php echo '0.' . \Zend\Version\Version::VERSION ?>
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Cloud T</h5>
+                <p class="grey-text text-lighten-4">Somos uma equipe de desenvolvedores que trabalham neste
+                    projeto como se fosse o nosso trabalho mais importante. Qualquer sugestão ajudaria a apoiar e
+                    continuar o desenvolvimento deste projeto e é muito apreciada.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Info</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Sobre</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Contato</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Privacidade</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Termos de uso</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Cloud T &copy; <?php echo date('Y') ?> -
+            <?php echo $this->translate('All rights reserved.') ?> -
+            <?php echo '0.' . \Zend\Version\Version::VERSION ?>
+            <span class="right">
+                Desenvolvido por <a class="grey-text text-lighten-4 " href="http://tenil.com.br" target="_blank">tenil.com.br</a>
+            </span>
         </div>
     </div>
 </footer>
 <?php
 echo $this->inlineScript()
-    ->appendFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-    ->appendFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-    ->appendFile($this->basePath() . '/js/init.js')
-//->appendFile($this->basePath() . '/js/docs.min.js')
-//->appendFile($this->basePath() . '/js/ie10-viewport-bug-workaround.js')
+    ->appendFile($this->basePath() . '/js/jquery-2.2.1.min.js')
+    ->appendFile($this->basePath() . '/js/materialize.min.js')
+    ->appendFile($this->basePath() . '/js/init.js');
+    echo PHP_EOL;
 ?>
 </body>
 </html>

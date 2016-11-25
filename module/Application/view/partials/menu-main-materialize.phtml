@@ -1,0 +1,69 @@
+<?php $user = $this->identity(); ?>
+
+<nav class="red darken-2" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="<?php echo $this->url('home') ?>" class="brand-logo">Cloud T</a>
+        <ul class="right hide-on-med-and-down">
+            <?php foreach ($this->container as $page) { ?>
+                <?php /* @var $page Zend\Navigation\Page\Mvc */ ?>
+                <?php // when using partials we need to manually check for ACL conditions ?>
+                <?php if (!$page->isVisible() || !$this->navigation()->accept($page)) {
+                    continue;
+                } ?>
+                <li>
+                    <a href="<?php echo $page->getHref() ?>"><?php echo $this->translate($page->getLabel()) ?></a>
+                </li>
+            <?php } ?>
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="#">Navbar Link</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+
+<nav class="red darken-2" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="<?php echo $this->url('home') ?>" class="brand-logo">Cloud T</a>
+
+        <ul class="right hide-on-med-and-down">
+            <?php foreach ($this->container as $page) { ?>
+                <?php /* @var $page Zend\Navigation\Page\Mvc */ ?>
+                <?php // when using partials we need to manually check for ACL conditions ?>
+                <?php if (!$page->isVisible() || !$this->navigation()->accept($page)) {
+                    continue;
+                } ?>
+                <?php $hasChildren = $page->hasPages(); ?>
+                <?php if (!$hasChildren) { ?>
+                    <li>
+                        <a href="<?php echo $page->getHref() ?>"><?php echo $this->translate($page->getLabel()) ?></a>
+                    </li>
+                <?php } else { ?>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"
+                           data-toggle="dropdown"><?php echo $this->translate($page->getLabel()) ?> <b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <?php foreach ($page->getPages() as $child) { ?>
+                                <?php // when using partials we need to manually check for ACL conditions ?>
+                                <?php if (!$child->isVisible() || !$this->navigation()->accept($child)) {
+                                    continue;
+                                } ?>
+                                <li>
+                                    <a href="<?php echo $child->getHref() ?>">
+                                        <?php echo $this->translate($child->getLabel()) ?>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+                <?php } ?>
+            <?php } ?>
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav">
+            <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>

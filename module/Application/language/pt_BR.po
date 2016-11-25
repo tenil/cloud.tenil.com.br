@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ZendSkeletonApplication\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-28 16:13-0300\n"
-"PO-Revision-Date: 2015-05-28 17:26-0300\n"
+"POT-Creation-Date: 2016-11-25 18:57-0200\n"
+"PO-Revision-Date: 2016-11-25 18:59-0200\n"
 "Last-Translator: Roberto Tenil <roberto.tenil@gmail.com>\n"
 "Language-Team: ZF Contibutors <zf-devteam@zend.com>\n"
 "Language: pt\n"
@@ -11,129 +11,137 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: translate\n"
-"X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: ../view/error/404.phtml:1
+#: Application/view/error/404.phtml:1
 msgid "A 404 error occurred"
 msgstr "Ocorreu um erro 404"
 
-#: ../view/error/404.phtml:10
+#: Application/view/error/404.phtml:10
 msgid "The requested controller was unable to dispatch the request."
 msgstr "O controlador requisitado não foi capaz de despachar a requisição."
 
-#: ../view/error/404.phtml:13
+#: Application/view/error/404.phtml:13
 msgid ""
 "The requested controller could not be mapped to an existing controller class."
 msgstr ""
 "O controlador requisitados não pode ser mapeado a uma classe de controlador "
 "existente."
 
-#: ../view/error/404.phtml:16
+#: Application/view/error/404.phtml:16
 msgid "The requested controller was not dispatchable."
 msgstr "O controlador requisitado não foi despachado."
 
-#: ../view/error/404.phtml:19
+#: Application/view/error/404.phtml:19
 msgid "The requested URL could not be matched by routing."
 msgstr "A URL requisitada não pode ser encontrada em uma rota."
 
-#: ../view/error/404.phtml:22
+#: Application/view/error/404.phtml:22
 msgid "We cannot determine at this time why a 404 was generated."
 msgstr "Não foi possível determinar o motivo do 404 ter ocorrido."
 
-#: ../view/error/404.phtml:34
+#: Application/view/error/404.phtml:34
 msgid "Controller"
 msgstr "Controlador"
 
-#: ../view/error/404.phtml:41
+#: Application/view/error/404.phtml:41
 #, php-format
 msgid "resolves to %s"
 msgstr "resolve como %s"
 
-#: ../view/error/404.phtml:53 ../view/error/index.phtml:8
+#: Application/view/error/404.phtml:53 Application/view/error/index.phtml:8
 msgid "Additional information"
 msgstr "Informação adicional"
 
-#: ../view/error/404.phtml:56 ../view/error/404.phtml:80
-#: ../view/error/index.phtml:11 ../view/error/index.phtml:35
+#: Application/view/error/404.phtml:56 Application/view/error/404.phtml:80
+#: Application/view/error/index.phtml:11 Application/view/error/index.phtml:35
 msgid "File"
 msgstr "Arquivo"
 
-#: ../view/error/404.phtml:60 ../view/error/404.phtml:84
-#: ../view/error/index.phtml:15 ../view/error/index.phtml:39
+#: Application/view/error/404.phtml:60 Application/view/error/404.phtml:84
+#: Application/view/error/index.phtml:15 Application/view/error/index.phtml:39
 msgid "Message"
 msgstr "Mensagem"
 
-#: ../view/error/404.phtml:64 ../view/error/404.phtml:88
-#: ../view/error/index.phtml:19 ../view/error/index.phtml:43
+#: Application/view/error/404.phtml:64 Application/view/error/404.phtml:88
+#: Application/view/error/index.phtml:19 Application/view/error/index.phtml:43
 msgid "Stack trace"
 msgstr "Pilha de execução"
 
-#: ../view/error/404.phtml:74 ../view/error/index.phtml:29
+#: Application/view/error/404.phtml:74 Application/view/error/index.phtml:29
 msgid "Previous exceptions"
 msgstr "Exceções anteriores"
 
-#: ../view/error/404.phtml:103 ../view/error/index.phtml:58
+#: Application/view/error/404.phtml:103 Application/view/error/index.phtml:58
 msgid "No Exception available"
 msgstr "Nenhuma exceção disponível"
 
-#: ../view/error/index.phtml:1
+#: Application/view/error/index.phtml:1
 msgid "An error occurred"
 msgstr "Ocorreu um erro"
 
-#: ../view/layout/layout.phtml:15
+#: Application/view/layout/dashboard.phtml:15
 msgid "Rede ICB"
 msgstr ""
 
-#: ../view/layout/layout.phtml:61
+#: Application/view/layout/dashboard.phtml:61
+#: Application/view/partials/menu-main.phtml:70
+#: TenilUser/view/tenil-user/user/register.phtml:2
 msgid "Crie sua conta"
 msgstr ""
 
-#: ../view/layout/layout.phtml:62
+#: Application/view/layout/dashboard.phtml:62
+#: Application/view/partials/menu-main.phtml:66
 msgid "Login"
 msgstr "Entrar"
 
-#: ../view/layout/layout.phtml:84
+#: Application/view/layout/dashboard.phtml:84
+#: Application/view/layout/layout.phtml:132
 msgid "All rights reserved."
 msgstr "Todos os direitos reservados."
 
-#: ../view/layout/login.phtml:6
+#: Application/view/layout/layout.phtml:46
+msgid "Cloud T"
+msgstr ""
+
+#: Application/view/layout/login.phtml:6
 msgid "Sistema Político"
 msgstr "Sistema Político"
 
-#: ../view/layout/paraPoedit.phtml:2
+#: Application/view/layout/paraPoedit.phtml:2
 msgid "isEmpty"
 msgstr "Valor obrigatório e não pode ser nulo"
 
-#: ../view/layout/paraPoedit.phtml:3
+#: Application/view/layout/paraPoedit.phtml:3
 msgid "notEmptyInvalid"
 msgstr "Valor nulo ou inválido"
 
-#: ../view/layout/paraPoedit.phtml:4
+#: Application/view/layout/paraPoedit.phtml:4
 msgid "Value is required and can't be empty"
 msgstr "O valor é obrigatório e não pode estar vazio"
 
-#: ../view/layout/paraPoedit.phtml:5
+#: Application/view/layout/paraPoedit.phtml:5
 msgid "\"Invalid type given. String expected\""
-msgstr ""
+msgstr "\"Tipo inválido dado. String esperado.\""
 
-#: ../view/layout/paraPoedit.phtml:6
+#: Application/view/layout/paraPoedit.phtml:6
 msgid "Invalid type given. String expected"
-msgstr ""
+msgstr "Tipo de dado inválido. Sequência de caracteres esperada."
 
-#: ../view/layout/paraPoedit.phtml:7
+#: Application/view/layout/paraPoedit.phtml:7
 msgid ""
 "The input is not a valid email address. Use the basic format local-"
 "part@hostname"
-msgstr ""
+msgstr "Esse não é um endereço de e-mail válido."
 
-#: ../view/layout/paraPoedit.phtml:8
+#: Application/view/layout/paraPoedit.phtml:8
 msgid "'%hostname%' is not a valid hostname for the email address"
 msgstr "'%hostname%' não é um nome de host válido para o endereço de email"
 
-#: ../view/layout/paraPoedit.phtml:9
+#: Application/view/layout/paraPoedit.phtml:9
 #, fuzzy
 msgid ""
 "'%hostname%' does not appear to have any valid MX or A records for the email "
@@ -142,38 +150,39 @@ msgstr ""
 "'% hostname%' não parece ter qualquer MX válido ou registros A para o "
 "endereço de email"
 
-#: ../view/layout/paraPoedit.phtml:10
+#: Application/view/layout/paraPoedit.phtml:10
 msgid ""
 "'%hostname%' is not in a routable network segment. The email address should "
 "not be resolved from public network"
 msgstr ""
+"'% hostname %' não é um segmento de rede roteáveis. O endereço de e-mail não "
+"deve ser resolvido da rede pública."
 
-#: ../view/layout/paraPoedit.phtml:11
+#: Application/view/layout/paraPoedit.phtml:11
 #, php-format
 msgid "'%localPart%' can not be matched against dot-atom format"
 msgstr ""
 
-#: ../view/layout/paraPoedit.phtml:12
-#, fuzzy, php-format
+#: Application/view/layout/paraPoedit.phtml:12
+#, php-format
 msgid "'%localPart%' can not be matched against quoted-string format"
-msgstr "'%localPart%' não pode ser "
+msgstr ""
 
-#: ../view/layout/paraPoedit.phtml:13
-#, fuzzy
+#: Application/view/layout/paraPoedit.phtml:13
 msgid "'%localPart%' is not a valid local part for the email address"
-msgstr "'% localpart%' não é um local válido para o endereço de email"
+msgstr "'% localpart%' não é um local válido para o endereço de email."
 
-#: ../view/layout/paraPoedit.phtml:14
+#: Application/view/layout/paraPoedit.phtml:14
 #, fuzzy
 msgid "The input exceeds the allowed length"
 msgstr "A entrada excede o comprimento permitido"
 
-#: ../view/layout/paraPoedit.phtml:15
+#: Application/view/layout/paraPoedit.phtml:15
 msgid "The input does not match the expected structure for a DNS hostname"
 msgstr ""
 "A entrada não corresponde a estrutura esperada para um nome de host DNS"
 
-#: ../view/layout/paraPoedit.phtml:16
+#: Application/view/layout/paraPoedit.phtml:16
 msgid ""
 "The input appears to be a local network name but local network names are not "
 "allowed"
@@ -181,25 +190,152 @@ msgstr ""
 "A entrada parece ser um nome de rede local, mas os nomes de rede local não "
 "são permitidos"
 
-#: ../view/layout/paraPoedit.phtml:17
+#: Application/view/layout/paraPoedit.phtml:17
 msgid "The form submitted did not originate from the expected site"
 msgstr ""
 
-#: ../view/partials/sidebar.phtml:27
+#: Application/view/partials/sidebar.phtml:35
+#: TenilUser/view/tenil-user/user/add.phtml:2
+#: TenilUser/view/tenil-user/user/list.phtml:4
 msgid "Usuários"
 msgstr "Usuários"
 
-#: ../view/partials/sidebar.phtml:28
+#: Application/view/partials/sidebar.phtml:36
 msgid "Roles"
 msgstr "Papéis"
 
-#: ../view/partials/sidebar.phtml:29
+#: Application/view/partials/sidebar.phtml:37
 msgid "Resources"
 msgstr "Recursos"
 
-#: ../view/partials/sidebar.phtml:30
+#: Application/view/partials/sidebar.phtml:38
 msgid "Privileges"
 msgstr "Privilégios"
+
+#: TenilAcl/view/tenil-acl/privileges/add.phtml:2
+msgid "Privilégio"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/privileges/add.phtml:2
+#: TenilUser/view/tenil-user/user/add.phtml:2
+msgid "Inclusão"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/privileges/add.phtml:9
+msgid "Adicionar Privilégio"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/privileges/edit.phtml:4
+msgid "Editar privilégio"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/privileges/index.phtml:4
+msgid "Privilégios"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/privileges/index.phtml:5
+msgid "Administração de Privilégios (Privileges)"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/resources/add.phtml:4
+msgid "Novo recurso"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/resources/edit.phtml:4
+msgid "Editar recurso"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/resources/index.phtml:4
+msgid "Recursos"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/resources/index.phtml:5
+msgid "Administração de Resources (Recursos)"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/roles/add.phtml:4
+#: TenilAcl/view/tenil-acl/roles/edit.phtml:4
+msgid "Editar papel"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/roles/index.phtml:4
+msgid "Papéis"
+msgstr ""
+
+#: TenilAcl/view/tenil-acl/roles/index.phtml:5
+msgid "Administração de Papéis (Roles)"
+msgstr ""
+
+#: TenilEvento/view/tenil-evento/eventos/create.phtml:3
+msgid "Novo evento"
+msgstr ""
+
+#: TenilEvento/view/tenil-evento/eventos/detail.phtml:3
+msgid "Informações do evento"
+msgstr ""
+
+#: TenilEvento/view/tenil-evento/eventos/index.phtml:2
+#: TenilEvento/view/tenil-evento/eventos/list.phtml:2
+#: TenilEvento/view/tenil-evento/eventos/list.phtml:10
+msgid "Eventos"
+msgstr ""
+
+#: TenilEvento/view/tenil-evento/eventos/inscricao.phtml:3
+msgid "Inscrição"
+msgstr ""
+
+#: TenilEvento/view/tenil-evento/eventos/list.phtml:11
+msgid "Administração de Eventos"
+msgstr ""
+
+#: TenilEvento/view/tenil-evento/eventos/signup.phtml:3
+msgid "Nova Inscrição"
+msgstr ""
+
+#: TenilEvento/view/tenil-evento/eventos/teste.phtml:3
+msgid "Teste"
+msgstr ""
+
+#: TenilEvento/view/tenil-evento/inscricoes/list.phtml:3
+msgid "Inscricoes"
+msgstr ""
+
+#: TenilUser/view/tenil-user/profile/create.phtml:2
+msgid "Perfil criação"
+msgstr ""
+
+#: TenilUser/view/tenil-user/profile/detail.phtml:3
+msgid "Meu perfil"
+msgstr ""
+
+#: TenilUser/view/tenil-user/profile/edit.phtml:3
+#: TenilUser/view/tenil-user/profile/update.phtml:2
+msgid "Editar Perfil"
+msgstr ""
+
+#: TenilUser/view/tenil-user/profile/list.phtml:4
+msgid "Perfis"
+msgstr ""
+
+#: TenilUser/view/tenil-user/profile/list.phtml:5
+msgid "Administração de perfis"
+msgstr ""
+
+#: TenilUser/view/tenil-user/user/activate.phtml:2
+msgid "Activate"
+msgstr ""
+
+#: TenilUser/view/tenil-user/user/add.phtml:9
+msgid "Adicionar Usuário"
+msgstr ""
+
+#: TenilUser/view/tenil-user/user/edit.phtml:4
+msgid "Conta do usuário"
+msgstr ""
+
+#: TenilUser/view/tenil-user/user/list.phtml:5
+msgid "Administração de usuários"
+msgstr ""
 
 #~ msgid "Bem-vindo ao %sSistema Político%s"
 #~ msgstr "Bem-vindo ao %sSistema Político%s"

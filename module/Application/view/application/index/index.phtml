@@ -1,36 +1,45 @@
 <?php
-$data = $this->data;
+setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+date_default_timezone_set('America/Sao_Paulo');
 ?>
-<?php foreach ($data as $evento): ?>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="evento-banner-list">
-                <img src="http://placehold.it/1080x1080" class="img-responsive" alt="<?php echo $evento->getNome(); ?>">
-            </div>
-        </div>
-        <div class="col-md-8">
-            <h1><?php echo $evento->getNome(); ?> <br>
-                <small><?php echo $evento->getTema(); ?></small>
-            </h1>
-            <p class="lead"><?php echo $evento->getDataInicio()->format("d/m/Y"); ?>
-                - <?php echo $evento->getDataFim()->format("d/m/Y"); ?></p>
-            <div class="clearfix">
-                <div class="btn-toolbar pull-right" role="toolbar">
-                    <div class="btn-group" role="group">
-                        <a href="<?php echo $this->url('tenil-evento/default', array('action' => 'signup', 'id' => $evento->getSlug())) ?>"
-                           class="btn btn-primary">Mais informações</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <hr>
-<?php endforeach; ?>
 <div class="row">
-    <div class="col-md-12">
-        <?php
-        echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v2', array('route' => 'tenil-evento/paginator'));
-        ?>
-    </div>
+    <?php foreach ($this->data as $evento): ?>
+        <div class="col s12 m12 l4">
+            <div class="card sticky-action hoverable">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="http://placehold.it/1280x720"
+                         alt="<?php echo $evento->getNome(); ?>">
+                    <!-- <span class="card-title"><?php echo $evento->getNome(); ?></span> -->
+                </div>
+                <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"><?php echo $evento->getNome(); ?><i
+                                class="material-icons right">more_vert</i></span>
+                    <p><?php echo $evento->getTema(); ?>
+                        <span class="new badge"
+                              data-badge-caption=""><?php echo strtoupper($evento->getDataInicio()->format("d M")); ?></span>
+                    </p>
+                </div>
+                <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><?php echo $evento->getNome(); ?><i
+                                class="material-icons right">close</i></span>
+                    <div class="grey-text text-darken-2">
+                        <span class="new badge" data-badge-caption=""><?php echo $evento->getDataInicio()->format("H:i"); ?></span>
+                        <?php
+                        echo mb_strtoupper(($this->dateFormat(
+                            $evento->getDataInicio(),
+                            IntlDateFormatter::TRADITIONAL, // date
+                            IntlDateFormatter::NONE, // time
+                            "pt_BR"
+                        )), 'UTF-8');
+                        ?>
+                    </div>
+                    <p class="flow-text"><?php echo $evento->getDescricao(); ?></p>
+                </div>
+                <div class="card-action">
+                    <a class="blue-grey-text" href="<?php echo $this->url('tenil-evento/default', array('action' => 'signup', 'id' => $evento->getSlug())) ?>">Mais
+                        informações</a>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>

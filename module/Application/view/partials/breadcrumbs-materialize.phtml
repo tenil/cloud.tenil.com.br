@@ -1,0 +1,22 @@
+<nav>
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <?php
+            // iterate through the pages
+            foreach ($this->pages as $key => $page):
+                ?>
+                <?php
+                // if this isn't the last page, add a link and the separator
+                if ($key < count($this->pages) - 1):
+                    ?>
+                    <a href="<?php echo $page->getHref(); ?>" class="breadcrumb"><?php echo $page->getLabel(); ?></a>
+                    <?php
+                // otherwise, just output the name
+                else:
+                    ?>
+                    <?php echo $page->getLabel(); ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</nav>
