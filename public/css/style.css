@@ -2,3 +2,12 @@
     Created on : 24/02/2015, 12:01:32
     Author     : Roberto
 */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}

@@ -7,7 +7,8 @@ date_default_timezone_set('America/Sao_Paulo');
         <div class="col s12 m12 l4">
             <div class="card sticky-action hoverable">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="http://placehold.it/1280x720"
+                    <img class="activator" src="<?php echo $this->basePath() . "/images/eventos/" . $evento->getSlug() . "/" . $evento->getSlug() . "-banner-1920x1080.png" ?>"
+
                          alt="<?php echo $evento->getNome(); ?>">
                     <!-- <span class="card-title"><?php echo $evento->getNome(); ?></span> -->
                 </div>
