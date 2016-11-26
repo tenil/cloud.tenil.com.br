@@ -40,7 +40,7 @@ $extensao = '.jpg'
                     <p class="flow-text"><?php echo $evento->getDescricao(); ?></p>
                 </div>
                 <div class="card-action">
-                    <a class="blue-grey-text" href="<?php echo $this->url('tenil-evento/default', array('action' => 'signup', 'id' => $evento->getSlug())) ?>">Mais
+                    <a class="blue-grey-text" href="<?php echo $this->url('tenil-evento/default', array('action' => 'detail', 'id' => $evento->getSlug())) ?>">Mais
                         informações</a>
                 </div>
             </div>
