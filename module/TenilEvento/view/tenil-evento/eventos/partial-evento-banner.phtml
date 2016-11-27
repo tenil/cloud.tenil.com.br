@@ -1,5 +1,29 @@
-<?php // $this->headLink()->appendStylesheet('/css/material.min.css'); ?>
-<?php $dataInicio = $this->dateFormat($evento->getDataInicio(), IntlDateFormatter::LONG, IntlDateFormatter::NONE, "pt_BR"); ?>
+<?php
+$dataInicio = $this->dateFormat($evento->getDataInicio(), IntlDateFormatter::LONG, IntlDateFormatter::NONE, "pt_BR");
+$dimensao = '896x504';
+$extensao = '.jpg'
+?>
+    <div class="section uiGradient-Politics">
+        <div class="container">
+            <div class="row banner-row">
+                <div class="col s12 m8 l8">
+                    <img class="responsive-img"
+                         src="<?php echo $this->basePath() . "/images/eventos/" . $evento->getSlug() . "/" . $evento->getSlug() . "-banner-" . $dimensao . $extensao ?>"
+                         alt="<?php echo $evento->getNome(); ?>">
+                </div>
+                <div class="col s12 m4 l4 white-text">
+                    <div class="data-container">
+                        <div class="data-mes"><?php echo strtoupper($evento->getDataInicio()->format("M")); ?></div>
+                        <div class="data-dia"><?php echo strtoupper($evento->getDataInicio()->format("d")); ?></div>
+                    </div>
+                    <h3><?php echo $evento->getNome(); ?></h3>
+                    <h5><?php echo $evento->getTema(); ?></h5>
+                    <p><?php echo $evento->getOrganizador(); ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php /*
 <div class="row evento-banner">
     <div class="col-xs-12 hidden-sm hidden-md hidden-lg"> <!--Mobile-->
         <img class="img-responsive img-rounded" src="/images/manual/convencao-mundial-2016-banner-1080x1080.png"/>
@@ -11,7 +35,6 @@
     </div>
 </div>
 
-<?php /*
 <div class="row evento-dados">
     <div class="col-md-2">
         <span aria-label="<?php echo $dataInicio ?>" title="<?php echo $dataInicio; ?>">
