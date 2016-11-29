@@ -1,3 +1,7 @@
+<?php
+define("SYSNAME",     "Cloud");
+define("FAVICON", "ffc161d9-9564-4f66-a042-d21ca72a82d0");
+?>
 <?php echo $this->doctype() . PHP_EOL; ?>
 <html lang="pt-br">
 <head>
@@ -7,43 +11,25 @@
         ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ->appendName('viewport', 'width=device-width, initial-scale=1.0')
         ->appendName('description', 'Sistema Multipropósito da Empresa Tenil Tecnologia')
-        ->appendName('title', 'Cloud TT')
+        ->appendName('title', SYSNAME)
         ->appendName('author', 'Tenil Tecnologia')
         ->appendName('keywords', 'Tenil, Tecnologia, Cloud, Sistema, TT');
 
     // Configurando o favicon
-    $favicionVersion = "ngg4p7bELx";
-    $this->headMeta()
-        ->appendName('msapplication-TileColor', '#2d89ef')
-        ->appendName('msapplication-TileImage', "/mstile-144x144.png?v=$favicionVersion")
-        ->appendName('theme-color', "#ffffff");
-
-    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '57x57', 'href' => "/apple-touch-icon-57x57.png?v=$favicionVersion"));
-    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '60x60', 'href' => "/apple-touch-icon-60x60.png?v=$favicionVersion"));
-    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '72x72', 'href' => "/apple-touch-icon-72x72.png?v=$favicionVersion"));
-    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '76x76', 'href' => "/apple-touch-icon-76x76.png?v=$favicionVersion"));
-    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '114x114', 'href' => "/apple-touch-icon-114x114.png?v=$favicionVersion"));
-    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '120x120', 'href' => "/apple-touch-icon-120x120.png?v=$favicionVersion"));
-    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '144x144', 'href' => "/apple-touch-icon-144x144.png?v=$favicionVersion"));
-    $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '152x152', 'href' => "/apple-touch-icon-152x152.png?v=$favicionVersion"));
+    $favicionVersion = FAVICON;
+    $this->headMeta()->appendName('theme-color', "#ffffff");
     $this->headLink(array('rel' => 'apple-touch-icon', 'sizes' => '180x180', 'href' => "/apple-touch-icon-180x180.png?v=$favicionVersion"));
-
     $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-16x16.png?v=$favicionVersion", 'sizes' => '16x16'));
     $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-32x32.png?v=$favicionVersion", 'sizes' => '32x32'));
-    $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-96x96.png?v=$favicionVersion", 'sizes' => '96x96'));
-    $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/favicon-194x194.png?v=$favicionVersion", 'sizes' => '194x194'));
-    $this->headLink(array('rel' => 'icon', 'type' => 'image/png', 'href' => "/android-chrome-192x192.png?v=$favicionVersion", 'sizes' => '192x192'));
-
     $this->headLink(array('rel' => 'manifest', 'href' => "/manifest.json?v=$favicionVersion"));
     $this->headLink(array('rel' => 'mask-icon', 'href' => "/safari-pinned-tab.svg?v=$favicionVersion", 'color' => '#5bbad5'));
     $this->headLink(array('rel' => 'shortcut icon', 'href' => "/favicon.ico?v=$favicionVersion"));
     // Configurando o favicon - fim
 
-
     echo $this->headMeta();
     echo PHP_EOL;
 
-    echo $this->headTitle($this->translate('Cloud T'))->setSeparator(' - ')->setAutoEscape(false);
+    echo $this->headTitle($this->translate(SYSNAME))->setSeparator(' - ')->setAutoEscape(false);
 
     echo PHP_EOL;
 
@@ -51,7 +37,6 @@
     //<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     $this->headLink(array('rel' => 'stylesheet', 'href' => 'https://fonts.googleapis.com/icon?family=Material+Icons'));
-
 
     echo PHP_EOL;
 
@@ -61,7 +46,6 @@
     //     ->prependStylesheet($this->basePath() . '/css/signin.css');
 
     echo PHP_EOL;
-
 
     ?>
 </head>
@@ -78,7 +62,7 @@ if ($user = $this->identity()) {
     <div class="navbar-fixed">
         <nav role="navigation">
             <div class="nav-wrapper container">
-                <a id="logo-container" href="<?php echo $this->url('home') ?>" class="brand-logo">Cloud T</a>
+                <a id="logo-container" href="<?php echo $this->url('home') ?>" class="brand-logo"><i class="large material-icons">cloud_queue</i><?php echo SYSNAME ?></a>
                 <?php
                 echo $this->navigation('navigation')
                     ->menu()
@@ -113,7 +97,7 @@ endif;
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Cloud T</h5>
+                <h5 class="white-text"><?php echo SYSNAME ?></h5>
                 <p class="grey-text text-lighten-4">Somos uma equipe de desenvolvedores que trabalham neste
                     projeto como se fosse o nosso trabalho mais importante. Qualquer sugestão ajudaria a apoiar e
                     continuar o desenvolvimento deste projeto e é muito apreciada.</p>
@@ -131,7 +115,7 @@ endif;
     </div>
     <div class="footer-copyright">
         <div class="container">
-            Cloud T &copy; <?php echo date('Y') ?> -
+            <?php echo SYSNAME ?> &copy; <?php echo date('Y') ?> -
             <?php echo $this->translate('All rights reserved.') ?> -
             <?php echo '0.' . \Zend\Version\Version::VERSION ?>
             <span class="right">
