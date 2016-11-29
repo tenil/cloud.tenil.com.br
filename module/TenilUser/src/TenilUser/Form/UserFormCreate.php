@@ -37,7 +37,7 @@ class UserFormCreate extends Form
         $this->add($security);
 
         $submit = new Element\Submit('submit');
-        $submit->setValue('Criar conta')->setAttribute('class', 'btn btn-lg btn-primary btn-block');
+        $submit->setValue('Criar conta');
         $this->add($submit);
 
         $this->setAttributes(array(

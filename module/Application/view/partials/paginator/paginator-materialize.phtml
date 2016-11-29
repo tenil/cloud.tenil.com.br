@@ -1,0 +1,55 @@
+<?php if ($this->pageCount): ?>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <ul class="pagination center-align">
+                    <!-- First page link -->
+                    <?php if (isset($this->previous)): ?>
+                        <li class="waves-effect"><a
+                                href="<?php echo $this->url($this->route, array('page' => $this->first)); ?>"><i
+                                    class="material-icons">first_page</i></a></li>
+                    <?php else: ?>
+                        <li class="disabled"><a href="#!"><i class="material-icons">first_page</i></a></li>
+                    <?php endif; ?>
+
+                    <!-- Previous page link -->
+                    <?php if (isset($this->previous)): ?>
+                        <li class="waves-effect"><a
+                                href="<?php echo $this->url($this->route, array('page' => $this->previous)); ?>"><i
+                                    class="material-icons">chevron_left</i></a></li>
+                    <?php else: ?>
+                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <?php endif; ?>
+
+                    <?php foreach ($this->pagesInRange as $pagina) { ?>
+                        <?php echo ($this->current === $pagina) ? "<li class=\"active\">" : "<li class='waves-effect'>"; ?>
+                        <a
+                            href="<?php echo $this->url($this->route, array('page' => $pagina)); ?>"><?php echo $pagina; ?></a></li>
+                    <?php }; ?>
+
+                    <!-- Next page link -->
+                    <?php if (isset($this->next)): ?>
+                        <li class="waves-effect"><a
+                                href="<?php echo $this->url($this->route, array('page' => $this->next)); ?>"><i
+                                    class="material-icons">chevron_right</i></a></li>
+                    <?php else: ?>
+                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <?php endif; ?>
+
+                    <!-- Last page link -->
+                    <?php if (isset($this->next)): ?>
+                        <li class="waves-effect"><a
+                                href="<?php echo $this->url($this->route, array('page' => $this->last)); ?>"><i
+                                    class="material-icons">last_page</i></a></li>
+                    <?php else: ?>
+                        <li class="disabled"><a href="#!"><i class="material-icons">last_page</i></a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+            <div class="row">
+                <p class="center-align"><?php echo $this->firstItemNumber; ?>-<?php echo $this->lastItemNumber; ?>
+                    de <?php echo $this->totalItemCount; ?></p>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

@@ -3,49 +3,24 @@ $dataInicio = $this->dateFormat($evento->getDataInicio(), IntlDateFormatter::LON
 $dimensao = '896x504';
 $extensao = '.jpg'
 ?>
-    <div class="section uiGradient-Politics">
-        <div class="container">
-            <div class="row banner-row">
-                <div class="col s12 m8 l8">
-                    <img class="responsive-img"
-                         src="<?php echo $this->basePath() . "/images/eventos/" . $evento->getSlug() . "/" . $evento->getSlug() . "-banner-" . $dimensao . $extensao ?>"
-                         alt="<?php echo $evento->getNome(); ?>">
+<div class="section uiGradient-Politics">
+    <div class="container">
+        <div class="row banner-row">
+            <div class="col s12 m8 l8">
+                <img class="responsive-img z-depth-2 fade-image"
+                     src="<?php echo $this->basePath() . "/images/eventos/" . $evento->getSlug() . "/" . $evento->getSlug() . "-banner-" . $dimensao . $extensao ?>"
+                     alt="<?php echo $evento->getNome(); ?>">
+            </div>
+            <div class="col s12 m4 l4 white-text">
+                <div class="data-container">
+                    <div class="data-mes"><?php echo strtoupper($evento->getDataInicio()->format("M")); ?></div>
+                    <div class="data-dia"><?php echo strtoupper($evento->getDataInicio()->format("d")); ?></div>
                 </div>
-                <div class="col s12 m4 l4 white-text">
-                    <div class="data-container">
-                        <div class="data-mes"><?php echo strtoupper($evento->getDataInicio()->format("M")); ?></div>
-                        <div class="data-dia"><?php echo strtoupper($evento->getDataInicio()->format("d")); ?></div>
-                    </div>
-                    <h3><?php echo $evento->getNome(); ?></h3>
-                    <h5><?php echo $evento->getTema(); ?></h5>
-                    <p><?php echo $evento->getOrganizador(); ?></p>
-                </div>
+                <h3><?php echo $evento->getNome(); ?></h3>
+                <h5><?php echo $evento->getTema(); ?></h5>
+                <p><?php echo $evento->getOrganizador(); ?></p>
+                <p><?php echo $this->currencyFormat($evento->getValorInscricao(), "BRL", null, "pt_BR", 'R$ #0.#'); ?></p>
             </div>
         </div>
     </div>
-<?php /*
-<div class="row evento-banner">
-    <div class="col-xs-12 hidden-sm hidden-md hidden-lg"> <!--Mobile-->
-        <img class="img-responsive img-rounded" src="/images/manual/convencao-mundial-2016-banner-1080x1080.png"/>
-
-    </div>
-    <div class="hidden-xs col-sm-12 col-md-12 col-lg-12"> <!--Tab--> <!--Desktop--> <!--Large-->
-        <img class="img-responsive img-rounded" src="/images/manual/convencao-mundial-2016-banner-1280x400.jpg"/>
-
-    </div>
 </div>
-
-<div class="row evento-dados">
-    <div class="col-md-2">
-        <span aria-label="<?php echo $dataInicio ?>" title="<?php echo $dataInicio; ?>">
-            <span class="mdl-typography--display-2 mdl-typography--text-uppercase"><?php echo $evento->getDataInicio()->format("d M"); ?></span>
-        </span>
-    </div>
-    <div class="col-md-8 mdl-typography--text-center">
-        <span class="mdl-typography--display-1"><?php echo $evento->getNome(); ?></span>
-    </div>
-    <div class="col-md-2 mdl-typography--text-right">
-        <span class="mdl-typography--display-1"><?php echo $this->currencyFormat($evento->getValorInscricao(), "BRL", null, "pt_BR"); ?></span>
-    </div>
-</div>
- */

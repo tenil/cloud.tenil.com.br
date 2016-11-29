@@ -28,6 +28,18 @@ return array(
                             ),
                         ),
                     ),
+                    'detail' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/:id',
+                            'defaults' => array(
+                                'action' => 'detail'
+                            ),
+                            'constraints' => array(
+                                'id' => '[a-zA-z0-9_-]*'
+                            )
+                        )
+                    ),
                     'paginator' => array(
                         'type' => 'Segment',
                         'options' => array(

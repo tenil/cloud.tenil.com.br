@@ -14,6 +14,7 @@ use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\Form\Fieldset;
 use Zend\Form\Element;
+
 class UserFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct(ObjectManager $objectManager)
@@ -28,18 +29,21 @@ class UserFieldset extends Fieldset implements InputFilterProviderInterface
 
         $email = new Element\Email('email');
         $email->setLabel('E-mail')
-            ->setAttribute('placeholder', 'E-mail')
-            ->setAttribute('class', 'form-control')
-            ->setAttribute('required', 'required')
-            ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+            // ->setAttribute('placeholder', 'E-mail')
+            // ->setAttribute('class', 'form-control')
+            ->setAttribute('required', 'required');
+            // ->setLabelAttributes(array('class' => 'col-md-2 control-label'))
+           //->setAttribute('id', 'email');
         $this->add($email);
 
         $password = new Element\Password('password');
         $password->setLabel('Senha')
-            ->setAttribute('placeholder', 'Senha')
-            ->setAttribute('class', 'form-control')
-            ->setAttribute('required', 'required')
-            ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
+            // ->setAttribute('placeholder', 'Senha')
+            // ->setAttribute('class', 'form-control')
+            ->setAttribute('required', 'required');
+            // ->setLabelAttributes(array('class' => 'col-md-2 control-label'))
+            //->setAttribute('id', 'senha');
+            
         $this->add($password);
 
         $perfilFieldset = new PerfilFieldset($objectManager);

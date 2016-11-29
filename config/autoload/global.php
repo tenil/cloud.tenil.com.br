@@ -97,7 +97,17 @@ return array(
                         ),
                     ),
                 ),
-            )
+            ),
+            array(
+                'label' => 'Cadastre-se',
+                'route' => 'tenil-user/default',
+                'action' => 'register'
+            ),
+            array(
+                'label' => 'Faça login',
+                'route' => 'tenil-auth/default',
+                'action' => 'login'
+            ),
         ),
     ),
     'service_manager' => array(
