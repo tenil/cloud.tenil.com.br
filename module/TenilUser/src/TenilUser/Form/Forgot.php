@@ -21,8 +21,8 @@ class Forgot extends Form {
 
         $email = new Element\Email('email');
         $email->setLabel('E-mail')
-                ->setAttribute('placeholder', 'E-mail')
-                ->setAttribute('class', 'form-control')
+                // ->setAttribute('placeholder', 'E-mail')
+                // ->setAttribute('class', 'form-control')
                 ->setAttribute('autofocus', 'autofocus')
                 ->setAttribute('required', 'required');
         $this->add($email);
@@ -31,7 +31,7 @@ class Forgot extends Form {
         $this->add($security);
         
         $submit = new Element\Submit('submit');
-        $submit->setValue('Redefinir minha senha')->setAttribute('class', 'btn btn-lg btn-primary btn-block');
+        $submit->setValue('Redefinir minha senha');
         $this->add($submit);
     }
 

@@ -33,7 +33,9 @@ class IndexController extends AbstractActionController
         $paginator = new Paginator(new ArrayAdapter($list));
         $paginator->setCurrentPageNumber($pageNumber)->setDefaultItemCountPerPage($count);
 
-        return new ViewModel(array('data' => $paginator, 'page' => $pageNumber));
+        $vm = new ViewModel(array('data' => $paginator, 'page' => $pageNumber));
+
+        return $vm;
 
     }
 

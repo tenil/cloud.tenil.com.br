@@ -1,8 +1,33 @@
 <?php
+/**
+ * Annotation para type helper
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ */
+?>
+<?php
+// Configurando o título da página
+$title = $this->escapeHtml($this->translate('Eventos'));
+$this->headTitle($title);
+
+// Configurando google
+$this->headMeta()->setName('description', 'Sistema Multipropósito da Empresa Tenil Tecnologia');
+
+// Configurando ogp
+$this->headMeta()->appendProperty('og:type', 'website');
+$this->headMeta()->appendProperty('og:title', 'Eventos');
+$this->headMeta()->appendProperty('og:description', 'Sistema Multipropósito da Empresa Tenil Tecnologia');
+//$this->headMeta()->appendProperty('og:type', 'article');
+$this->headMeta()->appendProperty('og:url', $this->serverUrl(true));
+$this->headMeta()->appendProperty('og:site_name', 'Tenil Tecnologia');
+$this->headMeta()->appendProperty('og:image', $this->serverUrl(true) . $this->basePath() . 'images/tenil_img_facebook.png');
+$this->headMeta()->appendProperty('og:image:width', 600);
+$this->headMeta()->appendProperty('og:image:height', 315);
+
 setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 $dimensao = '896x504';
 $extensao = '.jpg'
+
 ?>
 <div class="section">
     <div class="container">

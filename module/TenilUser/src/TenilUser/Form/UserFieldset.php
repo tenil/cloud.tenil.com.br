@@ -15,6 +15,8 @@ use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\Form\Fieldset;
 use Zend\Form\Element;
 
+use Zend\Validator;
+
 class UserFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct(ObjectManager $objectManager)
@@ -55,16 +57,27 @@ class UserFieldset extends Fieldset implements InputFilterProviderInterface
 
     public function getInputFilterSpecification()
     {
+
+        $emailValidator = new Validator\EmailAddress();
+        $email = array(
+            'name' => 'email',
+            'required' => TRUE,
+            'validators' => array($emailValidator),
+            'filters' => array(
+                array('name' => 'StringToLower')
+            )
+        );
+
         return array(
             'id' => array(
                 'required' => false
             ),
-            'email' => array(
-                'required' => true
-            ),
+            'email' => $email,
             'password' => array(
                 'required' => true
             )
         );
+
+
     }
 }

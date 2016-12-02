@@ -9,15 +9,16 @@ $form->prepare();
 
 $form->setAttribute('action', $this->url('tenil-user/default', array('action' => 'register')));
 $form->setAttributes(array(
-    'class' => 'col s4 offset-s4',
+    'class' => 'col s12 m8 offset-m2 l6 offset-l3',
     'label' => 'Crie sua conta'
 ));
+// $formLabel = $this->plugin('formLabel');
+/*
 $this->formElementErrors()
     ->setMessageOpenFormat('<span id="helpBlock" class="help-block">')
     ->setMessageSeparatorString('</span><span id="helpBlock" class="help-block">')
     ->setMessageCloseString('</span>');
-
-$formLabel = $this->plugin('formLabel');
+*/
 ?>
 <div class="section">
     <div class="container">
@@ -71,7 +72,7 @@ $formLabel = $this->plugin('formLabel');
                 <div class="input-field col s12">
                     <?php
                     $submit = $form->get('submit');
-                    $submit->setAttribute('class', 'waves-effect waves-light btn');
+                    $submit->setAttribute('class', 'waves-effect waves-light btn col s12');
                     echo $this->formSubmit($submit);
                     ?>
                 </div>
@@ -82,14 +83,13 @@ $formLabel = $this->plugin('formLabel');
                             privacidade</a>, <a
                             href="#!">política de
                             cookies</a> e em receber comunicações de email marketing da empresa.</p>
-                    <p><strong>Já tem uma conta? <a
-                                href="<?php echo $this->url('tenil-auth', array('action' => 'login')) ?>">Faça
-                                login</a></strong></p>
+                    <p>Já tem uma conta? <a
+                            href="<?php echo $this->url('tenil-auth', array('action' => 'login')) ?>">Faça
+                            login</a></p>
 
                 </div>
             </div>
             <?php echo $this->form()->closeTag(); ?>
-
         </div>
     </div>
 </div>

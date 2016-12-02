@@ -13,7 +13,7 @@ class Reset extends Form {
         $this->setAttributes(array(
             'method' => 'post',
             'role' => 'form',
-            'class' => 'form-signin',
+            // 'class' => 'form-signin',
             'label' => 'Redefina sua senha'
         ));
 
@@ -24,8 +24,8 @@ class Reset extends Form {
 
         $password = new Element\Password('password');
         $password->setLabel('Senha')
-                ->setAttribute('placeholder', 'Digite a senha')
-                ->setAttribute('class', 'form-control')
+                // ->setAttribute('placeholder', 'Digite a senha')
+                // ->setAttribute('class', 'form-control')
                 ->setAttribute('required', 'required');
         $this->add($password);
 
@@ -33,7 +33,7 @@ class Reset extends Form {
         $this->add($security);
 
         $submit = new Element\Submit('submit');
-        $submit->setValue('Redefinir senha')->setAttribute('class', 'btn btn-lg btn-primary btn-block');
+        $submit->setValue('Redefinir senha');
         $this->add($submit);
     }
 

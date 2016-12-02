@@ -1,8 +1,38 @@
 <?php
-// Título da página
-$title = $this->translate('Informações do evento');
-$this->headTitle($title);
-$evento = $this->data;
+/**
+ * Annotation para type helper
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ */
 ?>
+<?php
+// configurações específicas da view
+setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+$evento = $this->data;
+date_default_timezone_set('America/Sao_Paulo');
+$dimensao = '896x504';
+$width = 896;
+$height = 504;
+$extensao = '.jpg'
+?>
+<?php
+// Configurando o título da página
+$title = $this->escapeHtml($this->translate('Informações do Evento'));
+$this->headTitle($title);
+
+// Configurando google
+$this->headMeta()->setName('description', $evento->getDescricao());
+
+// Configurando ogp
+$this->headMeta()->appendProperty('og:type', 'website');
+$this->headMeta()->appendProperty('og:title', $evento->getNome() . ' - ' . $evento->getTema());
+$this->headMeta()->appendProperty('og:description', $evento->getDescricao());
+//$this->headMeta()->appendProperty('og:type', 'article');
+$this->headMeta()->appendProperty('og:url', $this->serverUrl(true));
+$this->headMeta()->appendProperty('og:site_name', 'Tenil Tecnologia');
+$this->headMeta()->appendProperty('og:image', $this->serverUrl() . $this->basePath() . "/images/eventos/" . $evento->getSlug() . "/" . $evento->getSlug() . "-banner-" . $width . 'x' . $height . $extensao);
+$this->headMeta()->appendProperty('og:image:width', $width);
+$this->headMeta()->appendProperty('og:image:height', $height);
+?>
+
 <?php echo $this->partial('partial-evento-banner', array('evento' => $data)); ?>
 <?php echo $this->partial('partial-evento', array('evento' => $data)); ?>

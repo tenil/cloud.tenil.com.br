@@ -1,30 +1,59 @@
 <?php
-$this->headLink()->appendStylesheet('/css/signin.css');
+// $this->headLink()->appendStylesheet('/css/signin.css');
 
 $form = $this->form;
 $form->prepare();
 
-$form->setAttribute('action', $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'reset')));
-
-$formLabel = $this->plugin('formLabel');
-
-echo $this->form()->openTag($form);
-echo $formLabel->openTag() . $form->getAttribute('label') . $formLabel->closeTag();
-
-$security = $form->get('security');
-echo $this->formHidden($security);
-
-$id = $form->get('id');
-echo $this->formHidden($id);
-
-$password = $form->get('password');
-echo $this->formInput($password);
-
-$submit = $form->get('submit');
-echo $this->formSubmit($submit);
+$form->setAttribute('action', $this->url('tenil-user/default', array('controller' => 'index', 'action' => 'reset')));
+$form->setAttributes(array(
+    'class' => 'col s12 m8 offset-m2 l6 offset-l3',
+    'label' => 'Redefina sua senha'
+));
 ?>
-<div class="footer">
-    <p>Não tem uma conta? <a href="<?php echo $this->url('tenil-user/default', array('controller'=> 'index', 'action'=>'register')) ?>">Cadastre-se</a></p>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <?php
+            echo $this->form()->openTag($form);
+
+            $security = $form->get('security');
+            echo $this->formHidden($security);
+
+            $id = $form->get('id');
+            echo $this->formHidden($id);
+            ?>
+            <div class="row">
+                <div class="col s12">
+                    <h4 class="light center-align"><?php echo $form->getAttribute('label'); ?></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <?php
+                    $password = $form->get('password');
+                    echo $this->formInput($password);
+                    echo $this->formLabel($password);
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <?php
+                    $submit = $form->get('submit');
+                    $submit->setAttribute('class', 'waves-effect waves-light btn col s12');
+                    echo $this->formSubmit($submit);
+                    ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p>Não tem uma conta? <a
+                            href="<?php echo $this->url('tenil-user/default', array('controller' => 'index', 'action' => 'register')) ?>">Cadastre-se</a>
+                    </p>
+                </div>
+            </div>
+            <?php echo $this->form()->closeTag(); ?>
+        </div>
+    </div>
 </div>
 
-<?php echo $this->form()->closeTag(); ?>

@@ -1,19 +1,54 @@
 <?php
-define("SYSNAME",     "Cloud");
+/**
+ * Annotation para type helper
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ */
+?>
+
+<?php
+define("SYSNAME", "Cloud Tenil");
 define("FAVICON", "ffc161d9-9564-4f66-a042-d21ca72a82d0");
 ?>
 <?php echo $this->doctype() . PHP_EOL; ?>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+    <?php if ($this->doctype()->isRdfa()): ?>
+        xmlns:og="http://opengraphprotocol.org/schema/"
+        xmlns:fb="http://www.facebook.com/2008/fbml"
+    <?php endif; ?>
+>
 <head>
     <?php
     $this->headMeta()
         ->setCharset("utf-8")
         ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        // description: Aparece no link do facebook, descrição da página, não do sistema. Toda página deve ter a sua próprida descrição.
         ->appendName('description', 'Sistema Multipropósito da Empresa Tenil Tecnologia')
+        // title:  Aparece no link do facebook, é o título da página atual, não do sistema. Toda página deve ter o seu próprio.
         ->appendName('title', SYSNAME)
-        ->appendName('author', 'Tenil Tecnologia')
-        ->appendName('keywords', 'Tenil, Tecnologia, Cloud, Sistema, TT');
+        // author: Aparece no link do facebook.
+        ->appendName('author', 'Roberto Tenil')
+        ->appendName('keywords', 'Tenil, Tecnologia, Cloud, Sistema');
+
+    // Configurando conta do google
+    $this->headMeta()->appendName('google-site-verification', 'Hk2DeQGhEA8rdoVV_7l64ALHoHlwhfuqjlGPYrQzFFE');
+
+    /*
+    // Configurando ogp
+    $this->headMeta()
+        ->setProperty('og:title', SYSNAME)
+        ->setProperty('og:description', 'Sistema Multipropósito da Empresa Tenil Tecnologia')
+        ->setProperty('og:type', 'article')
+        ->setProperty('og:url', $this->serverUrl(true))
+        ->setProperty('og:site_name', SYSNAME)
+        ->setProperty('og:image', $this->serverUrl(true) . $this->basePath(). 'images/eventos/tenil-teleiso/tenil-teleiso-banner-896x504.jpg');
+    */
+    
+    // Configurando facebook
+    $this->headMeta()
+       // ->setProperty('article:author', 'https://www.facebook.com/TENIL-135596926601140/')
+        ->setProperty('fb:app_id', '747544321971870')
+    ;
 
     // Configurando o favicon
     $favicionVersion = FAVICON;
@@ -62,7 +97,8 @@ if ($user = $this->identity()) {
     <div class="navbar-fixed">
         <nav role="navigation">
             <div class="nav-wrapper container">
-                <a id="logo-container" href="<?php echo $this->url('home') ?>" class="brand-logo"><i class="large material-icons">cloud_queue</i><?php echo SYSNAME ?></a>
+                <a id="logo-container" href="<?php echo $this->url('home') ?>" class="brand-logo"><i
+                        class="large material-icons">cloud_queue</i><?php echo SYSNAME ?></a>
                 <?php
                 echo $this->navigation('navigation')
                     ->menu()

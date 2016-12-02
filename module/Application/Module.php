@@ -28,6 +28,9 @@ class Module
         $translator->addTranslationFile('phpArray', 'vendor/zendframework/zendframework/resources/languages/pt_BR/Zend_Validate.php', 'default', 'pt_BR');
 
         \Zend\Validator\AbstractValidator::setDefaultTranslator(new \Zend\Mvc\I18n\Translator($translator));
+
+        $doctypeHelper = new \Zend\View\Helper\Doctype();
+        $doctypeHelper->setDoctype('XHTML1_RDFA');
     }
 
     public function getConfig()
