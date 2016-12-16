@@ -35,13 +35,13 @@ class EventoCreate extends Form
         $this->add($security);
 
         $submit = new Element\Submit('submit');
-        $submit->setValue('Salvar')->setAttribute('class', 'btn btn-default');
+        $submit->setValue('Salvar');
         $this->add($submit);
 
         $this->setAttributes(array(
             'method' => 'post',
             'role' => 'form',
-            'class' => 'form-horizontal',
+            //'class' => 'form-horizontal',
             'label' => 'Criar evento'
         ));
 

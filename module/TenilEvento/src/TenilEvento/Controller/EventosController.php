@@ -22,7 +22,6 @@ use TenilBase\Controller\CrudController;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 
-
 class EventosController extends CrudController
 {
 
@@ -41,11 +40,11 @@ class EventosController extends CrudController
      */
     public function detailAction()
     {
-        $id = $this->params()->fromRoute('id', null);
+        $slug = $this->params()->fromRoute('slug', null);
         //$em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
         // $evento = $em->getRepository('TenilEvento\Entity\Evento')->find($id);
-        $data = $this->getEm()->getRepository($this->entity)->findOneBy(array('slug' => $id));
+        $data = $this->getEm()->getRepository($this->entity)->findOneBy(array('slug' => $slug));
 
         if ($data) {
             return new ViewModel(array('data' => $data));
@@ -239,7 +238,6 @@ class EventosController extends CrudController
                 // Processar arquivo - FIM
 
                 var_dump($resposta);
-
 
 
                 $this->flashMessenger()->setNamespace('Tenil')->addSuccessMessage('Arquivo enviado e processado com sucesso.');

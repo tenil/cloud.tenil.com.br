@@ -19,9 +19,9 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'default' => array(
-                        'type' => 'Segment',
+                        'type' => 'segment',
                         'options' => array(
-                            'route' => '/[:action][/:id][/:cpf]',
+                            'route' => '[/:action][/:id[/:cpf]]',
                             'constraints' => array(
                                 'action' => '[a-zA-Z][a-zA-z0-9_-]*',
                                 'id' => '[a-zA-z0-9_-]*',
@@ -31,12 +31,30 @@ return array(
                     'detail' => array(
                         'type' => 'segment',
                         'options' => array(
-                            'route' => '/:id',
+                            'route' => '[/:slug]',
                             'defaults' => array(
                                 'action' => 'detail'
                             ),
                             'constraints' => array(
-                                'id' => '[a-zA-z0-9_-]*'
+                                'slug' => '[a-zA-z0-9_-]*',
+                            )
+                        )
+                    ),
+                    'create' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/create',
+                            'defaults' => array(
+                                'action' => 'create'
+                            )
+                        )
+                    ),
+                    'list' => array(
+                        'type' => 'literal',
+                        'options' => array(
+                            'route' => '/list',
+                            'defaults' => array(
+                                'action' => 'list'
                             )
                         )
                     ),
