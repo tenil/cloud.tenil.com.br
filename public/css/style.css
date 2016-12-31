@@ -12,6 +12,15 @@ main {
     flex: 1 0 auto;
 }
 
+.header {
+    color: #ee6e73;
+    font-weight: 300;
+}
+
+.parallax-container {
+    height: 400px;
+}
+
 .uiGradient-Deep-Sea-Space {
     background: #2C3E50; /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #2C3E50, #4CA1AF); /* Chrome 10-25, Safari 5.1-6 */
@@ -39,7 +48,7 @@ main {
 }
 .data-mes {
     text-align: center;
-    letter-spacing: .5px;
+    letter-spacing: .1em;
 }
 .data-dia {
     text-align: center;

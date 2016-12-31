@@ -17,7 +17,6 @@ echo Instalando PHP 5
 apt-get install php5 php5-cli php5-dev php5-mcrypt php5-curl php5-gd libapache2-mod-php5 -y
 apt-get install php5-json -y
 apt-get install php5-xdebug -y
-apt-get install php5-intl -y
 echo PHP instalado
 
 # Instalar MySql Client only

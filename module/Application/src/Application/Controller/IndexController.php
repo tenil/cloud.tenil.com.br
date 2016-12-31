@@ -22,20 +22,7 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
 
-        // Em caso de redirecionamento:
-        // return $this->redirect()->toRoute('tenil-evento');
-
-        $list = $this->getEm()->getRepository('TenilEvento\Entity\Evento')->findAll();
-
-        $pageNumber = $this->params()->fromRoute('page');
-        $count = 5;
-
-        $paginator = new Paginator(new ArrayAdapter($list));
-        $paginator->setCurrentPageNumber($pageNumber)->setDefaultItemCountPerPage($count);
-
-        $vm = new ViewModel(array('data' => $paginator, 'page' => $pageNumber));
-
-        return $vm;
+        return new ViewModel();
 
     }
 

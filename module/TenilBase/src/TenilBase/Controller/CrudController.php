@@ -22,7 +22,9 @@ use Zend\Paginator\Adapter\ArrayAdapter;
 
 abstract class CrudController extends AbstractActionController
 {
-
+    /**
+     * @var EntityManager
+     */
     protected $em;
 
     protected $controller;

@@ -2,6 +2,7 @@ $(document).ready(function(){
     $('.dropdown-button').dropdown();
     $('select').material_select();
     Materialize.fadeInImage('.fade-image');
+    $('.parallax').parallax();
 });
 
 var currentTime = new Date();

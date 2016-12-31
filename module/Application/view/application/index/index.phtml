@@ -6,7 +6,7 @@
 ?>
 <?php
 // Configurando o título da página
-$title = $this->escapeHtml($this->translate('Eventos'));
+$title = $this->escapeHtml($this->translate('Home'));
 $this->headTitle($title);
 
 // Configurando google
@@ -25,59 +25,19 @@ $this->headMeta()->appendProperty('og:image:height', 315);
 
 setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
-$dimensao = '896x504';
-$extensao = '.jpg'
+?>
+<?php
+
+$dir = getcwd() . "/public/images/wallpaper/";
+$images = glob($dir.'*.jpg');
+$randomImage = $images[array_rand($images)];
 
 ?>
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <?php foreach ($this->data as $evento): ?>
-                <div class="col s12 m12 l4">
-                    <div class="card sticky-action hoverable">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <a
-                                href="<?php echo $this->url('tenil-evento/default', array('action' => 'default', 'id' => $evento->getSlug())) ?>">
-                                <img
-                                    src="<?php echo $this->basePath() . "/images/eventos/" . $evento->getSlug() . "/" . $evento->getSlug() . "-banner-" . $dimensao . $extensao ?>"
-                                    alt="<?php echo $evento->getNome(); ?>">
-                            </a>
-                            <!-- <span class="card-title"><?php echo $evento->getNome(); ?></span> -->
-                        </div>
-                        <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><?php echo $evento->getNome(); ?><i
-                                class="material-icons right">more_vert</i></span>
-                            <p><?php echo $evento->getTema(); ?>
-                                <span class="new badge"
-                                      data-badge-caption=""><?php echo strtoupper($evento->getDataInicio()->format("d M")); ?></span>
-                            </p>
-                        </div>
-                        <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><?php echo $evento->getNome(); ?><i
-                                class="material-icons right">close</i></span>
-                            <div class="grey-text text-darken-2">
-                        <span class="new badge"
-                              data-badge-caption=""><?php echo $evento->getDataInicio()->format("H:i"); ?></span>
-                                <?php
-                                echo mb_strtoupper(($this->dateFormat(
-                                    $evento->getDataInicio(),
-                                    IntlDateFormatter::TRADITIONAL, // date
-                                    IntlDateFormatter::NONE, // time
-                                    "pt_BR"
-                                )), 'UTF-8');
-                                ?>
-                            </div>
-                            <p class="flow-text"><?php echo $evento->getDescricao(); ?></p>
-                        </div>
-                        <div class="card-action">
-                            <a class="blue-grey-text"
-                               href="<?php echo $this->url('tenil-evento/detail', array('action' => 'detail', 'id' => $evento->getSlug())) ?>"><i
-                                    class="material-icons right">cloud</i> Mais
-                                informações</a>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
+<div class="parallax-container">
+    <div class="parallax"><img src="<?php echo $this->basePath("/images/wallpaper/") . basename($randomImage) ?>"></div>
+</div>
+<div class="section white">
+    <div class="row container">
+            <h2 class="header">Home</h2>
     </div>
 </div>
