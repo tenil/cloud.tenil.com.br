@@ -40,8 +40,10 @@
                                 <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
                                 <td><?php echo $this->escapeHtml($value->getParent()); ?></td>
                                 <td>
-                                    <a class="waves-effect waves-light btn" href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'roles', 'action' => 'edit', 'id' => $value->getId())) ?>">Editar</a>
-                                    <a class="waves-effect waves-light btn" href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'roles', 'action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a>
+                                    <a class="waves-effect waves-light btn"
+                                       href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'roles', 'action' => 'edit', 'id' => $value->getId())) ?>">Editar</a>
+                                    <a class="waves-effect waves-light btn"
+                                       href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'roles', 'action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a>
                                 </td>
                                 <td>
                                     <small><?php

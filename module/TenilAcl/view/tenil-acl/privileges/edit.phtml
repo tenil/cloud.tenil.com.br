@@ -1,75 +1,83 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <?php echo $this->translate('Editar privilégio') ?>
-        </div>
-    </div>
-    <?php
-    $form = $this->form;
-    $form->prepare();
+<?php
+/**
+ * Annotation para type helper
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ * @var \TenilAcl\Form\Role $form
+ */
+?>
+<?php
+// Título da página e formulário
+$title = $this->translate('Editar Privilégio');
+$this->headTitle($title);
+?>
+<?php
+// Configurando o formulário
+$form = $this->form;
+$form->setAttribute('action', $this->url('tenil-acl-admin/default', array('controller' => 'privileges', 'action' => 'edit')));
+$form->setAttributes(array(
+    'method' => 'post',
+    'role' => 'form',
+    'class' => 'col s12 m10 offset-m1 l8 offset-l2',
+    'label' => $title
+));
 
-    $form->setAttribute('action', $this->url('tenil-acl-admin/default', array('controller' => 'privileges', 'action' => 'edit')));
+// Elementos do form
+$id = $form->get('id');
+$security = $form->get('security');
+$nome = $form->get('nome');
+$role = $form->get('role');
+$resource = $form->get('resource');
 
-    echo $this->form()->openTag($form);
+// Configurando atributos dos Elementos
+$nome->setLabel('Privilégio')->setAttribute('class', 'validate');
+$role->setLabel('Papel');
+$resource->setLabel('Recurso');
 
-    ?>
-    <div class="panel-body">
-        <?php
+$form->prepare();
+?>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <?php echo $this->form()->openTag($form); ?>
+            <?php
+            echo $this->formHidden($id);
+            echo $this->formElement($security);
+            ?>
+            <h3 class="header"><?php echo $this->translate('Editar Privilégio') ?></h3>
 
-        $id = $form->get('id');
-        echo $this->formHidden($id);
+            <div class="row">
+                <div class="input-field col s12 <?php echo($nome->getMessages() ? 'invalid' : ''); ?>">
+                    <?php echo $this->formLabel($nome); ?>
+                    <?php $nome->setAttribute('class', ($nome->getMessages() ? 'invalid' : '')); ?>
+                    <?php echo $this->formInput($nome); ?>
+                    <?php // echo $this->formElementErrors($nome); ?>
+                </div>
+            </div>
 
-        $security = $form->get('security');
-        echo $this->formElement($security);
+            <div class="row">
+                <div class="input-field col s12 <?php echo($role->getMessages() ? 'invalid' : ''); ?>">
+                    <?php echo $this->formSelect($role); ?>
+                    <?php echo $this->formElementErrors($role); ?>
+                    <?php echo $this->formLabel($role); ?>
+                </div>
+            </div>
 
-        echo '<div class="form-group">';
-        $nome = $form->get('nome');
-        echo $this->formLabel($nome);
-        echo '<div class="col-md-10">';
-        echo $this->formInput($nome);
-        echo '</div>';
-        echo '</div>';
+            <div class="row">
+                <div class="input-field col s12 <?php echo($resource->getMessages() ? 'invalid' : ''); ?>">
+                    <?php echo $this->formSelect($resource); ?>
+                    <?php echo $this->formElementErrors($resource); ?>
+                    <?php echo $this->formLabel($resource); ?>
+                </div>
+            </div>
 
-
-        echo '<div class="form-group">';
-        $role = $form->get('role');
-        echo $this->formLabel($role);
-        echo '<div class="col-md-10">';
-        echo $this->formSelect($role);
-        echo '</div>';
-        echo '</div>';
-
-        echo '<div class="form-group">';
-        $resource = $form->get('resource');
-        echo $this->formLabel($resource);
-        echo '<div class="col-md-10">';
-        echo $this->formSelect($resource);
-        echo '</div>';
-        echo '</div>';
-
-        ?>
-    </div>
-
-
-    <div class="panel-footer">
-        <div class="clearfix">
-            <div class="pull-right">
+            <div class="input-field col s4">
                 <?php
                 $submit = $form->get('submit');
+                $submit->setAttribute('class', 'waves-effect waves-light btn col s12');
                 echo $this->formSubmit($submit);
                 ?>
             </div>
         </div>
+
     </div>
-
-    <?php
-
-
-    echo $this->form()->closeTag();
-
-    foreach ($form as $element) {
-        echo $this->formElementErrors($element);
-    }
-    ?>
-
 </div>

@@ -1,65 +1,74 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <?php echo $this->translate('Recursos') ?>
-            <small><?php echo $this->translate('Administração de Resources (Recursos)') ?></small>
-        </div>
-    </div>
-    <table class="table table-striped table-bordered table-hover">
-        <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Editar</th>
-            <th>Excluir</th>
-            <th>Data</th>
-        </tr>
-        <?php foreach ($this->data as $value): ?>
-            <tr>
-                <td><?php echo $this->escapeHtml($value->getId()); ?></td>
-                <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
-                <td>
-                    <a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'edit', 'id' => $value->getId())) ?>">Editar</a>
-                </td>
-                <td>
-                    <a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a>
-                </td>
-                <td>
-                    <small><?php
-                        echo $this->dateFormat(
-                            $value->getCreatedAt(), IntlDateFormatter::MEDIUM, // date
-                            IntlDateFormatter::SHORT, // time
-                            "pt_BR"
-                        );
-                        ?></small>
-                    <br/>
-                    <small><?php
-                        echo $this->dateFormat(
-                            $value->getUpdatedAt(), IntlDateFormatter::MEDIUM, // date
-                            IntlDateFormatter::SHORT, // time
-                            "pt_BR"
-                        );
-                        ?></small>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
+<?php
+/**
+ * Annotation para type helper
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ */
+?>
+    <div class="section">
+        <div class="container">
 
-    <div class="panel-footer">
-        <div class="clearfix">
-            <div class="pull-right">
-                <a class="btn btn-default"
-                   href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'add')); ?>"
-                   target="_self">Novo</a>
+            <div class="row">
+                <div class="col s12">
+                    <h3 class="title">
+                        <?php echo $this->translate('Recursos') ?>
+                        <small><?php echo $this->translate('Administração de Resources (Recursos)') ?></small>
+                    </h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 right-align">
+                    <a class="btn-floating btn-large waves-effect waves-light red "
+                       href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'add')); ?>"
+                       target="_self"><i class="material-icons">add</i>Novo</a>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <table class="bordered highlight">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
+                        <th>Data</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($this->data as $value): ?>
+                        <tr>
+                            <td><?php echo $this->escapeHtml($value->getId()); ?></td>
+                            <td><?php echo $this->escapeHtml($value->getNome()); ?></td>
+                            <td>
+                                <a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'edit', 'id' => $value->getId())) ?>">Editar</a>
+                            </td>
+                            <td>
+                                <a href="<?php echo $this->url('tenil-acl-admin/default', array('controller' => 'resources', 'action' => 'delete', 'id' => $value->getId())) ?>">Excluir</a>
+                            </td>
+                            <td>
+                                <small><?php
+                                    echo $this->dateFormat(
+                                        $value->getCreatedAt(), IntlDateFormatter::MEDIUM, // date
+                                        IntlDateFormatter::SHORT, // time
+                                        "pt_BR"
+                                    );
+                                    ?></small>
+                                <br/>
+                                <small><?php
+                                    echo $this->dateFormat(
+                                        $value->getUpdatedAt(), IntlDateFormatter::MEDIUM, // date
+                                        IntlDateFormatter::SHORT, // time
+                                        "pt_BR"
+                                    );
+                                    ?></small>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <?php
-        echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator/control_v2', array('route' => 'tenil-acl-admin/paginator', 'controller' => 'resources'));
-        ?>
-    </div>
-</div>
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator/paginator-materialize', array('route' => 'tenil-acl-admin/paginator', 'controller' => 'resources')); ?>

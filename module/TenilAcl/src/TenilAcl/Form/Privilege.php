@@ -28,26 +28,16 @@ class Privilege extends Form {
         $this->add($id);
 
         $nome = new Element\Text('nome');
-        $nome->setLabel('Privilégio')
-                ->setAttribute('placeholder', 'Informe o nome do Privilégio')
-                ->setAttribute('class', 'form-control')
-                ->setLabelAttributes(array('class' => 'col-md-2 control-label'));
         $this->add($nome);
 
         $role = new Element\Select('role');
         $role->setLabel('Papel')
-                ->setAttribute('placeholder', 'Informe o nome do Papel')
-                ->setAttribute('class', 'form-control')
-                ->setLabelAttributes(array('class' => 'col-md-2 control-label'))
                 ->setValueOptions($this->role)
                 ->setEmptyOption('Nenhum');
         $this->add($role);
         
         $resource = new Element\Select('resource');
         $resource->setLabel('Recurso')
-                ->setAttribute('placeholder', 'Informe o nome do Recurso')
-                ->setAttribute('class', 'form-control')
-                ->setLabelAttributes(array('class' => 'col-md-2 control-label'))
                 ->setValueOptions($this->resource)
                 ->setEmptyOption('Nenhum');
         $this->add($resource);
@@ -56,7 +46,7 @@ class Privilege extends Form {
         $this->add($security);
 
         $submit = new Element\Submit('submit');
-        $submit->setValue('Salvar')->setAttribute('class', 'btn btn-default');
+        $submit->setValue('Salvar');
         $this->add($submit);
     }
 

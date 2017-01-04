@@ -1,63 +1,84 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <?php echo $this->translate('Editar papel') ?>
-        </div>
-    </div>
-    <?php
-    $form = $this->form;
-    $form->prepare();
+<?php
+/**
+ * Annotation para type helper
+ * @var \Zend\View\Renderer\PhpRenderer $this
+ * @var \TenilAcl\Form\Role $form
+ */
+?>
+<?php
+// Título da página e formulário
+$title = $this->translate('Adicionar Papel');
+$this->headTitle($title);
+?>
+<?php
+// Configurando o formulário
+$form = $this->form;
+$form->setAttribute('action', $this->url('tenil-acl-admin/default', array('controller' => 'roles', 'action' => 'add')));
+$form->setAttributes(array(
+    'method' => 'post',
+    'role' => 'form',
+    'class' => 'col s12 m10 offset-m1 l8 offset-l2',
+    'label' => $title
+));
 
-    $form->setAttribute('action', $this->url('tenil-acl-admin/default', array('controller' => 'roles', 'action' => 'add')));
+// Elementos do form
+$id = $form->get('id');
+$security = $form->get('security');
+$nome = $form->get('nome');
+$parent = $form->get('parent');
 
-    echo $this->form()->openTag($form);
+// Configurando atributos dos Elementos
+$nome->setLabel('Papel')
+    //->setAttribute('placeholder', 'Nome')
+    ->setAttribute('class', 'validate')//->setLabelAttributes(array('class' => 'col-md-3 control-label'))
+;
+$parent->setLabel('Pai')
+    //->setAttribute('placeholder', 'Tema')
+    //->setAttribute('class', 'form-control')
+    //->setLabelAttributes(array('class' => 'col-md-3 control-label'))
+;
+/*
+$this->formElementErrors()
+    ->setMessageOpenFormat('<div class="row"><div class="col s12">')
+    ->setMessageSeparatorString('</div><div class="col s12">')
+    ->setMessageCloseString('</div></div>');
+*/
+$form->prepare();
+?>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <?php echo $this->form()->openTag($form); ?>
+            <?php
+            echo $this->formHidden($id);
+            echo $this->formElement($security);
+            ?>
+            <h3 class="header"><?php echo $this->translate('Adicionar papel') ?></h3>
 
-    ?>
-    <div class="panel-body">
-        <?php
+            <div class="row">
+                <div class="input-field col s12 <?php echo($nome->getMessages() ? 'invalid' : ''); ?>">
+                    <?php echo $this->formLabel($nome); ?>
+                    <?php $nome->setAttribute('class', ($nome->getMessages() ? 'invalid' : '')); ?>
+                    <?php echo $this->formInput($nome); ?>
+                    <?php // echo $this->formElementErrors($nome); ?>
+                </div>
+            </div>
 
-        $id = $form->get('id');
-        echo $this->formHidden($id);
+            <div class="row">
+                <div class="input-field col s12 <?php echo($parent->getMessages() ? 'invalid' : ''); ?>">
+                    <?php echo $this->formSelect($parent); ?>
+                    <?php echo $this->formElementErrors($parent); ?>
+                    <?php echo $this->formLabel($parent); ?>
+                </div>
+            </div>
 
-        $security = $form->get('security');
-        echo $this->formElement($security);
-
-        echo '<div class="form-group">';
-        $nome = $form->get('nome');
-        echo $this->formLabel($nome);
-        echo '<div class="col-md-10">';
-        echo $this->formInput($nome);
-        echo '</div>';
-        echo '</div>';
-
-        echo '<div class="form-group">';
-        $parent = $form->get('parent');
-        echo $this->formLabel($parent);
-        echo '<div class="col-md-10">';
-        echo $this->formSelect($parent);
-        echo '</div>';
-        echo '</div>';
-
-        ?>
-    </div>
-
-    <div class="panel-footer">
-        <div class="clearfix">
-            <div class="pull-right">
+            <div class="input-field col s4">
                 <?php
                 $submit = $form->get('submit');
+                $submit->setAttribute('class', 'waves-effect waves-light btn col s12');
                 echo $this->formSubmit($submit);
                 ?>
             </div>
         </div>
     </div>
-
-    <?php
-    echo $this->form()->closeTag();
-
-    foreach ($form as $element) {
-        echo $this->formElementErrors($element);
-    }
-    ?>
-
 </div>
